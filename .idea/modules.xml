@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/commonLib/commonLib.iml" filepath="$PROJECT_DIR$/commonLib/commonLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javaapk.com-MyAnjoyoLiuxiaowei.iml" filepath="$PROJECT_DIR$/javaapk.com-MyAnjoyoLiuxiaowei.iml" />
+    </modules>
+  </component>
+</project>
+

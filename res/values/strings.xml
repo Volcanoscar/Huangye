@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">诺部落</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_tuan">TuanActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_checkin">CheckinActivity</string>
+    <string name="title_activity_my">MyActivity</string>
+    <string name="title_activity_more">MoreActivity</string>
+    <string name="title_activity_search_more">SearchMoreActivity</string>
+    <string name="title_activity_shop_details">ShopDetails</string>
+    <string name="title_activity_sou_quan_cheng">搜全城</string>
+    <string name="title_activity_shop_details_more">ShopDetailsMore</string>
+    <string name="title_activity_paihangbang">Paihangbang</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_start">StartActivity</string>
+    <string name="title_activity_shop_detailsqiandao">ShopDetailsqiandaoActivity</string>
+    <string name="title_activity_shop_detailsdianping">ShopDetailsdianpingActivity</string>
+    <string name="title_activity_paihangbang_more">Paihangbang_more</string>
+    <string name="title_activity_paihangbang_bzrm">Paihangbang_bzrm</string>
+    <string name="title_activity_tuan_details">TuanDetailsActivity</string>
+    <string name="feedback_title">用户反馈</string>
+    <string name="feedback_text1">建议或意见</string>
+    <string name="feedback_hint1">如您遇到问题，请留下您的宝贵意见和联系方式，我们会及时与您联系，排查解决，彩票相关问题请在反馈内容中说明账户名。</string>
+    <string name="feedback_text2">手机或QQ</string>
+    <string name="feedback_hint2">手机或QQ</string>
+    <string name="feedback_submit">提　交</string>
+    <string name="more_main_title">更多</string>
+    <string name="feedback">用户反馈</string>
+    <string name="checkupdate">检查更新</string>
+    <string name="about">关于</string>
+    <string name="back">返回</string>
+
+    <!-- web chat  微信导入样式-->
+    <string name="action_search">搜索</string>
+    <string name="action_plus">功能</string>
+    <string name="action_album">我的相册</string>
+    <string name="action_collection">我的收藏</string>
+    <string name="action_card">我的银行卡</string>
+    <string name="action_settings">设置</string>
+    <string name="action_usercenter">个人中心</string>
+    <string name="action_userdetail">详细资料</string>
+    <string name="action_feed">意见反馈</string>
+    <string name="plus_group_chat">发起群聊</string>
+    <string name="plus_add_friend">添加朋友</string>
+    <string name="plus_video_chat">视频聊天</string>
+    <string name="plus_scan">扫一扫</string>
+    <string name="plus_take_photo">拍照分享</string>
+
+    <!--  意见反馈 -->
+    <string name="action_title_feedback">意见反馈</string>
+    <string name="action_send">发送</string>
+    <string name="action_share">分享</string>
+    <string name="title_activity_huangye">收藏</string>
+
+    <string name="ac_more">更多…</string>
+    <string name="collection">收藏</string>
+
+    <!--  分类-->
+    <string name="drawer_btn_rss">工具管理</string>
+    <string name="subscribe_my_category">我的工具</string>
+    <string name="subscribe_more_category">更多工具</string>
+    <string name="subscribe_manager_category_info">单击增删工具</string>
+    <string name="subscribe_manager_category_info_2">单击增删工具，长按拖拽排序</string>
+
+
+    <string name="status_available">在线</string>
+    <string name="status_away">离开</string>
+    <string name="status_chat">Q我吧</string>
+    <string name="status_dnd">请勿打扰</string>
+    <string name="status_xa">隐身</string>
+    <string name="status_offline">离线</string>
+    <string name="status_online">在线</string>
+    <string name="login_tip">点击登录</string>
+    <string name="aboutme">关于我们</string>
+    <string name="copy_right">诺部落 版权所有</string>
+    <string name="copy_right_text">Copyright@2014 All Rights Reserved.</string>
+    <string name="timeout_try_again">网络连接超时，请重试</string>
+    <string name="default_tip">请稍等...</string>
+    <string name="net_error">网络请求异常</string>
+    <string name="invalid_phone">无效的电话号码，请确认是否填写正确</string>
+    <string name="login_error">错误的用户名或密码，请检查是否填写正确</string>
+</resources>

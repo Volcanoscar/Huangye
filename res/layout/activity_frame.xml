@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff" >
+
+    <LinearLayout
+        android:id="@+id/Frame_BottemView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ll_bg_d"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/MyBottemSearchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/MyBottemSearchImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/wb_home_tap_index_pressed" />
+
+            <TextView
+                android:id="@+id/MyBottemSearchTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="信息"
+                android:textColor="#FF8C00"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/MyBottemCheckinBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/MyBottemCheckinImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_bottem_checkin" />
+
+            <TextView
+                android:id="@+id/MyBottemCheckinTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关系"
+                android:textColor="@color/search_bottem_textcolor"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/MyBottemMyBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/MyBottemMyImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_bottem_my" />
+
+            <TextView
+                android:id="@+id/MyBottemMyTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/collection"
+                android:textColor="@color/search_bottem_textcolor"
+                android:textSize="13dp" />
+        </LinearLayout>
+        <LinearLayout
+                android:id="@+id/MyBottemMoreBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical" >
+
+            <ImageView
+                    android:id="@+id/MyBottemMoreImg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/search_bottem_my" />
+
+            <TextView
+                    android:id="@+id/MyBottemMoreTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="工具"
+                    android:textColor="@color/search_bottem_textcolor"
+                    android:textSize="13dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.nuo.view.NoScrollViewPager
+        android:id="@+id/FramePager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/Frame_BottemView" >
+    </com.nuo.view.NoScrollViewPager>
+
+</RelativeLayout>

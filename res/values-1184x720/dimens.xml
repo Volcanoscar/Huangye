@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="item_height">50.0dip</dimen>
+    <dimen name="item_text_size">14.0sp</dimen>
+    <dimen name="recoment_viewall_height">40.0dip</dimen>
+    <dimen name="recoment_view_all_margin">5.0dip</dimen>
+    <dimen name="home_palt_sub_margin_top">4.5dip</dimen>
+</resources>

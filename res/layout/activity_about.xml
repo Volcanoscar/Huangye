@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white"
+        >
+    <com.fujie.module.titlebar.TitleBarView
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <RelativeLayout android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="30dp"
+                    android:layout_below="@+id/title_bar">
+        <ImageView android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/logo"
+                   android:layout_centerHorizontal="true"
+                   android:src="@drawable/icon"
+                   />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="5dp"
+                  android:layout_centerHorizontal="true"
+                  android:layout_below="@+id/logo"
+                  android:text="@string/app_name"
+                  />
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_alignParentBottom="true"
+                >
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+
+                android:text="@string/copy_right"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/copy_right"
+
+                />
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@+id/copy_right"
+                  android:layout_centerHorizontal="true"
+                  android:text="@string/copy_right_text"
+
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

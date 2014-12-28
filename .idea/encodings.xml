@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/commonLib/src/com/fujie/module/listview/DragListAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commonLib/src/com/fujie/module/listview/DragListView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/CheckinActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/FrameActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/LoginActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/MainActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/MoreActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/MyActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RankingList.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RankingList_bzrm.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RankingList_more.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RegistrationActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/SearchActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/SearchMoreActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/SearchTheCity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopDetailsActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopDetailsCheckinActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopDetailsCommentActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopDetailsMore.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopListActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ToolActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/TuanActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/TuanDetailsActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/adapter/DragAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/adapter/FaceGridAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/adapter/OtherAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/adapter/SearchMainAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/adapter/SearchMoreAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/adapter/ShopAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/adapter/ViewPagerAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/application/AppApplication.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/bean/ChannelItem.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/bean/ChannelManage.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/common/DownLoadManager.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/db/DBUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/db/SQLHelper.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/info/CommentsInfo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/model/Model.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/myfragment/MyFragmentone.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/myview/MyScrollListView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/net/DownBitmap.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/net/IsNet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/net/MyGet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/net/MyPost.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/net/ThreadPoolUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/thread/HttpGetThread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/thread/HttpPostThread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/utils/FileUtiles.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/utils/SharePreferenceUtil.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/view/DragGrid.java" charset="UTF-8" />
+  </component>
+</project>
+

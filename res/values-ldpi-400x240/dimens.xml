@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="leading_btn_layout_hetigh">90.0dip</dimen>
+    <dimen name="leading_btn_layout_margin_heigh">40.0dip</dimen>
+    <dimen name="leading_dot_layout_margin_heigh">20.0dip</dimen>
+</resources>

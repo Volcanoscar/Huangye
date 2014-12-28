@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="popup_hint_width">220.0dip</dimen>
+    <dimen name="popup_hint_height">54.0dip</dimen>
+    <dimen name="popup_hint_offset_y">8.0dip</dimen>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white"
+        >
+    <com.fujie.module.titlebar.TitleBarView
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="257.0dip"
+                    android:layout_below="@+id/more_main_title">
+        <Button android:textSize="18.0sp" android:layout_gravity="center" android:id="@+id/FeedbackButton"
+                android:background="@drawable/wb_login_btn_xml" android:layout_width="182.6dip"
+                android:layout_height="@dimen/feedback_button_height" android:layout_marginLeft="@dimen/menu_marginLeft"
+                android:layout_marginRight="@dimen/menu_marginRight" android:text="@string/feedback_submit"
+                android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+                style="@style/ReportButton"/>
+        <ScrollView android:id="@+id/feedback_scroll" android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" android:layout_marginLeft="10.0dip"
+                    android:layout_marginTop="10.0dip" android:layout_marginRight="10.0dip"
+                    android:layout_above="@+id/FeedbackButton">
+            <LinearLayout android:orientation="vertical" android:background="@drawable/cityhot_edittext_bg"
+                          android:layout_width="fill_parent" android:layout_height="180.0dip">
+                <EditText android:id="@+id/FeedbackIssueEdit" android:background="@null"
+                          android:layout_height="@dimen/feed_back_edit_height" android:layout_marginLeft="5.0dip"
+                          android:layout_marginRight="5.0dip" android:hint="@string/feedback_hint1"
+                          android:maxLength="200" style="@style/ReportEdit"/>
+                <View android:id="@+id/feed_back_view_line" android:background="@drawable/feed_back_line"
+                      android:layout_width="fill_parent" android:layout_height="1.0px"
+                      android:layout_marginLeft="3.0dip" android:layout_marginRight="3.0dip"/>
+                <TextView android:visibility="gone" android:layout_marginTop="@dimen/feed_back_contact_text_margin_top"
+                          android:text="@string/feedback_text2" style="@style/ReportText"/>
+                <EditText android:id="@+id/FeedbackNumberEdit" android:background="@null"
+                          android:layout_marginLeft="5.0dip" android:layout_marginTop="3.0dip"
+                          android:inputType="number" style="@style/ReportEdit1"/>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+    <!--<com.wuba.views.RequestLoadingView android:id="@+id/request_loading" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" />-->
+</LinearLayout>

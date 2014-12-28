@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ll_keyboard_height">58.0dip</dimen>
+    <dimen name="ll_keyboard_double_height">174.0dip</dimen>
+</resources>

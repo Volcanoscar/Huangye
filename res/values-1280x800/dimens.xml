@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="manager_collecttab_width">230.0dip</dimen>
+    <dimen name="wb_login_marginleft">40.0dip</dimen>
+    <dimen name="sift_text_maxlength">100.0dip</dimen>
+</resources>

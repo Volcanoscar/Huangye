@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="city_letter_size">10.0dip</dimen>
+    <dimen name="city_letter_big_size">12.0dip</dimen>
+    <dimen name="wb_hot_city_hight">465.0dip</dimen>
+    <dimen name="assistant_main_intro_margintop">30.0dip</dimen>
+    <dimen name="assistant_main_later_enjoy_margintop">9.0dip</dimen>
+    <dimen name="assistant_verification_help1">12.0dip</dimen>
+    <dimen name="assistant_verification_help2">12.0dip</dimen>
+    <dimen name="assistant_verification_help3">12.0dip</dimen>
+    <dimen name="header_progress_circle_width_height">56.0dip</dimen>
+    <dimen name="header_title_margin_left">6.0dip</dimen>
+    <dimen name="header_footer_top_bottom_padding">6.0dip</dimen>
+    <dimen name="leading_btn_layout_hetigh">50.0dip</dimen>
+    <dimen name="leading_btn_hetigh">35.0dip</dimen>
+    <dimen name="leading_btn_width">150.0dip</dimen>
+    <dimen name="leading_btn_layout_margin_heigh">40.0dip</dimen>
+    <dimen name="leading_dot_layout_margin_heigh">20.0dip</dimen>
+</resources>

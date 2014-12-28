@@ -1,0 +1,179 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+
+
+
+
+
+
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="custom_ratingbar_style" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_ratingbar_progress</item>
+        <item name="android:minHeight">50dip</item>
+        <item name="android:maxHeight">50dip</item>
+        <item name="android:stepSize">1.0</item>
+    </style>
+
+    <style name="horizontal_line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+    <style name="title_text_size">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="des_text">
+        <item name="android:textColor">@color/viewfinder_mask</item>
+        <item name="android:textSize">10dp</item>
+    </style>
+    <style name="category_des_text">
+        <item name="android:textColor">@color/home_custom_text_color</item>
+        <item name="android:textSize">@dimen/home_layout_text_size</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="remen_image">
+        <item name="android:layout_marginRight">10dp
+        </item>
+    </style>
+
+    <style name="ReportButton">
+        <item name="android:textSize">@dimen/main_frame_item_secondtextsize</item>
+        <item name="android:textColor">@color/ghostwhite</item>
+        <item name="android:background">@drawable/btn_orange_bg</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    <style name="ReportEdit">
+        <item name="android:textSize">@dimen/main_frame_item_thirdtextsize</item>
+        <item name="android:gravity">top</item>
+        <item name="android:padding">@dimen/feed_back_edittext_padding</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_marginLeft">@dimen/menu_marginLeft</item>
+        <item name="android:layout_marginRight">@dimen/menu_marginRight</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:maxLength">2000</item>
+    </style>
+    <style name="ReportEdit1">
+        <item name="android:textSize">@dimen/main_frame_item_thirdtextsize</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/cityhot_edittext_bg</item>
+        <item name="android:padding">@dimen/feed_back_edittext_padding</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/feed_back_number_edit_height</item>
+        <item name="android:layout_marginLeft">@dimen/menu_marginLeft</item>
+        <item name="android:layout_marginTop">@dimen/feed_back_contact_edit_margin_top</item>
+        <item name="android:layout_marginRight">@dimen/menu_marginRight</item>
+        <item name="android:hint">@string/feedback_hint2</item>
+        <item name="android:maxLength">30</item>
+    </style>
+    <style name="ReportRadio">
+        <item name="android:textSize">@dimen/main_frame_item_normaltextsize</item>
+        <item name="android:textColor">@color/dimgray</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@drawable/radiobutton</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="ReportText">
+        <item name="android:textSize">@dimen/main_frame_item_normaltextsize</item>
+        <item name="android:textColor">@color/prompt_text</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/menu_marginLeft</item>
+        <item name="android:layout_marginRight">@dimen/menu_marginRight</item>
+    </style>
+
+
+    <!--   工具界面样式 -->
+    <style name="subscribe_my_tip_text">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/subscribe_tip_text</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="subscribe_seperate_line">
+        <item name="android:background">@color/subscribe_seperate_line</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0.5dip</item>
+        <item name="android:layout_marginTop">14.0dip</item>
+        <item name="android:layout_marginBottom">14.0dip</item>
+    </style>
+
+    <style name="subscribe_flow_layout">
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="subscribe_more_tip_text" parent="@style/subscribe_my_tip_text">
+        <item name="android:textSize">13.0sp</item>
+    </style>
+
+    <!-- 提示弹出框-->
+    <style name="MenuDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <style name="MenuDialogAnimation" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
+    <style name="MenuDialogStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <style name="DialogStyle" parent="@android:style/Theme.Dialog">
+
+        <!-- 设置完全透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 设置无边框 -->
+        <!-- <item name="android:windowFrame">@null</item> -->
+        <!-- 设置无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 设置为浮动窗口 -->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 设置动画 -->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <!-- 设置屏幕变暗 -->
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="qZonePublishProgressStyle">
+        <item name="android:maxWidth">30.0dip</item>
+        <item name="android:maxHeight">30.0dip</item>
+        <item name="android:minWidth">30.0dip</item>
+        <item name="android:minHeight">30.0dip</item>
+    </style>
+</resources>

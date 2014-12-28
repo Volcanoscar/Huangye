@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="copyright_subtext_marginBottom">5.0dip</dimen>
+    <dimen name="assistant_main_intro_margintop">40.0dip</dimen>
+    <dimen name="assistant_main_later_enjoy_margintop">21.0dip</dimen>
+    <dimen name="assistant_verification_help1">16.0dip</dimen>
+    <dimen name="assistant_verification_help2">16.0dip</dimen>
+    <dimen name="assistant_verification_help3">16.0dip</dimen>
+    <dimen name="wb_copyright_logo">10.0dip</dimen>
+</resources>

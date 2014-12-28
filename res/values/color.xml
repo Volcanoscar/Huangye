@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="sidebar_item_background_activated_dark">#ff4c365d</color>
+    <color name="devide_line">#CBCED2</color>
+    <color name="blue">#499BF7</color>
+    <color name="whites">#ffffff</color>
+    <color name="white">#f5f5f5</color>
+    <color name="grays">#818181</color>
+    <color name="blur_bg">#FFFAF0</color>
+    <color name="black">#000000</color>
+    <color name="grey">#808080</color>
+    <color name="right_bg">#696969</color>
+    <color name="gray_font">#818181</color>
+    <color name="common_title">#F9F9F9</color>
+    <color name="black">#000000</color>
+    <color name="color_hei_8">#00000000</color>
+    <color name="pull_refresh_textview">#000000</color>
+    <color name="home_custom_text_color">#ff474747</color>
+    <color name="gold">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="refresh_head_bg">#2B2B2B</color>
+    <color name="red">#FF0000</color>
+    <color name="backColor">#2000</color>
+    <color name="detail_bgColor">#f5f5f5</color>
+    <color name="defaultTextColor">#666</color>
+    <color name="viewfinder_frame">#2477ab</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_view">#b0000000</color>
+    <color name="gray">#AFAFAF</color>
+    <color name="yellow">#F99503</color>
+    <color name="yellow1">#f0f0f0f0</color>
+    <color name="devider_color">#ffe6e5e5</color>
+    <color name="activity_main_bg">#fff8f9fa</color>
+    <color name="ghostwhite">#ffffffff</color>
+    <color name="dimgray">#ff18191a</color>
+    <color name="prompt_text">#ffa8a8a8</color>
+
+
+    <!--  action bsr-->
+    <color name="icon_default">#ff777777</color>
+    <color name="icon_default_black">#ff888888</color>
+    <color name="icon_default_dark">#ff888888</color>
+    <color name="icon_default_sepia">#ff5b4636</color>
+    <color name="icon_disabled_default">#ffd0d0d0</color>
+    <color name="icon_disabled_default_black">#ff474747</color>
+    <color name="icon_disabled_default_dark">#ff474747</color>
+    <color name="icon_disabled_default_sepia">#ffb8a887</color>
+    <color name="icon_disabled_flat">#ffeeeeee</color>
+    <item type="color" name="icon_disabled_flat_black">@color/icon_disabled_default_black</item>
+    <item type="color" name="icon_disabled_flat_dark">@color/icon_disabled_default_dark</item>
+    <item type="color" name="icon_disabled_flat_sepia">@color/icon_disabled_default_sepia</item>
+    <item type="color" name="icon_disabled_form">@color/icon_disabled_default</item>
+    <item type="color" name="icon_disabled_form_dark">@color/icon_disabled_default_dark</item>
+    <item type="color" name="icon_disabled_form_sepia">@color/icon_disabled_default_sepia</item>
+    <color name="icon_disabled_holo">#ffa7a7a7</color>
+    <item type="color" name="icon_disabled_holo_dark">@color/icon_disabled_default_dark</item>
+    <color name="icon_disabled_popup_black">#ff666666</color>
+    <color name="icon_disabled_popup_dark">#ff666666</color>
+    <color name="icon_disabled_tray">#ff000000</color>
+    <color name="icon_disabled_tray_black">#ff555555</color>
+    <color name="icon_disabled_tray_dark">#ff555555</color>
+    <color name="icon_disabled_tray_sepia">#ffb8a887</color>
+    <color name="icon_flat">#ffcccccc</color>
+    <color name="icon_flat_black">#ff888888</color>
+    <color name="icon_flat_dark">#ff888888</color>
+    <color name="icon_flat_sepia">#ffdcccac</color>
+
+    <color name="icon_tray">#ff777777</color>
+    <color name="icon_tray_black">#ffaaaaaa</color>
+    <color name="icon_tray_dark">#ffaaaaaa</color>
+    <color name="icon_holo_dark">#ffbbbbbb</color>
+    <color name="icon_popup_black">#ffaaaaaa</color>
+    <color name="icon_popup_dark">#ffaaaaaa</color>
+    <item type="color" name="icon_form">@color/icon_default</item>
+    <item type="color" name="icon_form_dark">@color/icon_default_dark</item>
+    <item type="color" name="icon_form_sepia">@color/icon_default_sepia</item>
+    <item type="color" name="icon_tray_sepia">@color/icon_default_sepia</item>
+    <color name="icon_holo">#ff858585</color>
+
+
+    <!--  item -->
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+
+    <item name="subscribe_item_text_color_normal_night" type="color">@color/default_text_night</item>
+
+    <color name="default_text_night">#ff747474</color>
+    <color name="subscribe_item_text_color_pressed_night">#ff303030</color>
+    <color name="subscribe_item_selected_stroke_night">#ffbc494d</color>
+    <color name="subscribe_item_drag_stroke">#ffd2d2d2</color>
+    <color name="subscribe_item_drag_bg">#fff5f5f5</color>
+    <color name="subscribe_item_selected_bg">#ffffffff</color>
+    <color name="subscribe_item_selected_stroke">#ffcc3131</color>
+    <color name="subscribe_item_disabled_stroke">#ffd9d9d9</color>
+    <color name="subscribe_item_disabled_bg">#ffefefef</color>
+    <color name="subscribe_item_pressed_stroke">#ffcdcdcd</color>
+    <color name="subscribe_item_pressed_bg">#fff9f9f9</color>
+    <color name="subscribe_item_normal_stroke">#ffcdcdcd</color>
+    <color name="subscribe_item_normal_bg">#fff5f5f5</color>
+
+    <item name="subscribe_item_text_color_normal" type="color">@color/default_text</item>
+
+    <color name="default_text">#ff454545</color>
+    <color name="subscribe_item_text_color_pressed">#ffb9b9b9</color>
+    <color name="category_subscribe_text">#ffffffff</color>
+    <color name="drawer_item_bg">#ff5d5d5d</color>
+    <color name="drawer_line_color">#ff444444</color>
+    <color name="title_text_color">#ffffffff</color>
+    <color name="subscribe_tip_text">#ff2e2e2e</color>
+    <color name="subscribe_activity_bg">#ffefefef</color>
+    <color name="subscribe_bg">#fff5f5f5</color>
+    <color name="subscribe_seperate_line">#ffcdcdcd</color>
+</resources>

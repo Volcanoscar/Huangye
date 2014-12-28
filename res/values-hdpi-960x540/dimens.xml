@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="manager_collecttab_width">195.0dip</dimen>
+    <dimen name="wb_login_marginleft">36.0dip</dimen>
+    <dimen name="sift_text_maxlength">67.5dip</dimen>
+    <dimen name="home_ad_image_height">65.0dip</dimen>
+    <dimen name="home_layout_padding_left">20.0dip</dimen>
+    <dimen name="home_layout_padding_right">20.0dip</dimen>
+    <dimen name="home_layout_icon_size">55.0dip</dimen>
+    <dimen name="home_layout_row_height">90.0dip</dimen>
+    <dimen name="home_layout_text_size">12.0sp</dimen>
+    <dimen name="home_layout_padding_top">7.0dip</dimen>
+    <dimen name="home_layout_view_flow_margin_bottom">7.0dip</dimen>
+    <dimen name="home_plat_layout_margin_top">18.0dip</dimen>
+    <dimen name="home_plat_layout_row_padding_left">10.0dip</dimen>
+    <dimen name="home_plat_layout_row_padding_right">10.0dip</dimen>
+    <dimen name="home_plat_icon_pading_left">7.0dip</dimen>
+    <dimen name="home_plat_text_size">14.0sp</dimen>
+    <dimen name="home_plat_row_height">50.0dip</dimen>
+    <dimen name="weather_circle_title_text_size">14.0sp</dimen>
+    <dimen name="weather_circle_num_text_size">90.0sp</dimen>
+    <dimen name="weather_circle_button_text_size">18.0sp</dimen>
+    <dimen name="weather_iaqi_layout_height">50.0dip</dimen>
+    <dimen name="weather_iaqi_value_text_size">22.0sp</dimen>
+    <dimen name="weather_suggest_layout_height">60.0dip</dimen>
+    <dimen name="weather_suggest_text_size">15.0sp</dimen>
+</resources>

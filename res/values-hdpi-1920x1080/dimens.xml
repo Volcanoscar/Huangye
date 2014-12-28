@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="home_ad_image_height">60.0dip</dimen>
+    <dimen name="home_layout_padding_left">19.0dip</dimen>
+    <dimen name="home_layout_padding_right">19.0dip</dimen>
+    <dimen name="home_layout_icon_size">55.0dip</dimen>
+    <dimen name="home_layout_row_height">90.0dip</dimen>
+    <dimen name="home_layout_text_size">12.0sp</dimen>
+    <dimen name="home_layout_padding_top">9.0dip</dimen>
+    <dimen name="home_plat_layout_margin_top">10.0dip</dimen>
+    <dimen name="home_plat_layout_row_padding_left">14.0dip</dimen>
+    <dimen name="home_plat_layout_row_padding_right">14.0dip</dimen>
+    <dimen name="home_plat_icon_pading_left">5.0dip</dimen>
+    <dimen name="home_plat_text_size">14.0sp</dimen>
+    <dimen name="home_plat_row_height">50.0dip</dimen>
+</resources>

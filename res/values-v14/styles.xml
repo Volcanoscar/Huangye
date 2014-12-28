@@ -1,0 +1,70 @@
+<resources>
+
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/WeChatActionBar</item>
+        <item name="android:dropDownItemStyle">@style/AppBarActionButton.Base</item>
+        <item name="android:actionBarItemBackground">@drawable/actionbar_bg_selector</item>
+        <item name="android:itemBackground">@drawable/actionbar_bg_selector</item>
+        <item name="android:selectableItemBackground">@drawable/toolbar_holo_press</item>
+        <item name="android:galleryItemBackground">@drawable/actionbar_bg_selector</item>
+        <item name="android:itemTextAppearance">@style/WeChatActionBarOverflow</item>
+        <item name="android:actionOverflowButtonStyle">@style/AppBarOverflowButton</item>
+       <!-- <item name="android:homeAsUpIndicator">@drawable/nav_ic_up</item>-->
+    </style>
+
+
+    <style name="WeChatActionBar" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">#f0f0f0f0</item>
+        <item name="android:titleTextStyle">@style/WeChatActionBarTitleText</item>
+    </style>
+
+    <style name="WeChatActionBarTitleText" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">#808080</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="WeChatActionBarOverflow" parent="@android:style/Widget.ActionButton.Overflow">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="WeChatActionButtonOverflow" parent="android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/actionbar_more_icon</item>
+    </style>
+
+    <!-- add by zxl -->
+    <style name="AppBarOverflowButton" parent="android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/nav_ic_overflow</item>
+    </style>
+    <style name="ImageButton">
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:scaleType">center</item>
+    </style>
+    <style name="AppBarActionButton.Base" parent="@style/ImageButton">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/actionbar_bg_selector</item>
+        <item name="android:layout_width">@dimen/toolbar_button_width</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:scaleType">center</item>
+    </style>
+    <style name="AppBarSpacer">
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">1.0dip</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+    <style name="AppBarTitle" parent="@style/AppBarSpacer">
+        <item name="android:textSize">@dimen/toolbar_title_font_size</item>
+        <item name="android:textColor">@color/styled_icon_unfocusable</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">left|center</item>
+        <item name="android:layout_gravity">left|center</item>
+        <item name="android:paddingLeft">@dimen/appbar_title_left_padding</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="AppBarUpButton" parent="@style/AppBarActionButton.Base">
+        <item name="android:src">@drawable/nav_ic_up</item>
+    </style>
+
+</resources>
