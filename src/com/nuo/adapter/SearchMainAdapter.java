@@ -1,7 +1,7 @@
 package com.nuo.adapter;
 
 import java.util.List;
-import java.util.Map;
+
 import com.nuo.activity.R;
 
 import android.content.Context;
@@ -12,27 +12,26 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import android.widget.TextView;
+import com.fujie.module.horizontalListView.ViewBean;
 
 /**
  * 查找中的更多的界面中左边listview的适配器
- * @author 苦涩
- *</BR> </BR> By：苦涩 </BR> 联系作者：QQ 534429149
  */
 
 public class SearchMainAdapter extends BaseAdapter {
 
     private Context ctx;
-    private List<Map<String, Object>> list;
+    private List<ViewBean> list;
     private int position = 0;
     private boolean islodingimg = true;
     private int layout = R.layout.search_more_mainlist_item;
 
-    public SearchMainAdapter(Context ctx, List<Map<String, Object>> list) {
+    public SearchMainAdapter(Context ctx, List<ViewBean> list) {
         this.ctx = ctx;
         this.list = list;
     }
 
-    public SearchMainAdapter(Context ctx, List<Map<String, Object>> list,
+    public SearchMainAdapter(Context ctx, List<ViewBean> list,
                              int layout, boolean islodingimg) {
         this.ctx = ctx;
         this.list = list;
@@ -68,10 +67,10 @@ public class SearchMainAdapter extends BaseAdapter {
             hold = (Holder) arg1.getTag();
         }
         if(islodingimg == true){
-            hold.img.setImageResource(Integer.parseInt(list.get(arg0).get("img")
+            hold.img.setImageResource(Integer.parseInt(list.get(arg0).getImg()
                     .toString()));
         }
-        hold.txt.setText(list.get(arg0).get("txt").toString());
+        hold.txt.setText(list.get(arg0).getText());
         hold.layout
                 .setBackgroundResource(R.drawable.search_more_mainlistselect);
         if (arg0 == position) {
@@ -93,5 +92,4 @@ public class SearchMainAdapter extends BaseAdapter {
         ImageView img;
         TextView txt;
     }
-
 }

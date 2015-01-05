@@ -1,9 +1,6 @@
 package com.nuo.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,23 +19,31 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.nuo.adapter.SearchMainAdapter;
 import com.nuo.adapter.SearchMoreAdapter;
 import com.nuo.adapter.ShopAdapter;
+import com.nuo.bean.District;
+import com.fujie.module.horizontalListView.ViewBean;
 import com.nuo.info.ShopInfo;
 import com.nuo.model.Model;
 import com.nuo.net.MyGet;
 import com.nuo.net.ThreadPoolUtils;
 import com.nuo.thread.HttpGetThread;
 import com.nuo.utils.MyJson;
+import com.nuo.utils.NetUtil;
+import com.nuo.utils.T;
+
 /**
  * 店铺列表模块
- * */
+ */
 public class ShopListActivity extends Activity {
 
     private ListView mListView, mShoplist_toplist, mShoplist_threelist,
-            mShoplist_onelist2, mShoplist_twolist2, mShoplist_onelist1,
-            mShoplist_twolist1;
+            mShoplist_onelist2, mShoplist_twolist2, districtListView,
+            bizAreaListView;
     private ImageView mShoplist_back;
     private LinearLayout mShoplist_shanghuleixing, mShoplist_mainlist2,
             mShoplist_mainlist1;
@@ -50,8 +55,8 @@ public class ShopListActivity extends Activity {
     private ShopAdapter mAdapter = null;
     private SearchMoreAdapter topadapter = null;
     private SearchMoreAdapter threeadapter = null;
-    private SearchMoreAdapter twoadapter1 = null;
-    private SearchMainAdapter oneadapter1 = null;
+    private SearchMoreAdapter bizAreaAdapter = null;
+    private SearchMainAdapter districtAdapter = null;
     private SearchMoreAdapter twoadapter2 = null;
     private SearchMainAdapter oneadapter2 = null;
     private Button ListBottem = null;
@@ -66,8 +71,8 @@ public class ShopListActivity extends Activity {
     private boolean threelistview = false;
     private boolean mainlistview1 = false;
     private boolean mainlistview2 = false;
-    private List<Map<String, Object>> mainList1;
-    private List<Map<String, Object>> mainList2;
+    private List<ViewBean> districtList= new ArrayList<ViewBean>();
+    private List<ViewBean> mainList2 = new ArrayList<ViewBean>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,8 +80,34 @@ public class ShopListActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_shoplist);
         initView();
+        initData();
     }
 
+    private void initData() {
+        //得到变量
+        String typeCode = getIntent().getStringExtra("typeCode");
+        //得到区域信息
+        NetUtil.queryDistrictList(true, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> stringResponseInfo) {
+                //初始化数据
+                List<District> removeDistrictList = District.parseMap(stringResponseInfo.result);
+                List<ViewBean> mapList = District.convertDistrictToViewBean(removeDistrictList);
+                districtList.addAll(mapList);
+                //行政区划-商圈
+                districtAdapter = new SearchMainAdapter(ShopListActivity.this, districtList, R.layout.shop_list1_item, false);
+                districtAdapter.setSelectItem(0);
+                districtListView.setAdapter(districtAdapter);
+                if (districtList != null && !districtList.isEmpty()) {
+                    initDistrictAdapter(districtList.get(0).getBizAreaList());
+                }
+            }
+            @Override
+            public void onFailure(HttpException e, String s) {
+                T.showShort(ShopListActivity.this, R.string.net_error);
+            }
+        });
+    }
     private void initView() {
         mShoplist_back = (ImageView) findViewById(R.id.Shoplist_back);
         mShoplist_shanghuleixing = (LinearLayout) findViewById(R.id.Shoplist_shanghuleixing);
@@ -87,44 +118,38 @@ public class ShopListActivity extends Activity {
         mShoplist_title_textbtn3 = (TextView) findViewById(R.id.Shoplist_title_textbtn3);
         mShoplist_toplist = (ListView) findViewById(R.id.Shoplist_toplist);
         mShoplist_mainlist1 = (LinearLayout) findViewById(R.id.Shoplist_mainlist1);
-        mShoplist_onelist1 = (ListView) findViewById(R.id.Shoplist_onelist1);
-        mShoplist_twolist1 = (ListView) findViewById(R.id.Shoplist_twolist1);
+        districtListView = (ListView) findViewById(R.id.Shoplist_onelist1);
+        bizAreaListView = (ListView) findViewById(R.id.Shoplist_twolist1);
         mShoplist_mainlist2 = (LinearLayout) findViewById(R.id.Shoplist_mainlist2);
         mShoplist_onelist2 = (ListView) findViewById(R.id.Shoplist_onelist2);
         mShoplist_twolist2 = (ListView) findViewById(R.id.Shoplist_twolist2);
         mShoplist_threelist = (ListView) findViewById(R.id.Shoplist_threelist);
         mListView = (ListView) findViewById(R.id.ShopListView);
-
         MyOnclickListener mOnclickListener = new MyOnclickListener();
         mShoplist_back.setOnClickListener(mOnclickListener);
-		/*mShoplist_shanghuleixing.setOnClickListener(mOnclickListener);*/
         mShoplist_title_textbtn1.setOnClickListener(mOnclickListener);
         mShoplist_title_textbtn2.setOnClickListener(mOnclickListener);
         mShoplist_title_textbtn3.setOnClickListener(mOnclickListener);
         // -----------------------------------------------------------------
-        initModel1();
-        initModel2();
-        oneadapter1 = new SearchMainAdapter(ShopListActivity.this, mainList1,R.layout.shop_list1_item,false);
-        oneadapter1.setSelectItem(0);
-        oneadapter2 = new SearchMainAdapter(ShopListActivity.this, mainList2,R.layout.shop_list1_item,true);
+
+
+        oneadapter2 = new SearchMainAdapter(ShopListActivity.this, mainList2, R.layout.shop_list1_item, true);
         oneadapter2.setSelectItem(0);
-        topadapter = new SearchMoreAdapter(ShopListActivity.this,Model.SHOPLIST_TOPLIST,R.layout.shop_list2_item);
-        threeadapter = new SearchMoreAdapter(ShopListActivity.this,Model.SHOPLIST_THREELIST,R.layout.shop_list2_item);
+        topadapter = new SearchMoreAdapter(ShopListActivity.this, new ArrayList<ViewBean>(), R.layout.shop_list2_item);
+        threeadapter = new SearchMoreAdapter(ShopListActivity.this, new ArrayList<ViewBean>(), R.layout.shop_list2_item);
         mShoplist_toplist.setAdapter(topadapter);
-        mShoplist_onelist1.setAdapter(oneadapter1);
-        initAdapter1(Model.SHOPLIST_PLACESTREET[0]);
         mShoplist_onelist2.setAdapter(oneadapter2);
-        initAdapter2(Model.MORELISTTXT[0]);
+        initAdapter2(new ArrayList<ViewBean>());
         mShoplist_threelist.setAdapter(threeadapter);
         TopListOnItemclick topListOnItemclick = new TopListOnItemclick();
-        Onelistclick1 onelistclick1 = new Onelistclick1();
+        DistrictClick onelistclick1 = new DistrictClick();
         Twolistclick1 twolistclick1 = new Twolistclick1();
         Onelistclick2 onelistclick2 = new Onelistclick2();
         Twolistclick2 twolistclick2 = new Twolistclick2();
         ThreeListOnItemclick threeListOnItemClick = new ThreeListOnItemclick();
         mShoplist_toplist.setOnItemClickListener(topListOnItemclick);
-        mShoplist_onelist1.setOnItemClickListener(onelistclick1);
-        mShoplist_twolist1.setOnItemClickListener(twolistclick1);
+        districtListView.setOnItemClickListener(onelistclick1);
+        bizAreaListView.setOnItemClickListener(twolistclick1);
         mShoplist_onelist2.setOnItemClickListener(onelistclick2);
         mShoplist_twolist2.setOnItemClickListener(twolistclick2);
         mShoplist_threelist.setOnItemClickListener(threeListOnItemClick);
@@ -159,23 +184,6 @@ public class ShopListActivity extends Activity {
             if (mID == R.id.Shoplist_back) {
                 ShopListActivity.this.finish();
             }
-			/*if (mID == R.id.Shoplist_shanghuleixing) {
-				if (!toplistview) {
-					mSearch_city_img
-							.setImageResource(R.drawable.title_arrow_up);
-					mShoplist_toplist.setVisibility(View.VISIBLE);
-					topadapter.notifyDataSetChanged();
-					toplistview = true;
-				} else {
-					mSearch_city_img.setImageResource(R.drawable.search_city);
-					mShoplist_toplist.setVisibility(View.GONE);
-					toplistview = false;
-				}
-			} else {
-				mSearch_city_img.setImageResource(R.drawable.search_city);
-				mShoplist_toplist.setVisibility(View.GONE);
-				toplistview = false;
-			}*/
             if (mID == R.id.Shoplist_title_textbtn3) {
                 Drawable drawable = null;
                 if (!threelistview) {
@@ -241,7 +249,7 @@ public class ShopListActivity extends Activity {
                     drawable = getResources().getDrawable(
                             R.drawable.ic_arrow_up_black);
                     mShoplist_mainlist1.setVisibility(View.VISIBLE);
-                    twoadapter1.notifyDataSetChanged();
+                    bizAreaAdapter.notifyDataSetChanged();
                     mainlistview1 = true;
                 } else {
                     drawable = getResources().getDrawable(
@@ -300,7 +308,9 @@ public class ShopListActivity extends Activity {
                 }
                 mAdapter.notifyDataSetChanged();
             }
-        };
+        }
+
+        ;
     };
 
     private class MainListOnItemClickListener implements OnItemClickListener {
@@ -308,8 +318,8 @@ public class ShopListActivity extends Activity {
                                 long arg3) {
             Intent intent = new Intent(ShopListActivity.this, ShopDetailsActivity.class);
             Bundle bund = new Bundle();
-            bund.putSerializable("ShopInfo",list.get(arg2));
-            intent.putExtra("value",bund);
+            bund.putSerializable("ShopInfo", list.get(arg2));
+            intent.putExtra("value", bund);
             startActivity(intent);
         }
     }
@@ -325,28 +335,28 @@ public class ShopListActivity extends Activity {
         }
     }
 
-    private class Onelistclick1 implements OnItemClickListener {
+    private class DistrictClick implements OnItemClickListener {
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                 long arg3) {
-            initAdapter1(Model.SHOPLIST_PLACESTREET[arg2]);
-            oneadapter1.setSelectItem(arg2);
-            oneadapter1.notifyDataSetChanged();
+            initDistrictAdapter(districtList.get(arg2).getBizAreaList());
+            districtAdapter.setSelectItem(arg2);
+            districtAdapter.notifyDataSetChanged();
         }
     }
 
     private class Twolistclick1 implements OnItemClickListener {
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                 long arg3) {
-            twoadapter1.setSelectItem(arg2);
+            bizAreaAdapter.setSelectItem(arg2);
             Drawable drawable = getResources().getDrawable(
                     R.drawable.ic_arrow_down_black);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(),
                     drawable.getMinimumHeight());
             mShoplist_title_textbtn1.setCompoundDrawables(null, null, drawable,
                     null);
-            int position = oneadapter1.getSelectItem();
+            int position = districtAdapter.getSelectItem();
             mShoplist_title_textbtn1
-                    .setText(Model.SHOPLIST_PLACESTREET[position][arg2]);
+                    .setText(districtList.get(position).getBizAreaList().get(arg2).getText());
             mShoplist_mainlist1.setVisibility(View.GONE);
             mainlistview1 = false;
         }
@@ -355,7 +365,7 @@ public class ShopListActivity extends Activity {
     private class Onelistclick2 implements OnItemClickListener {
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                 long arg3) {
-            initAdapter2(Model.MORELISTTXT[arg2]);
+            initAdapter2(districtList.get(arg2).getBizAreaList());
             oneadapter2.setSelectItem(arg2);
             oneadapter2.notifyDataSetChanged();
         }
@@ -378,33 +388,20 @@ public class ShopListActivity extends Activity {
         }
     }
 
-    private void initModel1() {
-        mainList1 = new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < Model.SHOPLIST_PLACE.length; i++) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("txt", Model.SHOPLIST_PLACE[i]);
-            mainList1.add(map);
+
+
+
+    private void initDistrictAdapter(List<ViewBean> viewBeans) {
+        if (bizAreaAdapter == null) {
+            bizAreaAdapter = new SearchMoreAdapter(ShopListActivity.this, viewBeans, R.layout.shop_list2_item);
+            bizAreaListView.setAdapter(bizAreaAdapter);
         }
+        bizAreaAdapter.setViewBeanList(viewBeans);
+        bizAreaAdapter.notifyDataSetChanged();
     }
 
-    private void initModel2() {
-        mainList2 = new ArrayList<Map<String, Object>>();
-        for (int i = 0; i < Model.LISTVIEWTXT.length; i++) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("img", Model.LISTVIEWIMG[i]);
-            map.put("txt", Model.LISTVIEWTXT[i]);
-            mainList2.add(map);
-        }
-    }
-
-    private void initAdapter1(String[] array) {
-        twoadapter1 = new SearchMoreAdapter(ShopListActivity.this, array,R.layout.shop_list2_item);
-        mShoplist_twolist1.setAdapter(twoadapter1);
-        twoadapter1.notifyDataSetChanged();
-    }
-
-    private void initAdapter2(String[] array) {
-        twoadapter2 = new SearchMoreAdapter(ShopListActivity.this, array,R.layout.shop_list2_item);
+    private void initAdapter2(List<ViewBean> viewBeans) {
+        twoadapter2 = new SearchMoreAdapter(ShopListActivity.this, viewBeans, R.layout.shop_list2_item);
         mShoplist_twolist2.setAdapter(twoadapter2);
         twoadapter2.notifyDataSetChanged();
     }

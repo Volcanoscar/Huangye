@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.fujie.module.horizontalListView.ViewBean;
+
+import java.util.List;
 
 /**
  * 查找中的更多的界面中右边listview的适配器
@@ -18,27 +21,36 @@ import android.widget.TextView;
 
 public class SearchMoreAdapter extends BaseAdapter {
     private Context ctx;
-    private String[] text;
+    private List<ViewBean> viewBeanList;
+
+    public List<ViewBean> getViewBeanList() {
+        return viewBeanList;
+    }
+
+    public void setViewBeanList(List<ViewBean> viewBeanList) {
+        this.viewBeanList = viewBeanList;
+    }
+
     private int position = 0;
     private int layout = R.layout.search_more_morelist_item;
 
-    public SearchMoreAdapter(Context ctx, String[] text) {
+    public SearchMoreAdapter(Context ctx, List<ViewBean> viewBeanList) {
         this.ctx = ctx;
-        this.text = text;
+        this.viewBeanList = viewBeanList;
     }
 
-    public SearchMoreAdapter(Context ctx, String[] text, int layout) {
+    public SearchMoreAdapter(Context ctx,List<ViewBean> viewBeanList, int layout) {
         this.ctx = ctx;
-        this.text = text;
+        this.viewBeanList = viewBeanList;
         this.layout = layout;
     }
 
     public int getCount() {
-        return text.length;
+        return viewBeanList.size();
     }
 
-    public Object getItem(int arg0) {
-        return text[arg0];
+    public ViewBean getItem(int arg0) {
+        return viewBeanList.get(arg0);
     }
 
     public long getItemId(int arg0) {
@@ -58,7 +70,7 @@ public class SearchMoreAdapter extends BaseAdapter {
         } else {
             hold = (Holder) arg1.getTag();
         }
-        hold.txt.setText(text[arg0]);
+        hold.txt.setText(viewBeanList.get(arg0).getText());
         hold.layout.setBackgroundResource(R.drawable.my_list_txt_background);
         hold.txt.setTextColor(Color.parseColor("#FF666666"));
         if (arg0 == position) {

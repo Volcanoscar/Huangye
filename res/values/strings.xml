@@ -58,6 +58,7 @@
 
     <string name="ac_more">更多…</string>
     <string name="collection">收藏</string>
+    <string name="huangye">黄页</string>
 
     <!--  分类-->
     <string name="drawer_btn_rss">工具管理</string>
@@ -83,4 +84,5 @@
     <string name="net_error">网络请求异常</string>
     <string name="invalid_phone">无效的电话号码，请确认是否填写正确</string>
     <string name="login_error">错误的用户名或密码，请检查是否填写正确</string>
+    <string name="jiazheng_name">家政</string>
 </resources>

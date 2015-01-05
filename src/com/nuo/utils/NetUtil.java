@@ -13,7 +13,11 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 与网络和请求接口数据相关的类
+ */
 public class NetUtil {
+    /** 检测手机是否联网**/
 	public static boolean isNetConnected(Context context) {
 		boolean isNetConnected;
 		// 获得网络连接服务
@@ -30,11 +34,18 @@ public class NetUtil {
 		}
 		return isNetConnected;
 	}
-
+    /** 手机联网状态:未联网**/
     public static final int NETWORN_NONE = 0;
+    /** 手机联网状态:WIFI**/
     public static final int NETWORN_WIFI = 1;
+    /** 手机联网状态:手机流量**/
     public static final int NETWORN_MOBILE = 2;
 
+    /**
+     * 得到手机网络状态
+     * @param context
+     * @return
+     */
     public static int getNetworkState(Context context) {
         ConnectivityManager connManager = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -55,6 +66,12 @@ public class NetUtil {
         return NETWORN_NONE;
     }
 
+    /**
+     * 请求 校验手机号是否注册接口，return：true|false
+     * @param phone 电话号码
+     * @param requestCallBack 请求接口后响应的回调函数
+     * @return
+     */
     public static boolean checkPhone(String phone,RequestCallBack<String> requestCallBack) {
         RequestParams params = new RequestParams();
         params.addQueryStringParameter("phone", phone);
@@ -65,19 +82,12 @@ public class NetUtil {
                 requestCallBack);
         return false;
     }
-
-    public static String  addParam(String path,Map<String,String> paramMap) {
-        String realPath = path;
-        for (Map.Entry<String, String> entry : paramMap.entrySet()) {
-            if (realPath.indexOf("?") == -1) {
-                realPath += "?" + entry.getKey() + "=" + entry.getValue();
-            }else{
-                realPath += "&" + entry.getKey() + "=" + entry.getValue();
-            }
-        }
-        return realPath;
-    }
-
+    /**
+     * 请求登录接口
+     * @param s   用户名
+     * @param s1 密码
+     * @param requestCallBack 请求接口后响应的回调函数
+     */
     public static void login(String s, String s1, RequestCallBack<String> requestCallBack) {
         RequestParams params = new RequestParams();
         params.addQueryStringParameter("key", s);
@@ -88,5 +98,52 @@ public class NetUtil {
                 params,
                 requestCallBack);
 
+    }
+
+    /**
+     * 请求查询分类接口
+     * 接口说明如下：
+     *
+     * 查询分类，当查询3级别分类时，如果有4级分类一起返回（type4List）<br></br>
+     *[<br></br>
+     *{<br></br>
+     *"typeName": "分类名称",<br></br>
+     *"level": 1,//级别<br></br>
+     *"orderBy": 2,排序<br></br>
+     *"level1Code": "",//所属1级分类code<br></br>
+     *"level2Code": "",//所属2级分类code<br></br>
+     *"isParent": 1,//是否是父节点<br></br>
+     *"typeCode": "jiazhengfuwu",//分类编码<br></br>
+     *"level3Code": ""//所属3级分类code<br></br>
+     *"level4List":[4级分类列表] },<br></br>
+     *...<br></br>
+     *] <br></br>
+     * @param level 分类级别
+     * @param typeCode 分类代码，查询一级分类时不需要
+     */
+    public static void shenhuoType(String level ,String typeCode, RequestCallBack<String> requestCallBack){
+        RequestParams params = new RequestParams();
+        params.addQueryStringParameter("level", level);
+        params.addQueryStringParameter("typeCode", typeCode);
+        HttpUtils http = new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST,
+                "http://"+PreferenceConstants.DEFAULT_SERVER_HOST+"/mapi/shenghuoType/queryType",
+                params,
+                requestCallBack);
+    }
+
+    /**
+     *
+     * @param hasBizarea  是否包含区域下的商圈列表
+     * @param requestCallBack  回调函数
+     */
+    public static void queryDistrictList(boolean hasBizarea , RequestCallBack<String> requestCallBack){
+        RequestParams params = new RequestParams();
+        params.addQueryStringParameter("hasBizarea",String.valueOf(hasBizarea));
+        HttpUtils http = new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST,
+                "http://"+PreferenceConstants.DEFAULT_SERVER_HOST+"/mapi/district/queryDistrictList",
+                params,
+                requestCallBack);
     }
 }

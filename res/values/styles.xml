@@ -176,4 +176,18 @@
         <item name="android:minWidth">30.0dip</item>
         <item name="android:minHeight">30.0dip</item>
     </style>
+
+    <!-- 二级分类样式 -->
+    <style name="shenghuo_type_two">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">0.2dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/my_tab_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">11dp</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
 </resources>

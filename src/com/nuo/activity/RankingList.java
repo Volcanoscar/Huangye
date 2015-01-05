@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.nuo.adapter.SearchMoreAdapter;
+import com.fujie.module.horizontalListView.ViewBean;
 import com.nuo.model.Model;
 
 import android.os.Bundle;
@@ -59,7 +60,7 @@ public class RankingList extends ActivityGroup {
         mSearch_city_img = (ImageView) findViewById(R.id.Search_city_img);
         mShoplist_toplist = (ListView) findViewById(R.id.Paihangbang_toplist);
         topadapter = new SearchMoreAdapter(RankingList.this,
-                Model.PAIHANGBANG_TOPLIST, R.layout.shop_list2_item);
+                new ArrayList<ViewBean>(), R.layout.shop_list2_item);
         mShoplist_toplist.setAdapter(topadapter);
         TopListOnItemclick topListOnItemclick = new TopListOnItemclick();
         mShoplist_toplist.setOnItemClickListener(topListOnItemclick);

@@ -5,8 +5,16 @@ public class PreferenceConstants {
 	public static final String DEFAULT_SERVER_HOST = "121.40.208.124";
     public final static String DEFAULT_SERVER_NAME = "iz23zxfawvoz";
 
-	//public static final String DEFAULT_SERVER_HOST = "192.168.199.153";
-   //public final static String DEFAULT_SERVER_NAME = "zhanglixin";
+    /** 一级分类标识 **/
+    public static String SHENHUO_TYPE_ONE = "1";
+    /** 二级分类标识 **/
+    public static String SHENHUO_TYPE_TWO = "2";
+    /** 三级分类标识 **/
+    public static String SHENHUO_TYPE_THREE = "3";
+    public static String SHENHUO_CODE_JIAZHENG= "jiazheng";
+
+
+
 
 	public final static String ISNEEDLOG = "isneedlog";
 	public final static String REPORT_CRASH = "reportcrash";

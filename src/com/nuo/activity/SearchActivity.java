@@ -5,13 +5,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.nuo.common.DownLoadManager;
+import com.nuo.handler.TimeOutHandler;
+import com.nuo.utils.NetUtil;
+import com.nuo.utils.PreferenceConstants;
+import com.nuo.utils.T;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
  * 搜索模块
- * */
+ */
 
 public class SearchActivity extends Activity {
 
@@ -24,96 +36,40 @@ public class SearchActivity extends Activity {
     private LinearLayout mSearch_list_huiyuanka, mSearch_list_souquancheng,
             mSearch_list_paihangbang, mSearch_list_youhuiquan;
 
+    //一级分类布局对象
+    @ViewInject(R.id.oneTypeTableLayout)
+    private TableLayout oneTypeTableLayout;
+    @ViewInject(R.id.jiazheng)
+    private TableLayout jiazheng;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-
+        ViewUtils.inject(this);
         initView();
     }
 
     private void initView() {
-        // 导航条linearlayout作为按钮
-		/*mSearch_city = (LinearLayout) findViewById(R.id.Search_city);*/
-       /* mSearch_search = (LinearLayout) findViewById(R.id.Search_search);*/
-        // gridview样式linearlayout作为按钮
-        mSearch_food = (LinearLayout) findViewById(R.id.Search_food);
-        mSearch_outing = (LinearLayout) findViewById(R.id.Search_outing);
-        mSearch_hotel = (LinearLayout) findViewById(R.id.Search_hotel);
-        mSearch_pub = (LinearLayout) findViewById(R.id.Search_pub);
-        mSearch_more = (LinearLayout) findViewById(R.id.Search_more);
-        mSearch_chinsesnack = (LinearLayout) findViewById(R.id.Search_chinsesnack);
-        // listview样式linearlayout作为按钮
-        mSearch_list_huiyuanka = (LinearLayout) findViewById(R.id.Search_list_huiyuanka);
-        mSearch_list_souquancheng = (LinearLayout) findViewById(R.id.Search_list_souquancheng);
-        mSearch_list_paihangbang = (LinearLayout) findViewById(R.id.Search_list_paihangbang);
-        mSearch_list_youhuiquan = (LinearLayout) findViewById(R.id.Search_list_youhuiquan);
-        MyOnclickListener mOnclickListener = new MyOnclickListener();
-		/*mSearch_city.setOnClickListener(mOnclickListener);*/
-       /* mSearch_search.setOnClickListener(mOnclickListener);*/
-        mSearch_food.setOnClickListener(mOnclickListener);
-        mSearch_outing.setOnClickListener(mOnclickListener);
-        mSearch_hotel.setOnClickListener(mOnclickListener);
-        mSearch_pub.setOnClickListener(mOnclickListener);
-        mSearch_more.setOnClickListener(mOnclickListener);
-        mSearch_chinsesnack.setOnClickListener(mOnclickListener);
-        mSearch_list_huiyuanka.setOnClickListener(mOnclickListener);
-        mSearch_list_souquancheng.setOnClickListener(mOnclickListener);
-        mSearch_list_paihangbang.setOnClickListener(mOnclickListener);
-        mSearch_list_youhuiquan.setOnClickListener(mOnclickListener);
-
     }
 
-    private class MyOnclickListener implements View.OnClickListener {
-        public void onClick(View v) {
-            int mID = v.getId();
-            switch (mID) {
-                case R.id.Search_food:
-                    Intent intent = new Intent(SearchActivity.this,
-                            SearchTheCity.class);
-                    SearchActivity.this.startActivity(intent);
-                    break;
-                case R.id.Search_outing:
-                    Intent intent1 = new Intent(SearchActivity.this,
-                            SearchTheCity.class);
-                    SearchActivity.this.startActivity(intent1);
-                    break;
-                case R.id.Search_hotel:
-                    Intent intent2 = new Intent(SearchActivity.this,
-                            SearchTheCity.class);
-                    SearchActivity.this.startActivity(intent2);
-                    break;
-                case R.id.Search_pub:
-                    Intent intent3 = new Intent(SearchActivity.this,
-                            SearchTheCity.class);
-                    SearchActivity.this.startActivity(intent3);
-                    break;
-                case R.id.Search_chinsesnack:
-                    Intent intent4 = new Intent(SearchActivity.this,
-                            SearchTheCity.class);
-                    SearchActivity.this.startActivity(intent4);
-                    break;
-                case R.id.Search_more:
-                    Intent intent5 = new Intent(SearchActivity.this,
-                            SearchTheCity.class);
-                    SearchActivity.this.startActivity(intent5);
-                    break;
-                case R.id.Search_list_souquancheng:
-                    Intent intent6 = new Intent(SearchActivity.this,
-                            SearchTheCity.class); //SearchList
-                    SearchActivity.this.startActivity(intent6);
-                    break;
-                case R.id.Search_list_paihangbang:
-				/*Intent intent7 = new Intent(SearchActivity.this,
-						RankingList.class);*/
-                    Intent intent7 = new Intent(SearchActivity.this,
-                            SearchTheCity.class);
-                    SearchActivity.this.startActivity(intent7);
-                    break;
-            }
+    /**
+     * 一级分类 点击事件
+     * 一级分类包括：家政
+     * <p/>
+     * *
+     */
+    @OnClick({R.id.jiazheng})
+    public void testButtonClick(View v) { // 方法签名必须和接口中的要求一致
+        switch (v.getId()) {
+            case R.id.jiazheng:
+                Intent intent = new Intent(SearchActivity.this,
+                        SearchTheCity.class);
+                intent.putExtra("parentName",getResources().getString(R.string.jiazheng_name));
+                SearchActivity.this.startActivity(intent);
+                break;
         }
-
     }
-
 }

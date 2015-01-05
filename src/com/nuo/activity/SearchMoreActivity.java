@@ -1,9 +1,7 @@
 package com.nuo.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,6 +14,7 @@ import android.widget.ListView;
 
 import com.nuo.adapter.SearchMainAdapter;
 import com.nuo.adapter.SearchMoreAdapter;
+import com.fujie.module.horizontalListView.ViewBean;
 import com.nuo.model.Model;
 /**
  * 查找-更多模块
@@ -25,7 +24,7 @@ public class SearchMoreActivity extends Activity {
     private ListView mSearch_more_mainlist;
     private ListView mSearch_more_morelist;
     private ImageView mSearch_more_back;
-    private List<Map<String, Object>> mainList;
+    private List<ViewBean> mainList;
     SearchMainAdapter mainAdapter;
     SearchMoreAdapter moreAdapter;
 
@@ -41,7 +40,7 @@ public class SearchMoreActivity extends Activity {
     private class MainOnItemClick implements OnItemClickListener {
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                 long arg3) {
-            initAdapter(Model.MORELISTTXT[arg2]);
+            initAdapter(mainList.get(arg2).getBizAreaList());
             mainAdapter.setSelectItem(arg2);
             mainAdapter.notifyDataSetChanged();
         }
@@ -64,22 +63,21 @@ public class SearchMoreActivity extends Activity {
         mSearch_more_mainlist.setOnItemClickListener(mainclick);
         // mSearch_more_mainlist.setChoiceMode(ListView.CHOICE_MODE_SINGLE);//
         // 一定要设置这个属性，否则ListView不会刷新
-        initAdapter(Model.MORELISTTXT[0]);
+        /*initAdapter(Model.MORELISTTXT[0]);*/
     }
 
-    private void initAdapter(String[] array) {
-        moreAdapter = new SearchMoreAdapter(SearchMoreActivity.this, array);
+    private void initAdapter(List<ViewBean> viewBeans) {
+        moreAdapter = new SearchMoreAdapter(SearchMoreActivity.this, viewBeans);
         mSearch_more_morelist.setAdapter(moreAdapter);
         moreAdapter.notifyDataSetChanged();
     }
 
     private void initModle() {
-        mainList = new ArrayList<Map<String, Object>>();
+        mainList = new ArrayList<ViewBean>();
         for (int i = 0; i < Model.LISTVIEWIMG.length; i++) {
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("img", Model.LISTVIEWIMG[i]);
-            map.put("txt", Model.LISTVIEWTXT[i]);
-            mainList.add(map);
+            ViewBean viewBean = new ViewBean();
+            viewBean.setText(String.valueOf(i));
+            mainList.add(viewBean);
         }
     }
 }

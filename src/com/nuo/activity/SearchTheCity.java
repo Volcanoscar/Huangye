@@ -3,13 +3,31 @@ package com.nuo.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.view.annotation.ViewInject;
+import com.nuo.bean.ShengHuoType;
+import com.nuo.handler.TimeOutHandler;
+import com.nuo.utils.NetUtil;
+import com.nuo.utils.PreferenceConstants;
+import com.nuo.utils.T;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 搜全城模块
- * */
+ */
 public class SearchTheCity extends Activity {
 
     private ImageView mSouquancheng_back;
@@ -22,80 +40,93 @@ public class SearchTheCity extends Activity {
             mSouquancheng_text17, mSouquancheng_text18, mSouquancheng_text19,
             mSouquancheng_text20, mSouquancheng_text21, mSouquancheng_text22;
 
+    /**
+     * 父类ID *
+     */
+    @ViewInject(R.id.parent_name)
+    private TextView parent_name;
+    @ViewInject(R.id.Souquancheng_title_txt)
+    private TextView titleText;
+
+    @ViewInject(R.id.shenghuo_two)
+    private LinearLayout shenghuo_two;
+
+    //加载提示
+    private TimeOutHandler timeOutHandler = new TimeOutHandler(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_sou_quan_cheng);
+        ViewUtils.inject(this);
+        initData();
         initView();
     }
 
-    private void initView() {
-        MyOnClickListener myonlicklitener = new MyOnClickListener();
-        mSouquancheng_text1 = (TextView) findViewById(R.id.Souquancheng_text1);
-        mSouquancheng_text1.setOnClickListener(myonlicklitener);
-		/*mSouquancheng_back = (ImageView) findViewById(R.id.Souquancheng_back);
-		mSouquancheng_moresearch = (TextView) findViewById(R.id.Souquancheng_moresearch);
-
-		mSouquancheng_text2 = (TextView) findViewById(R.id.Souquancheng_text2);
-		mSouquancheng_text3 = (TextView) findViewById(R.id.Souquancheng_text3);
-		mSouquancheng_text4 = (TextView) findViewById(R.id.Souquancheng_text4);
-		mSouquancheng_text5 = (TextView) findViewById(R.id.Souquancheng_text5);
-		mSouquancheng_text6 = (TextView) findViewById(R.id.Souquancheng_text6);
-		mSouquancheng_text7 = (TextView) findViewById(R.id.Souquancheng_text7);
-		mSouquancheng_text8 = (TextView) findViewById(R.id.Souquancheng_text8);
-		mSouquancheng_text9 = (TextView) findViewById(R.id.Souquancheng_text9);
-		mSouquancheng_text10 = (TextView) findViewById(R.id.Souquancheng_text10);
-		mSouquancheng_text11 = (TextView) findViewById(R.id.Souquancheng_text11);
-		mSouquancheng_text12 = (TextView) findViewById(R.id.Souquancheng_text12);
-		mSouquancheng_text13 = (TextView) findViewById(R.id.Souquancheng_text13);
-		mSouquancheng_text14 = (TextView) findViewById(R.id.Souquancheng_text14);
-		mSouquancheng_text15 = (TextView) findViewById(R.id.Souquancheng_text15);
-		mSouquancheng_text16 = (TextView) findViewById(R.id.Souquancheng_text16);
-		mSouquancheng_text17 = (TextView) findViewById(R.id.Souquancheng_text17);
-		mSouquancheng_text18 = (TextView) findViewById(R.id.Souquancheng_text18);
-		mSouquancheng_text19 = (TextView) findViewById(R.id.Souquancheng_text19);
-		mSouquancheng_text20 = (TextView) findViewById(R.id.Souquancheng_text20);
-		mSouquancheng_text21 = (TextView) findViewById(R.id.Souquancheng_text21);
-		mSouquancheng_text22 = (TextView) findViewById(R.id.Souquancheng_text22);
-		MyOnClickListener myonlicklitener = new MyOnClickListener();
-		mSouquancheng_back.setOnClickListener(myonlicklitener);
-		mSouquancheng_moresearch.setOnClickListener(myonlicklitener);
-		mSouquancheng_text1.setOnClickListener(myonlicklitener);
-		mSouquancheng_text2.setOnClickListener(myonlicklitener);
-		mSouquancheng_text3.setOnClickListener(myonlicklitener);
-		mSouquancheng_text4.setOnClickListener(myonlicklitener);
-		mSouquancheng_text5.setOnClickListener(myonlicklitener);
-		mSouquancheng_text6.setOnClickListener(myonlicklitener);
-		mSouquancheng_text7.setOnClickListener(myonlicklitener);
-		mSouquancheng_text8.setOnClickListener(myonlicklitener);
-		mSouquancheng_text9.setOnClickListener(myonlicklitener);
-		mSouquancheng_text10.setOnClickListener(myonlicklitener);
-		mSouquancheng_text11.setOnClickListener(myonlicklitener);
-		mSouquancheng_text12.setOnClickListener(myonlicklitener);
-		mSouquancheng_text13.setOnClickListener(myonlicklitener);
-		mSouquancheng_text14.setOnClickListener(myonlicklitener);
-		mSouquancheng_text15.setOnClickListener(myonlicklitener);
-		mSouquancheng_text16.setOnClickListener(myonlicklitener);
-		mSouquancheng_text17.setOnClickListener(myonlicklitener);
-		mSouquancheng_text18.setOnClickListener(myonlicklitener);
-		mSouquancheng_text19.setOnClickListener(myonlicklitener);
-		mSouquancheng_text20.setOnClickListener(myonlicklitener);
-		mSouquancheng_text21.setOnClickListener(myonlicklitener);
-		mSouquancheng_text22.setOnClickListener(myonlicklitener);*/
+    private void initData() {
+        String parentName = getIntent().getStringExtra("parentName");
+        parent_name.setText(parentName);
+        titleText.setText(parentName);
     }
 
-    // 监听事件
-    private class MyOnClickListener implements View.OnClickListener {
-        public void onClick(View v) {
-            int mID = v.getId();
-            if (mID == R.id.Souquancheng_back) {
-                SearchTheCity.this.finish();
-            }else if (mID == R.id.Souquancheng_text1) {
-                Intent intent6 = new Intent(SearchTheCity.this,
-                        ShopListActivity.class); //SearchList
-                startActivity(intent6);
+    private void initView() {
+        //请求分类接口
+        NetUtil.shenhuoType(PreferenceConstants.SHENHUO_TYPE_TWO, PreferenceConstants.SHENHUO_CODE_JIAZHENG, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> stringResponseInfo) {
+                timeOutHandler.stop();
+                //动态添加布局
+                List<ShengHuoType> shengHuoTypeList = ShengHuoType.parseMap(stringResponseInfo.result);
+                List<LinearLayout> linearLayouts = new ArrayList<LinearLayout>();
+                LinearLayout layout2 = new LinearLayout(SearchTheCity.this);
+                int i = 0;
+                for (final ShengHuoType shengHuoType : shengHuoTypeList) {
+                    i++;
+                    TextView textView = new TextView(SearchTheCity.this);
+                    textView.setTextAppearance(SearchTheCity.this,R.style.shenghuo_type_two);
+                    textView.setText(shengHuoType.getTypeName());
+                    final LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    lp1.weight=1;
+                    lp1.setMargins(5,5,5,5);
+                    textView.setBackgroundResource(R.drawable.my_tab_background);
+                    textView.setSingleLine(true);
+                    textView.setGravity(Gravity.CENTER);
+                    textView.setPadding(0, 15, 0, 15);
+                    textView.setLayoutParams(lp1);
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(SearchTheCity.this, ShopListActivity.class);
+                            intent.putExtra("typeCode",shengHuoType.getTypeCode());
+                            startActivity(intent);
+                        }
+                    });
+                    layout2.addView(textView);
+                    layout2.setOrientation(LinearLayout.HORIZONTAL);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    layoutParams.leftMargin = 5;
+                    layoutParams.rightMargin = 5;
+                    layout2.setPadding(0, 0, 1, 0);
+                    if (i % 3 ==0) {
+                        layout2= new LinearLayout(SearchTheCity.this);
+                        i=0;
+                        shenghuo_two.addView(layout2, layoutParams);
+                    }
+                }
             }
-        }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                timeOutHandler.stop();
+                T.showShort(SearchTheCity.this, R.string.net_error);
+            }
+
+            @Override
+            public void onStart() {
+                timeOutHandler.start(null);
+            }
+        });
+
     }
 }
