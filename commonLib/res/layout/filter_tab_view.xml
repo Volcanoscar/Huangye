@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/title_background">
+        <LinearLayout
+            android:id="@+id/common_constact"
+            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ll_top_bg">
+            <com.fujie.module.horizontalListView.HorizontalListView
+                    android:id="@+id/horizontalListView"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+           </com.fujie.module.horizontalListView.HorizontalListView>
+        </LinearLayout>
+
+</RelativeLayout>
