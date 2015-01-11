@@ -11,6 +11,11 @@ public class PreferenceConstants {
     public static String SHENHUO_TYPE_TWO = "2";
     /** 三级分类标识 **/
     public static String SHENHUO_TYPE_THREE = "3";
+
+    /** 是否为父类 **/
+    public static Integer IS_PARENT_TRUE = 1;
+    public static Integer IS_PARENT_FALSE = 1;
+
     public static String SHENHUO_CODE_JIAZHENG= "jiazheng";
 
 

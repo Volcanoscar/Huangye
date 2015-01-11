@@ -5,6 +5,7 @@ import android.graphics.*;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory.Options;
 import android.graphics.PorterDuff.Mode;
+import android.view.WindowManager;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,6 +13,19 @@ import java.io.FileOutputStream;
 public class SystemMethod {
 	private static final int ww=480;
 	private static final int hh=800;
+
+    public static int getWidth(Context context){
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        return wm.getDefaultDisplay().getWidth();
+    }
+
+    public static int getHeight(Context context){
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        return wm.getDefaultDisplay().getHeight();
+    }
+
 	public static int dip2px(Context context,int value){
 		float scaleing=context.getResources().getDisplayMetrics().density;
 		return (int) (value*scaleing+0.5f);

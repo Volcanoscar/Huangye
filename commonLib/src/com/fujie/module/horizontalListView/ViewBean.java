@@ -1,5 +1,7 @@
 package com.fujie.module.horizontalListView;
 
+import com.fujie.module.titlebar.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,33 @@ public class ViewBean {
     private String text;
     private String id;
     private String img;
+    private boolean parent;
     private List<ViewBean> bizAreaList;
+    private static ViewBean categoryViewBean;
+    private static ViewBean districtViewBean;
+
+    static {
+        categoryViewBean = new ViewBean();
+        categoryViewBean.setText("分类");
+        districtViewBean = new ViewBean();
+        districtViewBean.setText("区域");
+        districtViewBean.setParent(true);
+    }
+    public static ViewBean getCategoryViewBean() {
+        return categoryViewBean;
+    }
+
+    public static ViewBean getDistrictViewBean() {
+        return districtViewBean;
+    }
+
+    public boolean isParent() {
+        return parent;
+    }
+
+    public void setParent(boolean parent) {
+        this.parent = parent;
+    }
 
     public String getText() {
         return text;

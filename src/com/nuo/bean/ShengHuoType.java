@@ -1,9 +1,11 @@
 package com.nuo.bean;
 
 import android.content.Intent;
+import com.fujie.module.horizontalListView.ViewBean;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -97,10 +99,37 @@ public class ShengHuoType {
 
     public static List<ShengHuoType> parseMap(String result) {
         Gson gson = new Gson();
-      /*  Map map = gson.fromJson(result, Map.class);
-        if ("false".equals(map.get("result").toString())) {
-            return null;
-        }*/
         return gson.fromJson(result, new TypeToken<List<ShengHuoType>>(){}.getType());
+    }
+
+    public static List<ViewBean> getlevel4ViewBean(List<ShengHuoType> shengHuoTypeList) {
+        //添加“三级菜单”
+        List<ViewBean> level3List = new ArrayList<ViewBean>();
+        for (ShengHuoType shengHuoType : shengHuoTypeList) {
+            ViewBean viewBean = new ViewBean();
+            viewBean.setText(shengHuoType.getTypeName());
+            List<ViewBean> chirdViewBean = new ArrayList<ViewBean>();
+            for (ShengHuoType level4Type : shengHuoType.getLevel4List()) {
+                ViewBean temp = new ViewBean();
+                temp.setText(level4Type.getTypeName());
+                chirdViewBean.add(temp);
+            }
+            viewBean.setBizAreaList(chirdViewBean);
+            level3List.add(viewBean);
+        }
+        return level3List;
+    }
+
+    public static ViewBean getlevel3ViewBean(List<ShengHuoType> shengHuoTypeList) {
+        //添加“三级菜单”
+        List<ViewBean> level3List = new ArrayList<ViewBean>();
+        for (ShengHuoType shengHuoType : shengHuoTypeList) {
+            ViewBean viewBean = new ViewBean();
+            viewBean.setText(shengHuoType.getTypeName());
+            level3List.add(viewBean);
+        }
+        ViewBean categoryViewBean = ViewBean.getCategoryViewBean();
+        categoryViewBean.setBizAreaList(level3List);
+        return categoryViewBean;
     }
 }

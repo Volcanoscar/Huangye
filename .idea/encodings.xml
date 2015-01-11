@@ -3,6 +3,8 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/commonLib/src/com/fujie/module/listview/DragListAdapter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/commonLib/src/com/fujie/module/listview/DragListView.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commonLib/src/com/fujie/module/tab/SearchMainAdapter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/commonLib/src/com/fujie/module/tab/SearchMoreAdapter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/CheckinActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/FrameActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/LoginActivity.java" charset="UTF-8" />

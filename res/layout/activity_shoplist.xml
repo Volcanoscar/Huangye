@@ -42,172 +42,18 @@
                 android:src="@drawable/search_city" />-->
         </LinearLayout>
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/middlelinearlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titlerelativelayout" >
-
-        <LinearLayout
+    <com.fujie.module.tab.FilterTabLayout
+            android:id="@+id/filterTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/tuan_tab_linear_background"
-            android:paddingBottom="0.5dp"
-            android:paddingLeft="0dp"
-            android:paddingRight="0.5dp"
-            android:paddingTop="0dp" >
-
-            <TextView
-                android:id="@+id/Shoplist_title_textbtn1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_tab_background"
-                android:drawableRight="@drawable/ic_arrow_down_black"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:text="全部地区"
-                android:textColor="#666666" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/tuan_tab_linear_background"
-            android:paddingBottom="0.5dp"
-            android:paddingLeft="0dp"
-            android:paddingRight="0.5dp"
-            android:paddingTop="0dp" >
-
-            <TextView
-                android:id="@+id/Shoplist_title_textbtn2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_tab_background"
-                android:drawableRight="@drawable/ic_arrow_down_black"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:text="美食"
-                android:textColor="#666666" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/tuan_tab_linear_background"
-            android:paddingBottom="0.5dp"
-            android:paddingLeft="0dp"
-            android:paddingRight="0.5dp"
-            android:paddingTop="0dp" >
-
-            <TextView
-                android:id="@+id/Shoplist_title_textbtn3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/my_tab_background"
-                android:drawableRight="@drawable/ic_arrow_down_black"
-                android:gravity="center_horizontal"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:text="默认排序"
-                android:textColor="#666666" />
-        </LinearLayout>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titlerelativelayout">
+    </com.fujie.module.tab.FilterTabLayout>
 
     <ListView
         android:id="@+id/ShopListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/middlelinearlayout" />
+        android:layout_below="@+id/filterTabLayout" />
 
-    <ListView
-        android:id="@+id/Shoplist_toplist"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_below="@+id/titlerelativelayout"
-        android:background="#f4f4f4"
-        android:divider="@null"
-        android:listSelector="@drawable/search_more_morelistselect"
-        android:padding="10dp"
-        android:layout_margin="5dp"
-        android:visibility="gone" />
 
-    <ListView
-        android:id="@+id/Shoplist_threelist"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_below="@+id/middlelinearlayout"
-        android:background="@drawable/content_bg"
-        android:divider="@null"
-        android:listSelector="@drawable/search_more_morelistselect"
-        android:padding="3dp"
-        android:layout_margin="5dp"
-        android:visibility="gone" />
-
-    <LinearLayout
-        android:id="@+id/Shoplist_mainlist2"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_below="@+id/middlelinearlayout"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:background="@drawable/content_bg"
-        android:visibility="gone" >
-
-        <ListView
-            android:id="@+id/Shoplist_onelist2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:background="#F4F4F4"
-            android:divider="@null"
-            android:listSelector="@drawable/search_more_morelistselect"
-            android:scrollbars="none" />
-
-        <ListView
-            android:id="@+id/Shoplist_twolist2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="17"
-            android:background="#FFFFFF"
-            android:divider="@null"
-            android:listSelector="@drawable/search_more_morelistselect" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/Shoplist_mainlist1"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_below="@+id/middlelinearlayout"
-        android:orientation="horizontal"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/content_bg"
-        android:layout_margin="5dp"
-        android:visibility="gone" >
-
-        <ListView
-            android:id="@+id/Shoplist_onelist1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="20"
-            android:background="#F4F4F4"
-            android:divider="@null"
-            android:listSelector="@drawable/search_more_morelistselect"
-            android:scrollbars="none" />
-
-        <ListView
-            android:id="@+id/Shoplist_twolist1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="17"
-            android:background="#FFFFFF"
-            android:divider="@null"
-            android:listSelector="@drawable/search_more_morelistselect" />
-    </LinearLayout>
 </RelativeLayout>
