@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/districtLayout"
+              android:layout_width="match_parent"
+              android:layout_height="350dp"
+              android:layout_below="@+id/tab_title"
+              android:orientation="horizontal"
+              android:layout_marginLeft="5dp"
+              android:layout_marginRight="5dp"
+              android:background="@drawable/content_bg"
+              android:layout_margin="5dp" >
+        <ListView
+                android:id="@+id/level_one_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="20"
+                android:background="#F4F4F4"
+                android:divider="@null"
+                android:listSelector="@drawable/search_more_morelistselect"
+                android:scrollbars="none" />
+
+        <ListView
+                android:id="@+id/level_two_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="17"
+                android:background="#FFFFFF"
+                android:divider="@null"
+                android:listSelector="@drawable/search_more_morelistselect" />
+</LinearLayout>

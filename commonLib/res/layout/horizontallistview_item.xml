@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:id="@+id/itemLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="0.5dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0.5dp"
+        android:orientation="vertical"
+        android:paddingTop="0dp">
+
+    <TextView
+            android:id="@+id/tab_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/my_tab_background"
+            android:drawableRight="@drawable/ic_arrow_down_black"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="全部地区"
+            android:textColor="#666666"/>
+
+
+</LinearLayout>

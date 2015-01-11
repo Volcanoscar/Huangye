@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_shortAnimTime">
+<item android:drawable="@drawable/my_tab_background_d" android:state_pressed="true"/>
+    <!-- pressed -->
+    <item android:drawable="@drawable/my_tab_background_d" android:state_selected="true"/>
+    <!-- focused -->
+    <item android:drawable="@drawable/my_tab_background_u"/>
+    <!-- default -->
+    <item>
+        <shape>
+            <stroke android:width="1px" android:color="@color/devide_line" /><!--边框颜色-->
+            <solid android:color="@color/whites" /><!--填充色-->
+        </shape>
+    </item>
+</selector>
