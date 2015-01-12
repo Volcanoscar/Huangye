@@ -1,11 +1,11 @@
 package com.fujie.module.horizontalListView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
@@ -135,23 +135,44 @@ public class HorizontalListViewAdapter extends BaseAdapter {
             level_one_list.setAdapter(districtAdapter);
             districtAdapter.setSelectItem(0);
 
-            if (tabViewBean.isParent()) { //如果有二级菜单添加事件
+            popupWindow = new PopupWindow(tempPopup, 300,300);
+            popupWindow.setAnimationStyle(R.style.PopupWindowAnimation);
+            popupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#E9E9E9")));
+            popupWindow.showAsDropDown(titleBaarView, 0, -15);
+            popupWindow.setFocusable(true);
+            popupWindow.setOutsideTouchable(true);
+            //做一个不在焦点外的处理事件监听
+            final PopupWindow finalPopupWindow2 = popupWindow;
+           /* popupWindow.getContentView().setOnTouchListener(new View.OnTouchListener(){
+
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    // TODO Auto-generated method stub
+                    finalPopupWindow2.setFocusable(false);
+                    finalPopupWindow2.dismiss();
+                    return true;
+                }
+            });*/
+
+                if (tabViewBean.isParent()) { //如果有二级菜单添加事件
+                final PopupWindow finalPopupWindow = popupWindow;
                 level_one_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        initDistrictAdapter(levelOneList.get(i).getBizAreaList());
+                      /*  initDistrictAdapter(levelOneList.get(i).getBizAreaList());
                         districtAdapter.setSelectItem(i);
-                        districtAdapter.notifyDataSetChanged();
+                        districtAdapter.notifyDataSetChanged();*/
+                        Toast.makeText(context, "项事件", Toast.LENGTH_SHORT);
                     }
                 });
                 vh.level_two_list = level_two_list;
-                final PopupWindow finalPopupWindow = popupWindow;
                 level_two_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         //取消弹出菜单并修改tab名称
-                        vh.tab_title.setText(bizAreaAdapter.getViewBeanList().get(i).getText());
-                        finalPopupWindow.dismiss();
+                      /*  vh.tab_title.setText(bizAreaAdapter.getViewBeanList().get(i).getText());
+                        finalPopupWindow.dismiss();*/
+                        Toast.makeText(context, "项事件", Toast.LENGTH_SHORT);
                     }
                 });
                 initDistrictAdapter(levelOneList.get(position).getBizAreaList());
@@ -162,17 +183,13 @@ public class HorizontalListViewAdapter extends BaseAdapter {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         //取消弹出菜单并修改tab名称
-                        vh.tab_title.setText(levelOneList.get(i).getText());
-                        finalPopupWindow1.dismiss();
+                       /* vh.tab_title.setText(levelOneList.get(i).getText());
+                        finalPopupWindow1.dismiss();*/
+                        Toast.makeText(context, "项事件", Toast.LENGTH_SHORT);
                     }
                 });
                 level_two_list.setVisibility(View.GONE);
             }
-            popupWindow = new PopupWindow(tempPopup, SystemMethod.getWidth(context), SystemMethod.getHeight(context));
-            popupWindow.setAnimationStyle(R.style.PopupWindowAnimation);
-            popupWindow.setFocusable(false);
-            popupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#E9E9E9")));
-            popupWindow.showAsDropDown(titleBaarView, 0, -15);
             popupWindow.update();
         }else{
             popupWindow.showAsDropDown(titleBaarView, 0, -15);

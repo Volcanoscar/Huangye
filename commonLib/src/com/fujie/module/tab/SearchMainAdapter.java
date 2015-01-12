@@ -3,10 +3,7 @@ package com.fujie.module.tab;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 import com.fujie.module.horizontalListView.ViewBean;
 import com.fujie.module.titlebar.R;
 
@@ -77,7 +74,7 @@ public class SearchMainAdapter extends BaseAdapter {
                     .toString()));
         }
         hold.txt.setText(viewBeanList.get(arg0).getText());
-        hold.layout
+        hold.txt
                 .setBackgroundResource(R.drawable.search_more_mainlistselect);
         if (arg0 == position) {
             hold.layout.setBackgroundResource(R.drawable.list_bkg_line_u);

@@ -37,6 +37,7 @@ public class FilterTabLayout extends RelativeLayout{
         initView();
     }
     private void initView(){
+
         LayoutInflater.from(mContext).inflate(R.layout.filter_tab_view, this);
         horizontalListView=(HorizontalListView) findViewById(R.id.horizontalListView);
         tabAdapter = new HorizontalListViewAdapter(mContext, new ArrayList<ViewBean>());
@@ -45,7 +46,7 @@ public class FilterTabLayout extends RelativeLayout{
     }
 
     /**
-     * 根据数据是否有子数据来判断是否有子菜单。
+     * 根据数据是否有子数据来判 断是否有子菜单。
      * 1.生成表头
      * 2.根据数据生成表头对应的弹出菜单
      *
