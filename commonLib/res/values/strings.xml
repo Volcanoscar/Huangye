@@ -7,5 +7,18 @@
     <string name="group">分组</string>
     <string name="all">全部</string>
 
-
+    <string-array name="county_item">
+        <item >市南区</item>
+        <item >市北区</item>
+        <item >黄岛区</item>
+        <item >四方区</item>
+        <item >李沧区</item>
+        <item >崂山区</item>
+        <item >城阳区</item>
+        <item >即墨</item>
+        <item >胶州</item>
+        <item >平度</item>
+        <item >莱西</item>
+        <item >胶南</item>
+    </string-array>
 </resources>

@@ -12,6 +12,7 @@ import android.widget.*;
 import com.fujie.common.SystemMethod;
 import com.fujie.module.tab.SearchMainAdapter;
 import com.fujie.module.tab.SearchMoreAdapter;
+import com.fujie.module.tab.SpinnerPopWindow;
 import com.fujie.module.titlebar.R;
 
 import java.util.List;
@@ -121,79 +122,19 @@ public class HorizontalListViewAdapter extends BaseAdapter {
     }
 
     public void setPopWindow(ListView level_one_list, PopupWindow popupWindow, View titleBaarView, int position) {
-        if (popupWindow == null) {
-            LayoutInflater layoutInflater = LayoutInflater.from(context);
-            View tempPopup = layoutInflater.inflate(R.layout.level_two_menu, null);
-
-            //根据数据判断 是否有二级菜单（目前有三级。第一级是tab,第二级是一级菜单，第三级是三级菜单。）
-            ViewBean tabViewBean = viewBeanList.get(position);
-            final List<ViewBean> levelOneList = tabViewBean.getBizAreaList();
-            final ListView level_two_list = (ListView) tempPopup.findViewById(R.id.level_two_list);
-            level_one_list = (ListView) tempPopup.findViewById(R.id.level_one_list);
-            LinearLayout districtLayout = (LinearLayout) tempPopup.findViewById(R.id.districtLayout);
-            final SearchMainAdapter districtAdapter = new SearchMainAdapter(context, viewBeanList.get(position).getBizAreaList(), R.layout.shop_list1_item, false);
-            level_one_list.setAdapter(districtAdapter);
-            districtAdapter.setSelectItem(0);
-
-            popupWindow = new PopupWindow(tempPopup, 300,300);
-            popupWindow.setAnimationStyle(R.style.PopupWindowAnimation);
-            popupWindow.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#E9E9E9")));
-            popupWindow.showAsDropDown(titleBaarView, 0, -15);
-            popupWindow.setFocusable(true);
-            popupWindow.setOutsideTouchable(true);
-            //做一个不在焦点外的处理事件监听
-            final PopupWindow finalPopupWindow2 = popupWindow;
-           /* popupWindow.getContentView().setOnTouchListener(new View.OnTouchListener(){
-
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    // TODO Auto-generated method stub
-                    finalPopupWindow2.setFocusable(false);
-                    finalPopupWindow2.dismiss();
-                    return true;
-                }
-            });*/
-
-                if (tabViewBean.isParent()) { //如果有二级菜单添加事件
-                final PopupWindow finalPopupWindow = popupWindow;
-                level_one_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                      /*  initDistrictAdapter(levelOneList.get(i).getBizAreaList());
-                        districtAdapter.setSelectItem(i);
-                        districtAdapter.notifyDataSetChanged();*/
-                        Toast.makeText(context, "项事件", Toast.LENGTH_SHORT);
-                    }
-                });
-                vh.level_two_list = level_two_list;
-                level_two_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        //取消弹出菜单并修改tab名称
-                      /*  vh.tab_title.setText(bizAreaAdapter.getViewBeanList().get(i).getText());
-                        finalPopupWindow.dismiss();*/
-                        Toast.makeText(context, "项事件", Toast.LENGTH_SHORT);
-                    }
-                });
-                initDistrictAdapter(levelOneList.get(position).getBizAreaList());
-            } else {//如果是一级菜单点击事件
-
-                final PopupWindow finalPopupWindow1 = popupWindow;
-                level_one_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        //取消弹出菜单并修改tab名称
-                       /* vh.tab_title.setText(levelOneList.get(i).getText());
-                        finalPopupWindow1.dismiss();*/
-                        Toast.makeText(context, "项事件", Toast.LENGTH_SHORT);
-                    }
-                });
-                level_two_list.setVisibility(View.GONE);
+        String []strCounty =context.getResources().getStringArray(R.array.county_item);
+        SpinnerPopWindow  puCountyWindow= new SpinnerPopWindow(context,viewBeanList.get(position));
+        //puCountyWindow.setSpinnerAdapter(strCounty);
+        puCountyWindow.setItemSelectListener(new SpinnerPopWindow.IOnItemSelectListener() {
+            @Override
+            public void onItemClick(String tag,ViewBean viewBean,int position) {
+                vh.tab_title.setText("adb"+position);
+                Toast.makeText(context, "项事件", Toast.LENGTH_SHORT);
             }
-            popupWindow.update();
-        }else{
-            popupWindow.showAsDropDown(titleBaarView, 0, -15);
-        }
+        });
+        puCountyWindow.setWidth(SystemMethod.getWidth(context));
+        puCountyWindow.showAsDropDown(titleBaarView,""+position);
+        puCountyWindow.initData(viewBeanList.get(position));
     }
 
     /**
