@@ -24,4 +24,34 @@
     <dimen name="weather_iaqi_value_text_size">22.0sp</dimen>
     <dimen name="weather_suggest_layout_height">60.0dip</dimen>
     <dimen name="weather_suggest_text_size">15.0sp</dimen>
+
+
+    <!--  通讯录-->
+    <dimen name="guess_margin_top">22.0dip</dimen>
+    <dimen name="guess_margin_bottom">15.0dip</dimen>
+    <dimen name="app_backup_button_margin">15.0dip</dimen>
+    <dimen name="backup_device_listview_height">350.0dip</dimen>
+    <dimen name="backup_app_listview_height">320.0dip</dimen>
+    <dimen name="app_backup_top_height">250.0dip</dimen>
+    <dimen name="app_backup_checkbox_topmargin">46.0dip</dimen>
+    <dimen name="backup_profile_margin_top">78.0dip</dimen>
+    <dimen name="backup_tip_top_margin">23.0dip</dimen>
+    <dimen name="connection_btn_long_width">253.0dip</dimen>
+    <dimen name="connection_btn_width">189.0dip</dimen>
+    <dimen name="connection_btn_height">38.0dip</dimen>
+    <dimen name="connection_btn_text_size">18.0sp</dimen>
+    <dimen name="connection_btn_text_size_middle">15.0sp</dimen>
+    <dimen name="connection_btn_text_size_small">14.0sp</dimen>
+    <dimen name="connection_btn_text_size_tiny">12.0sp</dimen>
+    <dimen name="connection_btn_corner_radis">2.5sp</dimen>
+    <dimen name="connection_btn_stoke_width">0.5sp</dimen>
+    <dimen name="connection_banner_width">155.29999dip</dimen>
+    <dimen name="connection_banner_height">92.69998dip</dimen>
+    <dimen name="connection_banner_small_qq_size">23.299988dip</dimen>
+    <dimen name="connection_banner_big_qq_size">45.299988dip</dimen>
+    <dimen name="connection_banner_small_qq_margin_left">9.299988dip</dimen>
+    <dimen name="connection_banner_small_qq_margin_top">41.299988dip</dimen>
+    <dimen name="connection_banner_big_qq_margin_left">60.0dip</dimen>
+    <dimen name="connection_banner_big_qq_margin_top">17.299988dip</dimen>
+    <dimen name="connection_center_qq_size">66.69998dip</dimen>
 </resources>

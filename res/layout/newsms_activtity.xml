@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f0f0e0" >
+    <com.fujie.module.titlebar.TitleBarView
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#000000" >
+
+        <Button
+            android:id="@+id/btn_chat_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:textColor="#ffffff"
+            android:text="发送" />
+
+        <EditText
+            android:id="@+id/et_chat_msg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            android:background="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:hint="输入短信内容"
+            android:layout_toLeftOf="@id/btn_chat_send"
+            android:minLines="2"
+			android:maxLines="7"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/whiteGray"
+            android:layout_below="@id/title_bar"
+            android:padding="3dp"
+            >
+        <ImageButton
+                android:id="@+id/selectcontacts_im"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_add_recipient"
+                android:background="@android:color/transparent"
+                />
+        
+     <EditText 
+        android:id="@+id/chatname_edit"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_bar_edit_normal"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/selectcontacts_im"
+        android:hint="请选择收件人"
+        android:textSize="18dp" 
+        android:textColor="#000000"
+		android:maxLines="5"
+		android:focusable="false"
+        />
+
+    </RelativeLayout>
+</RelativeLayout>

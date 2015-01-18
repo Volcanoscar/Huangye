@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+        <FrameLayout 
+        android:id="@+id/top_contacts_layout"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+        android:background="@drawable/bg_header_raw">
+	    	
+	   <TextView
+            android:id="@+id/select_contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="20dip"
+            android:text="请选择联系人"
+            />
+	   
+    </FrameLayout>
+    
+    <LinearLayout 
+        android:id="@+id/chooselayout"
+        android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_gravity="bottom"
+    	android:layout_alignParentBottom="true"
+    	android:orientation="horizontal"
+    	android:background="#000000">
+        
+         <Button 
+	        android:id="@+id/delete_num"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="删除(0)"
+            android:textColor="#FFFFFF"
+	       />
+         
+         <Button 
+	        android:id="@+id/select_all"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="选择全部"
+            android:textColor="#FFFFFF"
+	       />
+         
+     </LinearLayout>
+    
+     <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" 
+        android:layout_below="@+id/top_contacts_layout"
+        android:layout_above="@+id/chooselayout"
+        >
+		    
+         <ListView 
+            android:id="@+id/pb_listvew"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+           	android:dividerHeight="2dp"
+            android:divider="#336598"/>
+        
+        <TextView 
+            android:id="@+id/pb_letter_notice"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/toast_letter_bg"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp"
+            android:visibility="gone"/>
+        
+        <TextView
+            android:id="@+id/nocontacts_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="28dip"
+            android:text="暂无匹配联系人"
+            android:visibility="gone"/>
+        
+        <huahua.contactsfragment.AlphabetScrollBar
+            android:id="@+id/alphabetscrollbar"
+            android:layout_gravity="right"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"/>
+        
+   	 </FrameLayout>
+</RelativeLayout>

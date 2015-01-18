@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import com.fujie.module.titlebar.TitleBarView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -26,24 +27,8 @@ import java.lang.reflect.Method;
  */
 
 public class SearchActivity extends Activity {
-
-    // 导航条linearlayout作为按钮
-    /*private LinearLayout mSearch_city, mSearch_search*/;
-    // gridview样式linearlayout作为按钮
-    private LinearLayout mSearch_food, mSearch_outing, mSearch_hotel,
-            mSearch_pub, mSearch_more, mSearch_chinsesnack;
-    // listview样式linearlayout作为按钮
-    private LinearLayout mSearch_list_huiyuanka, mSearch_list_souquancheng,
-            mSearch_list_paihangbang, mSearch_list_youhuiquan;
-
-    //一级分类布局对象
-    @ViewInject(R.id.oneTypeTableLayout)
-    private TableLayout oneTypeTableLayout;
-    @ViewInject(R.id.jiazheng)
-    private TableLayout jiazheng;
-
-
-
+    @ViewInject(R.id.title_bar)
+    private TitleBarView mTitleBarView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +38,8 @@ public class SearchActivity extends Activity {
     }
 
     private void initView() {
+        mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE, View.GONE);
+        mTitleBarView.setTitleText(R.string.huangye);
     }
 
     /**

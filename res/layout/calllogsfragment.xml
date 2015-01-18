@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+            <RelativeLayout
+                    android:id="@+id/top_colllogs_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_header_raw"
+                    android:orientation="vertical" >
+
+                <TextView
+                        android:id="@+id/wenti_textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="通话记录"
+                        android:textColor="@color/white"
+                        android:textSize="20.0sp" />
+
+            </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <ListView
+            android:id="@+id/calllogs_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:fadingEdge="none"
+            android:dividerHeight="1dp"
+            android:divider="@color/lightgray"
+            />
+
+        <TextView 
+            android:id="@+id/nocalllogs_notice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="28dip"
+            android:text="暂无通话记录"
+            android:visibility="gone"/>        
+    </FrameLayout>
+   
+</LinearLayout>

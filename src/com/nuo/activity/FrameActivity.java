@@ -3,8 +3,7 @@ package com.nuo.activity;
 import android.app.ActivityGroup;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -14,7 +13,10 @@ import android.view.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.nuo.adapter.ContactsLoaderListener;
+import com.nuo.adapter.SmsLoaderListener;
 import com.nuo.common.DownLoadManager;
+import com.nuo.utils.Utils;
 import com.nuo.view.NoScrollViewPager;
 
 import java.lang.reflect.Field;
@@ -40,17 +42,45 @@ public class FrameActivity extends ActivityGroup {
     private View view4 = null;
     private NoScrollViewPager mViewPager;  //如果需要滑动就把isCanScroll变量修改一下
     private PagerAdapter pagerAdapter = null;// 数据源和viewpager之间的桥梁
-
+    //SMS加载器监听器
+    private SmsLoaderListener m_SmsCallback = new SmsLoaderListener(this);
+    //联系人加载器监听器
+    private ContactsLoaderListener m_ContactsCallback = new ContactsLoaderListener(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frame);
         // tab webchat
         setOverflowShowingAlways();
+
+        //通讯录相关
+        Utils.init(this);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.huahua.SMS_Loader");
+        registerReceiver(mReceiver , filter);
+        getLoaderManager().initLoader(0,null,m_ContactsCallback);
+        getLoaderManager().initLoader(2,null,m_SmsCallback);
         initView();
         //检测版本
         DownLoadManager.checkVersion(FrameActivity.this, false);
     }
+    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+            if(intent.getAction().equals("android.huahua.SMS_Loader"))
+            {
+                getLoaderManager().initLoader(2,null,m_SmsCallback);
+            }
+        }
+    };
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
+    }
+
     /** 屏蔽掉物理Menu键，不然在有物理Menu键的手机上，overflow按钮会显示不出来。 **/
     private void setOverflowShowingAlways() {
         try {
@@ -64,12 +94,7 @@ public class FrameActivity extends ActivityGroup {
         }
     }
 
-    /** 加载 动作栏 菜单**/
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+
 
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {

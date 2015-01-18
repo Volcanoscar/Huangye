@@ -85,7 +85,6 @@ public class HorizontalListViewAdapter extends BaseAdapter {
     private class TabClick implements View.OnClickListener {
         private int position;
         private PopupWindow popupWindow;
-        private ListView oneView;
 
         private TabClick() {
         }
@@ -96,11 +95,15 @@ public class HorizontalListViewAdapter extends BaseAdapter {
 
         @Override
         public void onClick(View view) {
+            TextView textView=null;
+            if (view instanceof TextView) {
+                textView=((TextView)view);
+            }
             Drawable drawable = null;
             if (!menu_is_show) {
                 drawable = context.getResources().getDrawable(
                         R.drawable.ic_arrow_up_black);
-                setPopWindow(oneView,popupWindow,view, position);
+                setPopWindow(popupWindow,view, position);
                 if (bizAreaAdapter != null) {
                     bizAreaAdapter.notifyDataSetChanged();
                 }
@@ -116,20 +119,55 @@ public class HorizontalListViewAdapter extends BaseAdapter {
             // 这一步必须要做,否则不会显示.
             drawable.setBounds(0, 0, drawable.getMinimumWidth(),
                     drawable.getMinimumHeight());
-            vh.tab_title.setCompoundDrawables(null, null,
-                    drawable, null);
+            if (textView != null) {
+                textView.setCompoundDrawables(null, null,
+                        drawable, null);
+            }
         }
     }
 
-    public void setPopWindow(ListView level_one_list, PopupWindow popupWindow, View titleBaarView, int position) {
+    public void setPopWindow(PopupWindow popupWindow, final View titleBaarView, int position) {
         String []strCounty =context.getResources().getStringArray(R.array.county_item);
-        SpinnerPopWindow  puCountyWindow= new SpinnerPopWindow(context,viewBeanList.get(position));
+        final SpinnerPopWindow  puCountyWindow= new SpinnerPopWindow(context,viewBeanList.get(position));
         //puCountyWindow.setSpinnerAdapter(strCounty);
         puCountyWindow.setItemSelectListener(new SpinnerPopWindow.IOnItemSelectListener() {
             @Override
             public void onItemClick(String tag,ViewBean viewBean,int position) {
-                vh.tab_title.setText("adb"+position);
-                Toast.makeText(context, "项事件", Toast.LENGTH_SHORT);
+                //恢复
+                Drawable drawable = context.getResources().getDrawable(
+                        R.drawable.ic_arrow_down_black);
+                menu_is_show = false;
+                // 这一步必须要做,否则不会显示.
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+                        drawable.getMinimumHeight());
+                if (titleBaarView instanceof TextView) {
+                    ((TextView)titleBaarView).setText(viewBean.getText());
+                    ((TextView)titleBaarView).setCompoundDrawables(null, null,
+                            drawable, null);
+                }
+            }
+        });
+        puCountyWindow.getContentView().setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // TODO Auto-generated method stub
+                puCountyWindow.setFocusable(false);
+                puCountyWindow.dismiss();
+                //恢复
+                Drawable drawable = context.getResources().getDrawable(
+                        R.drawable.ic_arrow_down_black);
+                if (puCountyWindow != null) {
+                    puCountyWindow.dismiss();
+                }
+                menu_is_show = false;
+                // 这一步必须要做,否则不会显示.
+                drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+                        drawable.getMinimumHeight());
+                if (titleBaarView instanceof TextView) {
+                    ((TextView)titleBaarView).setCompoundDrawables(null, null,
+                            drawable, null);
+                }
+                return true;
             }
         });
         puCountyWindow.setWidth(SystemMethod.getWidth(context));

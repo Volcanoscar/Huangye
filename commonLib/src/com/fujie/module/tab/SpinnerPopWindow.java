@@ -24,6 +24,10 @@ public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener
 	private Context context ;
     private String tag;
     private View contentView;
+    /**
+     * 第一菜单索引
+     */
+    private int oneIndex;
 
     /**
      *
@@ -60,17 +64,7 @@ public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener
 		setWidth(LayoutParams.WRAP_CONTENT);
 		setHeight(LayoutParams.WRAP_CONTENT);
 		setFocusable(true);
-        setOutsideTouchable(true);
-        getContentView().setOnTouchListener(new View.OnTouchListener(){
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // TODO Auto-generated method stub
-                setFocusable(false);
-                dismiss();
-                return true;
-            }
-        });
 		//设置下拉菜单背景颜色
 		setBackgroundDrawable(context.getResources().getDrawable(android.R.color.white));
         // -------初始化PopWindow结束 -------------------
@@ -84,11 +78,13 @@ public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener
         LinearLayout districtLayout = (LinearLayout) contentView.findViewById(R.id.districtLayout);
         final SearchMainAdapter districtAdapter = new SearchMainAdapter(context,tabViewBean.getBizAreaList(), R.layout.shop_list1_item, false);
         level_one_list.setAdapter(districtAdapter);
+
         if (tabViewBean.isParent()) { //如果有二级菜单添加事件
             level_one_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     initDistrictAdapter(level_two_list,levelOneList.get(i).getBizAreaList());
+                    oneIndex= i;
                     districtAdapter.setSelectItem(i);
                     districtAdapter.notifyDataSetChanged();
                 }
@@ -114,11 +110,15 @@ public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 	  dismiss();
-	  if (iOnItemSelectListener!=null)
-	  {
-		  iOnItemSelectListener.onItemClick(tag,viewBean.getBizAreaList().get(position),position);
-	  }
-	}
+	  if (iOnItemSelectListener!=null) {
+          if (parent.getId() == R.id.level_two_list) {
+              iOnItemSelectListener.onItemClick(tag,viewBean.getBizAreaList().get(oneIndex).getBizAreaList().get(position), position);
+
+          }else{
+              iOnItemSelectListener.onItemClick(tag, viewBean.getBizAreaList().get(position), position);
+          }
+      }
+    }
 
 
 

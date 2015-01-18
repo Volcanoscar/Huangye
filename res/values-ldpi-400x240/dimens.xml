@@ -3,4 +3,14 @@
     <dimen name="leading_btn_layout_hetigh">90.0dip</dimen>
     <dimen name="leading_btn_layout_margin_heigh">40.0dip</dimen>
     <dimen name="leading_dot_layout_margin_heigh">20.0dip</dimen>
+
+    <!-- 通讯录-->
+    <dimen name="app_backup_button_margin">10.0dip</dimen>
+    <dimen name="backup_device_listview_height">250.0dip</dimen>
+    <dimen name="backup_app_listview_height">230.0dip</dimen>
+    <dimen name="app_backup_top_height">150.0dip</dimen>
+    <dimen name="app_backup_checkbox_topmargin">20.0dip</dimen>
+    <dimen name="backup_profile_margin_top">38.0dip</dimen>
+    <dimen name="backup_tip_top_margin">7.0dip</dimen>
+    <dimen name="app_backup_button_topmargin">50.0dip</dimen>
 </resources>
