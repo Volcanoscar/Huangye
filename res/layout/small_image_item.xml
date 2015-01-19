@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
+    android:layout_width="150dip"
+    android:layout_height="100dip"
+    android:background="@color/white" >
+    <ImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="140dip"
+        android:layout_height="100dip"
+        android:paddingBottom="5dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/test5"
+        />
+</RelativeLayout>

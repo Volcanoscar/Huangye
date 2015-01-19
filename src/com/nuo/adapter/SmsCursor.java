@@ -76,7 +76,7 @@ public class SmsCursor extends CursorWrapper{
 
                 if(AddPersonFlag)
                 {
-                    for(int i=0;i< Utils.mPersons.size();i++)
+                    for(int i=0;i<Utils.mPersons.size();i++)
                     {
                         if(Utils.mPersons.get(i).mNum.equals(person_sms.Number)
                                 || Utils.mPersons.get(i).mNum.equals(NumberRemove86))

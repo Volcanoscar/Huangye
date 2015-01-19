@@ -1,39 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:background="#fff2f2f2" android:layout_width="fill_parent" android:layout_height="fill_parent"
                 xmlns:android="http://schemas.android.com/apk/res/android">
-    <RelativeLayout
-            android:id="@+id/rl_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_header_raw"
-            android:orientation="vertical" >
 
-        <ImageButton
-                android:id="@+id/IB_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/icon_titlebar_return"
-                android:background="@drawable/button_selector"
-                />
+    <com.fujie.module.titlebar.TitleBarView
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <TextView
-                android:id="@+id/TV_newsms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:textColor="#ffffff"
-                android:text="联系人详情"
-                android:textSize="20dp" />
-
-
-    </RelativeLayout>
 
     <RelativeLayout android:id="@+id/top_layout"
                     android:background="@drawable/appbackup_bg"
                     android:layout_width="fill_parent"
                     android:layout_height="@dimen/app_backup_top_height"
-                    android:layout_below="@id/rl_layout">
+                    android:layout_below="@id/title_bar">
         <TextView android:textSize="50.0sp"
                   android:textColor="#ff999999"
                   android:id="@+id/deviceName"
@@ -61,44 +40,19 @@
           android:background="@color/lightblue" android:clickable="false" android:layout_below="@+id/auto_backup_layout"
           android:layout_alignParentLeft="true" android:layout_margin="5dp" android:id="@+id/view">
     </View>
+
+
     <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
 
             android:layout_below="@+id/view">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="手机"
-                android:textSize="18dp"
-                android:layout_marginLeft="5.0dip"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:id="@+id/textView"
-                />
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tel"
-                android:textSize="18dp"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
-                android:id="@+id/telTextView" android:layout_alignTop="@+id/textView" android:layout_toRightOf="@+id/textView"
-                android:layout_marginLeft="52dp" android:singleLine="false"/>
-        <ImageButton
-                android:layout_width="40dip"
-                android:layout_height="40dip"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:id="@+id/imageButton"
-                android:background="@drawable/msg_icon"
-                android:layout_alignRight="@+id/telTextView"/>
+        <ListView
+                android:id="@+id/contact_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dividerHeight="1dp"
+                android:divider="@color/lightgray"/>
     </RelativeLayout>
-
-    <!--  <RelativeLayout android:id="@+id/auto_backup_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/app_backup_checkbox_topmargin" android:layout_below="@id/top_layout">
-          <ImageView android:id="@+id/auto_backup_img" android:background="@drawable/ic_calllog_call_normal" android:layout_width="25.299988dip" android:layout_height="25.299988dip" android:layout_marginLeft="44.5dip" />
-          <TextView android:textSize="13.0sp" android:textColor="#ff999999" android:id="@+id/checkbox_txt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="9.0dip" android:checked="false" android:text="@string/call" android:includeFontPadding="false" android:layout_toRightOf="@id/auto_backup_img" android:layout_centerVertical="true" />
-      </RelativeLayout>-->
-
 </RelativeLayout>

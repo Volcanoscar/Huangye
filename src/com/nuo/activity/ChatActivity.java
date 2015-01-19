@@ -14,6 +14,9 @@ import android.text.util.Linkify;
 import android.view.*;
 import android.view.View.OnClickListener;
 import android.widget.*;
+import com.fujie.module.titlebar.TitleBarView;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.nuo.adapter.SmsCursor.SMSs;
 import com.nuo.adapter.SmsCursor.Person_Sms;
 import com.nuo.task.AddSmsTask;
@@ -25,14 +28,8 @@ import java.util.Date;
 import java.util.List;
 
 public class ChatActivity extends Activity implements OnClickListener{
-    //聊天对象人姓名
-    private TextView m_TitleName;
     //发送信息的按钮
     private Button m_SendBtn;
-    //返回按钮
-    private ImageButton m_BackIB;
-    //呼叫按钮
-    private ImageButton m_DialIB;
     //编辑信息框
     private EditText m_MsgEditText;
     //聊天记录列表
@@ -41,27 +38,24 @@ public class ChatActivity extends Activity implements OnClickListener{
     private ChatLogAdapter m_ChatLogAdapter;
     //聊天对象
     Person_Sms m_chat_person;
+    @ViewInject(R.id.title_bar)
+    private TitleBarView mTitleBarView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.chat_activtity);
+        ViewUtils.inject(this);
 
-        m_TitleName = (TextView)findViewById(R.id.text_chat_name);
         m_SendBtn = (Button) findViewById(R.id.btn_chat_send);
         m_SendBtn.setOnClickListener(this);
-        m_BackIB = (ImageButton) findViewById(R.id.btn_chat_back);
-        m_BackIB.setOnClickListener(this);
-        m_DialIB = (ImageButton) findViewById(R.id.btn_chat_dial);
-        m_DialIB.setOnClickListener(this);
         m_MsgEditText = (EditText) findViewById(R.id.et_chat_msg);
 
         m_ChatLogList = (ListView) findViewById(R.id.chat_list);
-
         m_chat_person = (Person_Sms)getIntent().getSerializableExtra("chatperson");
-        m_TitleName.setText(m_chat_person.Name);
-
+        initTitleView();
         Collections.reverse(m_chat_person.person_smss);
         m_ChatLogAdapter = new ChatLogAdapter();
         m_ChatLogList.setAdapter(m_ChatLogAdapter);
@@ -72,6 +66,28 @@ public class ChatActivity extends Activity implements OnClickListener{
         filter.addAction("android.huahua.SMS_RECEIVED");
         registerReceiver(mReceiver , filter);
 
+    }
+
+    private void initTitleView() {
+        mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE, View.VISIBLE);
+        mTitleBarView.setTitleText(m_chat_person.Name);
+        mTitleBarView.setBtnLeft(R.drawable.ic_back, R.string.back);
+        mTitleBarView.setBtnLeftOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        mTitleBarView.getBtnRight().setPadding(8, 0, 8, 0);
+        mTitleBarView.setBtnRight(R.drawable.ic_call_hollow, R.string.add_sms);
+        mTitleBarView.setBtnRightBg(R.drawable.login_btn);
+        mTitleBarView.setBtnRightOnclickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent  intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel://" + m_chat_person.Number));
+                startActivity(intent);
+            }
+        });
     }
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -124,15 +140,6 @@ public class ChatActivity extends Activity implements OnClickListener{
             {
                 SendSMS(m_MsgEditText.getText().toString(), m_chat_person.Number, System.currentTimeMillis());
             }
-        }
-        else if(v.getId() == R.id.btn_chat_back)
-        {
-            finish();
-        }
-        else if(v.getId() == R.id.btn_chat_dial)
-        {
-            Intent  intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel://" + m_chat_person.Number));
-            startActivity(intent);
         }
     }
 

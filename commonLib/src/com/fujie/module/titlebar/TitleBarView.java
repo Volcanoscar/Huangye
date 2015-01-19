@@ -113,6 +113,9 @@ public class TitleBarView extends RelativeLayout {
 	public void setTitleText(int txtRes){
 		tv_center.setText(txtRes);
 	}
+    public void setTitleText(String txtRes){
+        tv_center.setText(txtRes);
+    }
 	
 	public void setBtnLeftOnclickListener(OnClickListener listener){
 		btnLeft.setOnClickListener(listener);

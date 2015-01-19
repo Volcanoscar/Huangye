@@ -21,7 +21,7 @@ public class ContactsLoaderListener implements LoaderManager.LoaderCallbacks<Cur
 	
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		return new ContactsCursorLoader(m_context, ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+		return new ContactsCursorLoader(m_context, ContactsContract.Contacts.CONTENT_URI,
 				null, null, null, null);
 	}
 
@@ -32,7 +32,6 @@ public class ContactsLoaderListener implements LoaderManager.LoaderCallbacks<Cur
 			ContactsCursor data = (ContactsCursor)Utils.m_mycursoradapter.getCursor();
 			Utils.mPersons = data.GetContactsArray();
 			Utils.m_contactsAdapter.notifyDataSetChanged();
-			
 			Intent i = new Intent("android.huahua.SMS_Loader");
 			m_context.sendBroadcast(i);
 	}

@@ -47,17 +47,14 @@ public class NewSmsActivity extends Activity implements OnClickListener{
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.newsms_activtity);
         ViewUtils.inject(this);
-        m_NewSmsTV = (TextView)findViewById(R.id.TV_newsms);
+        initTitleView();
         m_SendBtn = (Button) findViewById(R.id.btn_chat_send);
         m_SendBtn.setOnClickListener(this);
-        m_BackIB = (ImageButton) findViewById(R.id.IB_back);
-        m_BackIB.setOnClickListener(this);
         m_MsgEditText = (EditText) findViewById(R.id.et_chat_msg);
         m_MsgEditText.setText(getIntent().getStringExtra("ForwardSMS"));
         m_SelectEditText = (EditText)findViewById(R.id.chatname_edit);
         m_SelectImageButton = (ImageButton)findViewById(R.id.selectcontacts_im);
         m_SelectImageButton.setOnClickListener(this);
-        initTitleView();
         Intent intent = getIntent();
         SortEntry sortEntry = (SortEntry)intent.getSerializableExtra("contact");
         if(sortEntry!=null){
@@ -153,10 +150,6 @@ public class NewSmsActivity extends Activity implements OnClickListener{
                     finish();
                 }
             }
-        }
-        else if(v.getId() == R.id.IB_back)
-        {
-            finish();
         }
         else if(v.getId() == R.id.selectcontacts_im)
         {

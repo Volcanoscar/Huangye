@@ -93,4 +93,10 @@
     <string name="relation">关系</string>
     <string name="add_msg">新建信息</string>
     <string name="change_send_user">选择发送联系人</string>
+    <string name="add_contract">新增联系人</string>
+    <string name="edit_contract">编辑联系人</string>
+    <string name="save">保存</string>
+    <string name="contact_detail">联系人详情</string>
+
+    <string name="viewpager_indicator">%1$d/%2$d</string>
 </resources>

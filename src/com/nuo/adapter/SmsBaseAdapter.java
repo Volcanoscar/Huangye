@@ -43,7 +43,7 @@ public class SmsBaseAdapter extends BaseAdapter{
 		{
 			convertView = LayoutInflater.from(context).inflate(R.layout.sms_list_item, parent, false);
 		}
-		 //短信记录的姓名
+
 		 TextView name = (TextView)convertView.findViewById(R.id.sms_name);
 		 
 	      String SmsName = Utils.mPersonSmsList.get(position).Name + " ("+Utils.mPersonSmsList.get(position).person_smss.size()+")";  
@@ -55,11 +55,11 @@ public class SmsBaseAdapter extends BaseAdapter{
 	                Spannable.SPAN_INCLUSIVE_INCLUSIVE);  
 	      name.setText(word); 
 		 
-		 //短信内容
+
 		 TextView sms_content = (TextView)convertView.findViewById(R.id.sms_content);
 		 sms_content.setText(Utils.mPersonSmsList.get(position).person_smss.get(0).SMSContent);
 		 
-		 //通话记录的日期
+
 		 TextView data = (TextView)convertView.findViewById(R.id.sms_date);
 		 
 		 Date date2 = new Date(Utils.mPersonSmsList.get(position).person_smss.get(0).SMSDate);

@@ -38,14 +38,14 @@ public class ContactsBaseAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null)
         {
-            convertView = LayoutInflater.from(context).inflate(R.layout.contacts_list_item, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.contacts_list_item_new, parent, false);
         }
 
         TextView name = (TextView) convertView.findViewById(R.id.contacts_name);
         name.setText(Utils.mPersons.get(position).mName);
 
-        TextView number = (TextView) convertView.findViewById(R.id.contacts_number);
-        number.setText(Utils.mPersons.get(position).mNum);
+        /*TextView number = (TextView) convertView.findViewById(R.id.contacts_number);
+        number.setText(Utils.mPersons.get(position).mNum);*/
 
         ImageView chooseView = (ImageView)convertView.findViewById(R.id.choose_contact);
         chooseView.setVisibility(View.GONE);

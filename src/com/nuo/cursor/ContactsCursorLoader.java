@@ -16,7 +16,7 @@ public class ContactsCursorLoader extends CursorLoader{
 	@Override
 	public Cursor loadInBackground() {
 		Cursor cursor = super.loadInBackground();
-		return new ContactsCursor(cursor);
+		return new ContactsCursor(this.getContext(),cursor);
 	}
 
 }

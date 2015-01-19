@@ -4,40 +4,11 @@
     android:layout_height="fill_parent"
     android:background="#f0f0e0" >
 
-    <RelativeLayout
-        android:id="@+id/rl_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_header_raw"
-        android:orientation="vertical" >
+    <com.fujie.module.titlebar.TitleBarView
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <ImageButton
-            android:id="@+id/btn_chat_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:src="@drawable/icon_titlebar_return"
-	   		android:background="@drawable/button_selector"
-            />
-
-        <TextView
-            android:id="@+id/text_chat_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="#ffffff"
-            android:textSize="20dp" />
-        
-         <ImageButton
-            android:id="@+id/btn_chat_dial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_call_hollow"
-            android:background="@drawable/button_selector"
-            />
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl_bottom"
@@ -77,7 +48,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/rl_bottom"
-        android:layout_below="@id/rl_layout"
+        android:layout_below="@id/title_bar"
         android:cacheColorHint="#00000000"
         android:divider="@null"
         />

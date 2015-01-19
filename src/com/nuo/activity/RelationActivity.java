@@ -16,7 +16,10 @@ import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.*;
 import com.fujie.module.titlebar.TitleBarView;
 import com.lidroid.xutils.ViewUtils;
@@ -24,15 +27,15 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.nuo.ContentObserver.ContactsContentObserver;
 import com.nuo.adapter.FilterAdapter;
 import com.nuo.adapter.SmsCursor.Person_Sms;
-import com.nuo.adapter.SwipeAdapter;
 import com.nuo.cursor.ContactsCursor.SortEntry;
-import com.nuo.model.WXMessage;
 import com.nuo.myview.AlphabetScrollBar;
 import com.nuo.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * 关系主界面
+ */
 public class RelationActivity extends Activity{
 	//字母列视图View
 	private AlphabetScrollBar m_asb;
@@ -69,7 +72,9 @@ public class RelationActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.contactsfragment);
-		ViewUtils.inject(this);
+        //启动activity时不自动弹出软键盘
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        ViewUtils.inject(this);
 		ContactsCO = new ContactsContentObserver(new Handler());
 		getContentResolver().registerContentObserver(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, false, ContactsCO);
 		initView();
@@ -89,7 +94,7 @@ public class RelationActivity extends Activity{
 				Vibrator vib = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
 				vib.vibrate(50);
 
-				if(m_topcontactslayout.getVisibility() == View.VISIBLE)
+                if("".equals(m_FilterEditText.getText().toString()))
 				{
 					ChooseContactName = Utils.mPersons.get(arg2).mName;
 					ChooseContactNumber = Utils.mPersons.get(arg2).mNum;
@@ -101,7 +106,6 @@ public class RelationActivity extends Activity{
 					ChooseContactNumber = mFilterList.get(arg2).mNum;
 					ChooseContactID = mFilterList.get(arg2).mID;
 				}
-
 				Bundle bundle = new Bundle();
 				bundle.putInt("tpye", 0);
 				bundle.putString("name", ChooseContactName);
@@ -137,8 +141,7 @@ public class RelationActivity extends Activity{
 
 				Vibrator vib = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
 				vib.vibrate(50);
-
-				if(m_topcontactslayout.getVisibility() == View.VISIBLE)
+				if("".equals(m_FilterEditText.getText().toString()))
 				{
 					ChooseContactName = Utils.mPersons.get(arg2).mName;
 					ChooseContactNumber = Utils.mPersons.get(arg2).mNum;
@@ -259,14 +262,14 @@ public class RelationActivity extends Activity{
 					m_FAdapter = new FilterAdapter(RelationActivity.this, mFilterList,s.toString().trim());
 					m_contactslist.setAdapter(m_FAdapter);
 
-					m_asb.setVisibility(View.GONE);
-					m_topcontactslayout.setVisibility(View.GONE);
+					//m_asb.setVisibility(View.GONE);
+					//m_topcontactslayout.setVisibility(View.GONE);
 				}
 				else
 				{
 					m_contactslist.setAdapter(Utils.m_contactsAdapter);
-					m_topcontactslayout.setVisibility(View.VISIBLE);
-					m_asb.setVisibility(View.VISIBLE);
+					//m_topcontactslayout.setVisibility(View.VISIBLE);
+					//m_asb.setVisibility(View.VISIBLE);
 				}
 
 			}
@@ -419,5 +422,4 @@ public class RelationActivity extends Activity{
 			return false;
 		}
 	}
-
 }

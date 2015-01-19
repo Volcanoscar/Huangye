@@ -42,10 +42,12 @@ public class FrameActivity extends ActivityGroup {
     private View view4 = null;
     private NoScrollViewPager mViewPager;  //如果需要滑动就把isCanScroll变量修改一下
     private PagerAdapter pagerAdapter = null;// 数据源和viewpager之间的桥梁
-    //SMS加载器监听器
-    private SmsLoaderListener m_SmsCallback = new SmsLoaderListener(this);
+
     //联系人加载器监听器
     private ContactsLoaderListener m_ContactsCallback = new ContactsLoaderListener(this);
+    //SMS加载器监听器
+    private SmsLoaderListener m_SmsCallback = new SmsLoaderListener(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +61,6 @@ public class FrameActivity extends ActivityGroup {
         filter.addAction("android.huahua.SMS_Loader");
         registerReceiver(mReceiver , filter);
         getLoaderManager().initLoader(0,null,m_ContactsCallback);
-        getLoaderManager().initLoader(2,null,m_SmsCallback);
         initView();
         //检测版本
         DownLoadManager.checkVersion(FrameActivity.this, false);
@@ -237,19 +238,20 @@ public class FrameActivity extends ActivityGroup {
 
     // 把viewpager里面要显示的view实例化出来，并且把相关的view添加到一个list当中
     private void createView() {
-        view = this
+        view = FrameActivity.this
+                .getLocalActivityManager()
+                .startActivity("tuan",
+                        new Intent(FrameActivity.this, RelationActivity.class))
+                .getDecorView();
+        view.setTag(0);
+        list.add(view);
+
+        view1 = this
                 .getLocalActivityManager()
                 .startActivity("search",
                         new Intent(FrameActivity.this, SmsActivity.class))
                 .getDecorView();
         // 用来更改下面button的样式的标志
-        view.setTag(0);
-        list.add(view);
-        view1 = FrameActivity.this
-                .getLocalActivityManager()
-                .startActivity("tuan",
-                        new Intent(FrameActivity.this, RelationActivity.class))
-                .getDecorView();
         view1.setTag(1);
         list.add(view1);
 
@@ -281,21 +283,14 @@ public class FrameActivity extends ActivityGroup {
             switch (mBtnid) {
                 case R.id.MyBottemSearchBtn:
                     // //设置我们的viewpager跳转那个界面0这个参数和我们的list相关,相当于list里面的下标
-                    mViewPager.setCurrentItem(0);
+                    mViewPager.setCurrentItem(1);
                     initBottemBtn();
                     mMyBottemSearchImg
                             .setImageResource(R.drawable.wb_home_tap_index_pressed);
                     mMyBottemSearchTxt.setTextColor(Color.parseColor("#FF8C00"));
                     break;
-			/*case R.id.MyBottemTuanBtn:
-				mViewPager.setCurrentItem(1);
-				initBottemBtn();
-				mMyBottemTuanImg
-						.setImageResource(R.drawable.main_index_tuan_pressed);
-				mMyBottemTuanTxt.setTextColor(Color.parseColor("#FF8C00"));
-				break;*/
                 case R.id.MyBottemCheckinBtn:
-                    mViewPager.setCurrentItem(1);
+                    mViewPager.setCurrentItem(0);
                     initBottemBtn();
                     mMyBottemCheckinImg
                             .setImageResource(R.drawable.wb_home_tap_publish_pressed);

@@ -19,6 +19,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fujie.module.horizontalListView.HorizontalListView;
+import com.nuo.adapter.SmallImageListViewAdapter;
 import com.nuo.info.CommentsInfo;
 import com.nuo.info.FoodInfo;
 import com.nuo.info.ShopInfo;
@@ -44,42 +46,10 @@ public class ShopDetailsActivity extends Activity {
     private ArrayList<FoodInfo> FoodList;
     // top和店铺的属性
     private ImageView mShop_details_back, mShop_details_share,
-            mShop_details_off, mShop_details_photo, mShop_details_star;
+            mShop_details_off, mShop_details_star;
     private TextView mShop_details_name, mShop_details_money;
-    /*// 最下面的导航式按钮
-    private LinearLayout mShop_details_bottom_img1, mShop_details_bottom_img2,
-            mShop_details_bottom_img3, mShop_details_bottom_img4;*/
-    // 店铺详情下面的属性
-	/*private RelativeLayout mshop_details_address, mshop_details_phone,
-			mshop_details_ding, mshop_details_card, mshop_details_quan,
-			mshop_details_tuan;
-	private TextView mshop_details_address_txt, mshop_details_phone_txt,
-			mshop_details_card_txt, mshop_details_quan_txt,
-			mshop_details_tuan_txt;
-	private ImageView mshop_details_ding_hui, mshop_details_ding_jiang;*/
-    // 网友推荐的layout
-/*	private RelativeLayout mshop_details_tuijian;
-	private TextView mshop_details_tuijian_txt;*/
-    // 点评的layout
-	/*private RelativeLayout mshop_details_dianping;
-	private TextView mshop_dianping_top, mshop_details_dianping_name,
-			mshop_details_dianping_txt, mshop_details_dianping_time;
-	private ImageView mshop_details_dianping_star;*/
-    // 签到留言的layout
-/*	private RelativeLayout mshop_details_qiandaoqiang;
-	private TextView mshop_qiandaoqiang_top, mshop_details_qiandaoqiang_txt,
-			mshop_details_qiandaoqiang_time, mshop_details_qiandaoqiang_cishu;
-	private ImageView mshop_details_qiandaoqiang_img;*/
-    // 其他信息的layout
-    private RelativeLayout mshop_details_qita;
-    // 这家店附近的layout
-    private TextView mshop_fujin_meishi, mshop_fujin_jingdian,
-            mshop_fujin_jiudian, mshop_fujin_quanbu;
-    // 其他分店的layout
-    private RelativeLayout mshop_details_fendian;
-    private TextView mshop_details_fendians_txt;
-    // 看过这家店的layout
-    private RelativeLayout mshop_details_kanguo;
+    private HorizontalListView mShop_details_photo;
+
     // 创建popupWindow
     private View parent;
     private PopupWindow popupWindow;
@@ -108,88 +78,16 @@ public class ShopDetailsActivity extends Activity {
         mShop_details_back = (ImageView) findViewById(R.id.Shop_details_back);
         mShop_details_share = (ImageView) findViewById(R.id.Shop_details_share);
         mShop_details_off = (ImageView) findViewById(R.id.Shop_details_off);
-        // 最下面的导航式按钮
-		/*mShop_details_bottom_img1 = (LinearLayout) findViewById(R.id.Shop_details_bottom_img1);
-		mShop_details_bottom_img2 = (LinearLayout) findViewById(R.id.Shop_details_bottom_img2);
-		mShop_details_bottom_img3 = (LinearLayout) findViewById(R.id.Shop_details_bottom_img3);
-		mShop_details_bottom_img4 = (LinearLayout) findViewById(R.id.Shop_details_bottom_img4);*/
         // 店铺信息控件
         mShop_details_name = (TextView) findViewById(R.id.Shop_details_name);
-        mShop_details_photo = (ImageView) findViewById(R.id.Shop_details_photo);
-		/*mShop_details_star = (ImageView) findViewById(R.id.Shop_details_star);
-		mShop_details_money = (TextView) findViewById(R.id.Shop_details_money);
-		// 店铺信息下面的地址，电话，定，卡，券，团控件
-		mshop_details_address = (RelativeLayout) findViewById(R.id.shop_details_address);
-		mshop_details_phone = (RelativeLayout) findViewById(R.id.shop_details_phone);
-		mshop_details_ding = (RelativeLayout) findViewById(R.id.shop_details_ding);
-		mshop_details_card = (RelativeLayout) findViewById(R.id.shop_details_card);
-		mshop_details_quan = (RelativeLayout) findViewById(R.id.shop_details_quan);
-		mshop_details_tuan = (RelativeLayout) findViewById(R.id.shop_details_tuan);
-		mshop_details_address_txt = (TextView) findViewById(R.id.shop_details_address_txt);
-		mshop_details_phone_txt = (TextView) findViewById(R.id.shop_details_phone_txt);
-		mshop_details_card_txt = (TextView) findViewById(R.id.shop_details_card_txt);
-		mshop_details_quan_txt = (TextView) findViewById(R.id.shop_details_quan_txt);
-		mshop_details_tuan_txt = (TextView) findViewById(R.id.shop_details_tuan_txt);
-		mshop_details_ding_hui = (ImageView) findViewById(R.id.shop_details_ding_hui);
-		mshop_details_ding_jiang = (ImageView) findViewById(R.id.shop_details_ding_jiang);
-		// 网友推荐信息的控件查找
-		mshop_details_tuijian = (RelativeLayout) findViewById(R.id.shop_details_tuijian);
-		mshop_details_tuijian_txt = (TextView) findViewById(R.id.shop_details_tuijian_txt);
-		// 点评
-		mshop_details_dianping = (RelativeLayout) findViewById(R.id.shop_details_dianping);
-		mshop_dianping_top = (TextView) findViewById(R.id.shop_dianping_top);
-		mshop_details_dianping_name = (TextView) findViewById(R.id.shop_details_dianping_name);
-		mshop_details_dianping_star = (ImageView) findViewById(R.id.shop_details_dianping_star);
-		mshop_details_dianping_txt = (TextView) findViewById(R.id.shop_details_dianping_txt);
-		mshop_details_dianping_time = (TextView) findViewById(R.id.shop_details_dianping_time);
-		// 签到留言
-		mshop_details_qiandaoqiang = (RelativeLayout) findViewById(R.id.shop_details_qiandaoqiang);
-		mshop_qiandaoqiang_top = (TextView) findViewById(R.id.shop_qiandaoqiang_top);
-		mshop_details_qiandaoqiang_txt = (TextView) findViewById(R.id.shop_details_qiandaoqiang_txt);
-		mshop_details_qiandaoqiang_time = (TextView) findViewById(R.id.shop_details_qiandaoqiang_time);
-		mshop_details_qiandaoqiang_cishu = (TextView) findViewById(R.id.shop_details_qiandaoqiang_cishu);
-		mshop_details_qiandaoqiang_img = (ImageView) findViewById(R.id.shop_details_qiandaoqiang_img);*/
-		/*// 其他信息
-		mshop_details_qita = (RelativeLayout) findViewById(R.id.shop_details_qita);
-		// 在这家店附近
-		mshop_fujin_meishi = (TextView) findViewById(R.id.shop_fujin_meishi);
-		mshop_fujin_jingdian = (TextView) findViewById(R.id.shop_fujin_jingdian);
-		mshop_fujin_jiudian = (TextView) findViewById(R.id.shop_fujin_jiudian);
-		mshop_fujin_quanbu = (TextView) findViewById(R.id.shop_fujin_quanbu);
-		// 查看其他分店
-		mshop_details_fendian = (RelativeLayout) findViewById(R.id.shop_details_fendian);
-		mshop_details_fendians_txt = (TextView) findViewById(R.id.shop_details_fendians_txt);
-		// 看过这家店的人还看过
-		mshop_details_kanguo = (RelativeLayout) findViewById(R.id.shop_details_kanguo);*/
+        mShop_details_photo = (HorizontalListView) findViewById(R.id.horizontalListView);
+        SmallImageListViewAdapter hlva=new SmallImageListViewAdapter(this);
+        mShop_details_photo.setAdapter(hlva);
 
         // 给控件设置监听
         mShop_details_back.setOnClickListener(myOnClickListener);
         mShop_details_share.setOnClickListener(myOnClickListener);
         mShop_details_off.setOnClickListener(myOnClickListener);
-		/*mShop_details_bottom_img1.setOnClickListener(myOnClickListener);
-		mShop_details_bottom_img2.setOnClickListener(myOnClickListener);
-		mShop_details_bottom_img3.setOnClickListener(myOnClickListener);
-		mShop_details_bottom_img4.setOnClickListener(myOnClickListener);*/
-        mShop_details_photo.setOnClickListener(myOnClickListener);
-		/*mshop_details_address.setOnClickListener(myOnClickListener);
-		mshop_details_phone.setOnClickListener(myOnClickListener);
-		mshop_details_ding.setOnClickListener(myOnClickListener);
-		mshop_details_card.setOnClickListener(myOnClickListener);
-		mshop_details_quan.setOnClickListener(myOnClickListener);
-		mshop_details_tuan.setOnClickListener(myOnClickListener);*/
-		/*mshop_details_tuijian.setOnClickListener(myOnClickListener);*/
-	/*	mshop_details_dianping.setOnClickListener(myOnClickListener);
-		mshop_details_qiandaoqiang.setOnClickListener(myOnClickListener);*/
-	/*	mshop_details_qita.setOnClickListener(myOnClickListener);
-		mshop_fujin_meishi.setOnClickListener(myOnClickListener);
-		mshop_fujin_jingdian.setOnClickListener(myOnClickListener);
-		mshop_fujin_jiudian.setOnClickListener(myOnClickListener);
-		mshop_fujin_quanbu.setOnClickListener(myOnClickListener);
-		mshop_details_fendian.setOnClickListener(myOnClickListener);
-		mshop_details_kanguo.setOnClickListener(myOnClickListener);*/
-        // 添加商铺的图片的方法
-        addImg();
-
     }
 
     // 控件的监听事件
@@ -215,9 +113,6 @@ public class ShopDetailsActivity extends Activity {
                 intent.putExtra("value", bund);
                 startActivity(intent);
             }
-		/*	if (mID == R.id.Shop_details_bottom_img2) {
-				
-			}*/
             if (mID == R.id.Shop_details_bottom_img3) {
                 Intent intent = new Intent(ShopDetailsActivity.this,
                         ShopDetailsCommentActivity.class);
@@ -282,7 +177,7 @@ public class ShopDetailsActivity extends Activity {
         alertDialog.show();
     }
 
-    // 添加图片方法
+   /* // 添加图片方法
     private void addImg() {
         mShop_details_photo.setTag(Model.SHOPLISTIMGURL + info.getIname());
         Bitmap bit = loadImg.loadImage(mShop_details_photo,
@@ -297,7 +192,7 @@ public class ShopDetailsActivity extends Activity {
         if (bit != null) {
             mShop_details_photo.setImageBitmap(bit);
         }
-    }
+    }*/
 
     // 线程返回信息
     Handler hand = new Handler() {
