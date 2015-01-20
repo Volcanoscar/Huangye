@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 import android.provider.ContactsContract;
-import android.provider.ContactsContract.RawContacts.Data;
 import com.nuo.utils.PinyinUtils;
 
 import java.io.Serializable;

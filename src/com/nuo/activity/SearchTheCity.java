@@ -16,6 +16,7 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.nuo.bean.ShengHuoType;
 import com.nuo.handler.TimeOutHandler;
 import com.nuo.utils.NetUtil;
@@ -70,6 +71,11 @@ public class SearchTheCity extends Activity {
         titleText.setText(parentName);
     }
 
+    @OnClick(R.id.Souquancheng_back)
+    private void onclick(View v) {
+          finish();
+    }
+
     private void initView() {
         //请求分类接口
         NetUtil.shenhuoType(PreferenceConstants.SHENHUO_TYPE_TWO, PreferenceConstants.SHENHUO_CODE_JIAZHENG, new RequestCallBack<String>() {
@@ -84,11 +90,11 @@ public class SearchTheCity extends Activity {
                 for (final ShengHuoType shengHuoType : shengHuoTypeList) {
                     i++;
                     TextView textView = new TextView(SearchTheCity.this);
-                    textView.setTextAppearance(SearchTheCity.this,R.style.shenghuo_type_two);
+                    textView.setTextAppearance(SearchTheCity.this, R.style.shenghuo_type_two);
                     textView.setText(shengHuoType.getTypeName());
                     final LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    lp1.weight=1;
-                    lp1.setMargins(5,5,5,5);
+                    lp1.weight = 1;
+                    lp1.setMargins(5, 5, 5, 5);
                     textView.setBackgroundResource(R.drawable.my_tab_background);
                     textView.setSingleLine(true);
                     textView.setGravity(Gravity.CENTER);
@@ -98,7 +104,7 @@ public class SearchTheCity extends Activity {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(SearchTheCity.this, ShopListActivity.class);
-                            intent.putExtra("typeCode",shengHuoType.getTypeCode());
+                            intent.putExtra("typeCode", shengHuoType.getTypeCode());
                             startActivity(intent);
                         }
                     });
@@ -108,9 +114,9 @@ public class SearchTheCity extends Activity {
                     layoutParams.leftMargin = 5;
                     layoutParams.rightMargin = 5;
                     layout2.setPadding(0, 0, 1, 0);
-                    if (i % 3 ==0) {
-                        layout2= new LinearLayout(SearchTheCity.this);
-                        i=0;
+                    if (i % 3 == 0) {
+                        layout2 = new LinearLayout(SearchTheCity.this);
+                        i = 0;
                         shenghuo_two.addView(layout2, layoutParams);
                     }
                 }

@@ -72,8 +72,6 @@ public class RelationActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.contactsfragment);
-        //启动activity时不自动弹出软键盘
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         ViewUtils.inject(this);
 		ContactsCO = new ContactsContentObserver(new Handler());
 		getContentResolver().registerContentObserver(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, false, ContactsCO);
@@ -94,18 +92,18 @@ public class RelationActivity extends Activity{
 				Vibrator vib = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
 				vib.vibrate(50);
 
-                if("".equals(m_FilterEditText.getText().toString()))
-				{
+                /*if("".equals(m_FilterEditText.getText().toString()))
+				{*/
 					ChooseContactName = Utils.mPersons.get(arg2).mName;
 					ChooseContactNumber = Utils.mPersons.get(arg2).mNum;
 					ChooseContactID = Utils.mPersons.get(arg2).mID;
-				}
+				/*}
 				else
 				{
 					ChooseContactName = mFilterList.get(arg2).mName;
 					ChooseContactNumber = mFilterList.get(arg2).mNum;
 					ChooseContactID = mFilterList.get(arg2).mID;
-				}
+				}*/
 				Bundle bundle = new Bundle();
 				bundle.putInt("tpye", 0);
 				bundle.putString("name", ChooseContactName);
@@ -141,18 +139,18 @@ public class RelationActivity extends Activity{
 
 				Vibrator vib = (Vibrator)getSystemService(Service.VIBRATOR_SERVICE);
 				vib.vibrate(50);
-				if("".equals(m_FilterEditText.getText().toString()))
-				{
+				/*if("".equals(m_FilterEditText.getText().toString()))
+				{*/
 					ChooseContactName = Utils.mPersons.get(arg2).mName;
 					ChooseContactNumber = Utils.mPersons.get(arg2).mNum;
 					ChooseContactID = Utils.mPersons.get(arg2).mID;
-				}
+				/*}
 				else
 				{
 					ChooseContactName = mFilterList.get(arg2).mName;
 					ChooseContactNumber = mFilterList.get(arg2).mNum;
 					ChooseContactID = mFilterList.get(arg2).mID;
-				}
+				}*/
 
 				AlertDialog ListDialog = new AlertDialog.Builder(RelationActivity.this).
 						setTitle(ChooseContactName).
@@ -246,10 +244,10 @@ public class RelationActivity extends Activity{
 		m_topcontactslayout = (FrameLayout)findViewById(R.id.top_contacts_layout);
 
 		//初始化搜索编辑框,设置文本改变时的监听器
-		m_FilterEditText = (EditText)findViewById(R.id.pb_search_edit);
+		//m_FilterEditText = (EditText)findViewById(R.id.pb_search_edit);
 		//设置提示文字
-		m_FilterEditText.setHint("搜索"+Utils.mPersons.size()+"位联系人");
-		m_FilterEditText.addTextChangedListener(new TextWatcher() {
+		//m_FilterEditText.setHint("搜索"+Utils.mPersons.size()+"位联系人");
+		/*m_FilterEditText.addTextChangedListener(new TextWatcher() {
 
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -286,7 +284,7 @@ public class RelationActivity extends Activity{
 				// TODO Auto-generated method stub
 
 			}
-		});
+		});*/
 	}
 	private void initView() {
 		mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE, View.VISIBLE);

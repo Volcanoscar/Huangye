@@ -78,7 +78,7 @@ public class ShopDetailsActivity extends Activity {
         mShop_details_back = (ImageView) findViewById(R.id.Shop_details_back);
         mShop_details_share = (ImageView) findViewById(R.id.Shop_details_share);
         mShop_details_off = (ImageView) findViewById(R.id.Shop_details_off);
-        // 店铺信息控件
+        // 小图横向浏览
         mShop_details_name = (TextView) findViewById(R.id.Shop_details_name);
         mShop_details_photo = (HorizontalListView) findViewById(R.id.horizontalListView);
         SmallImageListViewAdapter hlva=new SmallImageListViewAdapter(this);
@@ -219,77 +219,6 @@ public class ShopDetailsActivity extends Activity {
                             ShopDetailsActivity.this.SignList = SignList;
                             ShopDetailsActivity.this.CommentsList = CommentsList;
                             ShopDetailsActivity.this.FoodList = FoodList;
-                            // 显示界面
-							/*if (ShopDetailsActivity.this.SignList.size() > 0) {
-								mshop_details_qiandaoqiang
-										.setVisibility(View.VISIBLE);
-								SignInfo signinfo = SignList.get(SignList
-										.size() - 1);
-								mshop_qiandaoqiang_top.setText("签到留言墙(共"
-										+ SignList.size() + "人：");
-								mshop_details_qiandaoqiang_txt.setText(signinfo
-										.getName());
-								mshop_details_qiandaoqiang_time
-										.setText(signinfo.getSigntime());
-								mshop_details_qiandaoqiang_cishu.setText("共签到"
-										+ signinfo.getSignlevel() + "次");
-							}
-							if (ShopDetailsActivity.this.CommentsList.size() > 0) {
-								mshop_details_dianping
-										.setVisibility(View.VISIBLE);
-								CommentsInfo commentsinfo = CommentsList
-										.get(CommentsList.size() - 1);
-								mshop_dianping_top.setText("点评(共"
-										+ CommentsList.size() + ")条：");
-								mshop_details_dianping_name
-										.setText(commentsinfo.getName());
-								mshop_details_dianping_txt.setText(commentsinfo
-										.getComments());
-								mshop_details_dianping_time
-										.setText(commentsinfo.getTime());
-								int slevel = Integer.valueOf(commentsinfo
-										.getClevel());
-								switch (slevel) {
-								case 0:
-									mshop_details_dianping_star
-											.setImageResource(R.drawable.star0);
-									break;
-								case 1:
-									mshop_details_dianping_star
-											.setImageResource(R.drawable.star1);
-									break;
-								case 2:
-									mshop_details_dianping_star
-											.setImageResource(R.drawable.star2);
-									break;
-								case 3:
-									mshop_details_dianping_star
-											.setImageResource(R.drawable.star3);
-									break;
-								case 4:
-									mshop_details_dianping_star
-											.setImageResource(R.drawable.star4);
-									break;
-								case 5:
-									mshop_details_dianping_star
-											.setImageResource(R.drawable.star5);
-									break;
-								}
-							}*/
-							/*if (ShopDetailsActivity.this.FoodList.size() > 0) {
-								mshop_details_tuijian
-										.setVisibility(View.VISIBLE);
-								String foodtext = "";// 网友推荐食物
-								for (int i = 0; i < FoodList.size(); i++) {
-									foodtext += FoodList.get(i).getFoodname()
-											+ "  ";
-								}
-								mshop_details_tuijian_txt.setText(foodtext);
-							}*/
-                            // 添加网友推荐的食物
-
-                            // 添加点评信息
-
                         }
                     });
                 }
@@ -297,53 +226,5 @@ public class ShopDetailsActivity extends Activity {
         };
 
     };
-
-	/*// 知否支持团券定卡然后判断是否显示以及现实修改要显示的文字
-	private void xianshitqdk() {
-		mShop_details_name.setText(info.getSname());
-		mShop_details_money.setText(info.getSmoney());
-		*//*mshop_details_address_txt.setText(info.getSaddress());
-		mshop_details_phone_txt.setText(info.getStel());*//*
-
-		int slevel = Integer.valueOf(info.getSlevel());
-		switch (slevel) {
-		case 0:
-			mShop_details_star.setImageResource(R.drawable.star0);
-			break;
-		case 1:
-			mShop_details_star.setImageResource(R.drawable.star1);
-			break;
-		case 2:
-			mShop_details_star.setImageResource(R.drawable.star2);
-			break;
-		case 3:
-			mShop_details_star.setImageResource(R.drawable.star3);
-			break;
-		case 4:
-			mShop_details_star.setImageResource(R.drawable.star4);
-			break;
-		case 5:
-			mShop_details_star.setImageResource(R.drawable.star5);
-			break;
-		}*/
-
-		/*if (info.getSflag_tuan().equals("1")) {
-			mshop_details_tuan.setVisibility(View.VISIBLE);
-			mshop_details_tuan_txt.setText("仅售255元后海16号代金券1张");
-		}
-		if (info.getSflag_quan().equals("1")) {
-			mshop_details_quan.setVisibility(View.VISIBLE);
-			mshop_details_quan_txt.setText("四合院美食到店减500，午市集...");
-		}
-		if (info.getSflag_ding().equals("1")) {
-			mshop_details_ding.setVisibility(View.VISIBLE);
-			mshop_details_ding_hui.setVisibility(View.VISIBLE);
-			mshop_details_ding_jiang.setVisibility(View.VISIBLE);
-		}
-		if (info.getSflag_ka().equals("1")) {
-			mshop_details_card.setVisibility(View.VISIBLE);
-			mshop_details_card_txt.setText("会员专享9.5折，免费申请");
-		}
-	}*/
 
 }

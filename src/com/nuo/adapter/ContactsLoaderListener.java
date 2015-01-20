@@ -11,7 +11,6 @@ import com.nuo.cursor.ContactsCursor;
 import com.nuo.cursor.ContactsCursorLoader;
 import com.nuo.utils.Utils;
 
-
 public class ContactsLoaderListener implements LoaderManager.LoaderCallbacks<Cursor>{
 	private Context m_context;
 	
@@ -28,7 +27,6 @@ public class ContactsLoaderListener implements LoaderManager.LoaderCallbacks<Cur
 	@Override
 	public void onLoadFinished(Loader<Cursor> arg0, Cursor arg1) {
 			Utils.m_mycursoradapter.swapCursor(arg1);
-		
 			ContactsCursor data = (ContactsCursor)Utils.m_mycursoradapter.getCursor();
 			Utils.mPersons = data.GetContactsArray();
 			Utils.m_contactsAdapter.notifyDataSetChanged();
@@ -39,7 +37,5 @@ public class ContactsLoaderListener implements LoaderManager.LoaderCallbacks<Cur
 	@Override
 	public void onLoaderReset(Loader<Cursor> arg0) {
 		Utils.m_mycursoradapter.swapCursor(null);
-		
 	}
-	
 }

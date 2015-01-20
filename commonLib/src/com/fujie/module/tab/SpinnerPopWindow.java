@@ -64,9 +64,9 @@ public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener
 		setWidth(LayoutParams.WRAP_CONTENT);
 		setHeight(LayoutParams.WRAP_CONTENT);
 		setFocusable(true);
-
 		//设置下拉菜单背景颜色
 		setBackgroundDrawable(context.getResources().getDrawable(android.R.color.white));
+        setOutsideTouchable(false);
         // -------初始化PopWindow结束 -------------------
 	}
 
