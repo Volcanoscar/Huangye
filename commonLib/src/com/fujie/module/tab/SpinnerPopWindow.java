@@ -80,6 +80,7 @@ public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener
         level_one_list.setAdapter(districtAdapter);
 
         if (tabViewBean.isParent()) { //如果有二级菜单添加事件
+            districtAdapter.setSelectItem(0);
             level_one_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -109,6 +110,7 @@ public class SpinnerPopWindow extends PopupWindow implements OnItemClickListener
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
+
 	  dismiss();
 	  if (iOnItemSelectListener!=null) {
           if (parent.getId() == R.id.level_two_list) {

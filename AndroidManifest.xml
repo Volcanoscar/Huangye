@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.nuo.activity"
           android:versionCode="1"
-          android:versionName="0.1.6">
+          android:versionName="0.1.7">
     <uses-sdk
             android:minSdkVersion="11"
             android:targetSdkVersion="19"/>
@@ -57,6 +57,9 @@
         <activity
                 android:name="com.nuo.activity.TuanActivity"
                 android:label="@string/title_activity_tuan">
+        </activity>
+        <activity
+                android:name="com.nuo.activity.KeyActivity">
         </activity>
         <activity
                 android:name="com.nuo.activity.CheckinActivity"

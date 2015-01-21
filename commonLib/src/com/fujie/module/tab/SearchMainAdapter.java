@@ -17,7 +17,7 @@ public class SearchMainAdapter extends BaseAdapter {
 
     private Context ctx;
     private List<ViewBean> viewBeanList;
-    private int position = 0;
+    private int position = -1;
     private boolean islodingimg = true;
     private int layout = R.layout.search_more_mainlist_item;
 
@@ -74,10 +74,10 @@ public class SearchMainAdapter extends BaseAdapter {
                     .toString()));
         }
         hold.txt.setText(viewBeanList.get(arg0).getText());
-        hold.txt
-                .setBackgroundResource(R.drawable.search_more_mainlistselect);
         if (arg0 == position) {
             hold.layout.setBackgroundResource(R.drawable.list_bkg_line_u);
+        }else{
+            hold.layout.setBackgroundResource(R.drawable.search_more_mainlistselect);
         }
         return arg1;
     }

@@ -1,6 +1,7 @@
 package com.nuo.myfragment;
 
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import com.nuo.activity.FrameActivity;
 import com.nuo.activity.R;
 
@@ -29,9 +30,8 @@ public class MyFragmentthree extends Fragment {
 			Bundle savedInstanceState) {
 		View view = null;
 		view = View.inflate(ctx, R.layout.fragment_my03, null);
-        RelativeLayout mBtn = (RelativeLayout) view.findViewById(R.id.MyLoginBtn);
+        TextView mBtn = (TextView) view.findViewById(R.id.MyLoginBtn);
 		mBtn.setOnClickListener(new View.OnClickListener() {
-
 			@Override
 			public void onClick(View arg0) {
 
@@ -41,5 +41,4 @@ public class MyFragmentthree extends Fragment {
 		});
 		return view;
 	}
-
 }

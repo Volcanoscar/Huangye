@@ -72,6 +72,7 @@ public class SearchMoreAdapter extends BaseAdapter {
         hold.txt.setText(viewBeanList.get(arg0).getText());
         hold.layout.setBackgroundResource(R.drawable.my_list_txt_background);
         hold.txt.setTextColor(Color.parseColor("#FF666666"));
+
         if (arg0 == position) {
             hold.layout
                     .setBackgroundResource(R.drawable.search_more_morelisttop_bkg);

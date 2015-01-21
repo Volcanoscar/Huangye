@@ -8,6 +8,7 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -53,6 +54,7 @@ public class ShopDetailsActivity extends Activity {
     // 创建popupWindow
     private View parent;
     private PopupWindow popupWindow;
+    private TextView shop_details_address_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,10 @@ public class ShopDetailsActivity extends Activity {
         mShop_details_back.setOnClickListener(myOnClickListener);
         mShop_details_share.setOnClickListener(myOnClickListener);
         mShop_details_off.setOnClickListener(myOnClickListener);
+
+        //地图
+        shop_details_address_txt = (TextView) findViewById(R.id.shop_details_address_txt);
+        shop_details_address_txt.setOnClickListener(myOnClickListener);
     }
 
     // 控件的监听事件
@@ -97,7 +103,12 @@ public class ShopDetailsActivity extends Activity {
             if (mID == R.id.Shop_details_back) {
                 ShopDetailsActivity.this.finish();
             }
-            if (mID == R.id.shop_details_qita) {
+            else if (mID == R.id.shop_details_address_txt) {
+                Uri mUri = Uri.parse("geo:39.940409,116.355257?q=西直门");
+                Intent mIntent = new Intent(Intent.ACTION_VIEW,mUri);
+                startActivity(mIntent);
+            }
+            else if (mID == R.id.shop_details_qita) {
                 Intent intent = new Intent(ShopDetailsActivity.this,
                         ShopDetailsMore.class);
                 Bundle bund = new Bundle();
@@ -105,7 +116,7 @@ public class ShopDetailsActivity extends Activity {
                 intent.putExtra("value", bund);
                 startActivity(intent);
             }
-            if (mID == R.id.Shop_details_bottom_img1) {
+            else if (mID == R.id.Shop_details_bottom_img1) {
                 Intent intent = new Intent(ShopDetailsActivity.this,
                         ShopDetailsCheckinActivity.class);
                 Bundle bund = new Bundle();
@@ -113,7 +124,7 @@ public class ShopDetailsActivity extends Activity {
                 intent.putExtra("value", bund);
                 startActivity(intent);
             }
-            if (mID == R.id.Shop_details_bottom_img3) {
+            else if (mID == R.id.Shop_details_bottom_img3) {
                 Intent intent = new Intent(ShopDetailsActivity.this,
                         ShopDetailsCommentActivity.class);
                 Bundle bund = new Bundle();
@@ -121,17 +132,9 @@ public class ShopDetailsActivity extends Activity {
                 intent.putExtra("value", bund);
                 startActivity(intent);
             }
-            if (mID == R.id.Shop_details_bottom_img4) {
+            else if (mID == R.id.Shop_details_bottom_img4) {
                 creatPopupWindow();
             }
-			/*if(mID == R.id.shop_details_tuan){
-				Intent intent = new Intent(ShopDetailsActivity.this,
-						TuanDetailsActivity.class);
-				Bundle bund = new Bundle();
-				bund.putSerializable("ShopInfo", info);
-				intent.putExtra("value", bund);
-				startActivity(intent);
-			}*/
 
         }
     }

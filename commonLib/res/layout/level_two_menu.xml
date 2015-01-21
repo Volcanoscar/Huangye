@@ -14,17 +14,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="20"
-                android:background="#F4F4F4"
+                android:background="@color/common_title"
                 android:divider="@null"
-                android:listSelector="@drawable/search_more_morelistselect"
+                android:cacheColorHint="@android:color/transparent"
                 android:scrollbars="none" />
 
         <ListView
+
                 android:id="@+id/level_two_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="17"
                 android:background="#FFFFFF"
                 android:divider="@null"
-                android:listSelector="@drawable/search_more_morelistselect" />
+                android:cacheColorHint="@android:color/transparent" />
 </LinearLayout>

@@ -48,13 +48,18 @@ public class SearchActivity extends Activity {
      * <p/>
      * *
      */
-    @OnClick({R.id.jiazheng})
+    @OnClick({R.id.jiazheng,R.id.Search_outing})
     public void testButtonClick(View v) { // 方法签名必须和接口中的要求一致
         switch (v.getId()) {
             case R.id.jiazheng:
                 Intent intent = new Intent(SearchActivity.this,
                         SearchTheCity.class);
                 intent.putExtra("parentName",getResources().getString(R.string.jiazheng_name));
+                SearchActivity.this.startActivity(intent);
+                break;
+            case R.id.Search_outing:
+                 intent = new Intent(SearchActivity.this,
+                        KeyActivity.class);
                 SearchActivity.this.startActivity(intent);
                 break;
         }

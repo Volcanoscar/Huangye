@@ -18,10 +18,9 @@ public class StartActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_my01);
-		LinearLayout mLinear = (LinearLayout) findViewById(R.id.Fragment01Linear);
-		mLinear.setBackgroundResource(R.drawable.leading_front_five);
-
+		setContentView(R.layout.activity_welcome);
+	/*	LinearLayout mLinear = (LinearLayout) findViewById(R.id.Fragment01Linear);
+		mLinear.setBackgroundResource(R.drawable.leading_front_five);*/
 		new Thread() {
 			public void run() {
 				try {
