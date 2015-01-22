@@ -25,9 +25,6 @@ public class SmsActivity extends Activity {
 	private SmssContentObserver SmssCO;
 	//新增短信息按钮
 	private ImageButton m_NewSmsBtn;
-
-	@ViewInject(R.id.title_bar)
-	private TitleBarView mTitleBarView;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,23 +42,6 @@ public class SmsActivity extends Activity {
 				Bundle mBundle = new Bundle();
 				mBundle.putSerializable("chatperson", Utils.mPersonSmsList.get(arg2));
 				intent.putExtras(mBundle);
-				startActivity(intent);
-			}
-		});
-		// title
-		initView();
-	}
-	private void initView() {
-		mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE, View.VISIBLE);
-		mTitleBarView.setTitleText(R.string.sms);
-		mTitleBarView.getBtnRight().setPadding(8, 0, 8, 0);
-		mTitleBarView.getBtnRight().setTextColor(getResources().getColor(R.color.white));
-		mTitleBarView.setBtnRight(R.drawable.btn_compose_msg, R.string.add_sms);
-		mTitleBarView.setBtnRightBg(R.drawable.login_btn);
-		mTitleBarView.setBtnRightOnclickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent intent = new Intent(SmsActivity.this, NewSmsActivity.class);
 				startActivity(intent);
 			}
 		});

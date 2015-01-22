@@ -65,8 +65,7 @@ public class RelationActivity extends Activity{
 	private String ChooseContactID;
 	//加载对话框
 	ProgressDialog m_dialogLoading;
-	@ViewInject(R.id.title_bar)
-	private TitleBarView mTitleBarView;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -75,7 +74,6 @@ public class RelationActivity extends Activity{
         ViewUtils.inject(this);
 		ContactsCO = new ContactsContentObserver(new Handler());
 		getContentResolver().registerContentObserver(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, false, ContactsCO);
-		initView();
 		//得到字母列的对象,并设置触摸响应监听器
 		m_asb = (AlphabetScrollBar)findViewById(R.id.alphabetscrollbar);
 		m_asb.setOnTouchBarListener(new ScrollBarListener());
@@ -286,29 +284,6 @@ public class RelationActivity extends Activity{
 			}
 		});*/
 	}
-	private void initView() {
-		mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE, View.VISIBLE);
-		mTitleBarView.setTitleText(R.string.relation);
-		mTitleBarView.getBtnRight().setPadding(8, 0, 8, 0);
-		mTitleBarView.getBtnRight().setTextColor(getResources().getColor(R.color.white));
-		mTitleBarView.setBtnRight(R.drawable.btn_hi_new_contact, R.string.add_sms);
-		mTitleBarView.setBtnRightBg(R.drawable.login_btn);
-		mTitleBarView.setBtnRightOnclickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Bundle bundle = new Bundle();
-				bundle.putInt("tpye", 0);
-				bundle.putString("name", "");
-
-				bundle.putString("number", "");
-
-				Intent intent = new Intent(RelationActivity.this, AddContactsActivity.class);
-				intent.putExtra("person", bundle);
-				startActivity(intent);
-			}
-		});
-	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(0, 1, 1, "批量删除");

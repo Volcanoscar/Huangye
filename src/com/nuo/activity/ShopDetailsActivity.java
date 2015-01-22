@@ -54,7 +54,7 @@ public class ShopDetailsActivity extends Activity {
     // 创建popupWindow
     private View parent;
     private PopupWindow popupWindow;
-    private TextView shop_details_address_txt;
+    private RelativeLayout shop_details_address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +92,8 @@ public class ShopDetailsActivity extends Activity {
         mShop_details_off.setOnClickListener(myOnClickListener);
 
         //地图
-        shop_details_address_txt = (TextView) findViewById(R.id.shop_details_address_txt);
-        shop_details_address_txt.setOnClickListener(myOnClickListener);
+        shop_details_address = (RelativeLayout) findViewById(R.id.shop_details_address);
+        shop_details_address.setOnClickListener(myOnClickListener);
     }
 
     // 控件的监听事件
@@ -103,7 +103,7 @@ public class ShopDetailsActivity extends Activity {
             if (mID == R.id.Shop_details_back) {
                 ShopDetailsActivity.this.finish();
             }
-            else if (mID == R.id.shop_details_address_txt) {
+            else if (mID == R.id.shop_details_address) {
                 Uri mUri = Uri.parse("geo:39.940409,116.355257?q=西直门");
                 Intent mIntent = new Intent(Intent.ACTION_VIEW,mUri);
                 startActivity(mIntent);

@@ -1,5 +1,6 @@
 package com.nuo.activity;
 
+import android.app.ActionBar;
 import android.app.ActivityGroup;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.nuo.adapter.ContactsLoaderListener;
 import com.nuo.adapter.SmsLoaderListener;
 import com.nuo.common.DownLoadManager;
+import com.nuo.utils.T;
 import com.nuo.utils.Utils;
 import com.nuo.view.NoScrollViewPager;
 
@@ -53,7 +55,8 @@ public class FrameActivity extends ActivityGroup {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frame);
         // tab webchat
-        setOverflowShowingAlways();
+        initActionBar();
+
 
         //通讯录相关
         Utils.init(this);
@@ -65,6 +68,14 @@ public class FrameActivity extends ActivityGroup {
         //检测版本
         DownLoadManager.checkVersion(FrameActivity.this, false);
     }
+
+    private void initActionBar() {
+        ActionBar actionBar = getActionBar();
+        setOverflowShowingAlways();
+        actionBar.setDisplayShowHomeEnabled(false); //隐藏logo和icon
+
+    }
+
     BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
         @Override
@@ -96,17 +107,49 @@ public class FrameActivity extends ActivityGroup {
     }
 
 
-
+    /**
+     *  加载 动作栏 菜单
+     *  根据不同的Item修改ActionBar，并修改标题
+     *  **/
     @Override
-    public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        return super.onCreatePanelMenu(featureId, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        int currItem = mViewPager.getCurrentItem();
+        ActionBar actionBar = getActionBar();
+        if (currItem==0) { //关系
+            getMenuInflater().inflate(R.menu.main, menu);
+            actionBar.setTitle(R.string.relation);
+        }else if(currItem==1){ // 信息
+            getMenuInflater().inflate(R.menu.sms_action, menu);
+            actionBar.setTitle(R.string.sms);
+        }else if(currItem==2){ // 黄页
+            getMenuInflater().inflate(R.menu.tuan_details, menu);
+            actionBar.setTitle(R.string.huangye);
+        }else if(currItem==3){ //工具
+            getMenuInflater().inflate(R.menu.tuan_details, menu);
+            actionBar.setTitle(R.string.tool);
+        }
+        return true;
     }
+
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
         if (item.getItemId() == R.id.action_collection) {
             Intent it = new Intent(FrameActivity.this, MyActivity.class);
             startActivity(it);
+        }
+        else if (item.getItemId() == R.id.action_plus) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("tpye", 0);
+            bundle.putString("name", "");
+            bundle.putString("number", "");
+            Intent intent = new Intent(FrameActivity.this, AddContactsActivity.class);
+            intent.putExtra("person", bundle);
+            startActivity(intent);
+        }
+        else if(item.getItemId() == R.id.action_add_sms){  //添加信息
+            Intent intent = new Intent(FrameActivity.this, NewSmsActivity.class);
+            startActivity(intent);
         }
         return super.onMenuItemSelected(featureId, item);
     }
@@ -280,6 +323,7 @@ public class FrameActivity extends ActivityGroup {
         @Override
         public void onClick(View arg0) {
             int mBtnid = arg0.getId();
+
             switch (mBtnid) {
                 case R.id.MyBottemSearchBtn:
                     // //设置我们的viewpager跳转那个界面0这个参数和我们的list相关,相当于list里面的下标
@@ -311,7 +355,7 @@ public class FrameActivity extends ActivityGroup {
 				mMyBottemMoreTxt.setTextColor(Color.parseColor("#FF8C00"));
 				break;
 			}
-
+            getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);
             }
     }
     /**

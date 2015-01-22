@@ -48,8 +48,7 @@
                 android:name="com.nuo.activity.MainActivity"
                 android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
-        <activity android:name="com.nuo.activity.FrameActivity"
-                  android:theme="@android:style/Theme.Light.NoTitleBar">
+        <activity android:name="com.nuo.activity.FrameActivity">
         </activity>
         <activity android:name="com.nuo.activity.SearchActivity"
                   android:label="@string/title_activity_huangye">
