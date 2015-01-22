@@ -8,16 +8,11 @@ import android.content.*;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.*;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 import com.nuo.adapter.ContactsLoaderListener;
 import com.nuo.adapter.SmsLoaderListener;
 import com.nuo.common.DownLoadManager;
-import com.nuo.utils.T;
 import com.nuo.utils.Utils;
 import com.nuo.view.NoScrollViewPager;
 
@@ -124,6 +119,22 @@ public class FrameActivity extends ActivityGroup {
         }else if(currItem==2){ // 黄页
             getMenuInflater().inflate(R.menu.tuan_details, menu);
             actionBar.setTitle(R.string.huangye);
+            //
+            MenuItem searchItem =menu.findItem(R.id.action_info_search);
+            SearchView searchView = (SearchView)searchItem.getActionView();
+            searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+                @Override
+                public boolean onMenuItemActionExpand(MenuItem item) {
+                    //跳转到搜索个界面
+                    Toast.makeText(FrameActivity.this, "expand", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+
+                @Override
+                public boolean onMenuItemActionCollapse(MenuItem item) {
+                    return true;
+                }
+            });
         }else if(currItem==3){ //工具
             getMenuInflater().inflate(R.menu.tuan_details, menu);
             actionBar.setTitle(R.string.tool);
@@ -301,7 +312,7 @@ public class FrameActivity extends ActivityGroup {
         view2 = FrameActivity.this
                 .getLocalActivityManager()
                 .startActivity("my",
-                        new Intent(FrameActivity.this, SearchActivity.class))
+                        new Intent(FrameActivity.this, HuangyeActivity.class))
                 .getDecorView();
         view2.setTag(2);
         list.add(view2);

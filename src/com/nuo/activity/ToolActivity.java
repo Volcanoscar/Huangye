@@ -62,9 +62,6 @@ public class ToolActivity extends Activity implements OnItemClickListener {
      * 是否在移动，由于这边是动画结束后才进行的数据更替，设置这个限制为了避免操作太频繁造成的数据错乱。
      */
     boolean isMove = false;
-    @ViewInject(R.id.title_bar)
-    private TitleBarView mTitleBarView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,17 +85,13 @@ public class ToolActivity extends Activity implements OnItemClickListener {
         otherGridView.setOnItemClickListener(this);
         userGridView.setOnItemClickListener(this);
     }
-
     /**
      * 初始化布局
      */
     private void initView() {
-        mTitleBarView.setCommonTitle(View.GONE, View.VISIBLE, View.GONE, View.GONE);
-        mTitleBarView.setTitleText(R.string.tool);
         userGridView = (DragGrid) findViewById(R.id.userGridView);
         otherGridView = (OtherGridView) findViewById(R.id.otherGridView);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

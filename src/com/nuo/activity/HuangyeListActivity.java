@@ -4,10 +4,8 @@ import java.util.*;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -42,7 +40,7 @@ import com.nuo.utils.T;
 /**
  * 店铺列表模块
  */
-public class ShopListActivity extends Activity {
+public class HuangyeListActivity extends Activity {
 
     private ListView mListView;
     private ImageView mShoplist_back;
@@ -128,7 +126,7 @@ public class ShopListActivity extends Activity {
             }
             @Override
             public void onFailure(HttpException e, String s) {
-                T.showShort(ShopListActivity.this, R.string.net_error);
+                T.showShort(HuangyeListActivity.this, R.string.net_error);
             }
         });
     }
@@ -143,8 +141,8 @@ public class ShopListActivity extends Activity {
         MyOnclickListener mOnclickListener = new MyOnclickListener();
         mShoplist_back.setOnClickListener(mOnclickListener);
         // -----------------------------------------------------------------
-        mAdapter = new ShopAdapter(list, ShopListActivity.this);
-        ListBottem = new Button(ShopListActivity.this);
+        mAdapter = new ShopAdapter(list, HuangyeListActivity.this);
+        ListBottem = new Button(HuangyeListActivity.this);
         ListBottem.setText("点击加载更多");
         ListBottem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,7 +152,7 @@ public class ShopListActivity extends Activity {
                     ThreadPoolUtils.execute(new HttpGetThread(hand, url));
                     listBottemFlag = false;
                 } else if (!listBottemFlag)
-                    Toast.makeText(ShopListActivity.this, "加载中请稍候", 1).show();
+                    Toast.makeText(HuangyeListActivity.this, "加载中请稍候", 1).show();
             }
         });
         mListView.addFooterView(ListBottem, null, false);
@@ -170,7 +168,7 @@ public class ShopListActivity extends Activity {
         public void onClick(View v) {
             int mID = v.getId();
             if (mID == R.id.Shoplist_back) {
-                ShopListActivity.this.finish();
+                HuangyeListActivity.this.finish();
             }
         }
     }
@@ -179,10 +177,10 @@ public class ShopListActivity extends Activity {
         public void handleMessage(android.os.Message msg) {
             super.handleMessage(msg);
             if (msg.what == 404) {
-                Toast.makeText(ShopListActivity.this, "找不到地址", 1).show();
+                Toast.makeText(HuangyeListActivity.this, "找不到地址", 1).show();
                 listBottemFlag = true;
             } else if (msg.what == 100) {
-                Toast.makeText(ShopListActivity.this, "传输失败", 1).show();
+                Toast.makeText(HuangyeListActivity.this, "传输失败", 1).show();
                 listBottemFlag = true;
             } else if (msg.what == 200) {
                 String result = (String) msg.obj;
@@ -216,19 +214,12 @@ public class ShopListActivity extends Activity {
     private class MainListOnItemClickListener implements OnItemClickListener {
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                 long arg3) {
-            Intent intent = new Intent(ShopListActivity.this, ShopDetailsActivity.class);
+            Intent intent = new Intent(HuangyeListActivity.this, ShopDetailsActivity.class);
             Bundle bund = new Bundle();
             bund.putSerializable("ShopInfo", list.get(arg2));
             intent.putExtra("value", bund);
             startActivity(intent);
         }
-    }
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-        }
-        return false;
     }
 
 }

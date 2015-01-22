@@ -7,6 +7,9 @@
     <file url="file://$PROJECT_DIR$/commonLib/src/com/fujie/module/tab/SearchMoreAdapter.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/CheckinActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/FrameActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/HuangyeActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/HuangyeLevelTwoActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/HuangyeListActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/LoginActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/MainActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/MoreActivity.java" charset="UTF-8" />
@@ -15,14 +18,11 @@
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RankingList_bzrm.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RankingList_more.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RegistrationActivity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/SearchActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/SearchMoreActivity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/SearchTheCity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopDetailsActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopDetailsCheckinActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopDetailsCommentActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopDetailsMore.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ShopListActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/ToolActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/TuanActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/TuanDetailsActivity.java" charset="UTF-8" />

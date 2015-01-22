@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by zxl on 14-12-17.
  */
 @Table(name = "sys_user_info")
-public class UserInfo {
+public class UserInfo extends EntityBase{
     @Column(column = "create_time")
     private Date createTime;
     @Column(column = "phone")

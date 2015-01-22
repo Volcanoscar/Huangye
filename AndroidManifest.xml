@@ -26,6 +26,13 @@
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
+    <!-- 屏幕设置多分辨率支持-->
+    <supports-screens
+            android:largeScreens="true"
+            android:normalScreens="true"
+            android:anyDensity="true"
+            android:smallScreens="true">
+    </supports-screens>
     <application
             android:name="com.nuo.application.AppApplication"
             android:allowBackup="true"
@@ -50,7 +57,7 @@
         </activity>
         <activity android:name="com.nuo.activity.FrameActivity">
         </activity>
-        <activity android:name="com.nuo.activity.SearchActivity"
+        <activity android:name=".HuangyeActivity"
                   android:label="@string/title_activity_huangye">
         </activity>
         <activity
@@ -73,7 +80,7 @@
                 android:name="com.nuo.activity.MoreActivity"
                 android:label="@string/title_activity_more">
         </activity>
-        <activity android:name="com.nuo.activity.ShopListActivity">
+        <activity android:name=".HuangyeListActivity">
         </activity>
         <activity
                 android:name="com.nuo.activity.SearchMoreActivity"
@@ -84,7 +91,7 @@
                 android:label="@string/title_activity_shop_details">
         </activity>
         <activity
-                android:name="com.nuo.activity.SearchTheCity"
+                android:name=".HuangyeLevelTwoActivity"
                 android:label="@string/title_activity_sou_quan_cheng">
         </activity>
         <activity

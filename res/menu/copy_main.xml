@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/action_search"
+            android:actionViewClass="android.widget.SearchView"
+            android:icon="@drawable/actionbar_search_icon"
+            android:showAsAction="ifRoom|collapseActionView"
+            android:title="@string/action_search"/>
+    <item
+            android:id="@+id/action_plus"
+            android:actionProviderClass="com.nuo.actionbar.PlusActionProvider"
+            android:icon="@drawable/actionbar_add_icon"
+            android:showAsAction="ifRoom"
+            android:title="@string/action_plus"/>
+     <item
+             android:id="@+id/action_collection"
+             android:icon="@drawable/ofm_setting_icon"
+             android:showAsAction="ifRoom"
+             android:title="@string/action_settings"/>
+
+</menu>

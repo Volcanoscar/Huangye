@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+            android:id="@+id/action_info_search"
+            android:icon="@drawable/actionbar_search_icon"
+            android:actionViewClass="android.widget.SearchView"
+            android:showAsAction="ifRoom|collapseActionView"
+            android:title="@string/action_search"/>
+    <item
+            android:id="@+id/action_fabu_sms"
+            android:icon="@drawable/actionbar_add_icon"
+            android:showAsAction="ifRoom"
+            android:title="@string/action_plus"/>
+    <item
+            android:id="@+id/action_collection"
+            android:icon="@drawable/ofm_setting_icon"
+            android:showAsAction="ifRoom"
+            android:title="@string/action_settings"/>
+</menu>

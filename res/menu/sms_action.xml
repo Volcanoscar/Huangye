@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+            android:id="@+id/action_add_sms"
+            android:icon="@drawable/actionbar_add_icon"
+            android:showAsAction="ifRoom"
+            android:title="@string/action_plus"/>
+    <item
+            android:id="@+id/action_collection"
+            android:icon="@drawable/ofm_setting_icon"
+            android:showAsAction="ifRoom"
+            android:title="@string/action_settings"/>
+</menu>

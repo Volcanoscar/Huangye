@@ -4,10 +4,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/subscribe_activity_bg" >
-    <com.fujie.module.titlebar.TitleBarView
-            android:id="@+id/title_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

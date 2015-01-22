@@ -3,13 +3,9 @@ package com.nuo.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.*;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -29,7 +25,7 @@ import java.util.List;
 /**
  * 搜全城模块
  */
-public class SearchTheCity extends Activity {
+public class HuangyeLevelTwoActivity extends Activity {
 
     private ImageView mSouquancheng_back;
     private TextView mSouquancheng_moresearch, mSouquancheng_text1,
@@ -85,12 +81,12 @@ public class SearchTheCity extends Activity {
                 //动态添加布局
                 List<ShengHuoType> shengHuoTypeList = ShengHuoType.parseMap(stringResponseInfo.result);
                 List<LinearLayout> linearLayouts = new ArrayList<LinearLayout>();
-                LinearLayout layout2 = new LinearLayout(SearchTheCity.this);
+                LinearLayout layout2 = new LinearLayout(HuangyeLevelTwoActivity.this);
                 int i = 0;
                 for (final ShengHuoType shengHuoType : shengHuoTypeList) {
                     i++;
-                    TextView textView = new TextView(SearchTheCity.this);
-                    textView.setTextAppearance(SearchTheCity.this, R.style.shenghuo_type_two);
+                    TextView textView = new TextView(HuangyeLevelTwoActivity.this);
+                    textView.setTextAppearance(HuangyeLevelTwoActivity.this, R.style.shenghuo_type_two);
                     textView.setText(shengHuoType.getTypeName());
                     final LinearLayout.LayoutParams lp1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     lp1.weight = 1;
@@ -103,7 +99,7 @@ public class SearchTheCity extends Activity {
                     textView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent intent = new Intent(SearchTheCity.this, ShopListActivity.class);
+                            Intent intent = new Intent(HuangyeLevelTwoActivity.this, HuangyeListActivity.class);
                             intent.putExtra("typeCode", shengHuoType.getTypeCode());
                             startActivity(intent);
                         }
@@ -115,7 +111,7 @@ public class SearchTheCity extends Activity {
                     layoutParams.rightMargin = 5;
                     layout2.setPadding(0, 0, 1, 0);
                     if (i % 3 == 0) {
-                        layout2 = new LinearLayout(SearchTheCity.this);
+                        layout2 = new LinearLayout(HuangyeLevelTwoActivity.this);
                         i = 0;
                         shenghuo_two.addView(layout2, layoutParams);
                     }
@@ -125,7 +121,7 @@ public class SearchTheCity extends Activity {
             @Override
             public void onFailure(HttpException e, String s) {
                 timeOutHandler.stop();
-                T.showShort(SearchTheCity.this, R.string.net_error);
+                T.showShort(HuangyeLevelTwoActivity.this, R.string.net_error);
             }
 
             @Override
