@@ -28,7 +28,7 @@
     <string name="feedback_hint2">手机或QQ</string>
     <string name="feedback_submit">提　交</string>
     <string name="more_main_title">更多</string>
-    <string name="feedback">用户反馈</string>
+    <string name="feedback">意见反馈</string>
     <string name="checkupdate">检查更新</string>
     <string name="about">关于</string>
     <string name="back">返回</string>
@@ -86,7 +86,6 @@
     <string name="jiazheng_name">家政</string>
 
     <string name="call">电话</string>
-    <string name="tel">电话</string>
     <string name="add_sms"></string>
     <string name="sms">信息</string>
     <string name="tool">工具</string>
@@ -99,4 +98,15 @@
     <string name="contact_detail">联系人详情</string>
 
     <string name="viewpager_indicator">%1$d/%2$d</string>
+    <string name="qianming">个性签名</string>
+    <string name="default_qianming">其实我比较低调，不爱写签名</string>
+    <string name="name">姓名</string>
+    <string name="sex">性别</string>
+    <string name="area">地区</string>
+    <string name="tel">手机号码</string>
+    <string name="user_msg">个人资料</string>
+    <string name="tuichu">退出</string>
+    <string name="code">编号</string>
+    <string name="empty_tip">抱歉，没有找到相关信息</string>
+    <string name="change_fabu_type">选择发布类型</string>
 </resources>

@@ -10,11 +10,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nuo.info.ShopInfo;
+import com.lidroid.xutils.BitmapUtils;
+import com.nuo.bean.MsgInfo;
 import com.nuo.activity.R;
 import com.nuo.model.Model;
 import com.nuo.utils.LoadImg;
 import com.nuo.utils.LoadImg.ImageDownloadCallBack;
+import com.nuo.utils.PreferenceConstants;
 
 /**
  * 商铺列表的适配器
@@ -24,11 +26,11 @@ import com.nuo.utils.LoadImg.ImageDownloadCallBack;
 
 public class ShopAdapter extends BaseAdapter {
 
-    private List<ShopInfo> list;
+    private List<MsgInfo> list;
     private Context ctx;
     private LoadImg loadImg;
 
-    public ShopAdapter(List<ShopInfo> list, Context ctx) {
+    public ShopAdapter(List<MsgInfo> list, Context ctx) {
         this.list = list;
         this.ctx = ctx;
         // 实例化获取图片的类
@@ -61,84 +63,23 @@ public class ShopAdapter extends BaseAdapter {
             arg1 = View.inflate(ctx, R.layout.item_shop, null);
             hold.mTitle = (TextView) arg1.findViewById(R.id.ShopItemTextView);
             hold.mImage = (ImageView) arg1.findViewById(R.id.ShopItemImage);
-            hold.mMoney = (TextView) arg1.findViewById(R.id.ShopItemMoney);
+          /*  hold.mMoney = (TextView) arg1.findViewById(R.id.ShopItemMoney);*/
             hold.mAddress = (TextView) arg1.findViewById(R.id.ShopItemAddress);
-            //hold.mStytle = (TextView) arg1.findViewById(R.id.ShopItemStytle);
-			/*hold.mStar = (ImageView) arg1.findViewById(R.id.ShopItemStar);
-			hold.mTuan = (ImageView) arg1.findViewById(R.id.ShopItemTuan);
-			hold.mQuan = (ImageView) arg1.findViewById(R.id.ShopItemQuan);
-			hold.mDing = (ImageView) arg1.findViewById(R.id.ShopItemDing);
-			hold.mCard = (ImageView) arg1.findViewById(R.id.ShopItemCard);
-*/
             arg1.setTag(hold);
         } else {
             hold = (Holder) arg1.getTag();
         }
-        hold.mTitle.setText(list.get(arg0).getSname());
-        hold.mImage.setTag(Model.SHOPLISTIMGURL + list.get(arg0).getIname());
-        hold.mMoney.setText(list.get(arg0).getSmoney());
-        hold.mAddress.setText(list.get(arg0).getSaddress());
-        //hold.mStytle.setText(list.get(arg0).getStype());
-	/*	hold.mTuan.setVisibility(View.GONE);
-		hold.mQuan.setVisibility(View.GONE);
-		hold.mDing.setVisibility(View.GONE);
-		hold.mCard.setVisibility(View.GONE);*/
-		/*if (list.get(arg0).getSflag_tuan().equals("1")) {
-			hold.mTuan.setVisibility(View.VISIBLE);
-		}
-		if (list.get(arg0).getSflag_quan().equals("1")) {
-			hold.mQuan.setVisibility(View.VISIBLE);
-		}
-		if (list.get(arg0).getSflag_ding().equals("1")) {
-			hold.mDing.setVisibility(View.VISIBLE);
-		}
-		if (list.get(arg0).getSflag_ka().equals("1")) {
-			hold.mCard.setVisibility(View.VISIBLE);
-		}*/
-
-		/*int slevel = Integer.valueOf(list.get(arg0).getSlevel());
-		switch (slevel) {
-		case 0:
-			hold.mStar.setImageResource(R.drawable.star0);
-			break;
-		case 1:
-			hold.mStar.setImageResource(R.drawable.star1);
-			break;
-		case 2:
-			hold.mStar.setImageResource(R.drawable.star2);
-			break;
-		case 3:
-			hold.mStar.setImageResource(R.drawable.star3);
-			break;
-		case 4:
-			hold.mStar.setImageResource(R.drawable.star4);
-			break;
-		case 5:
-			hold.mStar.setImageResource(R.drawable.star5);
-			break;
-		}*/
+        hold.mTitle.setText(list.get(arg0).getTitle());
+        hold.mImage.setTag(PreferenceConstants.DEFAULT_HTTP_SERVER_HOST+ list.get(arg0).getPhoto());
+        hold.mAddress.setText(list.get(arg0).getContent());
 
         // 设置默认显示的图片
         hold.mImage.setImageResource(R.drawable.shop_photo_frame);
         // 网络获取图片
-        Bitmap bit = loadImg.loadImage(hold.mImage, Model.SHOPLISTIMGURL
-                + list.get(arg0).getIname(), new ImageDownloadCallBack() {
-            @Override
-            public void onImageDownload(ImageView imageView, Bitmap bitmap) {
-                // 网络交互时回调进来防止错位
-                if (hold.mImage.getTag().equals(
-                        Model.SHOPLISTIMGURL + list.get(arg0).getIname())) {
-                    // 设置网络下载回来图片显示
-                    hold.mImage.setImageBitmap(bitmap);
-                }
-            }
-        });
-        // 从本地获取的
-        if (bit != null) {
-            // 设置缓存图片显示
-            hold.mImage.setImageBitmap(bit);
+        if (list.get(arg0).getPhoto() != null) {
+            BitmapUtils bitmapUtils = new BitmapUtils(ctx);
+            bitmapUtils.display(hold.mImage,PreferenceConstants.DEFAULT_HTTP_SERVER_HOST+ list.get(arg0).getPhoto());
         }
-
         return arg1;
     }
 

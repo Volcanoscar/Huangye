@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.exception.DbException;
+import com.nuo.bean.UserInfo;
 
 public class PreferenceUtils {
 	public static String getPrefString(Context context, String key,
@@ -86,5 +89,22 @@ public class PreferenceUtils {
 		final Editor editor = p.edit();
 		editor.clear();
 		editor.commit();
+	}
+	public static void removeUserInfo(Context context){
+		final SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		final Editor editor = settings.edit();
+		editor.remove(PreferenceConstants.ACCOUNT);
+		editor.remove(PreferenceConstants.ACCOUNT_ID);
+		editor.remove(PreferenceConstants.PASSWORD);
+		editor.remove(PreferenceConstants.STATUS_MODE);
+		editor.commit();
+		DbUtils dbUtils = XutilHelper.getDB(context);
+		try {
+			dbUtils.deleteAll(UserInfo.class);
+		} catch (DbException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

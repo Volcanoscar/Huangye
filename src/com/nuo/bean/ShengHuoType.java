@@ -105,13 +105,18 @@ public class ShengHuoType {
     public static List<ViewBean> getlevel4ViewBean(List<ShengHuoType> shengHuoTypeList) {
         //添加“三级菜单”
         List<ViewBean> level3List = new ArrayList<ViewBean>();
+
         for (ShengHuoType shengHuoType : shengHuoTypeList) {
             ViewBean viewBean = new ViewBean();
             viewBean.setText(shengHuoType.getTypeName());
             List<ViewBean> chirdViewBean = new ArrayList<ViewBean>();
+            ViewBean oneBean = new ViewBean();
+            oneBean.setText("全部");
+            chirdViewBean.add(oneBean);
             for (ShengHuoType level4Type : shengHuoType.getLevel4List()) {
                 ViewBean temp = new ViewBean();
                 temp.setText(level4Type.getTypeName());
+                temp.setId(level4Type.getTypeCode());
                 chirdViewBean.add(temp);
             }
             viewBean.setBizAreaList(chirdViewBean);
@@ -123,9 +128,13 @@ public class ShengHuoType {
     public static ViewBean getlevel3ViewBean(List<ShengHuoType> shengHuoTypeList) {
         //添加“三级菜单”
         List<ViewBean> level3List = new ArrayList<ViewBean>();
+        ViewBean oneBean = new ViewBean();
+        oneBean.setText("全部");
+        level3List.add(oneBean);
         for (ShengHuoType shengHuoType : shengHuoTypeList) {
             ViewBean viewBean = new ViewBean();
             viewBean.setText(shengHuoType.getTypeName());
+            viewBean.setId(shengHuoType.getTypeCode());
             level3List.add(viewBean);
         }
         ViewBean categoryViewBean = ViewBean.getCategoryViewBean();

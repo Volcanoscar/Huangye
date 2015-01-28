@@ -5,15 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fujie.module.titlebar.TitleBarView;
+import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.nuo.bean.UserInfo;
 import com.nuo.common.DownLoadManager;
 import com.nuo.utils.PreferenceConstants;
 import com.nuo.utils.PreferenceUtils;
 import com.nuo.utils.T;
+import com.nuo.utils.XutilHelper;
 
 /**
  * 我的模块
@@ -24,29 +29,47 @@ public class MyActivity extends Activity {
     @ViewInject(R.id.user_name)
     TextView userName;
 
+    @ViewInject(R.id.userLayout)
+    RelativeLayout userLayout;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
         ViewUtils.inject(this); //注入view和事件
         initView();
-
     }
 
     private void initView() {
-
-        //判断用户是否已经登录过
-        //如果密码已经保存，则不用登录
-        String password = PreferenceUtils.getPrefString(MyActivity.this,
-                PreferenceConstants.PASSWORD, "");
-        if (!TextUtils.isEmpty(password)) {  //进入个人中心
-           /* startActivity(new Intent(MyActivity.this, MainActivity.class));
-            finish();*/
+        DbUtils db = XutilHelper.getDB(this);
+        //判断用户是否已经登录过 //如果密码已经保存，则不用登录
+        Integer accountId = PreferenceUtils.getPrefInt(MyActivity.this,
+                PreferenceConstants.ACCOUNT_ID, -1);
+        if (accountId!=-1) {  //进入个人中心
+            try {
+                UserInfo userInfo = db.findById(UserInfo.class,accountId);
+                if (userInfo != null) {
+                    userName.setText(userInfo.getUserName());
+                }
+                userLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                        Intent intent = new Intent(MyActivity.this,UserCenterActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
         } else {
             userName.setText(R.string.login_tip);
-            userName.setOnClickListener(new View.OnClickListener() {
+            userLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    finish();
                     Intent intent = new Intent(MyActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }

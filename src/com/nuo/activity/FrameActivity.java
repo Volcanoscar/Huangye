@@ -103,13 +103,14 @@ public class FrameActivity extends ActivityGroup {
 
 
     /**
-     *  加载 动作栏 菜单
-     *  根据不同的Item修改ActionBar，并修改标题
+     *  加载 动作栏 菜单<br>
+     *  根据不同的Activity修改ActionBar上的动作，并修改标题
      *  **/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         int currItem = mViewPager.getCurrentItem();
         ActionBar actionBar = getActionBar();
+
         if (currItem==0) { //关系
             getMenuInflater().inflate(R.menu.main, menu);
             actionBar.setTitle(R.string.relation);
@@ -117,31 +118,47 @@ public class FrameActivity extends ActivityGroup {
             getMenuInflater().inflate(R.menu.sms_action, menu);
             actionBar.setTitle(R.string.sms);
         }else if(currItem==2){ // 黄页
-            getMenuInflater().inflate(R.menu.tuan_details, menu);
+            getMenuInflater().inflate(R.menu.huangye_action, menu);
             actionBar.setTitle(R.string.huangye);
             //
             MenuItem searchItem =menu.findItem(R.id.action_info_search);
-            SearchView searchView = (SearchView)searchItem.getActionView();
-            searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            MenuItem fabuItem =menu.findItem(R.id.action_fabu_sms);
+            // 查询项 点击事件
+            searchItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
-                public boolean onMenuItemActionExpand(MenuItem item) {
+                public boolean onMenuItemClick(MenuItem menuItem) {
                     //跳转到搜索个界面
-                    Toast.makeText(FrameActivity.this, "expand", Toast.LENGTH_SHORT).show();
-                    return true;
+                    Intent intent = new Intent(FrameActivity.this, SearchActivity.class);
+                    startActivity(intent);
+                    return false;
                 }
-
+            });
+            //  发布项 点击事件
+            fabuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
-                public boolean onMenuItemActionCollapse(MenuItem item) {
-                    return true;
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    //跳转到搜索个界面
+                    Intent intent = new Intent(FrameActivity.this, FabuActivity.class);
+                    startActivity(intent);
+                    return false;
                 }
             });
         }else if(currItem==3){ //工具
             getMenuInflater().inflate(R.menu.tuan_details, menu);
             actionBar.setTitle(R.string.tool);
         }
+        //每个动作栏中都有反馈项
+        MenuItem feedbackItem =menu.findItem(R.id.action_feedback);
+        feedbackItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                Intent intent = new Intent(FrameActivity.this, FeedBackActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
         return true;
     }
-
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {

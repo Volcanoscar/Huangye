@@ -17,104 +17,94 @@ import android.os.Message;
 import android.widget.ImageView;
 
 /**
- * ¿ØÖÆÍ¼Æ¬µÄ¼ÓÔØÀà
- * 
- * ÁĞ±íÔÚ»¬¶¯¹ı³ÌÊ±,Ã»ÓĞÍ¼Æ¬»á½øĞĞÏÂÔØ,²¢±£´æµ½sdcardÓë
- * imageCaches µ±ÖĞÈ¥,Ê¹ÓÃÈíÒıÓÃ½øĞĞ·â×°£¬Èç¹ûÄÚ´æ²»¹»Ê±
- * ÎÒÃÇµÄimageCaches µ±ÖĞµÄBitmap¶ÔÏó»á±»ÇåÀíµô,Í¼Æ¬±»ÊÍ·Åµô
- * ÔÙ´ÎĞèÒª¼ÓÔØµÄÊ±ºò£¬ÏÈ´Ó1¼¶»º´æµ±ÖĞ»ñÈ¡£¬Èç¹ûÃ»ÓĞµÄ»°£¬È¥
- * ±¾µØ»ñÈ¡£¬±¾µØÒ²»ñÈ¡²»µ½µÄ»°£¬È¥ÍøÂçÏÂÔØ¡£
- * Ò»¼¶»º´æ×÷ÓÃ£º¶ÔÓÚlistviewµ±ÖĞ¸Õ¸Õ»¬¶¯¹ıµÄitemÏÔÊ¾µÄÍ¼Æ¬½øĞĞ±£´æ
- * ¶ş¼¶»º´æ×÷ÓÃ£º¶ÔÓÚlistviewµ±ÖĞºÜ¾ÃÇ°²é¿´µÄÍ¼Æ¬»òÒÑ¾­±»ÊÍ·ÅµôÍ¼Æ¬
- * ½øĞĞ±£´æ
- * </BR> </BR> By£º¿àÉ¬ </BR> ÁªÏµ×÷Õß£ºQQ 534429149
+
  * */
 public class LoadImg {
 
-	//ÏÂÔØÍ¼Æ¬×î´ó²¢ĞĞÏß³ÌÊı
+	//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½
 	private static final int Max = 5;
-	//Í¼Æ¬µÄÒ»¼¶»º´æ,±£´æÔÚÎÒÃÇ³ÌĞòÄÚ²¿
+	//Í¼Æ¬ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½ï¿½Ú²ï¿½
 	private Map<String,SoftReference<Bitmap>> imageCaches = null;
 
-	//²é¿´±¾µØ»º´æ¹¤¾ßÀà
+	//ï¿½é¿´ï¿½ï¿½ï¿½Ø»ï¿½ï¿½æ¹¤ï¿½ï¿½ï¿½ï¿½
 	private FileUtiles fileUtiles;
-	//android Ìá¹©¸øÎÒÃÇµÄÒ»¸öÏß³Ì³Ø,Ê¹ÓÃ·½±ã
+	//android ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½Ò»ï¿½ï¿½ï¿½ß³Ì³ï¿½,Ê¹ï¿½Ã·ï¿½ï¿½ï¿½
 	private ExecutorService threadPools = null;
 
-	//³õÊ¼»¯ÉÏÃæµÄÏà¹ØµÄ±äÁ¿
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ØµÄ±ï¿½ï¿½ï¿½
 	public LoadImg(Context ctx){
 		imageCaches = new HashMap<String, SoftReference<Bitmap>>();
 		fileUtiles = new FileUtiles(ctx);
 	}
 
-	//¼ÓÔØÍ¼Æ¬Ê±£¬Èë¿Ú
+	//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬Ê±ï¿½ï¿½ï¿½ï¿½ï¿½
 	public Bitmap loadImage(final ImageView imageView,
 			final String imageUrl,
 			final ImageDownloadCallBack imageDownloadCallBack){
-		//imageUrl ÓÉÓÚÆäÎ¨Ò»ĞÍ£¬°ÑËû×÷ÎªÎÒÃÇmapµ±ÖĞµÄkey
-		//Í¼Æ¬Ãû³Æ
+		//imageUrl ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½mapï¿½ï¿½ï¿½Ğµï¿½key
+		//Í¼Æ¬ï¿½ï¿½ï¿½ï¿½
 		final String filename = imageUrl.substring(imageUrl.lastIndexOf("/")+1,
 				imageUrl.length());
-		//Í¼Æ¬±£´æµ½±¾µØÊ±µÄµØÖ·
+		//Í¼Æ¬ï¿½ï¿½ï¿½æµ½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Äµï¿½Ö·
 		String filepath = fileUtiles.getAbsolutePath()+"/"+filename;
-		//²éÕÒÒ»¼¶»º´æ£¬¿´¿´ÊÇ·ñÓĞÕâÕÅÍ¼Æ¬
-		//Èç¹ûmapµ±ÖĞÓĞÕâ¸ökey·µ»ØÒ»¸ötrue
+		//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
+		//ï¿½ï¿½ï¿½mapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½keyï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½true
 		if(imageCaches.containsKey(imageUrl)){
-			//ÕÒµ½¶ÔÓ¦Í¼Æ¬ÈíÒıÓÃµÄ·â×°
+			//ï¿½Òµï¿½ï¿½ï¿½Ó¦Í¼Æ¬ï¿½ï¿½ï¿½ï¿½ï¿½ÃµÄ·ï¿½×°
 			SoftReference<Bitmap> soft = imageCaches.get(imageUrl);
-			//´ÓÈíÒıÓÃµ±ÖĞ»ñÈ¡Í¼Æ¬
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ğ»ï¿½È¡Í¼Æ¬
 			Bitmap bit = soft.get();
 			if(bit != null)
 				return bit;
-			//´ÓÎÒÃÇµÄÒ»¼¶»º´æ£¨³ÌĞòÄÚ²¿»ñÈ¡Í¼Æ¬£©
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½æ£¨ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½ï¿½È¡Í¼Æ¬ï¿½ï¿½
 		}
-		//´Ó¶ş¼¶»º´æµ±ÖĞ»ñÈ¡Í¼Æ¬
+		//ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æµ±ï¿½Ğ»ï¿½È¡Í¼Æ¬
 		if(fileUtiles.isBitmap(filename)){
 			Bitmap bit = BitmapFactory.decodeFile(filepath);
-			//ÔÚ¶ş¼¶»º´æ¶ÁÈ¡µÄÊ±ºòÖ±½ÓÌí¼Óµ½Ò»¼¶»º´æµ±ÖĞ
+			//ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ê±ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½Óµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½æµ±ï¿½ï¿½
 			imageCaches.put(imageUrl, new SoftReference<Bitmap>(bit));
 			return bit;
 		}
 
-		//Ò»¼¶»º´æ£¬¶ş¼¶»º´æ¶¼²»´æÔÚ£¬Ö±½Óµ½ÍøÂç¼ÓÔØ
+		//Ò»ï¿½ï¿½ï¿½ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ¶¼ï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½Ö±ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if(imageUrl != null && !imageUrl.equals("")){
 			if(threadPools == null){
-				//ÊµÀı»¯ÎÒÃÇµÄÏß³Ì³Ø
+				//Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ß³Ì³ï¿½
 				threadPools = Executors.newFixedThreadPool(Max);
 			}
 
-			//ÏÂÔØ»ØÍ¼Æ¬»Øµ÷Handler
+			//ï¿½ï¿½ï¿½Ø»ï¿½Í¼Æ¬ï¿½Øµï¿½Handler
 			final Handler hand = new Handler(){
 				@Override
 				public void handleMessage(Message msg) {
-					//Èç¹ûÍ¼Æ¬ÏÂÔØ³É¹¦£¬²¢ÇÒ»Øµ÷¶ÔÏó²»Îª¿ÕÊ±
+					//ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Ø³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Øµï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê±
 					if(msg.what == 111 && 
 							imageDownloadCallBack != null){
 						Bitmap bit = (Bitmap) msg.obj;
-						//µ÷ÓÃ»Øµ÷×Ô¶¨ÒåÊÊÅäÆ÷µÄ½Ó¿Ú·½·¨´«µİÊı¾İ
+						//ï¿½ï¿½ï¿½Ã»Øµï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½Ó¿Ú·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						imageDownloadCallBack.onImageDownload(imageView, bit);
 					}
 					super.handleMessage(msg);
 				}
 			};
 
-			//ÏÂÔØÍ¼Æ¬Ïß³Ì
+			//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ß³ï¿½
 			Thread thread = new Thread(){
 				public void run(){
-					//ÍøÂçÏÂÔØÊ±µÄ×Ö½ÚÁ÷
+					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½
 					InputStream inputStream = DownBitmap.
 							getInstance().
 							getInputStream(imageUrl);
-					//Í¼Æ¬Ñ¹ËõÎªÔ­À´µÄÒ»°ë
+					//Í¼Æ¬Ñ¹ï¿½ï¿½ÎªÔ­ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
 					BitmapFactory.Options op = new BitmapFactory.Options();
 					op.inSampleSize = 2;
 					Bitmap bit = BitmapFactory.decodeStream(inputStream, null, op);
 					if(bit != null){
-						//Ìí¼Óµ½Ò»¼¶»º´æµ±ÖĞ
+						//ï¿½ï¿½Óµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½æµ±ï¿½ï¿½
 						imageCaches.put(imageUrl,new SoftReference<Bitmap>(bit));
-						//Ìí¼Óµ½¶ş¼¶»º´æ
+						//ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						fileUtiles.saveBitmap(filename, bit);
-						//´«µİ¸øHandler
+						//ï¿½ï¿½ï¿½İ¸ï¿½Handler
 						Message msg = hand.obtainMessage();
 						msg.what = 111;
 						msg.obj = bit;
@@ -130,9 +120,9 @@ public class LoadImg {
 	}
 
 
-	//Í¨¹ı»Øµ÷»úÖÆÉèÖÃÍ¼Æ¬Ê±µÄ½Ó¿Ú(ÀàËÆÓÚButtonµÄOnclick)
+	//Í¨ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬Ê±ï¿½Ä½Ó¿ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Buttonï¿½ï¿½Onclick)
 	public interface ImageDownloadCallBack{
-		//ImageView ÄãËùÏëÒªÉè¶¨µÄimageview Bitmap ÏëÒªÉè¶¨µÄÍ¼Æ¬
+		//ImageView ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½è¶¨ï¿½ï¿½imageview Bitmap ï¿½ï¿½Òªï¿½è¶¨ï¿½ï¿½Í¼Æ¬
 		void onImageDownload(ImageView imageView,Bitmap bitmap);
 	}
 

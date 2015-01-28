@@ -81,7 +81,6 @@ public class ContactDetailAdapter extends BaseAdapter{
                 Intent intent = new Intent(context,ChatActivity.class);
                 Bundle mBundle = new Bundle();
                 int index = -1;
-
                 for(int i=0;i< Utils.mPersonSmsList.size();i++) {
                     if (number.equals(Utils.mPersonSmsList.get(i).Number)) {
                         index = i;

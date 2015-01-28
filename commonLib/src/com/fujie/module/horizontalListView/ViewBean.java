@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Created by zxl on 15-1-4.
- *
+ * <p/>
  * 用于构建过滤所用类
  */
 public class ViewBean {
@@ -27,6 +27,7 @@ public class ViewBean {
         districtViewBean.setText("区域");
         districtViewBean.setParent(true);
     }
+
     public static ViewBean getCategoryViewBean() {
         return categoryViewBean;
     }

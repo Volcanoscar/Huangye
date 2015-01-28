@@ -9,7 +9,6 @@ import com.nuo.model.Model;
 import com.nuo.myview.MyScrollListView;
 import com.nuo.net.ThreadPoolUtils;
 import com.nuo.thread.HttpGetThread;
-import com.nuo.utils.MyJson;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -59,7 +58,7 @@ public class CheckinActivity extends Activity {
         signAdapter2 = new SignAdapter(rightlist, CheckinActivity.this);
         left.setAdapter(signAdapter1);
         right.setAdapter(signAdapter2);
-        ThreadPoolUtils.execute(new HttpGetThread(hand, Model.SELECTSIGNURL));
+        //ThreadPoolUtils.execute(new HttpGetThread(hand, Model.SELECTSIGNURL));
     }
 
     private class MyOnclickListener implements View.OnClickListener {
@@ -69,7 +68,7 @@ public class CheckinActivity extends Activity {
 
     }
 
-    Handler hand = new Handler() {
+   /* Handler hand = new Handler() {
         public void handleMessage(android.os.Message msg) {
             super.handleMessage(msg);
 
@@ -95,5 +94,5 @@ public class CheckinActivity extends Activity {
                 mLayout.addView(mScroll);
             }
         };
-    };
+    };*/
 }

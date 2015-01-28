@@ -13,32 +13,65 @@ import java.util.List;
  */
 public class District {
 
-    /** 区域名称 **/
+    /**
+     * 区域名称 *
+     */
     private String districtName;
-    /** 区域代码 **/
+    /**
+     * 区域代码 *
+     */
     private String districtCode;
-    /** 上级区域代码 **/
+    /**
+     * 上级区域代码 *
+     */
     private String parentCode;
-    /** 是否是系统默认区域，1：是（新乡市）、0：不是 **/
+    /**
+     * 是否是系统默认区域，1：是（新乡市）、0：不是 *
+     */
     private Integer top;
-    /** 商圈列表 **/
+    /**
+     * 商圈列表 *
+     */
     private List<BizArea> bizAreaList;
 
 
     public static List<District> parseMap(String result) {
+        List<District> districts = new ArrayList<District>();
+        District district = new District();
+        district.setDistrictName("新乡市");
+        districts.add(district);
+
         Gson gson = new Gson();
-        return gson.fromJson(result, new TypeToken<List<District>>(){}.getType());
+        List<District> resultDistrictList = gson.fromJson(result, new TypeToken<List<District>>() {
+        }.getType());
+        for (District district1 : resultDistrictList) {
+            List<BizArea> bizAreas = new ArrayList<BizArea>();
+            BizArea bizArea = new BizArea();
+            bizArea.setBizareaName("全部商圈");
+            bizAreas.add(bizArea);
+            bizAreas.addAll(district1.getBizAreaList());
+            district1.setBizAreaList(bizAreas);
+        }
+        districts.addAll(resultDistrictList);
+        return districts;
     }
+
     public static List<ViewBean> convertDistrictToViewBean(List<District> removeDistrictList) {
         List<ViewBean> mapList = new ArrayList<ViewBean>();
         for (final District district : removeDistrictList) {
             ViewBean viewBean = new ViewBean();
             viewBean.setText(district.getDistrictName());
+            viewBean.setId(district.getDistrictCode());
             List<ViewBean> chirdViewBean = new ArrayList<ViewBean>();
-            for (BizArea bizArea : district.getBizAreaList()) {
-                ViewBean temp = new ViewBean();
-                temp.setText(bizArea.getBizareaName());
-                chirdViewBean.add(temp);
+            if (district.getBizAreaList() != null) {
+                for (BizArea bizArea : district.getBizAreaList()) {
+                    ViewBean temp = new ViewBean();
+                    temp.setText(bizArea.getBizareaName());
+                    if (bizArea.getBizareaId() != null) {
+                        temp.setId(bizArea.getBizareaId().toString());
+                    }
+                    chirdViewBean.add(temp);
+                }
             }
             viewBean.setBizAreaList(chirdViewBean);
             mapList.add(viewBean);

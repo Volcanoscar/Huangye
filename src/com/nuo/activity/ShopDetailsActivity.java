@@ -1,77 +1,80 @@
 package com.nuo.activity;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
+import android.widget.*;
 import com.fujie.module.horizontalListView.HorizontalListView;
 import com.nuo.adapter.SmallImageListViewAdapter;
+import com.nuo.adapter.SmsCursor;
+import com.nuo.bean.MsgInfo;
 import com.nuo.info.CommentsInfo;
 import com.nuo.info.FoodInfo;
-import com.nuo.info.ShopInfo;
 import com.nuo.info.SignInfo;
-import com.nuo.model.Model;
-import com.nuo.net.ThreadPoolUtils;
 import com.nuo.thread.HttpGetThread;
 import com.nuo.utils.LoadImg;
-import com.nuo.utils.LoadImg.ImageDownloadCallBack;
-import com.nuo.utils.MyJson;
-import com.nuo.utils.MyJson.DetailCallBack;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 店铺详情模块
  * */
 public class ShopDetailsActivity extends Activity {
 
-    private ShopInfo info = null;
-    private LoadImg loadImg;
-    private HttpGetThread http = null;
-    private MyJson myJson = new MyJson();
-    private ArrayList<SignInfo> SignList;
-    private ArrayList<CommentsInfo> CommentsList;
-    private ArrayList<FoodInfo> FoodList;
+    private MsgInfo info = null;
     // top和店铺的属性
     private ImageView mShop_details_back, mShop_details_share,
-            mShop_details_off, mShop_details_star;
-    private TextView mShop_details_name, mShop_details_money;
+            mShop_details_off;
+    private TextView mShop_details_name;
     private HorizontalListView mShop_details_photo;
 
-    // 创建popupWindow
-    private View parent;
-    private PopupWindow popupWindow;
+
     private RelativeLayout shop_details_address;
+    private TextView create_time;
+    private TextView shop_details_address_txt;
+    private TextView shop_details_qita_txt;
+    private TextView phone;
+    private List<String> imgAddList = new ArrayList<String>();
+    private SmallImageListViewAdapter smallImageListViewAdapter;
+    private LinearLayout Shop_details_bottom_phone;
+    private LinearLayout Shop_details_bottom_sms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_shop_details);
-        // 初始化图片异步加载类
-        loadImg = new LoadImg(ShopDetailsActivity.this);
+        setContentView(R.layout.activity_info_details);
         // 获取从列表当中传递过来的数据
         Intent intent = getIntent();
         Bundle bund = intent.getBundleExtra("value");
-        info = (ShopInfo) bund.getSerializable("ShopInfo");
+        info = (MsgInfo) bund.getSerializable("ShopInfo");
         initView();
-        // 查找网络数据
-        String endParames = Model.SHOPDETAILURL + "shopid=" + info.getSid();
-        http = new HttpGetThread(hand, endParames);
-        ThreadPoolUtils.execute(http);
+        initData();
+    }
+
+    private void initData() {
+        //标题
+        mShop_details_name.setText(info.getTitle());
+        //发布时间
+        create_time.setText(info.getCreateTime());
+        //店铺名称
+        shop_details_address_txt.setText(info.getDianpuName());
+        //描述
+        shop_details_qita_txt.setText(info.getContent());
+        //电话
+        phone.setText(info.getPhone());
+        //图片
+        imgAddList.add(info.getPhoto());
+        smallImageListViewAdapter.setImgAddList(imgAddList);
+        smallImageListViewAdapter.notifyDataSetChanged();
     }
 
     private void initView() {
@@ -80,16 +83,26 @@ public class ShopDetailsActivity extends Activity {
         mShop_details_back = (ImageView) findViewById(R.id.Shop_details_back);
         mShop_details_share = (ImageView) findViewById(R.id.Shop_details_share);
         mShop_details_off = (ImageView) findViewById(R.id.Shop_details_off);
+        create_time = (TextView) findViewById(R.id.create_time);
         // 小图横向浏览
         mShop_details_name = (TextView) findViewById(R.id.Shop_details_name);
+        shop_details_address_txt = (TextView) findViewById(R.id.shop_details_address_txt);
+        phone = (TextView) findViewById(R.id.phone);
+        shop_details_qita_txt = (TextView) findViewById(R.id.shop_details_qita_txt);
         mShop_details_photo = (HorizontalListView) findViewById(R.id.horizontalListView);
-        SmallImageListViewAdapter hlva=new SmallImageListViewAdapter(this);
-        mShop_details_photo.setAdapter(hlva);
+        smallImageListViewAdapter = new SmallImageListViewAdapter(this,imgAddList);
+        mShop_details_photo.setAdapter(smallImageListViewAdapter);
 
+
+
+        Shop_details_bottom_phone = (LinearLayout) findViewById(R.id.Shop_details_bottom_phone);
+        Shop_details_bottom_sms = (LinearLayout) findViewById(R.id.Shop_details_bottom_sms);
         // 给控件设置监听
         mShop_details_back.setOnClickListener(myOnClickListener);
         mShop_details_share.setOnClickListener(myOnClickListener);
         mShop_details_off.setOnClickListener(myOnClickListener);
+        Shop_details_bottom_phone.setOnClickListener(myOnClickListener);
+        Shop_details_bottom_sms.setOnClickListener(myOnClickListener);
 
         //地图
         shop_details_address = (RelativeLayout) findViewById(R.id.shop_details_address);
@@ -108,126 +121,34 @@ public class ShopDetailsActivity extends Activity {
                 Intent mIntent = new Intent(Intent.ACTION_VIEW,mUri);
                 startActivity(mIntent);
             }
-            else if (mID == R.id.shop_details_qita) {
-                Intent intent = new Intent(ShopDetailsActivity.this,
-                        ShopDetailsMore.class);
-                Bundle bund = new Bundle();
-                bund.putSerializable("ShopInfo", info);
-                intent.putExtra("value", bund);
-                startActivity(intent);
-            }
-            else if (mID == R.id.Shop_details_bottom_img1) {
-                Intent intent = new Intent(ShopDetailsActivity.this,
-                        ShopDetailsCheckinActivity.class);
-                Bundle bund = new Bundle();
-                bund.putSerializable("ShopInfo", info);
-                intent.putExtra("value", bund);
-                startActivity(intent);
-            }
-            else if (mID == R.id.Shop_details_bottom_img3) {
-                Intent intent = new Intent(ShopDetailsActivity.this,
-                        ShopDetailsCommentActivity.class);
-                Bundle bund = new Bundle();
-                bund.putSerializable("ShopInfo", info);
-                intent.putExtra("value", bund);
-                startActivity(intent);
-            }
-            else if (mID == R.id.Shop_details_bottom_img4) {
-                creatPopupWindow();
-            }
-
-        }
-    }
-
-    private void creatPopupWindow() {
-        Builder builder = new Builder(ShopDetailsActivity.this);
-        builder.setTitle("报错类型");
-        final String[] items = new String[] { "商户已关闭", "地图位置错误", "商户信息错误",
-                "商户重复", "其他" };
-        DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface arg0, int arg1) {
-                // TODO Auto-generated method stub
-                if (arg1 == DialogInterface.BUTTON_POSITIVE) {
-                    arg0.cancel();
-                }
-                switch (arg1) {
-                    case 0:
-                        Toast.makeText(ShopDetailsActivity.this,
-                                "报错信息0:" + items[arg1], 1).show();
-                        break;
-                    case 1:
-                        Toast.makeText(ShopDetailsActivity.this,
-                                "报错信息1:" + items[arg1], 1).show();
-                        break;
-                    case 2:
-                        Toast.makeText(ShopDetailsActivity.this,
-                                "报错信息2:" + items[arg1], 1).show();
-                        break;
-                    case 3:
-                        Toast.makeText(ShopDetailsActivity.this,
-                                "报错信息3:" + items[arg1], 1).show();
-                        break;
-                    case 4:
-                        Toast.makeText(ShopDetailsActivity.this,
-                                "报错信息4:" + items[arg1], 1).show();
-                        break;
-                }
-            }
-        };
-        builder.setItems(items, dialog);
-        builder.setPositiveButton("取消", dialog);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-   /* // 添加图片方法
-    private void addImg() {
-        mShop_details_photo.setTag(Model.SHOPLISTIMGURL + info.getIname());
-        Bitmap bit = loadImg.loadImage(mShop_details_photo,
-                Model.SHOPLISTIMGURL + info.getIname(),
-                new ImageDownloadCallBack() {
-                    public void onImageDownload(ImageView imageView,
-                                                Bitmap bitmap) {
-                        // 不需要按照tag查找图片，不存在img复用问题
-                        mShop_details_photo.setImageBitmap(bitmap);
+            else if (mID == R.id.Shop_details_bottom_phone) {  //确认电话弹出框
+                AlertDialog.Builder builer = new AlertDialog.Builder(ShopDetailsActivity.this);
+                builer.setMessage("是否拨打电话  " + info.getPhone());
+                builer.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+info.getPhone()));
+                        startActivity(intent);
                     }
                 });
-        if (bit != null) {
-            mShop_details_photo.setImageBitmap(bit);
-        }
-    }*/
+                builer.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
 
-    // 线程返回信息
-    Handler hand = new Handler() {
-
-        public void handleMessage(android.os.Message msg) {
-            super.handleMessage(msg);
-            if (msg.what == 404) {
-                Toast.makeText(ShopDetailsActivity.this, "找不到地址", 1).show();
-            } else if (msg.what == 100) {
-                Toast.makeText(ShopDetailsActivity.this, "传输失败", 1).show();
-            } else if (msg.what == 200) {
-                String result = (String) msg.obj;
-                Log.e("result", "result:" + result);
-                if (result != null) {
-                    // 解析数据
-                    myJson.getShopDetail(result, new DetailCallBack() {
-
-                        @Override
-                        public void getList(
-                                ArrayList<SignInfo> SignList,
-                                ArrayList<com.nuo.info.CommentsInfo> CommentsList,
-                                ArrayList<FoodInfo> FoodList) {
-                            // 获取解析回调数据
-                            ShopDetailsActivity.this.SignList = SignList;
-                            ShopDetailsActivity.this.CommentsList = CommentsList;
-                            ShopDetailsActivity.this.FoodList = FoodList;
-                        }
-                    });
-                }
+                    }
+                });
+                AlertDialog dialog = builer.create();
+                dialog.show();
             }
-        };
-
-    };
-
+            else if (mID == R.id.Shop_details_bottom_sms) { //sms 模板
+                Intent intent = new Intent(ShopDetailsActivity.this,
+                        ChatActivity.class);
+                Bundle mBundle = new Bundle();
+                SmsCursor.Person_Sms person_sms = new SmsCursor.Person_Sms();
+                person_sms.Name = person_sms.Number = info.getPhone();
+                mBundle.putSerializable("chatperson",person_sms);
+                mBundle.putString("msg","你好，我对你在诺部落发布的\""+info.getTitle()+" \"很感兴趣,想和你详细了解一下。");
+                intent.putExtras(mBundle);
+                startActivity(intent);
+            }
+        }
+    }
 }

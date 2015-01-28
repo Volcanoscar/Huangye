@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.nuo.activity"
           android:versionCode="1"
-          android:versionName="0.1.7">
+          android:versionName="0.1.9">
     <uses-sdk
-            android:minSdkVersion="11"
+            android:minSdkVersion="14"
             android:targetSdkVersion="19"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WRITE\_CALL_LOG"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
@@ -59,10 +59,6 @@
         </activity>
         <activity android:name=".HuangyeActivity"
                   android:label="@string/title_activity_huangye">
-        </activity>
-        <activity
-                android:name="com.nuo.activity.TuanActivity"
-                android:label="@string/title_activity_tuan">
         </activity>
         <activity
                 android:name="com.nuo.activity.KeyActivity">
@@ -127,10 +123,6 @@
                 android:label="@string/title_activity_paihangbang_bzrm">
         </activity>
         <activity
-                android:name="com.nuo.activity.TuanDetailsActivity"
-                android:label="@string/title_activity_tuan_details">
-        </activity>
-        <activity
                 android:name="com.nuo.activity.SmsActivity">
         </activity>
         <activity
@@ -159,10 +151,13 @@
                 android:name="com.nuo.activity.RelationActivity"
                 android:windowSoftInputMode="stateHidden|stateUnchanged">
         </activity>
-        <activity android:name="com.nuo.activity.FabuActivity"/>
+        <activity android:name="com.nuo.activity.FabuActivity" android:label="@string/change_fabu_type"/>
         <activity android:name="com.nuo.activity.FeedBackActivity"
                   android:theme="@android:style/Theme.NoTitleBar"/>
         <activity android:name=".AboutActivity"
                   android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".UserCenterActivity" android:theme="@android:style/Theme.NoTitleBar"/>
+        <activity android:name=".SearchActivity" android:label="信息查询"/>
+
     </application>
 </manifest>

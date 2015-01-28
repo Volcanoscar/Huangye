@@ -3,6 +3,7 @@ package com.nuo.bean;
 import com.google.gson.Gson;
 import com.lidroid.xutils.db.annotation.Column;
 import com.lidroid.xutils.db.annotation.Table;
+import com.nuo.utils.JsonUtil;
 
 import java.util.Date;
 import java.util.Map;
@@ -94,12 +95,13 @@ public class UserInfo extends EntityBase{
     }
 
     public static UserInfo parseMap(String result) {
-        Gson gson = new Gson();
+        Gson gson = JsonUtil.getDateGson();
         Map map = gson.fromJson(result, Map.class);
         if ("false".equals(map.get("result").toString())) {
             return null;
         }
-        return gson.fromJson(result, UserInfo.class);
+        String json = gson.toJson(map.get("data"));
+        return gson.fromJson(json, UserInfo.class);
     }
 }
 

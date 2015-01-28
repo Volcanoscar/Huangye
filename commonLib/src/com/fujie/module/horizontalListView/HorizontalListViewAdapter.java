@@ -1,21 +1,21 @@
 package com.fujie.module.horizontalListView;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import com.fujie.common.SystemMethod;
-import com.fujie.module.tab.SearchMainAdapter;
+import com.fujie.module.tab.FilterTabClickListener;
 import com.fujie.module.tab.SearchMoreAdapter;
 import com.fujie.module.tab.SpinnerPopWindow;
 import com.fujie.module.titlebar.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class HorizontalListViewAdapter extends BaseAdapter {
 
@@ -24,10 +24,12 @@ public class HorizontalListViewAdapter extends BaseAdapter {
     private ViewHolder vh = new ViewHolder();
     private Context context;
     private boolean menu_is_show = false;
+    private FilterTabClickListener tabClickListener;
 
-    public HorizontalListViewAdapter(Context con, List<ViewBean> viewBeanList) {
+    public HorizontalListViewAdapter(Context con, FilterTabClickListener listener,List<ViewBean> viewBeanList) {
         mInflater = LayoutInflater.from(con);
         this.viewBeanList = viewBeanList;
+        this.tabClickListener = listener;
         this.context = con;
     }
 
@@ -69,6 +71,10 @@ public class HorizontalListViewAdapter extends BaseAdapter {
         this.viewBeanList = viewBeanList;
     }
 
+    public void setFilterTabClickListener(FilterTabClickListener filterTabClickListener) {
+        this.tabClickListener = filterTabClickListener;
+    }
+
     private static class ViewHolder {
         private TextView tab_title;
         public ListView level_two_list;
@@ -84,8 +90,6 @@ public class HorizontalListViewAdapter extends BaseAdapter {
      */
     private class TabClick implements View.OnClickListener {
         private int position;
-        private PopupWindow popupWindow;
-
         private TabClick() {
         }
 
@@ -103,7 +107,7 @@ public class HorizontalListViewAdapter extends BaseAdapter {
             if (!menu_is_show) {
                 drawable = context.getResources().getDrawable(
                         R.drawable.ic_arrow_up_black);
-                setPopWindow(popupWindow,view, position);
+                setPopWindow(view, position);
                 if (bizAreaAdapter != null) {
                     bizAreaAdapter.notifyDataSetChanged();
                 }
@@ -111,9 +115,6 @@ public class HorizontalListViewAdapter extends BaseAdapter {
             } else {
                 drawable = context.getResources().getDrawable(
                         R.drawable.ic_arrow_down_black);
-                if (popupWindow != null) {
-                    popupWindow.dismiss();
-                }
                 menu_is_show = false;
             }
             // 这一步必须要做,否则不会显示.
@@ -126,19 +127,33 @@ public class HorizontalListViewAdapter extends BaseAdapter {
         }
     }
 
-    public void setPopWindow(PopupWindow popupWindow, final View titleBaarView, int position) {
-        String []strCounty =context.getResources().getStringArray(R.array.county_item);
+    private Map<String,ViewBean> selectedTab = new HashMap<String,ViewBean>();
+
+    /**
+     *  设置弹出框 TODO: 待优化，现在每一次都会创建一个弹出框对象
+     * @param titleBarView
+     * @param position
+     */
+    public void setPopWindow(final View titleBarView, int position) {
         final SpinnerPopWindow  puCountyWindow= new SpinnerPopWindow(context,viewBeanList.get(position));
         puCountyWindow.setItemSelectListener(new SpinnerPopWindow.IOnItemSelectListener() {
             @Override
             public void onItemClick(String tag,ViewBean viewBean,int position) {
                 //恢复
-                if (titleBaarView instanceof TextView) {
-                    ((TextView)titleBaarView).setText(viewBean.getText());
+                if (titleBarView instanceof TextView) {
+                    ((TextView)titleBarView).setText(viewBean.getText());
+                }
+                selectedTab.put(tag, viewBean); //有的覆盖，没有的添加
+
+                if (tabClickListener != null&& !selectedTab.isEmpty()) {
+                    List<ViewBean> viewBeanList = new ArrayList<ViewBean>();
+                    for (Map.Entry<String, ViewBean> temp : selectedTab.entrySet()) {
+                        viewBeanList.add(temp.getValue());
+                    }
+                    tabClickListener.onClick(viewBeanList);
                 }
             }
         });
-
         puCountyWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
@@ -149,36 +164,17 @@ public class HorizontalListViewAdapter extends BaseAdapter {
                 // 这一步必须要做,否则不会显示.
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(),
                         drawable.getMinimumHeight());
-                if (titleBaarView instanceof TextView) {
-                    ((TextView)titleBaarView).setCompoundDrawables(null, null,
+                if (titleBarView instanceof TextView) {
+                    ((TextView)titleBarView).setCompoundDrawables(null, null,
                             drawable, null);
                 }
             }
         });
+
         puCountyWindow.setWidth(SystemMethod.getWidth(context));
-        puCountyWindow.showAsDropDown(titleBaarView,""+position);
+        puCountyWindow.showAsDropDown(titleBarView,""+position);
         puCountyWindow.initData(viewBeanList.get(position));
     }
 
-    /**
-     * 初始化弹出菜单
-     *
-     * @param position
-     */
-    private void initPopupWindow(int position) {
-
-        //  }
-    }
-
     private SearchMoreAdapter bizAreaAdapter = null;
-    private SearchMainAdapter districtAdapter = null;
-
-    private void initDistrictAdapter(List<ViewBean> viewBeans) {
-        if (bizAreaAdapter == null) {
-            bizAreaAdapter = new SearchMoreAdapter(context, viewBeans, R.layout.shop_list2_item);
-            vh.level_two_list.setAdapter(bizAreaAdapter);
-        }
-        bizAreaAdapter.setViewBeanList(viewBeans);
-        bizAreaAdapter.notifyDataSetChanged();
-    }
 }

@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl"
     android:layout_width="150dip"
-    android:layout_height="100dip"
-    android:background="@color/white" >
+    android:layout_height="100dip">
     <ImageView
         android:id="@+id/iv_pic"
         android:layout_width="140dip"
@@ -13,6 +12,5 @@
         android:paddingRight="10dip"
         android:paddingTop="10dip"
         android:scaleType="fitXY"
-        android:src="@drawable/test5"
         />
 </RelativeLayout>

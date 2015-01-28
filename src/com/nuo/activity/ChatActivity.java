@@ -40,6 +40,7 @@ public class ChatActivity extends Activity implements OnClickListener{
     Person_Sms m_chat_person;
     @ViewInject(R.id.title_bar)
     private TitleBarView mTitleBarView;
+    private String defaultMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,13 @@ public class ChatActivity extends Activity implements OnClickListener{
         m_SendBtn = (Button) findViewById(R.id.btn_chat_send);
         m_SendBtn.setOnClickListener(this);
         m_MsgEditText = (EditText) findViewById(R.id.et_chat_msg);
-
+        defaultMsg = (String)getIntent().getSerializableExtra("msg");
+        if (defaultMsg != null) {
+            m_MsgEditText.setText(defaultMsg);
+        }
         m_ChatLogList = (ListView) findViewById(R.id.chat_list);
         m_chat_person = (Person_Sms)getIntent().getSerializableExtra("chatperson");
+
         initTitleView();
         Collections.reverse(m_chat_person.person_smss);
         m_ChatLogAdapter = new ChatLogAdapter();

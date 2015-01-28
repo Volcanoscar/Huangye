@@ -208,4 +208,13 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!-- 默认 文本样式 -->
+    <style name="defaultText">
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
 </resources>

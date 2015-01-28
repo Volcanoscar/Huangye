@@ -49,11 +49,10 @@
             android:layout_below="@+id/titlerelativelayout">
     </com.fujie.module.tab.FilterTabLayout>
 
-    <ListView
-        android:id="@+id/ShopListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/filterTabLayout" />
-
-
+    <com.fujie.module.xlistview.XListView
+            android:id="@+id/ShopListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:layout_below="@+id/filterTabLayout" />
 </RelativeLayout>

@@ -6,33 +6,6 @@
               android:background="@color/white"
         >
 
-    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/title_background"
-            android:gravity="center_vertical" >
-
-        <TextView
-                android:id="@+id/My_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:paddingBottom="10dp"
-                android:paddingLeft="12dp"
-                android:paddingRight="12dp"
-                android:paddingTop="10.5dp"
-                android:text="我的发布"
-                android:textColor="@color/my_title_textcolor"
-                android:textSize="18sp" />
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="选择发布类型"
-                android:textSize="18sp" />
-    </RelativeLayout>
-
     <ScrollView
             android:id="@+id/MySearchScroll"
             android:layout_width="match_parent"

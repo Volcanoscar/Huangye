@@ -3,6 +3,7 @@ package com.nuo.utils;
 public class PreferenceConstants {
 	
 	public static final String DEFAULT_SERVER_HOST = "121.40.208.124";
+	public static final String DEFAULT_HTTP_SERVER_HOST = "http://121.40.208.124";
     public final static String DEFAULT_SERVER_NAME = "iz23zxfawvoz";
 
     /** 一级分类标识 **/
@@ -23,6 +24,7 @@ public class PreferenceConstants {
 
 	public final static String ISNEEDLOG = "isneedlog";
 	public final static String REPORT_CRASH = "reportcrash";
+	public final static String ACCOUNT_ID = "account_id";
 	public final static String ACCOUNT = "account";
 	public final static String PASSWORD = "password";
 	public final static String SERVER = "server";

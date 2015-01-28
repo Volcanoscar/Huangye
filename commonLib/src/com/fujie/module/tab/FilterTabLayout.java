@@ -3,8 +3,6 @@ package com.fujie.module.tab;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import com.fujie.module.horizontalListView.HorizontalListView;
 import com.fujie.module.horizontalListView.HorizontalListViewAdapter;
@@ -24,6 +22,16 @@ public class FilterTabLayout extends RelativeLayout{
     private HorizontalListView horizontalListView;
     private HorizontalListViewAdapter tabAdapter;
 
+    private FilterTabClickListener filterTabClickListener =null;
+
+    public FilterTabClickListener getFilterTabClickListener() {
+        return filterTabClickListener;
+    }
+
+    public void setFilterTabClickListener(FilterTabClickListener filterTabClickListener) {
+        this.filterTabClickListener = filterTabClickListener;
+        tabAdapter.setFilterTabClickListener(filterTabClickListener);
+    }
 
     public FilterTabLayout(Context context){
         super(context);
@@ -40,7 +48,7 @@ public class FilterTabLayout extends RelativeLayout{
 
         LayoutInflater.from(mContext).inflate(R.layout.filter_tab_view, this);
         horizontalListView=(HorizontalListView) findViewById(R.id.horizontalListView);
-        tabAdapter = new HorizontalListViewAdapter(mContext, new ArrayList<ViewBean>());
+        tabAdapter = new HorizontalListViewAdapter(mContext, filterTabClickListener, new ArrayList<ViewBean>());
         horizontalListView.setAdapter(tabAdapter);
 
     }
@@ -54,7 +62,7 @@ public class FilterTabLayout extends RelativeLayout{
      */
     public void setData(List<ViewBean> viewBeanList){
         if (tabAdapter == null) {
-            tabAdapter = new HorizontalListViewAdapter(mContext,viewBeanList);
+            tabAdapter = new HorizontalListViewAdapter(mContext,filterTabClickListener,viewBeanList);
             horizontalListView.setAdapter(tabAdapter);
         }
         tabAdapter.setViewBeanList(viewBeanList);

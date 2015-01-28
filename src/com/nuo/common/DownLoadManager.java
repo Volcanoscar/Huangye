@@ -145,6 +145,7 @@ public class DownLoadManager {
             }
         });
         AlertDialog dialog = builer.create();
+
         dialog.show();
     }
     /*
@@ -156,6 +157,7 @@ public class DownLoadManager {
         pd.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         pd.setMessage("正在下载最新版本...");
         pd.show();
+        pd.setCancelable(false);
         new Thread(){
             @Override
             public void run() {

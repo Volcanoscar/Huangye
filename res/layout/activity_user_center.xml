@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/white"
+        >
+    <com.fujie.module.titlebar.TitleBarView
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/title_bar"
+            >
+        <LinearLayout
+                android:id="@+id/two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ll_bg_d"
+                android:orientation="vertical" >
+
+            <RelativeLayout
+                    android:id="@+id/timeLayout"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/item_bg"
+                    android:layout_height="50dp" >
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        style="@style/defaultText"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/qianming"
+                        />
+                <TextView
+                        android:id="@+id/timeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/defaultText"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/default_qianming"
+                        />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/arrow" />
+            </RelativeLayout>
+
+            <View style="@style/horizontal_line" />
+            <RelativeLayout
+                    android:id="@+id/codeLayout"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/item_bg"
+                    android:layout_height="50dp" >
+                <TextView
+                        android:id="@+id/codeTip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        style="@style/defaultText"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/code"
+                        />
+                <TextView
+                        android:layout_toRightOf="@+id/codeTip"
+                        android:id="@+id/codeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/defaultText"
+                        android:layout_centerVertical="true"
+                        />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/arrow" />
+            </RelativeLayout>
+
+            <View style="@style/horizontal_line" />
+            <RelativeLayout
+                    android:id="@+id/nameLayout"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/item_bg"
+                    android:layout_height="50dp" >
+                <TextView
+                        android:id="@+id/nameTip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        style="@style/defaultText"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/name"
+                        />
+                <TextView
+                        android:layout_toRightOf="@+id/nameTip"
+                        android:id="@+id/nameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/defaultText"
+                        android:layout_centerVertical="true"
+                        />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/arrow" />
+            </RelativeLayout>
+
+            <View style="@style/horizontal_line" />
+            <RelativeLayout
+                    android:id="@+id/sexLayout"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/item_bg"
+                    android:layout_height="50dp" >
+                <TextView
+                        android:id="@+id/sexTip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        style="@style/defaultText"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/sex"
+                        />
+                <TextView
+                        android:layout_toRightOf="@+id/sexTip"
+                        android:id="@+id/sexTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/defaultText"
+                        android:layout_centerVertical="true"
+                        />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/arrow" />
+            </RelativeLayout>
+
+            <View style="@style/horizontal_line" />
+            <RelativeLayout
+                    android:id="@+id/areaLayout"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/item_bg"
+                    android:layout_height="50dp" >
+                <TextView
+                        android:id="@+id/areaTip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        style="@style/defaultText"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/area"
+                        />
+                <TextView
+                        android:layout_toRightOf="@+id/areaTip"
+                        android:id="@+id/areaTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/defaultText"
+                        android:layout_centerVertical="true"
+                        />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/arrow" />
+            </RelativeLayout>
+
+            <View style="@style/horizontal_line" />
+            <RelativeLayout
+                    android:id="@+id/telLayout"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/item_bg"
+                    android:layout_height="50dp" >
+                <TextView
+                        android:id="@+id/telTip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        style="@style/defaultText"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/tel"
+                        />
+                <TextView
+                        android:layout_toRightOf="@+id/telTip"
+                        android:id="@+id/telTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/defaultText"
+                        android:layout_centerVertical="true"
+                        />
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/arrow" />
+            </RelativeLayout>
+            <View style="@style/horizontal_line" />
+            <RelativeLayout
+                    android:id="@+id/backLayout"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/item_bg"
+                    android:layout_height="wrap_content" >
+                <Button
+                        android:id="@+id/logout_btn"
+                        android:layout_height="50dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:text="@string/tuichu"
+                        android:background="@drawable/logout_btn"
+                        android:textColor="@android:color/white"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+    </LinearLayout>

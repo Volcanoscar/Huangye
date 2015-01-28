@@ -1,6 +1,6 @@
 package com.nuo.activity;
 
-import com.nuo.info.ShopInfo;
+import com.nuo.bean.MsgInfo;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -18,7 +18,7 @@ import android.widget.Toast;
  * */
 public class ShopDetailsCommentActivity extends Activity {
 
-    private ShopInfo info = null;
+    private MsgInfo info = null;
     private TextView mShop_details_more_title;
     private ImageView mShoplist_back;
     private RatingBar mshop_dianping_ratingbar;
@@ -32,7 +32,7 @@ public class ShopDetailsCommentActivity extends Activity {
         setContentView(R.layout.activity_shop_detailsdianping);
         Intent intent = getIntent();
         Bundle bund = intent.getBundleExtra("value");
-        info = (ShopInfo) bund.getSerializable("ShopInfo");
+        info = (MsgInfo) bund.getSerializable("ShopInfo");
         initView();
         initModel();
     }
@@ -68,6 +68,6 @@ public class ShopDetailsCommentActivity extends Activity {
     }
 
     private void initModel() {
-        mShop_details_more_title.setText(info.getSname());
+        mShop_details_more_title.setText(info.getTitle());
     }
 }

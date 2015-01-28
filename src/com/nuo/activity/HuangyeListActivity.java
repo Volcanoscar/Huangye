@@ -1,87 +1,74 @@
 package com.nuo.activity;
 
-import java.util.*;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
+import com.fujie.module.horizontalListView.ViewBean;
+import com.fujie.module.tab.FilterTabClickListener;
 import com.fujie.module.tab.FilterTabLayout;
+import com.fujie.module.xlistview.XListView;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.nuo.adapter.SearchMainAdapter;
-import com.nuo.adapter.SearchMoreAdapter;
 import com.nuo.adapter.ShopAdapter;
-import com.nuo.bean.District;
-import com.fujie.module.horizontalListView.ViewBean;
-import com.nuo.bean.ShengHuoType;
-import com.nuo.info.ShopInfo;
-import com.nuo.model.Model;
-import com.nuo.net.MyGet;
-import com.nuo.net.ThreadPoolUtils;
-import com.nuo.thread.HttpGetThread;
-import com.nuo.utils.MyJson;
+import com.nuo.bean.*;
+import com.nuo.handler.TimeOutHandler;
 import com.nuo.utils.NetUtil;
 import com.nuo.utils.PreferenceConstants;
 import com.nuo.utils.T;
 
-/**
- * 店铺列表模块
- */
-public class HuangyeListActivity extends Activity {
+import java.util.ArrayList;
+import java.util.List;
 
-    private ListView mListView;
+/**
+ * 店铺列表界面
+ * 过滤条件和第三级分类以tab菜单的形式显示
+ */
+public class HuangyeListActivity extends Activity implements XListView.IXListViewListener {
+
+    private XListView mListView;
     private ImageView mShoplist_back;
-    private LinearLayout mShoplist_shanghuleixing;
     private FilterTabLayout filterTabLayout;
-    private MyGet myGet = new MyGet();
-    private MyJson myJson = new MyJson();
-    private List<ShopInfo> list = new ArrayList<ShopInfo>();
+    private List<MsgInfo> list = new ArrayList<MsgInfo>();
     private ShopAdapter mAdapter = null;
-    private SearchMoreAdapter topadapter = null;
-    private SearchMoreAdapter threeadapter = null;
-    private SearchMoreAdapter bizAreaAdapter = null;
-    private SearchMainAdapter districtAdapter = null;
-    private SearchMoreAdapter twoadapter2 = null;
-    private SearchMainAdapter oneadapter2 = null;
-    private Button ListBottem = null;
-    private ImageView mSearch_city_img;
     private TextView mShoplist_title_txt;
-    private int mStart = 1;
-    private int mEnd = 5;
-    private String url = null;
-    private boolean flag = true;
-    private boolean listBottemFlag = true;
     private List<ViewBean> districtList= new ArrayList<ViewBean>();
-    private List<ViewBean> mainList2 = new ArrayList<ViewBean>();
     private String typeCode;
     /** 过滤tab数据集合 **/
     private List<ViewBean> filterTabViewBeanList = new ArrayList<ViewBean>();
+    private TimeOutHandler timeOutHandler= new TimeOutHandler(this);
+    private String parentTypeCode;
+    private String typeName;
+    /**
+     * 关键字搜索
+     */
+    private String key;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_shoplist);
-        initView();
         initData();
+        initView();
     }
 
+    /**
+     * 得到传入此界面的数据
+     */
     private void initData() {
         //得到变量
-         typeCode = getIntent().getStringExtra("typeCode");
-        queryDistrictData();
+        typeCode = getIntent().getStringExtra("typeCode");
+        typeName = getIntent().getStringExtra("typeName");
+        key = getIntent().getStringExtra("key");
+        parentTypeCode = getIntent().getStringExtra("parentTypeCode");
     }
 
     private void queryShenghuoTypeData() {
@@ -134,34 +121,94 @@ public class HuangyeListActivity extends Activity {
     private void initView() {
         filterTabLayout = (FilterTabLayout) findViewById(R.id.filterTabLayout);
         mShoplist_back = (ImageView) findViewById(R.id.Shoplist_back);
-        mShoplist_shanghuleixing = (LinearLayout) findViewById(R.id.Shoplist_shanghuleixing);
         mShoplist_title_txt = (TextView) findViewById(R.id.Shoplist_title_txt);
-        mSearch_city_img = (ImageView) findViewById(R.id.Search_city_img);
-        mListView = (ListView) findViewById(R.id.ShopListView);
+        mShoplist_title_txt.setText(typeName);
+        mListView = (XListView) findViewById(R.id.ShopListView);
+        mListView.setPullRefreshEnable(false);
         MyOnclickListener mOnclickListener = new MyOnclickListener();
         mShoplist_back.setOnClickListener(mOnclickListener);
         // -----------------------------------------------------------------
         mAdapter = new ShopAdapter(list, HuangyeListActivity.this);
-        ListBottem = new Button(HuangyeListActivity.this);
-        ListBottem.setText("点击加载更多");
-        ListBottem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (flag && listBottemFlag) {
-                    url = Model.SHOPURL + "start=" + mStart + "&end=" + mEnd;
-                    ThreadPoolUtils.execute(new HttpGetThread(hand, url));
-                    listBottemFlag = false;
-                } else if (!listBottemFlag)
-                    Toast.makeText(HuangyeListActivity.this, "加载中请稍候", 1).show();
-            }
-        });
-        mListView.addFooterView(ListBottem, null, false);
-        ListBottem.setVisibility(View.GONE);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new MainListOnItemClickListener());
-        // 拼接字符串操作
-        url = Model.SHOPURL + "start=" + mStart + "&end=" + mEnd;
-        ThreadPoolUtils.execute(new HttpGetThread(hand, url));
+        mListView.setXListViewListener(this);
+        queryDistrictData();
+        getData(1); //请求第一页数据
+        //tab 点击事件
+        filterTabLayout.setFilterTabClickListener(new FilterTabClickListener() {
+            @Override
+            public void onClick(List<ViewBean> viewBeanList) {
+                selectedViewBean = viewBeanList;
+                //清空列表数据
+                list.clear();
+                currPage=1;
+                getData(1);
+            }
+        });
+    }
+    private List<ViewBean> selectedViewBean =null;
+    private Integer currPage =1;
+
+    /**
+     * 是否显示加载弹出框
+     * 1 显示
+     * 0 不显示
+     * @param isShowDialog
+     */
+    private void getData(final int isShowDialog) {
+        MsgSearchBean  msgSearchBean= new MsgSearchBean();
+        msgSearchBean.setLevelOneTypeCode(parentTypeCode);
+        msgSearchBean.setLevelTwoTypeCode(typeCode);
+        msgSearchBean.setParam(String.valueOf(currPage));
+        msgSearchBean.setKey(key);
+        NetUtil.searchMsg(msgSearchBean,selectedViewBean,new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                mListView.stopLoadMore();
+                PageSearchResult newList = PageSearchResult.parseMap(responseInfo.result);
+                if (newList != null&&newList.getList()!=null&&!newList.getList().isEmpty()) {
+                    list.addAll(newList.getList());
+                    currPage++;
+                    if (newList.getList().size() < 10) {  //TODO:... 每次加载都是十条。。。。。
+                        mListView.setPullLoadEnable(false);
+                    }else{
+                        mListView.setPullLoadEnable(true);
+                    }
+                }else{
+                    mListView.setPullLoadEnable(false);
+                }
+                mAdapter.notifyDataSetChanged();
+                if (isShowDialog==1) {
+                    timeOutHandler.stop();
+                }
+            }
+            @Override
+            public void onFailure(HttpException e, String s) {
+                T.showShort(HuangyeListActivity.this,R.string.net_error);
+                if (isShowDialog==1) {
+                    timeOutHandler.stop();
+                }
+
+            }
+
+            @Override
+            public void onStart() {
+                if (isShowDialog==1) {
+                    timeOutHandler.start(null);
+                }
+                super.onStart();
+            }
+        });
+    }
+
+    @Override
+    public void onRefresh() {
+        getData(0);
+    }
+
+    @Override
+    public void onLoadMore() {
+        getData(0);
     }
 
     private class MyOnclickListener implements View.OnClickListener {
@@ -173,53 +220,17 @@ public class HuangyeListActivity extends Activity {
         }
     }
 
-    Handler hand = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            super.handleMessage(msg);
-            if (msg.what == 404) {
-                Toast.makeText(HuangyeListActivity.this, "找不到地址", 1).show();
-                listBottemFlag = true;
-            } else if (msg.what == 100) {
-                Toast.makeText(HuangyeListActivity.this, "传输失败", 1).show();
-                listBottemFlag = true;
-            } else if (msg.what == 200) {
-                String result = (String) msg.obj;
-                // 在activity当中获取网络交互的数据
-                if (result != null) {
-                    // 1次网络请求返回的数据
-                    List<ShopInfo> newList = myJson.getShopList(result);
-                    if (newList != null) {
-                        if (newList.size() == 5) {
-                            ListBottem.setVisibility(View.VISIBLE);
-                            mStart += 5;
-                            mEnd += 5;
-                        } else {
-                            ListBottem.setVisibility(View.GONE);
-                        }
-                        for (ShopInfo info : newList) {
-                            list.add(info);
-                        }
-                        mAdapter.notifyDataSetChanged();
-                        listBottemFlag = true;
-                        mAdapter.notifyDataSetChanged();
-                    }
-                }
-                mAdapter.notifyDataSetChanged();
-            }
-        }
-
-        ;
-    };
-
     private class MainListOnItemClickListener implements OnItemClickListener {
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                 long arg3) {
-            Intent intent = new Intent(HuangyeListActivity.this, ShopDetailsActivity.class);
-            Bundle bund = new Bundle();
-            bund.putSerializable("ShopInfo", list.get(arg2));
-            intent.putExtra("value", bund);
-            startActivity(intent);
+            if (list != null&&list.size()!=0) {
+                Intent intent = new Intent(HuangyeListActivity.this, ShopDetailsActivity.class);
+                Bundle bund = new Bundle();
+                bund.putSerializable("ShopInfo", list.get(arg2-1));   //因为xlistview的第一个view是HeaderView，所以此处arg2需要减1才能与list中的数据对应。
+                intent.putExtra("value", bund);
+                startActivity(intent);
+            }
+
         }
     }
-
 }

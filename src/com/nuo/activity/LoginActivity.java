@@ -103,7 +103,7 @@ public class LoginActivity extends Activity {
                     public void onSuccess(ResponseInfo<String> responseInfo) {
                         timeOutHandler.stop();
                         //解析json
-                       UserInfo userInfo= UserInfo.parseMap(responseInfo.result);
+                        UserInfo userInfo= UserInfo.parseMap(responseInfo.result);
                         if (userInfo == null) {
                             T.showShort(LoginActivity.this,R.string.login_error);
                         }else{
@@ -111,14 +111,16 @@ public class LoginActivity extends Activity {
                             T.showShort(LoginActivity.this,"登录成功");
                             DbUtils dbUtil= XutilHelper.getDB(LoginActivity.this);
                             try {
-                                dbUtil.save(userInfo); // 保存用户信息
+                                dbUtil.deleteAll(UserInfo.class);//选删除用户信息
+                                dbUtil.saveBindingId(userInfo); // 保存用户信息
                             } catch (DbException e) {
                                 e.printStackTrace();
                             }
-                            save2Preferences();
                             //跳转到个人中心
+                            finish();
                             Intent intent = new Intent(LoginActivity.this, MyActivity.class);
                             startActivity(intent);
+                            save2Preferences(userInfo.getId());
                         }
                     }
                     @Override
@@ -132,7 +134,9 @@ public class LoginActivity extends Activity {
                     }
                 });
     }
-    private void save2Preferences() {
+    private void save2Preferences(Integer id) {
+        PreferenceUtils.setPrefInt(this, PreferenceConstants.ACCOUNT_ID,
+                id);
         PreferenceUtils.setPrefString(this, PreferenceConstants.ACCOUNT,
                 mLogin_user.getText().toString());
         PreferenceUtils.setPrefString(this, PreferenceConstants.PASSWORD,

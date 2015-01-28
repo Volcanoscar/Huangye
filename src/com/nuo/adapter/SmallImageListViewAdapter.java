@@ -8,27 +8,47 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.lidroid.xutils.BitmapUtils;
 import com.nuo.activity.ImagePagerActivity;
 import com.nuo.activity.R;
+import com.nuo.utils.PreferenceConstants;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SmallImageListViewAdapter extends BaseAdapter {
+    private List<String> imgAddList = new ArrayList<String>();
     private Context context;
-
-    public SmallImageListViewAdapter(Context con) {
+    BitmapUtils bitmapUtils ;
+    public SmallImageListViewAdapter(Context con,List<String> imgAddList) {
         this.context = con;
+        bitmapUtils = new BitmapUtils(context);
         mInflater = LayoutInflater.from(con);
+        for (String temp : imgAddList) {
+            this.imgAddList.add(PreferenceConstants.DEFAULT_HTTP_SERVER_HOST + temp);
+        }
+    }
+    public List<String> getImgAddList() {
+        return imgAddList;
+    }
+
+    public void setImgAddList(List<String> imgAddList) {
+        this.imgAddList.clear();
+        for (String temp : imgAddList) {
+            this.imgAddList.add(PreferenceConstants.DEFAULT_HTTP_SERVER_HOST + temp);
+        }
     }
 
     @Override
     public int getCount() {
-        return 5;
+        return imgAddList.size();
     }
 
     private LayoutInflater mInflater;
 
     @Override
     public Object getItem(int position) {
-        return position;
+        return imgAddList.get(position);
     }
 
     private ViewHolder vh = new ViewHolder();
@@ -47,28 +67,22 @@ public class SmallImageListViewAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.small_image_item, null);
             vh.im = (ImageView) convertView.findViewById(R.id.iv_pic);
-
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        vh.im.setOnClickListener(new View.OnClickListener() {
+        // 鍔犺浇缃戠粶鍥剧墖
+        bitmapUtils.display(vh.im, imgAddList.get(position));
+
+       /* vh.im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, ImagePagerActivity.class);
-                // 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
-                String[]urls = new String[]{
-                        "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing.jpg",
-                        "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing.jpg",
-                        "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing.jpg",
-                        "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing.jpg",
-                        "http://img0.bdstatic.com/img/image/shouye/leimu/mingxing.jpg"
-                };
-                intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_URLS, urls);
+                intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_URLS,imgAddList.toArray());
                 intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_INDEX, position);
                 context.startActivity(intent);
             }
-        });
+        });*/
         return convertView;
     }
 }

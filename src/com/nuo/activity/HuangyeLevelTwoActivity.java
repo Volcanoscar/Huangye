@@ -82,9 +82,10 @@ public class HuangyeLevelTwoActivity extends Activity {
                 List<ShengHuoType> shengHuoTypeList = ShengHuoType.parseMap(stringResponseInfo.result);
                 List<LinearLayout> linearLayouts = new ArrayList<LinearLayout>();
                 LinearLayout layout2 = new LinearLayout(HuangyeLevelTwoActivity.this);
-                int i = 0;
+                int col = 0;
+                int row= 1;
                 for (final ShengHuoType shengHuoType : shengHuoTypeList) {
-                    i++;
+                    col++;
                     TextView textView = new TextView(HuangyeLevelTwoActivity.this);
                     textView.setTextAppearance(HuangyeLevelTwoActivity.this, R.style.shenghuo_type_two);
                     textView.setText(shengHuoType.getTypeName());
@@ -101,6 +102,8 @@ public class HuangyeLevelTwoActivity extends Activity {
                         public void onClick(View view) {
                             Intent intent = new Intent(HuangyeLevelTwoActivity.this, HuangyeListActivity.class);
                             intent.putExtra("typeCode", shengHuoType.getTypeCode());
+                            intent.putExtra("typeName", shengHuoType.getTypeName());
+                            intent.putExtra("parentTypeCode",shengHuoType.getLevel1Code());
                             startActivity(intent);
                         }
                     });
@@ -110,9 +113,14 @@ public class HuangyeLevelTwoActivity extends Activity {
                     layoutParams.leftMargin = 5;
                     layoutParams.rightMargin = 5;
                     layout2.setPadding(0, 0, 1, 0);
-                    if (i % 3 == 0) {
+                    if (row == 1&& col==1) {  //第一个需要自己手动添加
+                        shenghuo_two.addView(layout2, layoutParams);
+                    }
+
+                    if (col % 3 == 0) {  //每三个从新创建一个LinearLayout.
                         layout2 = new LinearLayout(HuangyeLevelTwoActivity.this);
-                        i = 0;
+                        col = 0;
+                        row++;
                         shenghuo_two.addView(layout2, layoutParams);
                     }
                 }
