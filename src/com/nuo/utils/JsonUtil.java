@@ -15,9 +15,17 @@ import java.util.Date;
  * 
  */
 public class JsonUtil {
+
 	public static Gson getDateGson(){
 		GsonBuilder builder = new GsonBuilder();
 		builder.registerTypeAdapter(Date.class, new DateAdapter());
+		/*builder.setDateFormat("yyyy-MM-dd HH:mm:ss");*/
+		return  builder.create();
+	}
+
+	public static Gson getStringDateGson(){
+		GsonBuilder builder = new GsonBuilder();
+		builder.registerTypeAdapter(Date.class, new StringDateAdapter());
 		builder.setDateFormat("yyyy-MM-dd HH:mm:ss");
 		return  builder.create();
 	}

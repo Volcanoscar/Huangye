@@ -8,7 +8,6 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.fujie.module.horizontalListView.ViewBean;
 import com.fujie.module.tab.FilterTabClickListener;
@@ -224,7 +223,7 @@ public class HuangyeListActivity extends Activity implements XListView.IXListVie
         public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                 long arg3) {
             if (list != null&&list.size()!=0) {
-                Intent intent = new Intent(HuangyeListActivity.this, ShopDetailsActivity.class);
+                Intent intent = new Intent(HuangyeListActivity.this, InfoDetailActivity.class);
                 Bundle bund = new Bundle();
                 bund.putSerializable("ShopInfo", list.get(arg2-1));   //因为xlistview的第一个view是HeaderView，所以此处arg2需要减1才能与list中的数据对应。
                 intent.putExtra("value", bund);

@@ -1,19 +1,24 @@
 package com.nuo.bean;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.nuo.utils.JsonUtil;
+
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zxl on 2015/1/27.
  * 店铺信息
  */
-public class ShopInfo extends EntityBase{
+public class ShopInfo extends EntityBase {
     private String dianpuId;
     private String dianpuName;
     private Date createTime;
     /**
      * 营业时间
      */
-    private Date yingyeTime;
+    private String yingyeTime;
     /**
      * 联系电话
      */
@@ -85,11 +90,11 @@ public class ShopInfo extends EntityBase{
         this.createTime = createTime;
     }
 
-    public Date getYingyeTime() {
+    public String getYingyeTime() {
         return yingyeTime;
     }
 
-    public void setYingyeTime(Date yingyeTime) {
+    public void setYingyeTime(String yingyeTime) {
         this.yingyeTime = yingyeTime;
     }
 
@@ -219,5 +224,10 @@ public class ShopInfo extends EntityBase{
 
     public void setQq(String qq) {
         this.qq = qq;
+    }
+
+    public static ShopInfo parseMap(String result) {
+        Gson gson = JsonUtil.getDateGson();
+        return gson.fromJson(result, ShopInfo.class);
     }
 }

@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.nuo.utils.JsonUtil;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class MsgInfo extends EntityBase implements Serializable {
 	private String level1Code;
 	private String level2Code;
 	private String phone;
-	private String createTime;
+	private Date createTime;
 	private String photo;
 	private String dianpuName;
 	private String imgCount;
@@ -88,11 +89,11 @@ public class MsgInfo extends EntityBase implements Serializable {
 		this.phone = phone;
 	}
 
-	public String getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(String createTime) {
+	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
 

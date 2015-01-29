@@ -221,4 +221,14 @@ public class NetUtil {
                 params,
                 requestCallBack);
     }
+
+    public static void getShopInfo(String accountId, RequestCallBack<String> requestCallBack) {
+        RequestParams params = new RequestParams();
+        params.addQueryStringParameter("dianpuId",accountId);
+        HttpUtils http = new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST,
+                "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/dianpu/info",
+                params,
+                requestCallBack);
+    }
 }

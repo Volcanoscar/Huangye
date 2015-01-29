@@ -32,13 +32,18 @@ public class LoginActivity extends Activity {
     private EditText mLogin_user, mLogin_password;
     private TextView mLogin_OK, mLogin_wangjimima, mLogin_zhuce;
     private TimeOutHandler timeOutHandler= new TimeOutHandler(this);
-
+    private String toView ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_login);
+        initData();
         initView();
+    }
+
+    private void initData() {
+       toView= getIntent().getStringExtra("toView");
     }
 
     private void initView() {
@@ -118,7 +123,7 @@ public class LoginActivity extends Activity {
                             }
                             //跳转到个人中心
                             finish();
-                            Intent intent = new Intent(LoginActivity.this, MyActivity.class);
+                            Intent intent = toView();
                             startActivity(intent);
                             save2Preferences(userInfo.getId());
                         }
@@ -134,6 +139,15 @@ public class LoginActivity extends Activity {
                     }
                 });
     }
+
+    private Intent toView() {
+        if ("shop".equals(toView)) {
+            return new Intent(LoginActivity.this, ShopDetailActivity.class);
+        }else{
+            return new Intent(LoginActivity.this, MyActivity.class);
+        }
+    }
+
     private void save2Preferences(Integer id) {
         PreferenceUtils.setPrefInt(this, PreferenceConstants.ACCOUNT_ID,
                 id);

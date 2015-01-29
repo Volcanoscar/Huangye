@@ -82,6 +82,8 @@
 
     <!--  item -->
     <color name="transparent">#00000000</color>
+    <!--  半透明-->
+    <color name="transparent_background">#50000000</color>
 
     <item name="subscribe_item_text_color_normal_night" type="color">@color/default_text_night</item>
 
@@ -282,5 +284,15 @@
     <color name="custom">#ff0099CC</color>
     <color name="sticky">#ffffcd5a</color>
 
+
+    <item type="color" name="dial_inputarea_textColor">@color/text_dark</item>
+    <item type="color" name="dial_inputarea_detail_textColor">@color/text_desc</item>
+    <item type="color" name="text_dark">@color/gray_9</item>
+    <item type="color" name="text_desc">@color/gray_7</item>
+    <color name="gray_9">#ff333333</color>
+    <color name="gray_7">#ff7b7b7b</color>
+    <color name="line_weak_dial">#ffc9c9c9</color>
+    <color name="dial_autocomplete_backgroundColor">#ff484848</color>
+    <color name="dial_autocomplete_backgroundColor_pressed">#ffe3e5e6</color>
 
 </resources>

@@ -13,6 +13,8 @@ import android.widget.*;
 import com.nuo.adapter.ContactsLoaderListener;
 import com.nuo.adapter.SmsLoaderListener;
 import com.nuo.common.DownLoadManager;
+import com.nuo.utils.PreferenceConstants;
+import com.nuo.utils.PreferenceUtils;
 import com.nuo.utils.Utils;
 import com.nuo.view.NoScrollViewPager;
 
@@ -102,6 +104,8 @@ public class FrameActivity extends ActivityGroup {
     }
 
 
+
+
     /**
      *  加载 动作栏 菜单<br>
      *  根据不同的Activity修改ActionBar上的动作，并修改标题
@@ -123,6 +127,7 @@ public class FrameActivity extends ActivityGroup {
             //
             MenuItem searchItem =menu.findItem(R.id.action_info_search);
             MenuItem fabuItem =menu.findItem(R.id.action_fabu_sms);
+            MenuItem myShopItem =menu.findItem(R.id.action_my_shop);
             // 查询项 点击事件
             searchItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
@@ -141,6 +146,26 @@ public class FrameActivity extends ActivityGroup {
                     Intent intent = new Intent(FrameActivity.this, FabuActivity.class);
                     startActivity(intent);
                     return false;
+                }
+            });
+
+            //  发布项 点击事件
+            myShopItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    //跳转到店铺界面
+                    Integer accountId = PreferenceUtils.getPrefInt(FrameActivity.this,
+                            PreferenceConstants.ACCOUNT_ID, -1);
+                    if (accountId!=-1) {  //进入店铺详情
+                        Intent intent = new Intent(FrameActivity.this, ShopDetailActivity.class);
+                        startActivity(intent);
+                    }else{  //进入登录界面
+                        Intent intent = new Intent(FrameActivity.this, LoginActivity.class);
+                        intent.putExtra("toView", "shop");
+                        startActivity(intent);
+                    }
+                    return false;
+
                 }
             });
         }else if(currItem==3){ //工具

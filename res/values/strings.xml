@@ -9,7 +9,8 @@
     <string name="title_activity_my">MyActivity</string>
     <string name="title_activity_more">MoreActivity</string>
     <string name="title_activity_search_more">SearchMoreActivity</string>
-    <string name="title_activity_shop_details">ShopDetails</string>
+    <string name="title_activity_info_details">信息详情</string>
+    <string name="title_activity_shop_details">店铺详情</string>
     <string name="title_activity_sou_quan_cheng">搜全城</string>
     <string name="title_activity_shop_details_more">ShopDetailsMore</string>
     <string name="title_activity_paihangbang">Paihangbang</string>
@@ -109,4 +110,10 @@
     <string name="code">编号</string>
     <string name="empty_tip">抱歉，没有找到相关信息</string>
     <string name="change_fabu_type">选择发布类型</string>
+    <string name="action_my_shop">我的店铺</string>
+    <string name="qq_code">QQ号</string>
+    <string name="weixin_code">微信号</string>
+    <string name="url_address">网址</string>
+    <string name="yingye_time">营业时间</string>
+    <string name="other_phone_code">其他电话</string>
 </resources>

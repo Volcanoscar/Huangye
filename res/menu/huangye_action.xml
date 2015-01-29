@@ -15,6 +15,11 @@
             android:showAsAction="ifRoom|collapseActionView"
             android:title="@string/action_settings"/>
     <item
+            android:id="@+id/action_my_shop"
+            android:icon="@drawable/ofm_collect_icon"
+            android:showAsAction="ifRoom|collapseActionView"
+            android:title="@string/action_my_shop"/>
+    <item
             android:id="@+id/action_feedback"
             android:icon="@drawable/ofm_feedback_icon"
             android:showAsAction="ifRoom|collapseActionView"

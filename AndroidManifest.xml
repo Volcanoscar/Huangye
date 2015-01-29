@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.nuo.activity"
           android:versionCode="1"
-          android:versionName="0.1.9">
+          android:versionName="0.2.0">
     <uses-sdk
             android:minSdkVersion="14"
             android:targetSdkVersion="19"/>
@@ -83,20 +83,16 @@
                 android:label="@string/title_activity_search_more">
         </activity>
         <activity
-                android:name="com.nuo.activity.ShopDetailsActivity"
+                android:name=".InfoDetailActivity"
+                android:label="@string/title_activity_info_details">
+        </activity>
+        <activity
+                android:name=".ShopDetailActivity"
                 android:label="@string/title_activity_shop_details">
         </activity>
         <activity
                 android:name=".HuangyeLevelTwoActivity"
                 android:label="@string/title_activity_sou_quan_cheng">
-        </activity>
-        <activity
-                android:name="com.nuo.activity.ShopDetailsMore"
-                android:label="@string/title_activity_shop_details_more">
-        </activity>
-        <activity
-                android:name="com.nuo.activity.RankingList"
-                android:label="@string/title_activity_paihangbang">
         </activity>
         <activity
                 android:name="com.nuo.activity.RegistrationActivity"
@@ -107,20 +103,12 @@
                 android:label="@string/title_activity_login">
         </activity>
         <activity
-                android:name="com.nuo.activity.ShopDetailsCheckinActivity"
-                android:label="@string/title_activity_shop_detailsqiandao">
-        </activity>
-        <activity
                 android:name="com.nuo.activity.ShopDetailsCommentActivity"
                 android:label="@string/title_activity_shop_detailsdianping">
         </activity>
         <activity
                 android:name="com.nuo.activity.RankingList_more"
                 android:label="@string/title_activity_paihangbang_more">
-        </activity>
-        <activity
-                android:name="com.nuo.activity.RankingList_bzrm"
-                android:label="@string/title_activity_paihangbang_bzrm">
         </activity>
         <activity
                 android:name="com.nuo.activity.SmsActivity">

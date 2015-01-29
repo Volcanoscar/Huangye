@@ -2,12 +2,10 @@ package com.nuo.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.*;
@@ -15,11 +13,7 @@ import com.fujie.module.horizontalListView.HorizontalListView;
 import com.nuo.adapter.SmallImageListViewAdapter;
 import com.nuo.adapter.SmsCursor;
 import com.nuo.bean.MsgInfo;
-import com.nuo.info.CommentsInfo;
-import com.nuo.info.FoodInfo;
-import com.nuo.info.SignInfo;
-import com.nuo.thread.HttpGetThread;
-import com.nuo.utils.LoadImg;
+import com.nuo.utils.DateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +21,7 @@ import java.util.List;
 /**
  * 店铺详情模块
  * */
-public class ShopDetailsActivity extends Activity {
+public class InfoDetailActivity extends Activity {
 
     private MsgInfo info = null;
     // top和店铺的属性
@@ -51,7 +45,7 @@ public class ShopDetailsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_info_details);
+        setContentView(R.layout.activity_info_detail);
         // 获取从列表当中传递过来的数据
         Intent intent = getIntent();
         Bundle bund = intent.getBundleExtra("value");
@@ -64,7 +58,7 @@ public class ShopDetailsActivity extends Activity {
         //标题
         mShop_details_name.setText(info.getTitle());
         //发布时间
-        create_time.setText(info.getCreateTime());
+        create_time.setText(DateUtil.dateToStr(info.getCreateTime()));
         //店铺名称
         shop_details_address_txt.setText(info.getDianpuName());
         //描述
@@ -114,15 +108,15 @@ public class ShopDetailsActivity extends Activity {
         public void onClick(View v) {
             int mID = v.getId();
             if (mID == R.id.Shop_details_back) {
-                ShopDetailsActivity.this.finish();
+                InfoDetailActivity.this.finish();
             }
             else if (mID == R.id.shop_details_address) {
-                Uri mUri = Uri.parse("geo:39.940409,116.355257?q=西直门");
-                Intent mIntent = new Intent(Intent.ACTION_VIEW,mUri);
+                Intent mIntent = new Intent(InfoDetailActivity.this,ShopDetailActivity.class);
+                mIntent.putExtra("userId", info.getUserId());
                 startActivity(mIntent);
             }
             else if (mID == R.id.Shop_details_bottom_phone) {  //确认电话弹出框
-                AlertDialog.Builder builer = new AlertDialog.Builder(ShopDetailsActivity.this);
+                AlertDialog.Builder builer = new AlertDialog.Builder(InfoDetailActivity.this);
                 builer.setMessage("是否拨打电话  " + info.getPhone());
                 builer.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -139,7 +133,7 @@ public class ShopDetailsActivity extends Activity {
                 dialog.show();
             }
             else if (mID == R.id.Shop_details_bottom_sms) { //sms 模板
-                Intent intent = new Intent(ShopDetailsActivity.this,
+                Intent intent = new Intent(InfoDetailActivity.this,
                         ChatActivity.class);
                 Bundle mBundle = new Bundle();
                 SmsCursor.Person_Sms person_sms = new SmsCursor.Person_Sms();

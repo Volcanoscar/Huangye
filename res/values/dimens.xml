@@ -473,4 +473,34 @@
     <dimen name="toolbar_button_width">50.0dip</dimen>
     <dimen name="toolbar_title_font_size">19.659973dip</dimen>
     <dimen name="appbar_title_left_padding">19.0dip</dimen>
+
+
+
+    <dimen name="dial_diabar_height">66.0dip</dimen>
+    <dimen name="dial_callbutton_width">150.0dip</dimen>
+    <dimen name="dial_callbutton_height">46.0dip</dimen>
+    <dimen name="dial_callbutton_doublesim_width">196.0dip</dimen>
+    <dimen name="dial_callbutton_doublesim_blue_width">104.0dip</dimen>
+    <dimen name="dial_callbutton_marginSub">0.0dip</dimen>
+    <dimen name="dial_callbutton_paddingSub">6.0dip</dimen>
+    <dimen name="dial_keyboard_height">242.0dip</dimen>
+    <dimen name="dial_keyboard_container_height">308.0dip</dimen>
+    <dimen name="dial_keyboard_separator_width">1.0dip</dimen>
+    <dimen name="dial_keyboard_separator_innershadow_width">2.0px</dimen>
+    <dimen name="dial_autocomplete_height">64.0dip</dimen>
+    <dimen name="dial_autocomplete_marginHorizontal">7.0dip</dimen>
+    <dimen name="dial_autocomplete_marginBottom">8.0dip</dimen>
+    <dimen name="dial_autocomplete_radius">3.0dip</dimen>
+    <dimen name="dial_autocomplete_textSize">14.0sp</dimen>
+    <dimen name="dial_autocomplete_name_textSize">16.0sp</dimen>
+    <dimen name="dial_autocomplete_phone_textSize">14.0sp</dimen>
+    <dimen name="dial_autocomplete_name_marginTop">12.0dip</dimen>
+    <dimen name="dial_autocomplete_name_maxWidth">220.0dip</dimen>
+    <dimen name="dial_input_paddingHorizontal">22.0dip</dimen>
+    <dimen name="dial_input_marginBottom">70.0dip</dimen>
+    <dimen name="dial_input_detail_marginTop">120.0dip</dimen>
+    <dimen name="dial_input_textSize">35.0dip</dimen>
+    <dimen name="dial_input_detail_textSize">16.0sp</dimen>
+
+
 </resources>
