@@ -143,7 +143,9 @@ public class LoginActivity extends Activity {
     private Intent toView() {
         if ("shop".equals(toView)) {
             return new Intent(LoginActivity.this, ShopDetailActivity.class);
-        }else{
+        }else if ("fabu".equals(toView)) {
+            return new Intent(LoginActivity.this, ChangeFabuTypeActivity.class);
+        } else {
             return new Intent(LoginActivity.this, MyActivity.class);
         }
     }

@@ -30,6 +30,7 @@ import com.nuo.bean.ShengHuoType;
 import com.nuo.handler.TimeOutHandler;
 import com.nuo.utils.NetUtil;
 import com.nuo.utils.PreferenceConstants;
+import com.nuo.utils.PreferenceUtils;
 import com.nuo.utils.T;
 
 import java.util.ArrayList;
@@ -219,6 +220,8 @@ public class FabuActivity extends AbstractTemplateActivity {
         publish.setTitle(titleTextView.getText().toString());
         publish.setLevel1Code(parentTypeCode);
         publish.setLevel2Code(typeCode);
+        String userId =PreferenceUtils.getPrefString(FabuActivity.this, PreferenceConstants.ACCOUNT_ID,"");
+        publish.setUserId(userId);
         //上传图片
         NetUtil.uploadImg(smallImageListViewAdapter.getImgAddList(), new RequestCallBack<String>() {
             @Override

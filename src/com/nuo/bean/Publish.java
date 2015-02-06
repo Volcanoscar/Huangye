@@ -21,6 +21,15 @@ public class Publish {
     private List<String> img= new ArrayList<String>();
     private String qq;
     private String weixin;
+    private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getTitle() {
         return title;

@@ -116,7 +116,8 @@ public class FrameActivity extends ActivityGroup {
     public boolean onCreateOptionsMenu(Menu menu) {
         int currItem = mViewPager.getCurrentItem();
         ActionBar actionBar = getActionBar();
-
+        final Integer accountId = PreferenceUtils.getPrefInt(FrameActivity.this,
+                PreferenceConstants.ACCOUNT_ID, -1);
         if (currItem==0) { //关系
             getMenuInflater().inflate(R.menu.main, menu);
             actionBar.setTitle(R.string.relation);
@@ -144,9 +145,15 @@ public class FrameActivity extends ActivityGroup {
             fabuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
-                    //跳转到搜索个界面
-                    Intent intent = new Intent(FrameActivity.this, ChangeFabuTypeActivity.class);
-                    startActivity(intent);
+                    //跳转到发布界面
+                    if (accountId!=-1) {  //进入店铺详情
+                        Intent intent = new Intent(FrameActivity.this, ChangeFabuTypeActivity.class);
+                        startActivity(intent);
+                    }else{  //进入登录界面
+                        Intent intent = new Intent(FrameActivity.this, LoginActivity.class);
+                        intent.putExtra("toView", "fabu");
+                        startActivity(intent);
+                    }
                     return false;
                 }
             });
@@ -156,8 +163,6 @@ public class FrameActivity extends ActivityGroup {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     //跳转到店铺界面
-                    Integer accountId = PreferenceUtils.getPrefInt(FrameActivity.this,
-                            PreferenceConstants.ACCOUNT_ID, -1);
                     if (accountId!=-1) {  //进入店铺详情
                         Intent intent = new Intent(FrameActivity.this, ShopDetailActivity.class);
                         startActivity(intent);
