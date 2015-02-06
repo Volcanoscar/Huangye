@@ -143,7 +143,7 @@ public class FrameActivity extends ActivityGroup {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     //跳转到搜索个界面
-                    Intent intent = new Intent(FrameActivity.this, FabuActivity.class);
+                    Intent intent = new Intent(FrameActivity.this, ChangeFabuTypeActivity.class);
                     startActivity(intent);
                     return false;
                 }

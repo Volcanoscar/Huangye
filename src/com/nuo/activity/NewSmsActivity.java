@@ -135,16 +135,16 @@ public class NewSmsActivity extends Activity implements OnClickListener{
                             List<String> contents = smsManager.divideMessage(m_MsgEditText.getText().toString());
                             for(String sms : contents)
                             {
-                                smsManager.sendTextMessage(m_BatchSmsList.get(i).mNum, null, sms, mSendPI, mDeliverPI);
+                                smsManager.sendTextMessage(m_BatchSmsList.get(i).getmNum(), null, sms, mSendPI, mDeliverPI);
                             }
                         }
                         else
                         {
-                            smsManager.sendTextMessage(m_BatchSmsList.get(i).mNum, null, m_MsgEditText.getText().toString(), mSendPI, mDeliverPI);
+                            smsManager.sendTextMessage(m_BatchSmsList.get(i).getmNum(), null, m_MsgEditText.getText().toString(), mSendPI, mDeliverPI);
                         }
 
                         //增加新信息到短信数据库,放在线程中处理
-                        new AddSmsTask(m_BatchSmsList.get(i).mNum, new_sm.SMSContent, new_sm.SMSDate, new_sm.SMSType).execute();
+                        new AddSmsTask(m_BatchSmsList.get(i).getmNum(), new_sm.SMSContent, new_sm.SMSDate, new_sm.SMSType).execute();
                     }
 
                     finish();

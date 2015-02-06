@@ -255,7 +255,7 @@ public class CallLogsBaseAdapter extends BaseAdapter{
                     bundle.putString("name", Utils.mPersonCallLogList.get(position).Name);
                     bundle.putString("number", Utils.mPersonCallLogList.get(position).Number);
                    for(int i=0;i<Utils.mPersons.size();i++) {
-                       if (Utils.mPersonCallLogList.get(position).Number.equals(Utils.mPersons.get(i).mNum)) {
+                       if (Utils.mPersonCallLogList.get(position).Number.equals(Utils.mPersons.get(i).getmNum())) {
                            bundle.putSerializable("contact", Utils.mPersons.get(i));
                        }
                    }

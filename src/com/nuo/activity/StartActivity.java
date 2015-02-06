@@ -19,21 +19,16 @@ public class StartActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-	/*	LinearLayout mLinear = (LinearLayout) findViewById(R.id.Fragment01Linear);
-		mLinear.setBackgroundResource(R.drawable.leading_front_five);*/
-		new Thread() {
-			public void run() {
-				try {
-					Thread.sleep(1500);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				Message msg = hand.obtainMessage();
-				hand.sendMessage(msg);
-			}
-
-		}.start();
+        if (isFristRun()) {
+            Intent intent = new Intent(StartActivity.this,
+                    MainActivity.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(StartActivity.this,
+                    FrameActivity.class);
+            startActivity(intent);
+        }
+        finish();
 	};
 
 	Handler hand = new Handler() {

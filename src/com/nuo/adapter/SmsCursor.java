@@ -78,8 +78,8 @@ public class SmsCursor extends CursorWrapper{
                 {
                     for(int i=0;i<Utils.mPersons.size();i++)
                     {
-                        if(Utils.mPersons.get(i).mNum.equals(person_sms.Number)
-                                || Utils.mPersons.get(i).mNum.equals(NumberRemove86))
+                        if(Utils.mPersons.get(i).getmNums().contains(person_sms.Number)
+                                || Utils.mPersons.get(i).getmNums().contains(NumberRemove86))
                         {
                             person_sms.Name = Utils.mPersons.get(i).mName;
                             break;

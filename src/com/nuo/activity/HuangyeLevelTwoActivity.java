@@ -50,6 +50,7 @@ public class HuangyeLevelTwoActivity extends Activity {
 
     //加载提示
     private TimeOutHandler timeOutHandler = new TimeOutHandler(this);
+    private String toView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +58,14 @@ public class HuangyeLevelTwoActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_sou_quan_cheng);
         ViewUtils.inject(this);
+
         initData();
         initView();
     }
 
     private void initData() {
         String parentName = getIntent().getStringExtra("parentName");
+        toView = getIntent().getStringExtra("toView");
         parent_name.setText(parentName);
         titleText.setText(parentName);
     }
@@ -101,9 +104,12 @@ public class HuangyeLevelTwoActivity extends Activity {
                         @Override
                         public void onClick(View view) {
                             Intent intent = new Intent(HuangyeLevelTwoActivity.this, HuangyeListActivity.class);
+                            if ("fabu".equals(toView)) {
+                                 intent = new Intent(HuangyeLevelTwoActivity.this, FabuActivity.class);
+                            }
                             intent.putExtra("typeCode", shengHuoType.getTypeCode());
                             intent.putExtra("typeName", shengHuoType.getTypeName());
-                            intent.putExtra("parentTypeCode",shengHuoType.getLevel1Code());
+                            intent.putExtra("parentTypeCode", shengHuoType.getLevel1Code());
                             startActivity(intent);
                         }
                     });

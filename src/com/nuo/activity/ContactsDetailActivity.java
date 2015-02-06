@@ -24,7 +24,6 @@ import com.nuo.cursor.ContactsCursor;
 public class ContactsDetailActivity extends Activity{
 
     private TextView deviceNameTextView;
-    private String number;
     private SmsCursor.Person_Sms person_sms;
     private ContactsCursor.SortEntry contact;
     private ListView m_contactslist;
@@ -47,7 +46,6 @@ public class ContactsDetailActivity extends Activity{
 
         deviceNameTextView = (TextView)findViewById(R.id.deviceName);
 
-        number =bundle.getString("number");
         deviceNameTextView.setText(bundle.getString("name"));
 
         m_contactslist = (ListView)findViewById(R.id.contact_list);

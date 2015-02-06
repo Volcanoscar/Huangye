@@ -5,6 +5,8 @@ public class PreferenceConstants {
 	public static final String DEFAULT_SERVER_HOST = "121.40.208.124";
 	public static final String DEFAULT_HTTP_SERVER_HOST = "http://121.40.208.124";
     public final static String DEFAULT_SERVER_NAME = "iz23zxfawvoz";
+    /** 是否把contentprovider 中的联系人数据同步到本地数据库中 **/
+    public static final String CONTACT_SYNC = "CONTACT_SYNC";
 
     /** 一级分类标识 **/
     public static String SHENHUO_TYPE_ONE = "1";

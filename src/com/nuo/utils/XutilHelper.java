@@ -12,7 +12,6 @@ public class XutilHelper {
         DbUtils db=  DbUtils.create(context);
         db.configDebug(true);
         return db;
-
     }
 
 }

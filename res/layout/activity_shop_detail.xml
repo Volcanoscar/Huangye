@@ -301,7 +301,7 @@
                         android:paddingBottom="6dp"
                         android:paddingLeft="15dp"
                         android:paddingTop="8dp"
-                        android:text="描述"
+                        android:text="店铺介绍"
                         android:textColor="#666666"
                         android:textSize="14sp"/>
 

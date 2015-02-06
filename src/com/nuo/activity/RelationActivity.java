@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.*;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
+
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -55,8 +56,6 @@ public class RelationActivity extends Activity {
     private ContactsContentObserver ContactsCO;
     //选中的联系人名字
     private String ChooseContactName;
-    //选中的联系人号码
-    private String ChooseContactNumber;
     //选中的联系人ID
     private String ChooseContactID;
     //加载对话框
@@ -82,12 +81,12 @@ public class RelationActivity extends Activity {
         KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
         phoneNumber_edit.onKeyDown(keyCode, event);
 
-        if (phoneNumber_edit.getText().length()==0) {
+        if (phoneNumber_edit.getText().length() == 0) {
             number_layout.setVisibility(View.GONE);
         }
     }
 
-    @OnClick({R.id.add_contact_button,R.id.delete_bt,R.id.dial_callbutton_single, R.id.tel_show, R.id.one, R.id.two, R.id.three, R.id.four, R.id.five, R.id.six, R.id.seven, R.id.eight, R.id.nine, R.id.zero, R.id.star, R.id.pound})
+    @OnClick({R.id.add_contact_button, R.id.delete_bt, R.id.dial_callbutton_single, R.id.tel_show, R.id.one, R.id.two, R.id.three, R.id.four, R.id.five, R.id.six, R.id.seven, R.id.eight, R.id.nine, R.id.zero, R.id.star, R.id.pound})
     private void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_contact_button:
@@ -179,10 +178,9 @@ public class RelationActivity extends Activity {
                 /*if("".equals(m_FilterEditText.getText().toString()))
                 {*/
                 ChooseContactName = Utils.mPersons.get(arg2).mName;
-                ChooseContactNumber = Utils.mPersons.get(arg2).mNum;
                 ChooseContactID = Utils.mPersons.get(arg2).mID;
-				/*}
-				else
+                /*}
+                else
 				{
 					ChooseContactName = mFilterList.get(arg2).mName;
 					ChooseContactNumber = mFilterList.get(arg2).mNum;
@@ -191,15 +189,10 @@ public class RelationActivity extends Activity {
                 Bundle bundle = new Bundle();
                 bundle.putInt("tpye", 0);
                 bundle.putString("name", ChooseContactName);
-                bundle.putString("number", ChooseContactNumber);
-                for (int i = 0; i < Utils.mPersons.size(); i++) {
-                    if (ChooseContactNumber.equals(Utils.mPersons.get(i).mNum)) {
-                        bundle.putSerializable("contact", Utils.mPersons.get(i));
-                    }
-                }
+                bundle.putSerializable("contact", Utils.mPersons.get(arg2));
                 int index = -1;
                 for (int i = 0; i < Utils.mPersonSmsList.size(); i++) {
-                    if (ChooseContactNumber.equals(Utils.mPersonSmsList.get(i).Number)) {
+                    if (Utils.mPersons.get(arg2).getmNums().contains(Utils.mPersonSmsList.get(i).Number)) {
                         index = i;
                     }
                 }
@@ -220,14 +213,13 @@ public class RelationActivity extends Activity {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-                                           int arg2, long arg3) {
+                                           final int arg2, long arg3) {
 
                 Vibrator vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
                 vib.vibrate(50);
 				/*if("".equals(m_FilterEditText.getText().toString()))
 				{*/
                 ChooseContactName = Utils.mPersons.get(arg2).mName;
-                ChooseContactNumber = Utils.mPersons.get(arg2).mNum;
                 ChooseContactID = Utils.mPersons.get(arg2).mID;
 				/*}
 				else
@@ -244,7 +236,7 @@ public class RelationActivity extends Activity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 if (which == 0) {
-                                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel://" + ChooseContactNumber));
+                                    Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel://" + Utils.mPersons.get(arg2).getmNums().get(0)));
                                     startActivity(intent);
                                 } else if (which == 1) {
                                     Boolean HaveSmsRecord = false;
@@ -264,7 +256,7 @@ public class RelationActivity extends Activity {
                                     if (!HaveSmsRecord) {
                                         Person_Sms person_sms = new Person_Sms();
                                         person_sms.Name = ChooseContactName;
-                                        person_sms.Number = ChooseContactNumber;
+                                        person_sms.Number = Utils.mPersons.get(arg2).getmNums().get(0);
 
                                         Intent intent = new Intent(RelationActivity.this, ChatActivity.class);
                                         Bundle mBundle = new Bundle();
@@ -299,7 +291,7 @@ public class RelationActivity extends Activity {
                                     bundle.putInt("tpye", 1);
                                     bundle.putString("id", ChooseContactID);
                                     bundle.putString("name", ChooseContactName);
-                                    bundle.putString("number", ChooseContactNumber);
+                                    bundle.putString("number", Utils.mPersons.get(arg2).getmNums().get(0));
 
                                     Intent intent = new Intent(RelationActivity.this, AddContactsActivity.class);
                                     intent.putExtra("person", bundle);
@@ -454,18 +446,16 @@ public class RelationActivity extends Activity {
         //遍历mArrayList
         for (int i = 0; i < Utils.mPersons.size(); i++) {
             //如果遍历到List包含所输入字符串
-            if (Utils.mPersons.get(i).mNum.indexOf(keyword) != -1
+            if (Utils.mPersons.get(i).getmNums().indexOf(keyword) != -1
                     || isStrInString(Utils.mPersons.get(i).mPY, keyword)
                     || Utils.mPersons.get(i).mName.contains(keyword)
                     || isStrInString(Utils.mPersons.get(i).mFisrtSpell, keyword)) {
                 //将遍历到的元素重新组成一个list
-
                 SortEntry entry = new SortEntry();
                 entry.mName = Utils.mPersons.get(i).mName;
                 entry.mID = Utils.mPersons.get(i).mID;
                 entry.mOrder = i;
                 entry.mPY = Utils.mPersons.get(i).mPY;
-                entry.mNum = Utils.mPersons.get(i).mNum;
                 mFilterList.add(entry);
             }
         }

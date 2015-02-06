@@ -38,12 +38,12 @@ public class ContactDetailAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return contact.mNums.size();
+        return contact.getmNums().size();
     }
 
     @Override
     public Object getItem(int position) {
-        return contact.mNums.get(position);
+        return contact.getmNums().get(position);
     }
 
     @Override
@@ -59,10 +59,10 @@ public class ContactDetailAdapter extends BaseAdapter{
         }
         TextView number = (TextView) convertView.findViewById(R.id.telTextView);
         ImageButton sms = (ImageButton) convertView.findViewById(R.id.imageButton);
-        number.setText(contact.mNums.get(position));
+        number.setText(contact.getmNums().get(position));
         //设置动作
-        number.setOnClickListener(new MyOnClickListener(contact.mNums.get(position)));
-        sms.setOnClickListener(new MyOnClickListener(contact.mNums.get(position)));
+        number.setOnClickListener(new MyOnClickListener(contact.getmNums().get(position)));
+        sms.setOnClickListener(new MyOnClickListener(contact.getmNums().get(position)));
         return convertView;
     }
     class MyOnClickListener implements View.OnClickListener{

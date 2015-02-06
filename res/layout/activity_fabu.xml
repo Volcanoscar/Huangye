@@ -1,251 +1,221 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="@color/white"
-        >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <ScrollView
-            android:id="@+id/MySearchScroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/Shop_details_bottomlayout"
+        android:layout_below="@+id/Shop_details_toplayout"
+        android:background="#F4F4F4">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:layout_margin="0dp"
+                android:background="@drawable/yy_calendar_bkg"
+                android:orientation="vertical"
+                android:padding="0dp">
 
-
-            <TableLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/search_list_bg"
-                    >
-
-                <TableRow
-                        android:layout_width="match_parent"
+                    android:background="@drawable/shopdetails_list_bkg"
+                    android:orientation="horizontal"
+                    android:padding="7dp">
+                    <TextView
+                        android:id="@+id/add_pic"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp"
-                        android:layout_marginTop="10dp"
-                        >
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="10.0dip"
+                        android:layout_marginTop="10.0dip"
+                        android:background="@drawable/publish_add_image_bg"
+                        android:gravity="center_horizontal" />
 
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal" >
-                        <LinearLayout
-                                android:id="@+id/Search_food"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical" >
-
-                            <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/home_icon_cg_sale" />
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="二手物品"/>
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal" >
-
-                        <LinearLayout
-                                android:id="@+id/Search_outing"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical" >
-
-                            <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/home_icon_cg_house" />
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="房产"
-                                    style="@style/category_des_text"/>
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal" >
-
-                        <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical" >
-
-                            <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/home_icon_cg_job" />
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="全职招聘"
-                                    style="@style/category_des_text"/>
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal" >
-
-                        <LinearLayout
-                                android:id="@+id/Search_hotel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical" >
-
-                            <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/home_icon_cg_jianzhi"/>
-
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="兼职招聘"
-                                    style="@style/category_des_text"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow
-                        android:layout_width="match_parent"
+                    <com.fujie.module.horizontalListView.HorizontalListView
+                        android:id="@+id/horizontalListView"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="15dp" >
+                        android:layout_marginBottom="10.0dip"
+                        android:layout_marginTop="10.0dip">
 
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                        </com.fujie.module.horizontalListView.HorizontalListView>
+                </LinearLayout>
+            </LinearLayout>
 
-                        <LinearLayout
-                                android:id="@+id/Search_pub"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical" >
+            <RelativeLayout
+                android:id="@+id/otherPhoneLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/item_bg">
 
-                            <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/home_icon_cg_car" />
+                <TextView
+                    android:id="@+id/otherPhoneTip"
+                    style="@style/defaultText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/other_phone_code" />
 
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="二手车"
-                                    style="@style/category_des_text" />
-                        </LinearLayout>
-                    </LinearLayout>
+                <TextView
+                    android:id="@+id/otherPhoneTextView"
+                    style="@style/defaultText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/otherPhoneTip" />
 
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal" >
+            </RelativeLayout>
 
-                        <LinearLayout
-                                android:id="@+id/Search_chinsesnack"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical" >
+            <View style="@style/horizontal_line" />
 
-                            <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/home_icon_cg_pets" />
+            <RelativeLayout
+                android:id="@+id/codeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/item_bg">
 
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="宠物" />
-                        </LinearLayout>
-                    </LinearLayout>
+                <TextView
+                    android:id="@+id/codeTip"
+                    style="@style/defaultText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/qq_code" />
 
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal" >
+                <TextView
+                    android:id="@+id/qqCodeTextView"
+                    style="@style/defaultText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/codeTip" />
 
-                        <LinearLayout
-                                android:id="@+id/Search_more"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical" >
+            </RelativeLayout>
 
-                            <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/home_icon_cg_shenghuo" />
+            <View style="@style/horizontal_line" />
 
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="家政服务"
-                                    style="@style/category_des_text"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:orientation="horizontal" >
+            <RelativeLayout
+                android:id="@+id/weixinLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/item_bg">
 
-                        <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/weixinTip"
+                    style="@style/defaultText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/weixin_code" />
 
-                            <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/home_icon_cg_shangjie" />
+                <TextView
+                    android:id="@+id/weixinCodeTextView"
+                    style="@style/defaultText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/weixinTip" />
 
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="本地服务"
-                                    style="@style/category_des_text"/>
-                        </LinearLayout>
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+            </RelativeLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <RelativeLayout
+                android:id="@+id/urlLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/item_bg">
+
+                <TextView
+                    android:id="@+id/urlTip"
+                    style="@style/defaultText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/url_address" />
+
+                <TextView
+                    android:id="@+id/urlTextView"
+                    style="@style/defaultText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/urlTip" />
+
+            </RelativeLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <RelativeLayout
+                android:id="@+id/yingyeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/item_bg">
+
+                <TextView
+                    android:id="@+id/yingyeTip"
+                    style="@style/defaultText"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/yingye_time" />
+
+                <TextView
+                    android:id="@+id/yingyeTextView"
+                    style="@style/defaultText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/yingyeTip" />
+
+            </RelativeLayout>
+
+            <View style="@style/horizontal_line" />
+
+            <RelativeLayout
+                android:id="@+id/shop_details_qita"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shopdetails_list_bkg">
+
+                <TextView
+                    android:id="@+id/shop_qita_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:paddingBottom="6dp"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="8dp"
+                    android:text="店铺介绍"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/shop_details_qita_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shop_qita_top"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:text="" />
+
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>

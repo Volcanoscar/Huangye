@@ -266,7 +266,7 @@ public class BatchDeleteActivity extends Activity{
             name.setText(mSortList.get(position).mName);
 
             TextView number = (TextView) convertView.findViewById(R.id.contacts_number);
-            number.setText(mSortList.get(position).mNum);
+            number.setText(mSortList.get(position).getmNum());
 
             if(mSortList.get(position).mchoose == true)
             {
