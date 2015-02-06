@@ -3,6 +3,7 @@ package com.fujie.module.activity;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.lidroid.xutils.ViewUtils;
 
@@ -27,5 +28,14 @@ public class AbstractTemplateActivity extends Activity {
         super.onBackPressed();
         BackApplication application = (BackApplication) getApplication();
         application.getActivityManager().popActivity(this);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

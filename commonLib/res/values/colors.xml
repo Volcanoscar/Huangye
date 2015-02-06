@@ -9,4 +9,16 @@
     <color name="white">#f5f5f5</color>
     <color name="yellow1">#f0f0f0f0</color>
     <color name="choose_eara_item_press_color">#F4F4F4</color>
+
+
+    <!-- 弹出框 -->
+    <color name="trans">#00000000</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+
+    <color name="custom">#ff0099CC</color>
+    <color name="sticky">#ffffcd5a</color>
+    <color name="black">#000000</color>
 </resources>

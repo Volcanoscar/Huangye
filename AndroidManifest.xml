@@ -254,7 +254,12 @@
             android:label="信息查询" />
         <activity
             android:name=".FabuActivity"
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
             android:label="发布信息" />
-
+        <activity
+            android:name=".ChangePicActivity"
+            android:label="选择图片"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            />
     </application>
 </manifest>

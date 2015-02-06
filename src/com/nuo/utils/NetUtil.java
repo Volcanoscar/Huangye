@@ -11,7 +11,9 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.nuo.bean.MsgSearchBean;
+import com.nuo.bean.Publish;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -228,6 +230,33 @@ public class NetUtil {
         HttpUtils http = new HttpUtils();
         http.send(HttpRequest.HttpMethod.POST,
                 "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/dianpu/info",
+                params,
+                requestCallBack);
+    }
+
+    /**
+     * 信息发布接口
+     * @param publish
+     * @param requestCallBack
+     */
+    public static void publish(Publish publish, RequestCallBack<String> requestCallBack) {
+        RequestParams params = new RequestParams();
+        params.addQueryStringParameter("data",Publish.toJson(publish));
+        HttpUtils http = new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST,
+                "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/fbxx/save",
+                params,
+                requestCallBack);
+    }
+
+    public static void uploadImg(List<String> imgAddList, RequestCallBack<String> requestCallBack) {
+        RequestParams params = new RequestParams();
+        for (String url : imgAddList) {
+            params.addBodyParameter("file", new File(url));
+        }
+        HttpUtils http = new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST,
+                "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/fbxx/save",
                 params,
                 requestCallBack);
     }

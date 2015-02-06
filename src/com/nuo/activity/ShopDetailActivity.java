@@ -108,9 +108,9 @@ public class ShopDetailActivity extends Activity {
     private void initView() {
         otherPhoneTextView = (TextView) findViewById(R.id.otherPhoneTextView);
         qqCodeTextView = (TextView) findViewById(R.id.qqCodeTextView);
-        weixinCodeTextView = (TextView) findViewById(R.id.weixinCodeTextView);
-        urlTextView = (TextView) findViewById(R.id.urlTextView);
-        yingyeTextView = (TextView) findViewById(R.id.yingyeTextView);
+        weixinCodeTextView = (TextView) findViewById(R.id.telTextView);
+        urlTextView = (TextView) findViewById(R.id.weixinCodeTextView);
+        yingyeTextView = (TextView) findViewById(R.id.qqTextView);
 
 
         MyOnClickListener myOnClickListener = new MyOnClickListener();
@@ -125,7 +125,7 @@ public class ShopDetailActivity extends Activity {
         shop_details_address_txt = (TextView) findViewById(R.id.shop_details_address_txt);
         phone = (TextView) findViewById(R.id.phone);
         contactPerson = (TextView) findViewById(R.id.contactPerson);
-        shop_details_qita_txt = (TextView) findViewById(R.id.shop_details_qita_txt);
+        shop_details_qita_txt = (TextView) findViewById(R.id.contentTextView);
         mShop_details_photo = (HorizontalListView) findViewById(R.id.horizontalListView);
         smallImageListViewAdapter = new SmallImageListViewAdapter(this, imgAddList);
         mShop_details_photo.setAdapter(smallImageListViewAdapter);

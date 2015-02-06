@@ -1,6 +1,7 @@
 package com.nuo.myfragment;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.bitmap.BitmapDisplayConfig;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadCallBack;
+import com.lidroid.xutils.bitmap.callback.BitmapLoadFrom;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.SimpleImageLoadingListener;
@@ -60,9 +66,30 @@ public class ImageDetailFragment extends Fragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		
-		
-		ImageLoader.getInstance().displayImage(mImageUrl, mImageView, new SimpleImageLoadingListener() {
+        BitmapUtils bitmapUtils = new BitmapUtils(getActivity());
+        bitmapUtils.display(mImageView,mImageUrl,new BitmapLoadCallBack<ImageView>() {
+            @Override
+            public void onLoadCompleted(ImageView imageView, String s, Bitmap bitmap, BitmapDisplayConfig bitmapDisplayConfig, BitmapLoadFrom bitmapLoadFrom) {
+                progressBar.setVisibility(View.GONE);
+                mAttacher.update();
+            }
+
+            @Override
+            public void onLoadFailed(ImageView imageView, String s, Drawable drawable) {
+                String message = null;
+                message = "未知的错误";
+                Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onLoadStarted(ImageView container, String uri, BitmapDisplayConfig config) {
+                super.onLoadStarted(container, uri, config);
+                progressBar.setVisibility(View.VISIBLE);
+            }
+        });
+
+		/*ImageLoader.getInstance().displayImage(mImageUrl, mImageView, new SimpleImageLoadingListener() {
 			@Override
 			public void onLoadingStarted(String imageUri, View view) {
 				progressBar.setVisibility(View.VISIBLE);
@@ -97,7 +124,7 @@ public class ImageDetailFragment extends Fragment {
 				progressBar.setVisibility(View.GONE);
 				mAttacher.update();
 			}
-		});
+		});*/
 	}
 
 }

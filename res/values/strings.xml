@@ -116,4 +116,17 @@
     <string name="url_address">网址</string>
     <string name="yingye_time">营业时间</string>
     <string name="other_phone_code">其他电话</string>
+
+
+    <string name="title">标&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;题</string>
+    <string name="service_area">服务区域</string>
+    <string name="service_jieshao">服务介绍</string>
+    <string name="service_qq_code">Q&#160;&#160;Q&#160;&#160;&#160;&#160;号</string>
+    <string name="service_tel">联系电话</string>
+    <string name="service_weixin_code">微&#160;&#160;信&#160;&#160;号</string>
+    <string name="title_tip">6-25个字</string>
+    <string name="jieshao_tip">10~2000个字之间，不能填写电话、QQ等联系方式或特殊符号，否则信息将会被删除</string>
+    <string name="fabu_btn">发布</string>
+    <string name="change_area_tip">选择区域</string>
+
 </resources>

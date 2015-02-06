@@ -5,6 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 /**
@@ -15,7 +18,7 @@ public class ChangeFabuTypeActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_fabu_type);
-
+        ViewUtils.inject(this);
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayShowHomeEnabled(false); //隐藏logo和icon
     }
@@ -24,7 +27,6 @@ public class ChangeFabuTypeActivity extends Activity {
      * 一级分类 点击事件
      * 一级分类包括：家政
      * <p/>
-     * *
      */
     @OnClick({R.id.jiazheng})
     public void testButtonClick(View v) { // 方法签名必须和接口中的要求一致

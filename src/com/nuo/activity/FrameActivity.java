@@ -53,8 +53,6 @@ public class FrameActivity extends ActivityGroup {
         setContentView(R.layout.activity_frame);
         // tab webchat
         initActionBar();
-
-
         //通讯录相关
         Utils.init(this);
         IntentFilter filter = new IntentFilter();
@@ -62,6 +60,10 @@ public class FrameActivity extends ActivityGroup {
         registerReceiver(mReceiver , filter);
         getLoaderManager().initLoader(0,null,m_ContactsCallback);
         initView();
+        String click =getIntent().getStringExtra("click");
+        if ("huangye".equals(click)) {
+            mMyBottemMyBtn.performClick();
+        }
         //检测版本
         DownLoadManager.checkVersion(FrameActivity.this, false);
     }

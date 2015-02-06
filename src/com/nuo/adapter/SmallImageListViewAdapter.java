@@ -2,6 +2,8 @@ package com.nuo.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +41,10 @@ public class SmallImageListViewAdapter extends BaseAdapter {
         }
     }
 
+    public void addLocalImgAddList(String img) {
+        this.imgAddList.add(img);
+    }
+
     @Override
     public int getCount() {
         return imgAddList.size();
@@ -73,12 +79,13 @@ public class SmallImageListViewAdapter extends BaseAdapter {
         }
         // 加载网络图片
         bitmapUtils.display(vh.im, imgAddList.get(position));
-
-       /* vh.im.setOnClickListener(new View.OnClickListener() {
+        /*vh.im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String[] urls = new String[imgAddList.size()];
+                urls = imgAddList.toArray(urls);
                 Intent intent = new Intent(context, ImagePagerActivity.class);
-                intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_URLS,imgAddList.toArray());
+                intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_URLS, urls);
                 intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_INDEX, position);
                 context.startActivity(intent);
             }

@@ -225,7 +225,7 @@
                         />
                 <TextView
                         android:layout_toRightOf="@+id/weixinTip"
-                        android:id="@+id/weixinCodeTextView"
+                        android:id="@+id/telTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/defaultText"
@@ -250,7 +250,7 @@
                         />
                 <TextView
                         android:layout_toRightOf="@+id/urlTip"
-                        android:id="@+id/urlTextView"
+                        android:id="@+id/weixinCodeTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/defaultText"
@@ -275,7 +275,7 @@
                         />
                 <TextView
                         android:layout_toRightOf="@+id/yingyeTip"
-                        android:id="@+id/yingyeTextView"
+                        android:id="@+id/qqTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         style="@style/defaultText"
@@ -306,7 +306,7 @@
                         android:textSize="14sp"/>
 
                 <TextView
-                        android:id="@+id/shop_details_qita_txt"
+                        android:id="@+id/contentTextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/shop_qita_top"

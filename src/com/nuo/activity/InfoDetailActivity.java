@@ -82,7 +82,7 @@ public class InfoDetailActivity extends Activity {
         mShop_details_name = (TextView) findViewById(R.id.Shop_details_name);
         shop_details_address_txt = (TextView) findViewById(R.id.shop_details_address_txt);
         phone = (TextView) findViewById(R.id.phone);
-        shop_details_qita_txt = (TextView) findViewById(R.id.shop_details_qita_txt);
+        shop_details_qita_txt = (TextView) findViewById(R.id.contentTextView);
         mShop_details_photo = (HorizontalListView) findViewById(R.id.horizontalListView);
         smallImageListViewAdapter = new SmallImageListViewAdapter(this,imgAddList);
         mShop_details_photo.setAdapter(smallImageListViewAdapter);
