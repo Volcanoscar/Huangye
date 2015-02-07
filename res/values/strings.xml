@@ -128,5 +128,6 @@
     <string name="jieshao_tip">10~2000个字之间，不能填写电话、QQ等联系方式或特殊符号，否则信息将会被删除</string>
     <string name="fabu_btn">发布</string>
     <string name="change_area_tip">选择区域</string>
+    <string name="system_error">系统出现异常，我们会尽快修复。</string>
 
 </resources>

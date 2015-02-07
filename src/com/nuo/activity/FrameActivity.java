@@ -15,6 +15,7 @@ import com.nuo.adapter.SmsLoaderListener;
 import com.nuo.common.DownLoadManager;
 import com.nuo.utils.PreferenceConstants;
 import com.nuo.utils.PreferenceUtils;
+import com.nuo.utils.ShortcutUtils;
 import com.nuo.utils.Utils;
 import com.nuo.view.NoScrollViewPager;
 
@@ -66,6 +67,10 @@ public class FrameActivity extends ActivityGroup {
         }
         //检测版本
         DownLoadManager.checkVersion(FrameActivity.this, false);
+        //添加快捷方式
+       /* if(!ShortcutUtils.hasInstallShortcut(FrameActivity.this)) {
+            sendBroadcast(ShortcutUtils.getShortcutToDesktopIntent(FrameActivity.this));
+        }*/
     }
 
     private void initActionBar() {
@@ -146,7 +151,7 @@ public class FrameActivity extends ActivityGroup {
                 @Override
                 public boolean onMenuItemClick(MenuItem menuItem) {
                     //跳转到发布界面
-                    if (accountId!=-1) {  //进入店铺详情
+                    if (accountId!=-1) {  //进入发布详情
                         Intent intent = new Intent(FrameActivity.this, ChangeFabuTypeActivity.class);
                         startActivity(intent);
                     }else{  //进入登录界面

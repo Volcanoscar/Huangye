@@ -15,7 +15,12 @@ public class ViewBean {
     private String text;
     private String id;
     private String img;
+    /**
+     * 是否是二级菜单
+     */
     private boolean parent;
+
+    private String parentId;
     private List<ViewBean> bizAreaList;
     private static ViewBean categoryViewBean;
     private static ViewBean districtViewBean;
@@ -26,6 +31,14 @@ public class ViewBean {
         districtViewBean = new ViewBean();
         districtViewBean.setText("区域");
         districtViewBean.setParent(true);
+    }
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
     }
 
     public static ViewBean getCategoryViewBean() {

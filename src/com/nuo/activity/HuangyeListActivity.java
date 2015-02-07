@@ -141,6 +141,7 @@ public class HuangyeListActivity extends Activity implements XListView.IXListVie
                 //清空列表数据
                 list.clear();
                 currPage=1;
+
                 getData(1);
             }
         });

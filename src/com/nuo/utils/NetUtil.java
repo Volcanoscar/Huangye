@@ -251,12 +251,12 @@ public class NetUtil {
 
     public static void uploadImg(List<String> imgAddList, RequestCallBack<String> requestCallBack) {
         RequestParams params = new RequestParams();
-        for (String url : imgAddList) {
-            params.addBodyParameter("file", new File(url));
+        for (int i=0;i<imgAddList.size();i++) {
+            params.addBodyParameter("file"+i, new File(imgAddList.get(i)));
         }
         HttpUtils http = new HttpUtils();
         http.send(HttpRequest.HttpMethod.POST,
-                "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/fbxx/save",
+                "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/upload/batchUpload",
                 params,
                 requestCallBack);
     }

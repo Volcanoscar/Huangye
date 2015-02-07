@@ -83,6 +83,14 @@ public class Publish {
         this.district = district;
     }
 
+    public void addDistrict(String dis) {
+        this.district.add(dis);
+    }
+
+    public void clearDistrict() {
+        this.district.clear();
+    }
+
     public List<String> getBizArea() {
         return bizArea;
     }
@@ -93,6 +101,9 @@ public class Publish {
 
     public void addBizArea(String temp) {
         bizArea.add(temp);
+    }
+    public void clearBizArea() {
+        bizArea.clear();
     }
 
     public List<String> getImg() {
@@ -121,5 +132,9 @@ public class Publish {
     public static String toJson(Publish publish) {
         Gson json = new Gson();
        return json.toJson(publish);
+    }
+
+    public void clearTypeList() {
+        typeList.clear();
     }
 }

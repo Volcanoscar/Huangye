@@ -56,6 +56,24 @@ public class District {
         return districts;
     }
 
+    public static List<District> parseFabuMap(String result) {
+        List<District> districts = new ArrayList<District>();
+        Gson gson = new Gson();
+        List<District> resultDistrictList = gson.fromJson(result, new TypeToken<List<District>>() {
+        }.getType());
+        for (District district1 : resultDistrictList) {
+            List<BizArea> bizAreas = new ArrayList<BizArea>();
+            BizArea bizArea = new BizArea();
+            bizArea.setBizareaName("全部商圈");
+            bizArea.setDistrictCode(district1.getDistrictCode());
+            bizAreas.add(bizArea);
+            bizAreas.addAll(district1.getBizAreaList());
+            district1.setBizAreaList(bizAreas);
+        }
+        districts.addAll(resultDistrictList);
+        return districts;
+    }
+
     public static List<ViewBean> convertDistrictToViewBean(List<District> removeDistrictList) {
         List<ViewBean> mapList = new ArrayList<ViewBean>();
         for (final District district : removeDistrictList) {
@@ -70,6 +88,7 @@ public class District {
                     if (bizArea.getBizareaId() != null) {
                         temp.setId(bizArea.getBizareaId().toString());
                     }
+                    temp.setParentId(bizArea.getDistrictCode());
                     chirdViewBean.add(temp);
                 }
             }

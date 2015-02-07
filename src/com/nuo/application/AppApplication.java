@@ -1,14 +1,19 @@
 package com.nuo.application;
 
 import android.app.Application;
+import android.content.Intent;
+
 import com.fujie.module.activity.BackApplication;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nuo.activity.FrameActivity;
 import com.nuo.activity.R;
 import com.nuo.db.SQLHelper;
+import com.nuo.utils.T;
 
-public class AppApplication extends BackApplication {
+public class AppApplication extends BackApplication implements
+        Thread.UncaughtExceptionHandler{
     private static AppApplication mAppApplication;
     private SQLHelper sqlHelper;
 
@@ -18,8 +23,23 @@ public class AppApplication extends BackApplication {
         super.onCreate();
         mAppApplication = this;
         initImageLoader();
+        //设置Thread Exception Handler
+        Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
+    /**
+     * uncaughtException方法中处理异常，这里我们关闭App并启动我们需要的Activity
+     * @param thread
+     * @param ex
+     */
+    @Override
+    public void uncaughtException(Thread thread, Throwable ex) {
+        Intent intent = new Intent(this,FrameActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        T.showShort(this,R.string.system_error);
+        this.startActivity(intent);
+        android.os.Process.killProcess(android.os.Process.myPid());  //结束进程之前可以把你程序的注销或者退出代码放在这段代码之前
+    }
     private void initImageLoader() {
         DisplayImageOptions defaultOptions = new DisplayImageOptions
                 .Builder()

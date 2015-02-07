@@ -95,66 +95,6 @@
             </RelativeLayout>
             <View style="@style/horizontal_line" />
             <RelativeLayout
-                android:id="@+id/weixinLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/item_bg">
-                <TextView
-                    android:id="@+id/weixinTip"
-                    style="@style/defaultText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/service_tel" />
-                <EditText
-                    android:id="@+id/telTextView"
-                    style="@style/input"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/weixinTip" />
-            </RelativeLayout>
-            <View style="@style/horizontal_line" />
-            <RelativeLayout
-                android:id="@+id/urlLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/item_bg">
-                <TextView
-                    android:id="@+id/urlTip"
-                    style="@style/defaultText"
-                   android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/service_weixin_code" />
-                <EditText
-                    android:id="@+id/weixinCodeTextView"
-                    style="@style/input"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/urlTip" />
-            </RelativeLayout>
-            <View style="@style/horizontal_line" />
-            <RelativeLayout
-                android:id="@+id/yingyeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/item_bg">
-                <TextView
-                    android:id="@+id/yingyeTip"
-                    style="@style/defaultText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="@string/service_qq_code" />
-                <EditText
-                    android:id="@+id/qqTextView"
-                    style="@style/input"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/yingyeTip" />
-            </RelativeLayout>
-            <View style="@style/horizontal_line" />
-            <RelativeLayout
                 android:id="@+id/shop_details_qita"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

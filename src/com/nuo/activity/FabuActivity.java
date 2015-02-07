@@ -17,7 +17,9 @@ import com.fujie.module.dialog.AlertDialog;
 import com.fujie.module.horizontalListView.HorizontalListView;
 import com.fujie.module.horizontalListView.ViewBean;
 import com.fujie.module.tab.SpinnerPopWindow;
+import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
@@ -27,11 +29,14 @@ import com.nuo.adapter.SmallImageListViewAdapter;
 import com.nuo.bean.District;
 import com.nuo.bean.Publish;
 import com.nuo.bean.ShengHuoType;
+import com.nuo.bean.UploadImageInfo;
+import com.nuo.bean.UserInfo;
 import com.nuo.handler.TimeOutHandler;
 import com.nuo.utils.NetUtil;
 import com.nuo.utils.PreferenceConstants;
 import com.nuo.utils.PreferenceUtils;
 import com.nuo.utils.T;
+import com.nuo.utils.XutilHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,14 +60,6 @@ public class FabuActivity extends AbstractTemplateActivity {
 
     @ViewInject(R.id.titleTextView)
     private TextView titleTextView;
-    @ViewInject(R.id.telTextView)
-    private TextView telTextView;
-
-    @ViewInject(R.id.weixinCodeTextView)
-    private TextView weixinCodeTextView;
-    @ViewInject(R.id.qqTextView)
-    private TextView qqTextView;
-
     @ViewInject(R.id.contentTextView)
     private TextView contentTextView;
 
@@ -141,6 +138,7 @@ public class FabuActivity extends AbstractTemplateActivity {
                                 @Override
                                 public void onItemClick(String tag, ViewBean viewBean, int position) {
                                     tipTextView.setText(viewBean.getText());
+                                    publish.clearTypeList();
                                     if (filterTabViewBeanList.size() == 1) { //没有四级分类
                                         publish.addTypeList(viewBean.getId());
                                     } else { //有四级分类
@@ -155,6 +153,7 @@ public class FabuActivity extends AbstractTemplateActivity {
                     nameTextView.setId(1);
                     nameTextView.setText(temp.getText());
                     nameTextView.setTextColor(getResources().getColor(R.color.grey));
+                    nameTextView.setMinWidth(SystemMethod.dip2px(FabuActivity.this, 60));
                     RelativeLayout.LayoutParams nameTextViewLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                     nameTextViewLayoutParams.setMargins(SystemMethod.dip2px(FabuActivity.this, 10), 0, 0, 0);
                     nameTextViewLayoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
@@ -214,35 +213,59 @@ public class FabuActivity extends AbstractTemplateActivity {
 
     private void savePublish() {
         //判断
-        publish.setQq(qqTextView.getText().toString());
-        publish.setWeixin(weixinCodeTextView.getText().toString());
+        if ("".equals(contentTextView.getText().toString())) {
+            T.showShort(FabuActivity.this,"服务介绍不能为空");
+            return ;
+        }
+        if ("".equals(titleTextView.getText().toString())) {
+            T.showShort(FabuActivity.this,"标题不能为空");
+            return ;
+        }
         publish.setContent(contentTextView.getText().toString());
         publish.setTitle(titleTextView.getText().toString());
         publish.setLevel1Code(parentTypeCode);
         publish.setLevel2Code(typeCode);
-        String userId =PreferenceUtils.getPrefString(FabuActivity.this, PreferenceConstants.ACCOUNT_ID,"");
-        publish.setUserId(userId);
+        Integer userId = PreferenceUtils.getPrefInt(FabuActivity.this, PreferenceConstants.ACCOUNT_ID, -1);
+        DbUtils dbUtils = XutilHelper.getDB(FabuActivity.this);
+        try {
+            UserInfo userInfo = dbUtils.findById(UserInfo.class, userId);
+            publish.setUserId(userInfo.getUserId());
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
         //上传图片
-        NetUtil.uploadImg(smallImageListViewAdapter.getImgAddList(), new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> stringResponseInfo) {
-                uploadPublish();
-            }
+        if (smallImageListViewAdapter.getImgAddList().isEmpty()) {
+            uploadPublish(true);
+        } else {
+            NetUtil.uploadImg(smallImageListViewAdapter.getImgAddList(), new RequestCallBack<String>() {
+                @Override
+                public void onSuccess(ResponseInfo<String> stringResponseInfo) {
+                    List<UploadImageInfo> imageInfos = UploadImageInfo.parseMap(stringResponseInfo.result);
+                    List<String> filePath = new ArrayList<String>();
+                    for (UploadImageInfo info : imageInfos) {
+                        filePath.add(info.getFilePath());
+                    }
+                    publish.setImg(filePath);
+                    uploadPublish(false);
+                }
 
-            @Override
-            public void onFailure(HttpException e, String s) {
-                T.showShort(FabuActivity.this, R.string.net_error);
-                timeOutHandler.stop();
-            }
+                @Override
+                public void onFailure(HttpException e, String s) {
+                    T.showShort(FabuActivity.this, R.string.net_error);
+                    timeOutHandler.stop();
+                }
 
-            @Override
-            public void onStart() {
-                timeOutHandler.start(null);
-            }
-        });
+                @Override
+                public void onStart() {
+                    super.onStart();
+                    timeOutHandler.start(null);
+                }
+            });
+        }
+
     }
 
-    private void uploadPublish() {
+    private void uploadPublish(final boolean openDialog) {
         //上传
         NetUtil.publish(publish, new RequestCallBack<String>() {
             @Override
@@ -256,7 +279,7 @@ public class FabuActivity extends AbstractTemplateActivity {
                                 intent.putExtra("click", "huangye");
                                 startActivity(intent);
                             }
-                        });
+                        }).show();
 
             }
 
@@ -264,6 +287,14 @@ public class FabuActivity extends AbstractTemplateActivity {
             public void onFailure(HttpException e, String s) {
                 T.showShort(FabuActivity.this, R.string.net_error);
                 timeOutHandler.stop();
+            }
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                if (openDialog) {
+                    timeOutHandler.start(null);
+                }
             }
         });
     }
@@ -276,7 +307,7 @@ public class FabuActivity extends AbstractTemplateActivity {
             @Override
             public void onSuccess(ResponseInfo<String> stringResponseInfo) {
                 //初始化数据
-                List<District> removeDistrictList = District.parseMap(stringResponseInfo.result);
+                List<District> removeDistrictList = District.parseFabuMap(stringResponseInfo.result);
                 List<ViewBean> mapList = District.convertDistrictToViewBean(removeDistrictList);
                 //初始化filterTabLayout
                 ViewBean viewBean = ViewBean.getDistrictViewBean();
@@ -286,8 +317,15 @@ public class FabuActivity extends AbstractTemplateActivity {
                 puCountyWindow.setItemSelectListener(new SpinnerPopWindow.IOnItemSelectListener() {
                     @Override
                     public void onItemClick(String tag, ViewBean viewBean, int position) {
+                        publish.clearBizArea();
+                        publish.clearDistrict();
                         changeAreaTextView.setText(viewBean.getText());
-                        publish.addBizArea(viewBean.getId());
+                        if(viewBean.getId()==null||viewBean.getId().isEmpty()){//选中的是全部商圈
+                            publish.addBizArea(viewBean.getId());
+                        }else{
+                            publish.addDistrict(viewBean.getParentId());
+                            publish.addBizArea(viewBean.getId());
+                        }
                     }
                 });
                 puCountyWindow.showAtLocation(main, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
