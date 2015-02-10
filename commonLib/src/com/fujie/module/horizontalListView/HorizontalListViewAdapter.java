@@ -144,7 +144,6 @@ public class HorizontalListViewAdapter extends BaseAdapter {
                     ((TextView)titleBarView).setText(viewBean.getText());
                 }
                 selectedTab.put(tag, viewBean); //有的覆盖，没有的添加
-
                 if (tabClickListener != null&& !selectedTab.isEmpty()) {
                     List<ViewBean> viewBeanList = new ArrayList<ViewBean>();
                     for (Map.Entry<String, ViewBean> temp : selectedTab.entrySet()) {
