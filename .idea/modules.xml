@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Huangye2.iml" filepath="$PROJECT_DIR$/Huangye2.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonLib/commonLib.iml" filepath="$PROJECT_DIR$/commonLib/commonLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaapk.com-MyAnjoyoLiuxiaowei.iml" filepath="$PROJECT_DIR$/javaapk.com-MyAnjoyoLiuxiaowei.iml" />
     </modules>

@@ -272,7 +272,7 @@
             android:name=".AddNoteBookActivity"
             android:label="添加笔记" />
         <activity
-            android:name=".PreviewNoteBook"
+            android:name=".PreviewNoteBookActivity"
             android:label="预览笔记" />
 
         <receiver android:name="com.nuo.broadcastreceiver.BootBroadcastReceiver">

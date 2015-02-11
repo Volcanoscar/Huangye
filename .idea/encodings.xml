@@ -14,6 +14,7 @@
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/MainActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/MoreActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/MyActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/nuo/activity/PreviewNoteBookActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RankingList_more.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/RegistrationActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/nuo/activity/SearchActivity.java" charset="UTF-8" />
@@ -50,4 +51,3 @@
     <file url="file://$PROJECT_DIR$/src/com/nuo/view/DragGrid.java" charset="UTF-8" />
   </component>
 </project>
-
