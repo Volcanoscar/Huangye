@@ -74,7 +74,6 @@ public class RelationActivity extends Activity {
 
 
     private void keyPressed(int keyCode) {
-
         if (number_layout.getVisibility() == View.GONE) {
             number_layout.setVisibility(View.VISIBLE);
         }
@@ -174,25 +173,26 @@ public class RelationActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int arg2, long l) {
                 Vibrator vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
                 vib.vibrate(50);
-
-                /*if("".equals(m_FilterEditText.getText().toString()))
-                {*/
+                SortEntry sortEntry=null;
+                if("".equals(phoneNumber_edit.getText().toString()))
+                {
                 ChooseContactName = Utils.mPersons.get(arg2).mName;
                 ChooseContactID = Utils.mPersons.get(arg2).mID;
-                /*}
+                    sortEntry = Utils.mPersons.get(arg2);
+                }
                 else
 				{
 					ChooseContactName = mFilterList.get(arg2).mName;
-					ChooseContactNumber = mFilterList.get(arg2).mNum;
 					ChooseContactID = mFilterList.get(arg2).mID;
-				}*/
+                    sortEntry =mFilterList.get(arg2);
+				}
                 Bundle bundle = new Bundle();
                 bundle.putInt("tpye", 0);
                 bundle.putString("name", ChooseContactName);
-                bundle.putSerializable("contact", Utils.mPersons.get(arg2));
+                bundle.putSerializable("contact",sortEntry);
                 int index = -1;
                 for (int i = 0; i < Utils.mPersonSmsList.size(); i++) {
-                    if (Utils.mPersons.get(arg2).getmNums().contains(Utils.mPersonSmsList.get(i).Number)) {
+                    if (sortEntry.getmNums().contains(Utils.mPersonSmsList.get(i).Number)) {
                         index = i;
                     }
                 }
@@ -217,17 +217,16 @@ public class RelationActivity extends Activity {
 
                 Vibrator vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
                 vib.vibrate(50);
-				/*if("".equals(m_FilterEditText.getText().toString()))
-				{*/
+				if("".equals(phoneNumber_edit.getText().toString()))
+				{
                 ChooseContactName = Utils.mPersons.get(arg2).mName;
                 ChooseContactID = Utils.mPersons.get(arg2).mID;
-				/*}
+				}
 				else
 				{
 					ChooseContactName = mFilterList.get(arg2).mName;
-					ChooseContactNumber = mFilterList.get(arg2).mNum;
 					ChooseContactID = mFilterList.get(arg2).mID;
-				}*/
+				}
 
                 AlertDialog ListDialog = new AlertDialog.Builder(RelationActivity.this).
                         setTitle(ChooseContactName).
@@ -446,17 +445,19 @@ public class RelationActivity extends Activity {
         //遍历mArrayList
         for (int i = 0; i < Utils.mPersons.size(); i++) {
             //如果遍历到List包含所输入字符串
-            if (Utils.mPersons.get(i).getmNums().indexOf(keyword) != -1
+            boolean hasKey= false;
+            for(String key: Utils.mPersons.get(i).getmNums()) {
+                if (key.indexOf(keyword) != -1) {
+                    hasKey=true;
+                    break;
+                }
+            }
+            if (hasKey
                     || isStrInString(Utils.mPersons.get(i).mPY, keyword)
                     || Utils.mPersons.get(i).mName.contains(keyword)
                     || isStrInString(Utils.mPersons.get(i).mFisrtSpell, keyword)) {
                 //将遍历到的元素重新组成一个list
-                SortEntry entry = new SortEntry();
-                entry.mName = Utils.mPersons.get(i).mName;
-                entry.mID = Utils.mPersons.get(i).mID;
-                entry.mOrder = i;
-                entry.mPY = Utils.mPersons.get(i).mPY;
-                mFilterList.add(entry);
+                mFilterList.add(Utils.mPersons.get(i));
             }
         }
     }

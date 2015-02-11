@@ -67,6 +67,7 @@ public class NoteBookActivity extends AbstractTemplateActivity {
                 case R.id.tel_show:
                     Intent intent = new Intent(this,AddNoteBookActivity.class);
                     startActivity(intent);
+                    finish();
                     break;
             }
     }

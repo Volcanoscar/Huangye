@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.nuo.activity.R;
 import com.nuo.cursor.ContactsCursor;
+import com.nuo.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -60,8 +61,17 @@ public class FilterAdapter extends BaseAdapter {
 
         //电话号码显示
         TextView numberCtrl = (TextView)arg1.findViewById(R.id.contacts_number);
-        String strNumber = data.get(arg0).getmNum();
-        numberCtrl.setText(Html.fromHtml(strNumber.replace(keyword,"<font color=\"#0000cc\">"+keyword+"</font>")));
+        String lastKeyword= "";
+        for(String key: Utils.mPersons.get(arg0).getmNums()) {
+            if (key.indexOf(keyword) != -1) {
+                if (lastKeyword.equals("")) {
+                    lastKeyword += key;
+                }else{
+                    lastKeyword ="\n"+ key;
+                }
+            }
+        }
+        numberCtrl.setText(Html.fromHtml(lastKeyword.replace(keyword,"<font color=\"#0000cc\">"+keyword+"</font>")));
 
         ImageView chooseView = (ImageView)arg1.findViewById(R.id.choose_contact);
         chooseView.setVisibility(View.GONE);

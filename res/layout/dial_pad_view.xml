@@ -14,24 +14,17 @@
                     android:layout_height="50dp"
                     android:visibility="gone"
                     android:layout_weight="1.0">
-        <TextView android:textSize="@dimen/dial_input_detail_textSize"
-                  android:textColor="@color/dial_inputarea_detail_textColor"
-                  android:gravity="top|center"
-                  android:id="@id/location_tv"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:singleLine="true"
-                  android:layout_centerVertical="true"/>
-        <EditText android:textSize="@dimen/dial_input_textSize"
-                  android:textColor="@color/dial_inputarea_textColor"
+        <EditText
+                  android:textSize="@dimen/dial_input_textSize"
                   android:gravity="center"
                   android:id="@id/phoneNumber_edit"
                   android:background="@*android:color/transparent"
-                  android:paddingLeft="@dimen/dial_input_paddingHorizontal" android:paddingTop="0.0dip"
-                  android:paddingRight="@dimen/dial_input_paddingHorizontal" android:paddingBottom="0.0dip"
-                  android:layout_width="fill_parent" android:layout_height="fill_parent"
-                  android:layout_marginBottom="@dimen/dial_input_marginBottom" android:singleLine="true"
-                  android:inputType="phone" android:textCursorDrawable="@null"/>
+                  android:paddingLeft="@dimen/dial_input_paddingHorizontal"
+                  android:paddingRight="@dimen/dial_input_paddingHorizontal"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:singleLine="true"
+                  android:inputType="phone"/>
     </RelativeLayout>
     <View android:background="@color/line_weak_dial"
           android:layout_width="fill_parent"

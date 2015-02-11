@@ -3,6 +3,7 @@ package com.nuo.adapter;
 import java.util.List;
 
 import com.fujie.module.gridview.NoScrollGridView;
+import com.fujie.module.horizontalListView.ViewBean;
 import com.nuo.activity.ImagePagerActivity;
 import com.nuo.activity.PreviewNoteBookActivity;
 import com.nuo.activity.R;
@@ -53,7 +54,8 @@ public class NoteBookAdapter extends BaseAdapter{
 		if (convertView == null) {
 			holder = new ViewHolder();
 			convertView = mInflater.inflate(R.layout.item_notebook, null);
-			holder.time=(TextView)convertView.findViewById(R.id.time);
+			holder.time_day=(TextView)convertView.findViewById(R.id.time_day);
+			holder.time_month=(TextView)convertView.findViewById(R.id.time_month);
 			holder.name=(TextView)convertView.findViewById(R.id.name);
 			holder.content = (TextView) convertView.findViewById(R.id.content);
 			holder.gridView=(NoScrollGridView)convertView.findViewById(R.id.gridView);
@@ -67,7 +69,13 @@ public class NoteBookAdapter extends BaseAdapter{
 		/*ImageLoader.getInstance().displayImage(bean.avator, holder.avator);*/
 		holder.name.setText(bean.getTitle());
 		holder.content.setText(bean.getContent());
-        holder.time.setText(DateUtil.dateToStr(bean.getCreate_time(),"yyyy-MM-dd"));
+		String dateStr = DateUtil.format(bean.getCreate_time());
+		if (dateStr==null) {
+			holder.time_day.setText(DateUtil.dateToStr(bean.getCreate_time(),"dd")); //创建时间还修改时间？
+			holder.time_month.setText(DateUtil.dateToStr(bean.getCreate_time(),"MM月")); //创建时间还修改时间？
+		}else{
+			holder.time_month.setText(dateStr);
+		}
 		if(bean.urls!=null&&bean.urls.length>0){
 			holder.gridView.setVisibility(View.VISIBLE);
 			holder.gridView.setAdapter(new GridAdapter(bean.urls, mContext));
@@ -107,5 +115,7 @@ public class NoteBookAdapter extends BaseAdapter{
 		NoScrollGridView gridView;
         public TextView time;
         public RelativeLayout notebook_layout;
-    }
+		public TextView time_day;
+		public TextView time_month;
+	}
 }
