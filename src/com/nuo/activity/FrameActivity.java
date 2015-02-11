@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.view.*;
+import android.view.animation.AnimationUtils;
 import android.widget.*;
 import com.nuo.adapter.ContactsLoaderListener;
 import com.nuo.adapter.SmsLoaderListener;
@@ -187,20 +188,18 @@ public class FrameActivity extends ActivityGroup {
             getMenuInflater().inflate(R.menu.tuan_details, menu);
             actionBar.setTitle(R.string.tool);
         }
-        else if(currItem==4){ //我
-            getMenuInflater().inflate(R.menu.me_action, menu);
-            actionBar.setTitle(R.string.me);
-        }
         //每个动作栏中都有反馈项
         MenuItem feedbackItem =menu.findItem(R.id.action_feedback);
-        feedbackItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                Intent intent = new Intent(FrameActivity.this, FeedBackActivity.class);
-                startActivity(intent);
-                return true;
-            }
-        });
+        if(feedbackItem!=null){
+            feedbackItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    Intent intent = new Intent(FrameActivity.this, FeedBackActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+            });
+        }
         return true;
     }
 
@@ -410,7 +409,10 @@ public class FrameActivity extends ActivityGroup {
             switch (mBtnid) {
                 case R.id.center_layout:
                     // //设置我们的viewpager跳转那个界面0这个参数和我们的list相关,相当于list里面的下标
-                    mViewPager.setCurrentItem(4);
+                    //mViewPager.setCurrentItem(4);
+                    Intent intent = new Intent(FrameActivity.this, CenterActivity.class);
+                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                    startActivity(intent);
                     initBottemBtn();
                     center_img
                             .setImageResource(R.drawable.wb_home_tap_center_pressed);

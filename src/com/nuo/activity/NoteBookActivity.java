@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.fujie.module.activity.AbstractTemplateActivity;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
@@ -46,7 +47,7 @@ public class NoteBookActivity extends AbstractTemplateActivity {
     private void initData() {
         dbUtil = XutilHelper.getDB(NoteBookActivity.this);
         try {
-            noteBookList = dbUtil.findAll(NoteBook.class);
+            noteBookList = dbUtil.findAll(Selector.from(NoteBook.class).orderBy("create_time",true));
         } catch (DbException e) {
             e.printStackTrace();
         }

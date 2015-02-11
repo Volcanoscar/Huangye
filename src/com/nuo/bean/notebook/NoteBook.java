@@ -25,7 +25,7 @@ public class NoteBook extends EntityBase {
     @Column(column = "notebook_label")
     private String label ;
 
-    public String[] urls= new String[]{"http://img0.bdstatic.com/img/image/shouye/leimu/mingxing1.jpg"};
+    public String[] urls;
 
     public String getTitle() {
         return title;

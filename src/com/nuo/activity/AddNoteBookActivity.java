@@ -102,10 +102,16 @@ public class AddNoteBookActivity extends AbstractTemplateActivity {
                 NoteBook noteBook = new NoteBook();
                 noteBook.setTitle(titleEditText.getText().toString());
                 noteBook.setContent(contentEditText.getText().toString());
-                noteBook.setCreate_time(date);
                 noteBook.setUpdate_time(date);
                 try {
-                    dbUtils.saveBindingId(noteBook);
+                    if (id != -1) {
+                        noteBook.setId(id);
+                        dbUtils.update(noteBook,"title","content","update_time");
+                    }else{
+                        noteBook.setCreate_time(date);
+                        dbUtils.saveBindingId(noteBook);
+                    }
+
                 } catch (DbException e) {
                     e.printStackTrace();
                 }

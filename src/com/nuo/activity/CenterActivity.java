@@ -1,33 +1,123 @@
 package com.nuo.activity;
 
-import android.app.Activity;
-import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.app.Activity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.ImageView;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 
-import android.widget.RelativeLayout;
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
-import com.lidroid.xutils.view.annotation.event.OnChildClick;
-import com.lidroid.xutils.view.annotation.event.OnClick;
+import com.nuo.fragment.MenuFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zxl on 2015/2/10.
  */
-public class CenterActivity extends Activity {
+public class CenterActivity extends FragmentActivity implements ViewPager.OnPageChangeListener {
+
+
+    private ViewPager viewPager;
+
+    private ImageView[] tips;
+
+    private List<Fragment> fragmentList= new ArrayList<Fragment>();
+    private ViewGroup group;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_center);
-        RelativeLayout notebookLayout = (RelativeLayout) findViewById(R.id.notebookLayout);
-        notebookLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CenterActivity.this, NoteBookActivity.class);
-                startActivity(intent);
+        group = (ViewGroup)findViewById(R.id.viewGroup);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        initData();
+    }
+
+    private void initData() {
+        MenuFragment menuFragment = new MenuFragment();
+        fragmentList.add(menuFragment);
+        tips = new ImageView[fragmentList.size()];
+        for(int i=0; i<tips.length; i++){
+            ImageView imageView = new ImageView(this);
+            imageView.setLayoutParams(new LayoutParams(10,10));
+            tips[i] = imageView;
+            if(i == 0){
+                tips[i].setBackgroundResource(R.drawable.page_indicator_focused);
+            }else{
+                tips[i].setBackgroundResource(R.drawable.page_indicator_unfocused);
             }
-        });
+            group.addView(imageView);
+        }
+
+        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+        viewPager.setOnPageChangeListener(this);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        finish();
+        return true;
+    }
+
+    /**
+     *
+     * @author xiaanming
+     *
+     */
+    public class MyPagerAdapter extends FragmentPagerAdapter {
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return "";
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragmentList.get(position);
+        }
+    }
+
+
+    @Override
+    public void onPageScrollStateChanged(int arg0) {
+
+    }
+
+    @Override
+    public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+    }
+
+    @Override
+    public void onPageSelected(int arg0) {
+        setImageBackground(arg0 % fragmentList.size());
+    }
+    /**
+     * @param selectItems
+     */
+    private void setImageBackground(int selectItems){
+        for(int i=0; i<tips.length; i++){
+            if(i == selectItems){
+                tips[i].setBackgroundResource(R.drawable.page_indicator_focused);
+            }else{
+                tips[i].setBackgroundResource(R.drawable.page_indicator_unfocused);
+            }
+        }
     }
 }

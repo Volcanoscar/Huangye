@@ -54,7 +54,6 @@ public class ChangePicActivity extends Activity {
 
     private void initView() {
         lastIntent = getIntent();
-
         ActionSheetDialog holeDialog = new ActionSheetDialog(ChangePicActivity.this)
                 .builder()
                 .setCancelable(false)

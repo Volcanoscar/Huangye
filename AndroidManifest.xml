@@ -264,7 +264,7 @@
             android:label="选择图片"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             />
-        <activity android:name=".CenterActivity" />
+        <activity android:name=".CenterActivity"  android:theme="@style/Transparent"/>
         <activity
             android:name=".NoteBookActivity"
             android:label="记事本" />
