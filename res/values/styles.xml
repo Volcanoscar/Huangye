@@ -264,4 +264,19 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="footer_img">
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">5.0dip</item>
+        <item name="android:paddingBottom">5.0dip</item>
+        <item name="android:cropToPadding">true</item>
+    </style>
+
+    <style name="footer_img_button" parent="@style/footer_img">
+        <item name="android:background">@drawable/footer_light_grey_bg_selector</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
 </resources>

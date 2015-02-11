@@ -264,6 +264,16 @@
             android:label="选择图片"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             />
+        <activity android:name=".CenterActivity" />
+        <activity
+            android:name=".NoteBookActivity"
+            android:label="记事本" />
+        <activity
+            android:name=".AddNoteBookActivity"
+            android:label="添加笔记" />
+        <activity
+            android:name=".PreviewNoteBook"
+            android:label="预览笔记" />
 
         <receiver android:name="com.nuo.broadcastreceiver.BootBroadcastReceiver">
             <intent-filter>

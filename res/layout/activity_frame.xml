@@ -12,30 +12,7 @@
         android:background="@drawable/ll_bg_d"
         android:orientation="horizontal" >
         <LinearLayout
-                android:id="@+id/MyBottemCheckinBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical|center_horizontal"
-                android:orientation="vertical" >
-
-            <ImageView
-                    android:id="@+id/MyBottemCheckinImg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/wb_home_tap_publish_pressed" />
-
-            <TextView
-                    android:id="@+id/MyBottemCheckinTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="关系"
-                    android:textColor="#FF8C00"
-                    android:textSize="13dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/MyBottemSearchBtn"
+            android:id="@+id/huangye_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -43,13 +20,80 @@
             android:orientation="vertical" >
 
             <ImageView
-                android:id="@+id/MyBottemSearchImg"
+                android:id="@+id/huangye_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_bottem_my" />
+
+            <TextView
+                android:id="@+id/huangye_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/huangye"
+                android:textColor="@color/search_bottem_textcolor"
+                android:textSize="13dp" />
+        </LinearLayout>
+        <LinearLayout
+                android:id="@+id/relation_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical" >
+
+            <ImageView
+                    android:id="@+id/relation_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/wb_home_tap_publish_pressed" />
+
+            <TextView
+                    android:id="@+id/relation_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="关系"
+                    android:textColor="#FF8C00"
+                    android:textSize="13dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/center_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/center_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/search_bottem_my" />
+
+            <TextView
+                android:id="@+id/center_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/me"
+                android:textColor="@color/search_bottem_textcolor"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/sms_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/sms_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/search_bottem_search" />
 
             <TextView
-                android:id="@+id/MyBottemSearchTxt"
+                android:id="@+id/sms_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="信息"
@@ -59,30 +103,9 @@
 
 
 
-        <LinearLayout
-            android:id="@+id/MyBottemMyBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical|center_horizontal"
-            android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/MyBottemMyImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/search_bottem_my" />
-
-            <TextView
-                android:id="@+id/MyBottemMyTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/huangye"
-                android:textColor="@color/search_bottem_textcolor"
-                android:textSize="13dp" />
-        </LinearLayout>
         <LinearLayout
-                android:id="@+id/MyBottemMoreBtn"
+                android:id="@+id/tool_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -90,13 +113,13 @@
                 android:orientation="vertical" >
 
             <ImageView
-                    android:id="@+id/MyBottemMoreImg"
+                    android:id="@+id/tool_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/search_bottem_my" />
 
             <TextView
-                    android:id="@+id/MyBottemMoreTxt"
+                    android:id="@+id/tool_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="工具"

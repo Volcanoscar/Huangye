@@ -73,7 +73,6 @@ public class HuangyeLevelTwoActivity extends Activity {
                 timeOutHandler.stop();
                 //动态添加布局
                 List<ShengHuoType> shengHuoTypeList = ShengHuoType.parseMap(stringResponseInfo.result);
-                List<LinearLayout> linearLayouts = new ArrayList<LinearLayout>();
                 LinearLayout layout2 = new LinearLayout(HuangyeLevelTwoActivity.this);
                 int col = 0;
                 int row= 1;

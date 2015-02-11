@@ -294,5 +294,6 @@
     <color name="line_weak_dial">#ffc9c9c9</color>
     <color name="dial_autocomplete_backgroundColor">#ff484848</color>
     <color name="dial_autocomplete_backgroundColor_pressed">#ffe3e5e6</color>
-
+    <color name="footer_bg_pressed">#ffd7d7d7</color>
+    <color name="note_footer_bg">#ffdedfe3</color>
 </resources>

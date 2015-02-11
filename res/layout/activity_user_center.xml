@@ -22,7 +22,7 @@
                 android:orientation="vertical" >
 
             <RelativeLayout
-                    android:id="@+id/timeLayout"
+                    android:id="@+id/notebookLayout"
                     android:layout_width="match_parent"
                     android:background="@drawable/item_bg"
                     android:layout_height="50dp" >

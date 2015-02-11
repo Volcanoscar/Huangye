@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="170dip"
+    android:layout_marginTop="10dip"
+    android:background="@drawable/ll_bg_d"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    >
+
+    <LinearLayout
+        android:id="@+id/time_layout"
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_height="170dip">
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_toRightOf="@+id/time_layout"
+        android:id="@+id/relativeLayoutPiont"
+        android:layout_width="wrap_content"
+        android:layout_height="170dip"
+        android:layout_alignParentTop="true">
+        <View
+            android:layout_width="1dp"
+            android:layout_marginLeft="6dp"
+            android:layout_height="fill_parent"
+            android:background="@color/lightgrey"/>
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/point" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/notebook_layout"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+       android:layout_toRightOf="@+id/relativeLayoutPiont"
+        android:layout_marginLeft="10dp"
+        android:background="@color/white"
+        android:padding="3dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="张三"
+            android:textColor="#576B95"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginLeft="10dp"
+            android:text="content" />
+
+        <com.fujie.module.gridview.NoScrollGridView
+            android:id="@+id/gridView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/content"
+            android:layout_marginLeft="10dp"
+            android:horizontalSpacing="1dp"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="1dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

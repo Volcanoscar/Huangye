@@ -12,9 +12,7 @@ public class AbstractTemplateActivity extends Activity {
         super.onCreate(savedInstanceState);
         BackApplication application = (BackApplication) this.getApplication();
         application.getActivityManager().pushActivity(this);
-        ViewUtils.inject(this);
         initActionBar();
-     
     }
 
     private void initActionBar() {

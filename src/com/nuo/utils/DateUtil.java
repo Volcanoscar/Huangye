@@ -19,4 +19,15 @@ public class DateUtil {
         if(date==null) return "";
         return df.format(date);
     }
+
+    /**
+     * 日期转换成字符串
+     * @param date
+     * @return
+     */
+    public  static String dateToStr(Date date,String fromat) {
+        if(date==null) return "";
+        DateFormat temp = new SimpleDateFormat("yyyy-MM-dd");
+        return temp.format(date);
+    }
 }

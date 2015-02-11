@@ -15,7 +15,6 @@ import com.nuo.adapter.SmsLoaderListener;
 import com.nuo.common.DownLoadManager;
 import com.nuo.utils.PreferenceConstants;
 import com.nuo.utils.PreferenceUtils;
-import com.nuo.utils.ShortcutUtils;
 import com.nuo.utils.Utils;
 import com.nuo.view.NoScrollViewPager;
 
@@ -29,12 +28,12 @@ import java.util.List;
  * */
 public class FrameActivity extends ActivityGroup {
 
-    private LinearLayout mMyBottemSearchBtn,
-            mMyBottemCheckinBtn, mMyBottemMyBtn,mMyBottemMoreBtn;
-    private ImageView mMyBottemSearchImg,
-            mMyBottemCheckinImg, mMyBottemMyImg,mMyBottemMoreImg;
-    private TextView mMyBottemSearchTxt,  mMyBottemCheckinTxt,
-            mMyBottemMyTxt,mMyBottemMoreTxt;
+    private LinearLayout sms_layout,
+            relation_layout, huangye_layout, tool_layout;
+    private ImageView sms_img,
+            relation_img, huangye_img, tool_img;
+    private TextView sms_txt, relation_txt,
+            huangye_txt, tool_txt;
     private List<View> list = new ArrayList<View>();// 相当于数据源
     private View view = null;
     private View view1 = null;
@@ -47,6 +46,10 @@ public class FrameActivity extends ActivityGroup {
     private ContactsLoaderListener m_ContactsCallback = new ContactsLoaderListener(this);
     //SMS加载器监听器
     private SmsLoaderListener m_SmsCallback = new SmsLoaderListener(this);
+    private LinearLayout center_layout;
+    private ImageView center_img;
+    private TextView center_txt;
+    private View view5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class FrameActivity extends ActivityGroup {
         initView();
         String click =getIntent().getStringExtra("click");
         if ("huangye".equals(click)) {
-            mMyBottemMyBtn.performClick();
+            huangye_layout.performClick();
         }
         //检测版本
         DownLoadManager.checkVersion(FrameActivity.this, false);
@@ -184,6 +187,10 @@ public class FrameActivity extends ActivityGroup {
             getMenuInflater().inflate(R.menu.tuan_details, menu);
             actionBar.setTitle(R.string.tool);
         }
+        else if(currItem==4){ //我
+            getMenuInflater().inflate(R.menu.me_action, menu);
+            actionBar.setTitle(R.string.me);
+        }
         //每个动作栏中都有反馈项
         MenuItem feedbackItem =menu.findItem(R.id.action_feedback);
         feedbackItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -239,20 +246,23 @@ public class FrameActivity extends ActivityGroup {
     private void initView() {
         mViewPager = (NoScrollViewPager) findViewById(R.id.FramePager);
         // 查找以linearlayout为按钮作用的控件
-        mMyBottemSearchBtn = (LinearLayout) findViewById(R.id.MyBottemSearchBtn);
-        mMyBottemCheckinBtn = (LinearLayout) findViewById(R.id.MyBottemCheckinBtn);
-        mMyBottemMyBtn = (LinearLayout) findViewById(R.id.MyBottemMyBtn);
-		mMyBottemMoreBtn = (LinearLayout) findViewById(R.id.MyBottemMoreBtn);
+        sms_layout = (LinearLayout) findViewById(R.id.sms_layout);
+        relation_layout = (LinearLayout) findViewById(R.id.relation_layout);
+        huangye_layout = (LinearLayout) findViewById(R.id.huangye_layout);
+        tool_layout = (LinearLayout) findViewById(R.id.tool_layout);
+        center_layout = (LinearLayout) findViewById(R.id.center_layout);
         // 查找linearlayout中的imageview
-        mMyBottemSearchImg = (ImageView) findViewById(R.id.MyBottemSearchImg);
-        mMyBottemCheckinImg = (ImageView) findViewById(R.id.MyBottemCheckinImg);
-        mMyBottemMyImg = (ImageView) findViewById(R.id.MyBottemMyImg);
-		mMyBottemMoreImg = (ImageView) findViewById(R.id.MyBottemMoreImg);
+        sms_img = (ImageView) findViewById(R.id.sms_img);
+        relation_img = (ImageView) findViewById(R.id.relation_img);
+        huangye_img = (ImageView) findViewById(R.id.huangye_img);
+        tool_img = (ImageView) findViewById(R.id.tool_img);
+        center_img = (ImageView) findViewById(R.id.center_img);
         // 查找linearlayout中的textview
-        mMyBottemSearchTxt = (TextView) findViewById(R.id.MyBottemSearchTxt);
-        mMyBottemCheckinTxt = (TextView) findViewById(R.id.MyBottemCheckinTxt);
-        mMyBottemMyTxt = (TextView) findViewById(R.id.MyBottemMyTxt);
-		mMyBottemMoreTxt = (TextView) findViewById(R.id.MyBottemMoreTxt);
+        sms_txt = (TextView) findViewById(R.id.sms_txt);
+        relation_txt = (TextView) findViewById(R.id.relation_txt);
+        huangye_txt = (TextView) findViewById(R.id.huangye_txt);
+        tool_txt = (TextView) findViewById(R.id.tool_txt);
+        center_txt = (TextView) findViewById(R.id.center_txt);
         createView();
         // 写一个内部类pageradapter
         pagerAdapter = new PagerAdapter() {
@@ -297,10 +307,11 @@ public class FrameActivity extends ActivityGroup {
         mViewPager.setAdapter(pagerAdapter);
 
         MyBtnOnclick mytouchlistener = new MyBtnOnclick();
-        mMyBottemSearchBtn.setOnClickListener(mytouchlistener);
-        mMyBottemCheckinBtn.setOnClickListener(mytouchlistener);
-        mMyBottemMyBtn.setOnClickListener(mytouchlistener);
-		mMyBottemMoreBtn.setOnClickListener(mytouchlistener);
+        sms_layout.setOnClickListener(mytouchlistener);
+        center_layout.setOnClickListener(mytouchlistener);
+        relation_layout.setOnClickListener(mytouchlistener);
+        huangye_layout.setOnClickListener(mytouchlistener);
+		tool_layout.setOnClickListener(mytouchlistener);
 
         // 设置viewpager界面切换监听,监听viewpager切换第几个界面以及滑动的
         /*mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
@@ -313,22 +324,22 @@ public class FrameActivity extends ActivityGroup {
                 // 更改对应的button状态
                 int flag = (Integer) list.get((arg0)).getTag();
                 if (flag == 0) {
-                    mMyBottemSearchImg
+                    sms_img
                             .setImageResource(R.drawable.wb_home_tap_index_pressed);
-                    mMyBottemSearchTxt.setTextColor(Color.parseColor("#FF8C00"));
+                    sms_txt.setTextColor(Color.parseColor("#FF8C00"));
                 } else if (flag == 1) {
-                    mMyBottemCheckinImg
+                    relation_img
                             .setImageResource(R.drawable.wb_home_tap_publish_pressed);
-                    mMyBottemCheckinTxt.setTextColor(Color
+                    relation_txt.setTextColor(Color
                             .parseColor("#FF8C00"));
                 } else if (flag == 2) {
-                    mMyBottemMyImg
+                    huangye_img
                             .setImageResource(R.drawable.wb_home_tap_center_pressed);
-                    mMyBottemMyTxt.setTextColor(Color.parseColor("#FF8C00"));
+                    huangye_txt.setTextColor(Color.parseColor("#FF8C00"));
                 } else if (flag == 3) {
-					mMyBottemMoreImg
+					tool_img
 							.setImageResource(R.drawable.wb_home_tap_center_pressed);
-					mMyBottemMoreTxt.setTextColor(Color.parseColor("#FF8C00"));
+					tool_txt.setTextColor(Color.parseColor("#FF8C00"));
 				}
             }
 
@@ -370,7 +381,6 @@ public class FrameActivity extends ActivityGroup {
                 .getDecorView();
         view2.setTag(2);
         list.add(view2);
-
         view4 = FrameActivity.this
                 .getLocalActivityManager()
                 .startActivity("more",
@@ -378,6 +388,14 @@ public class FrameActivity extends ActivityGroup {
                 .getDecorView();
         view4.setTag(3);
         list.add(view4);
+
+        view5 = FrameActivity.this
+                .getLocalActivityManager()
+                .startActivity("me",
+                        new Intent(FrameActivity.this, CenterActivity.class))
+                .getDecorView();
+        view5.setTag(4);
+        list.add(view5);
     }
 
     /**
@@ -390,34 +408,42 @@ public class FrameActivity extends ActivityGroup {
             int mBtnid = arg0.getId();
 
             switch (mBtnid) {
-                case R.id.MyBottemSearchBtn:
+                case R.id.center_layout:
+                    // //设置我们的viewpager跳转那个界面0这个参数和我们的list相关,相当于list里面的下标
+                    mViewPager.setCurrentItem(4);
+                    initBottemBtn();
+                    center_img
+                            .setImageResource(R.drawable.wb_home_tap_center_pressed);
+                    center_txt.setTextColor(Color.parseColor("#FF8C00"));
+                    break;
+                case R.id.sms_layout:
                     // //设置我们的viewpager跳转那个界面0这个参数和我们的list相关,相当于list里面的下标
                     mViewPager.setCurrentItem(1);
                     initBottemBtn();
-                    mMyBottemSearchImg
+                    sms_img
                             .setImageResource(R.drawable.wb_home_tap_index_pressed);
-                    mMyBottemSearchTxt.setTextColor(Color.parseColor("#FF8C00"));
+                    sms_txt.setTextColor(Color.parseColor("#FF8C00"));
                     break;
-                case R.id.MyBottemCheckinBtn:
+                case R.id.relation_layout:
                     mViewPager.setCurrentItem(0);
                     initBottemBtn();
-                    mMyBottemCheckinImg
+                    relation_img
                             .setImageResource(R.drawable.wb_home_tap_publish_pressed);
-                    mMyBottemCheckinTxt.setTextColor(Color.parseColor("#FF8C00"));
+                    relation_txt.setTextColor(Color.parseColor("#FF8C00"));
                     break;
-                case R.id.MyBottemMyBtn:
+                case R.id.huangye_layout:
                     mViewPager.setCurrentItem(2);
                     initBottemBtn();
-                    mMyBottemMyImg
+                    huangye_img
                             .setImageResource(R.drawable.wb_home_tap_center_pressed);
-                    mMyBottemMyTxt.setTextColor(Color.parseColor("#FF8C00"));
+                    huangye_txt.setTextColor(Color.parseColor("#FF8C00"));
                     break;
-			case R.id.MyBottemMoreBtn:
+			case R.id.tool_layout:
 				mViewPager.setCurrentItem(3);
 				initBottemBtn();
-				mMyBottemMoreImg
+				tool_img
 						.setImageResource(R.drawable.wb_home_tap_center_pressed);
-				mMyBottemMoreTxt.setTextColor(Color.parseColor("#FF8C00"));
+				tool_txt.setTextColor(Color.parseColor("#FF8C00"));
 				break;
 			}
             getWindow().invalidatePanelMenu(Window.FEATURE_OPTIONS_PANEL);
@@ -427,17 +453,20 @@ public class FrameActivity extends ActivityGroup {
      * 初始化控件的颜色
      */
     private void initBottemBtn() {
-        mMyBottemSearchImg.setImageResource(R.drawable.search_bottem_search);
-        mMyBottemCheckinImg.setImageResource(R.drawable.search_bottem_checkin);
-        mMyBottemMyImg.setImageResource(R.drawable.search_bottem_my);
-        mMyBottemMoreImg.setImageResource(R.drawable.search_bottem_my);
-        mMyBottemSearchTxt.setTextColor(getResources().getColor(
+        center_img.setImageResource(R.drawable.search_bottem_my);
+        sms_img.setImageResource(R.drawable.search_bottem_search);
+        relation_img.setImageResource(R.drawable.search_bottem_checkin);
+        huangye_img.setImageResource(R.drawable.search_bottem_my);
+        tool_img.setImageResource(R.drawable.search_bottem_my);
+        center_txt.setTextColor(getResources().getColor(
                 R.color.search_bottem_textcolor));
-        mMyBottemCheckinTxt.setTextColor(getResources().getColor(
+        sms_txt.setTextColor(getResources().getColor(
                 R.color.search_bottem_textcolor));
-        mMyBottemMyTxt.setTextColor(getResources().getColor(
+        relation_txt.setTextColor(getResources().getColor(
                 R.color.search_bottem_textcolor));
-        mMyBottemMoreTxt.setTextColor(getResources().getColor(
+        huangye_txt.setTextColor(getResources().getColor(
+                R.color.search_bottem_textcolor));
+        tool_txt.setTextColor(getResources().getColor(
                 R.color.search_bottem_textcolor));
     }
 

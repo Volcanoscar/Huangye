@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edit_toolbar"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1.0"
+    android:background="@color/note_footer_bg">
+    <ImageView
+        android:id="@+id/handwriting"
+        style="@style/footer_img_button"
+        android:layout_weight="1"
+        android:src="@drawable/new_note_handwrite" />
+
+    <ImageView
+        android:id="@+id/gallery"
+        style="@style/footer_img_button"
+        android:layout_weight="1"
+        android:src="@drawable/new_note_gallery" />
+
+    <ImageView
+        android:id="@+id/camera"
+        style="@style/footer_img_button"
+        android:layout_weight="1"
+        android:src="@drawable/new_note_camera" />
+
+    <ImageView
+        android:id="@+id/record"
+        style="@style/footer_img_button"
+        android:layout_weight="1"
+        android:src="@drawable/new_note_record" />
+</LinearLayout>
