@@ -3,12 +3,6 @@
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
-
-
-
-
-
-
     -->
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light">
         <!--
@@ -20,9 +14,27 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
+    </style>
+    <!-- actionbar 样式 -->
+    <style name="CustomActionBar" parent="@android:style/Widget.DeviceDefault.ActionBar">
+        <item name="android:titleTextStyle">@style/ActionBarTitle</item>
+    </style>
+
+    <!-- actionbar 标题样式 -->
+    <style name="ActionBarTitle" parent="@android:style/TextAppearance.Holo.Large">
 
     </style>
+
+    <!-- actionbar 菜单文字样式 -->
+    <style name="ActionBarMenu" parent="@android:style/TextAppearance.Holo.Large">
+        <item name="android:actionMenuTextAppearance">@style/MenuTextStyle</item>
+    </style>
+    <style name="MenuTextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 
     <style name="custom_ratingbar_style" parent="@android:style/Widget.RatingBar">
         <item name="android:progressDrawable">@drawable/custom_ratingbar_progress</item>

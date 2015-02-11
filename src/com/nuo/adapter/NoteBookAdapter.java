@@ -1,12 +1,10 @@
 package com.nuo.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fujie.module.gridview.NoScrollGridView;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nuo.activity.ImagePagerActivity;
-import com.nuo.activity.PreviewNoteBook;
+import com.nuo.activity.PreviewNoteBookActivity;
 import com.nuo.activity.R;
 import com.nuo.bean.notebook.NoteBook;
 import com.nuo.utils.DateUtil;
@@ -86,7 +84,7 @@ public class NoteBookAdapter extends BaseAdapter{
         holder.notebook_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, PreviewNoteBook.class);
+                Intent intent = new Intent(mContext, PreviewNoteBookActivity.class);
                 intent.putExtra("id", bean.getId());
                 mContext.startActivity(intent);
             }

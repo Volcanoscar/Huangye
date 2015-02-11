@@ -135,5 +135,7 @@
     <string name="notebook_tip">这只是个开始</string>
     <string name="input_title_tip">请输入笔记标题</string>
     <string name="notebook_load_error">笔记加载异常</string>
+    <string name="delete_error">删除失败</string>
+    <string name="notebook_add_tip">标题和内容必须填写</string>
 
 </resources>

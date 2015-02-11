@@ -2,5 +2,7 @@
     <item
             android:id="@+id/action_save"
             android:showAsAction="ifRoom"
-            android:title="@string/action_save"/>
+            android:title="@string/action_save"
+            android:textSize="15sp"
+            />
 </menu>

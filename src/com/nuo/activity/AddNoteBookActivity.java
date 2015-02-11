@@ -35,16 +35,31 @@ public class AddNoteBookActivity extends AbstractTemplateActivity {
     private EditText titleEditText;
     @ViewInject(R.id.content)
     private EditText contentEditText;
+    private Integer id;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_notebook);
         ViewUtils.inject(this);
         initData();
+        initView();
     }
 
+    private void initView() {
+        if (id != -1) {//预览界面过来的
+            try {
+                NoteBook noteBook=  dbUtils.findById(NoteBook.class, id);
+                titleEditText.setText(noteBook.getTitle());
+                contentEditText.setText(noteBook.getContent());
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     private void initData() {
         dbUtils = XutilHelper.getDB(this);
+        id = getIntent().getIntExtra("id", -1);
     }
 
     @OnClick({R.id.handwriting,R.id.gallery,R.id.camera,R.id.record})
@@ -77,6 +92,11 @@ public class AddNoteBookActivity extends AbstractTemplateActivity {
         saveItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                //验证
+                if (titleEditText.getText().length() == 0 || contentEditText.getText().length() == 0) {
+                      T.showShort(AddNoteBookActivity.this,R.string.notebook_add_tip);
+                       return false;
+                }
                 //保存
                 Date date = new Date();
                 NoteBook noteBook = new NoteBook();

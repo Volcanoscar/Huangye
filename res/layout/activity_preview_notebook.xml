@@ -14,9 +14,6 @@
             android:background="@color/whites"
             android:orientation="vertical">
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
             <LinearLayout
                 android:id="@+id/title_layout"
                 android:layout_width="match_parent"
@@ -79,7 +76,6 @@
                     android:gravity="top|left"
                     android:padding="5dp" />
             </LinearLayout>
-
 
         </RelativeLayout>
     </ScrollView>

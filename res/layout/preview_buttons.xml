@@ -6,25 +6,25 @@
     android:layout_weight="1.0"
     android:background="@color/note_footer_bg">
     <ImageView
-        android:id="@+id/handwriting"
+        android:id="@+id/menu_share"
         style="@style/footer_img_button"
         android:layout_weight="1"
         android:src="@drawable/menu_share" />
 
     <ImageView
-        android:id="@+id/gallery"
+        android:id="@+id/menu_edit"
         style="@style/footer_img_button"
         android:layout_weight="1"
         android:src="@drawable/menu_edit" />
 
     <ImageView
-        android:id="@+id/camera"
+        android:id="@+id/tag_empty_notes"
         style="@style/footer_img_button"
         android:layout_weight="1"
         android:src="@drawable/tag_empty_notes" />
 
     <ImageView
-        android:id="@+id/record"
+        android:id="@+id/menu_delete_gray"
         style="@style/footer_img_button"
         android:layout_weight="1"
         android:src="@drawable/menu_delete_gray" />
