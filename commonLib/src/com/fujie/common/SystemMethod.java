@@ -1,6 +1,8 @@
 package com.fujie.common;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.*;
 import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory.Options;
@@ -130,4 +132,16 @@ public class SystemMethod {
 		return result;
 		
 	}
+
+    public static void setCurrentActivity(Activity content,String _activityName) throws Exception{
+        if (null == content) {
+            throw new Exception("不允许为空");
+        }
+        if (null == _activityName || "".equals(_activityName)) {
+            throw new Exception("参数异常");
+        }
+        final Intent mIntent = new Intent(content,Class.forName("com.nuo.activity."+_activityName) );
+        content.startActivity(mIntent);
+        return;
+    }
 }

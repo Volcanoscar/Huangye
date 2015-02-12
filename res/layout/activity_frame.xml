@@ -23,14 +23,14 @@
                 android:id="@+id/huangye_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/search_bottem_my" />
+                android:src="@drawable/wb_home_tap_center_pressed" />
 
             <TextView
                 android:id="@+id/huangye_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/huangye"
-                android:textColor="@color/search_bottem_textcolor"
+                android:textColor="#FF8C00"
                 android:textSize="13dp" />
         </LinearLayout>
         <LinearLayout
@@ -45,14 +45,14 @@
                     android:id="@+id/relation_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/wb_home_tap_publish_pressed" />
+                    android:src="@drawable/wb_home_tap_publish_normal" />
 
             <TextView
                     android:id="@+id/relation_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="关系"
-                    android:textColor="#FF8C00"
+                    android:textColor="@color/search_bottem_textcolor"
                     android:textSize="13dp" />
         </LinearLayout>
         <LinearLayout

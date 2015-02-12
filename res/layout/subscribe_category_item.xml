@@ -3,7 +3,7 @@
     android:id="@+id/rl_subscribe"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:minHeight="38.0dip"
+    android:minHeight="100.0dip"
     android:minWidth="72.0dip" >
 
     <TextView
@@ -13,17 +13,15 @@
         android:layout_centerInParent="true"
         android:background="@drawable/subscribe_item_bg"
         android:gravity="center"
-        android:minHeight="38.0dip"
-        android:minWidth="72.0dip"
+        android:minHeight="100.0dip"
+        android:minWidth="100.0dip"
         android:textColor="@color/subscribe_item_text_color"
         android:textSize="14.0sp" />
     <!-- android:layout_margin="5dip" -->
-
+    <!-- android:src="@drawable/channel_new"-->
     <ImageView
         android:id="@+id/icon_new"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/channel_new"
         android:visibility="gone" />
-
 </RelativeLayout>

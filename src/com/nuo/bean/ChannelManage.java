@@ -25,24 +25,11 @@ public class ChannelManage {
     static {
         defaultUserChannels = new ArrayList<ChannelItem>();
         defaultOtherChannels = new ArrayList<ChannelItem>();
-        defaultUserChannels.add(new ChannelItem(1, "报价", 1, 1));
-        defaultUserChannels.add(new ChannelItem(2, "任务管理", 2, 1));
-        defaultUserChannels.add(new ChannelItem(3, "火车票", 3, 1));
-        defaultUserChannels.add(new ChannelItem(4, "贺卡", 4, 1));
-        defaultUserChannels.add(new ChannelItem(5, "烟花", 5, 1));
-        defaultUserChannels.add(new ChannelItem(6, "日记", 6, 1));
-        defaultUserChannels.add(new ChannelItem(7, "家庭", 7, 1));
-        defaultOtherChannels.add(new ChannelItem(8, "超市", 1, 0));
-        defaultOtherChannels.add(new ChannelItem(9, "摇钱树", 2, 0));
-        defaultOtherChannels.add(new ChannelItem(10, "房产", 3, 0));
-        defaultOtherChannels.add(new ChannelItem(11, "社会", 4, 0));
-        defaultOtherChannels.add(new ChannelItem(12, "情感", 5, 0));
-        defaultOtherChannels.add(new ChannelItem(13, "女人", 6, 0));
-        defaultOtherChannels.add(new ChannelItem(14, "旅游", 7, 0));
-        defaultOtherChannels.add(new ChannelItem(15, "健康", 8, 0));
-        defaultOtherChannels.add(new ChannelItem(16, "美女", 9, 0));
-        defaultOtherChannels.add(new ChannelItem(17, "游戏", 10, 0));
-        defaultOtherChannels.add(new ChannelItem(18, "数码", 11, 0));
+        defaultUserChannels.add(new ChannelItem(1,"活动",1,1,""));
+        defaultUserChannels.add(new ChannelItem(2,"课程表",2,1,""));
+        defaultUserChannels.add(new ChannelItem(3,"个人中心",3,1,"MyActivity"));
+        defaultUserChannels.add(new ChannelItem(4,"记事薄",4,1,"NoteBookActivity"));
+        defaultUserChannels.add(new ChannelItem(5,"手机报价",5,1,""));
     }
 
     private ChannelManage(SQLHelper paramDBHelper) throws SQLException {

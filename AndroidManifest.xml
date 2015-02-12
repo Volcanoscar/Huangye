@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nuo.activity"
     android:versionCode="1"
-    android:versionName="0.2.2">
+    android:versionName="0.2.3">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -153,7 +153,6 @@
         <activity android:name="com.nuo.activity.FrameActivity">
             <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_DEFAULT" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.TAB" />
             </intent-filter>

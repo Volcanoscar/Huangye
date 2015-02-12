@@ -26,15 +26,28 @@ public class ChannelItem implements Serializable {
      * 栏目是否选中
      *  */
     public Integer selected;
+    /**
+     * 点击view
+     */
+    private String view;
+
+    public String getView() {
+        return view;
+    }
+
+    public void setView(String view) {
+        this.view = view;
+    }
 
     public ChannelItem() {
     }
 
-    public ChannelItem(int id, String name, int orderId,int selected) {
+    public ChannelItem(int id, String name, int orderId,int selected,String view) {
         this.id = Integer.valueOf(id);
         this.name = name;
         this.orderId = Integer.valueOf(orderId);
         this.selected = Integer.valueOf(selected);
+        this.view = view;
     }
 
     public int getId() {

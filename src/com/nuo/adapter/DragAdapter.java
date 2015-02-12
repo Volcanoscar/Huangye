@@ -63,11 +63,10 @@ public class DragAdapter extends BaseAdapter {
         item_text = (TextView) view.findViewById(R.id.text_item);
         ChannelItem channel = getItem(position);
         item_text.setText(channel.getName());
-        if ((position == 0) || (position == 1)){ //本应该做为一个变量在Item对象中的。
-//			item_text.setTextColor(context.getResources().getColor(R.color.black));
+       /* if ((position == 0) || (position == 1)){ //本应该做为一个变量在Item对象中的。
             item_text.setEnabled(false);
             view.findViewById(R.id.icon_new).setVisibility(View.VISIBLE);
-        }
+        }*/
         if (isChanged && (position == holdPosition) && !isItemShow) {
             item_text.setText("");
             item_text.setSelected(true);

@@ -70,9 +70,9 @@ public class DragGrid extends GridView {
     /** 震动器  */
     private Vibrator mVibrator;
     /** 每个ITEM之间的水平间距 */
-    private int mHorizontalSpacing = 15;
+    private int mHorizontalSpacing = 1;
     /** 每个ITEM之间的竖直间距 */
-    private int mVerticalSpacing = 15;
+    private int mVerticalSpacing = 0;
     /* 移动时候最后个动画的ID */
     private String LastAnimationID;
 
@@ -152,8 +152,6 @@ public class DragGrid extends GridView {
     private void onDrag(int x, int y , int rawx , int rawy) {
         if (dragImageView != null) {
             windowParams.alpha = 0.6f;
-//			windowParams.x = rawx - itemWidth / 2;
-//			windowParams.y = rawy - itemHeight / 2;
             windowParams.x = rawx - win_view_x;
             windowParams.y = rawy - win_view_y;
             windowManager.updateViewLayout(dragImageView, windowParams);
@@ -316,7 +314,6 @@ public class DragGrid extends GridView {
             }
 
             int movecount_abs = Math.abs(movecount);
-
             if (dPosition != dragPosition) {
                 //dragGroup设置为不可见
                 ViewGroup dragGroup = (ViewGroup) getChildAt(dragPosition);

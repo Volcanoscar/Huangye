@@ -62,7 +62,7 @@ public class CenterActivity extends FragmentActivity implements ViewPager.OnPage
         fragmentTransaction.commit();
         fragmentList.add(menuFragment);
         tips = new ImageView[fragmentList.size()];
-        if (tips.length <= 1) {
+        if (tips.length > 1) {
             for (int i = 0; i < tips.length; i++) {
                 ImageView imageView = new ImageView(this);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(10, 10);

@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.view.*;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
 import com.nuo.adapter.ContactsLoaderListener;
@@ -39,7 +40,7 @@ public class FrameActivity extends ActivityGroup {
     private View view = null;
     private View view1 = null;
     private View view2 = null;
-    private View view4 = null;
+    private View view3 = null;
     private NoScrollViewPager mViewPager;  //如果需要滑动就把isCanScroll变量修改一下
     private PagerAdapter pagerAdapter = null;// 数据源和viewpager之间的桥梁
 
@@ -50,7 +51,7 @@ public class FrameActivity extends ActivityGroup {
     private LinearLayout center_layout;
     private ImageView center_img;
     private TextView center_txt;
-    private View view5;
+    private View view4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class FrameActivity extends ActivityGroup {
        /* if(!ShortcutUtils.hasInstallShortcut(FrameActivity.this)) {
             sendBroadcast(ShortcutUtils.getShortcutToDesktopIntent(FrameActivity.this));
         }*/
+        overridePendingTransition(0,0);
     }
 
     private void initActionBar() {
@@ -352,18 +354,20 @@ public class FrameActivity extends ActivityGroup {
 
     // 把viewpager里面要显示的view实例化出来，并且把相关的view添加到一个list当中
     private void createView() {
+
         view = FrameActivity.this
                 .getLocalActivityManager()
-                .startActivity("tuan",
-                        new Intent(FrameActivity.this, RelationActivity.class))
+                .startActivity("huangye",
+                        new Intent(FrameActivity.this, HuangyeActivity.class))
                 .getDecorView();
         view.setTag(0);
+
         list.add(view);
 
         view1 = this
                 .getLocalActivityManager()
-                .startActivity("search",
-                        new Intent(FrameActivity.this, SmsActivity.class))
+                .startActivity("relation",
+                        new Intent(FrameActivity.this, RelationActivity.class))
                 .getDecorView();
         // 用来更改下面button的样式的标志
         view1.setTag(1);
@@ -371,26 +375,32 @@ public class FrameActivity extends ActivityGroup {
 
         view2 = FrameActivity.this
                 .getLocalActivityManager()
-                .startActivity("my",
-                        new Intent(FrameActivity.this, HuangyeActivity.class))
+                .startActivity("center",
+                        new Intent(FrameActivity.this, CenterActivity.class))
                 .getDecorView();
         view2.setTag(2);
         list.add(view2);
+        view3 = FrameActivity.this
+                .getLocalActivityManager()
+                .startActivity("sms",
+                        new Intent(FrameActivity.this, SmsActivity.class))
+                .getDecorView();
+        view3.setTag(3);
+        list.add(view3);
+
         view4 = FrameActivity.this
                 .getLocalActivityManager()
-                .startActivity("more",
+                .startActivity("tool",
                         new Intent(FrameActivity.this, ToolActivity.class))
                 .getDecorView();
-        view4.setTag(3);
+        view4.setTag(4);
+        view.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
+        view1.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
+        view2.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
+        view3.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
+        view4.startAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_in));
         list.add(view4);
 
-        view5 = FrameActivity.this
-                .getLocalActivityManager()
-                .startActivity("me",
-                        new Intent(FrameActivity.this, CenterActivity.class))
-                .getDecorView();
-        view5.setTag(4);
-        list.add(view5);
     }
 
     /**
@@ -401,13 +411,11 @@ public class FrameActivity extends ActivityGroup {
         @Override
         public void onClick(View arg0) {
             int mBtnid = arg0.getId();
-
             switch (mBtnid) {
                 case R.id.center_layout:
                     // //设置我们的viewpager跳转那个界面0这个参数和我们的list相关,相当于list里面的下标
                     //mViewPager.setCurrentItem(4);
                     Intent intent = new Intent(FrameActivity.this, CenterActivity.class);
-                    overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     startActivity(intent);
                    /* initBottemBtn();
                     center_img
@@ -416,28 +424,28 @@ public class FrameActivity extends ActivityGroup {
                     break;
                 case R.id.sms_layout:
                     // //设置我们的viewpager跳转那个界面0这个参数和我们的list相关,相当于list里面的下标
-                    mViewPager.setCurrentItem(1);
+                    mViewPager.setCurrentItem(3,false);
                     initBottemBtn();
                     sms_img
                             .setImageResource(R.drawable.wb_home_tap_index_pressed);
                     sms_txt.setTextColor(Color.parseColor("#FF8C00"));
                     break;
                 case R.id.relation_layout:
-                    mViewPager.setCurrentItem(0);
+                    mViewPager.setCurrentItem(1,false);
                     initBottemBtn();
                     relation_img
                             .setImageResource(R.drawable.wb_home_tap_publish_pressed);
                     relation_txt.setTextColor(Color.parseColor("#FF8C00"));
                     break;
                 case R.id.huangye_layout:
-                    mViewPager.setCurrentItem(2);
+                    mViewPager.setCurrentItem(0,false);
                     initBottemBtn();
                     huangye_img
                             .setImageResource(R.drawable.wb_home_tap_center_pressed);
                     huangye_txt.setTextColor(Color.parseColor("#FF8C00"));
                     break;
 			case R.id.tool_layout:
-				mViewPager.setCurrentItem(3);
+				mViewPager.setCurrentItem(4,false);
 				initBottemBtn();
 				tool_img
 						.setImageResource(R.drawable.wb_home_tap_center_pressed);
