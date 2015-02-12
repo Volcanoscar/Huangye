@@ -205,11 +205,7 @@ public class FrameActivity extends ActivityGroup {
 
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
-        if (item.getItemId() == R.id.action_collection) {
-            Intent it = new Intent(FrameActivity.this, MyActivity.class);
-            startActivity(it);
-        }
-        else if (item.getItemId() == R.id.action_plus) {
+        if (item.getItemId() == R.id.action_plus) {
             Bundle bundle = new Bundle();
             bundle.putInt("tpye", 0);
             bundle.putString("name", "");
@@ -413,10 +409,10 @@ public class FrameActivity extends ActivityGroup {
                     Intent intent = new Intent(FrameActivity.this, CenterActivity.class);
                     overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     startActivity(intent);
-                    initBottemBtn();
+                   /* initBottemBtn();
                     center_img
                             .setImageResource(R.drawable.wb_home_tap_center_pressed);
-                    center_txt.setTextColor(Color.parseColor("#FF8C00"));
+                    center_txt.setTextColor(Color.parseColor("#FF8C00"));*/
                     break;
                 case R.id.sms_layout:
                     // //设置我们的viewpager跳转那个界面0这个参数和我们的list相关,相当于list里面的下标

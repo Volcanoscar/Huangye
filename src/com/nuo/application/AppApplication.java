@@ -12,8 +12,8 @@ import com.nuo.activity.R;
 import com.nuo.db.SQLHelper;
 import com.nuo.utils.T;
 
-public class AppApplication extends BackApplication implements
-        Thread.UncaughtExceptionHandler{
+public class AppApplication extends BackApplication /*implements
+        Thread.UncaughtExceptionHandle*/{
     private static AppApplication mAppApplication;
     private SQLHelper sqlHelper;
 
@@ -24,7 +24,7 @@ public class AppApplication extends BackApplication implements
         mAppApplication = this;
         initImageLoader();
         //设置Thread Exception Handler
-        Thread.setDefaultUncaughtExceptionHandler(this);
+        //Thread.setDefaultUncaughtExceptionHandler(this);
     }
 
     /**
@@ -32,7 +32,7 @@ public class AppApplication extends BackApplication implements
      * @param thread
      * @param ex
      */
-    @Override
+    //@Override
     public void uncaughtException(Thread thread, Throwable ex) {
         Intent intent = new Intent(this,FrameActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

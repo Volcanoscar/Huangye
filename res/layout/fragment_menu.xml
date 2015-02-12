@@ -7,42 +7,13 @@
         android:id="@+id/oneTypeTableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/search_list_bg"
-        >
-
+        android:background="@color/white">
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="10dp"
             >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
-                <LinearLayout
-                    android:id="@+id/jiazheng"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical" >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/home_icon_cg_sale" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="个人中心"
-                        style="@style/category_des_text"
-                        />
-                </LinearLayout>
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,7 +22,7 @@
                 android:orientation="horizontal" >
 
                 <LinearLayout
-                    android:id="@+id/Search_outing"
+                    android:id="@+id/user_center_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
@@ -65,10 +36,38 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="记事本"
+                        android:text="个人中心"
                         style="@style/category_des_text"/>
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+                <LinearLayout
+                    android:id="@+id/notebook_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical" >
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/home_icon_cg_sale" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="记事本"
+                        style="@style/category_des_text"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -82,7 +81,6 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:orientation="vertical" >
-
                     <!--<ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

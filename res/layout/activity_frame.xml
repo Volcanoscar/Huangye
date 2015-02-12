@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/ll_bg_d"
+        android:background="@drawable/search_list_bg"
         android:orientation="horizontal" >
         <LinearLayout
             android:id="@+id/huangye_layout"
