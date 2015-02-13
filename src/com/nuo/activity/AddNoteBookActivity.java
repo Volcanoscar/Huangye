@@ -35,7 +35,7 @@ public class AddNoteBookActivity extends AbstractTemplateActivity {
     private EditText titleEditText;
     @ViewInject(R.id.content)
     private EditText contentEditText;
-    private Integer id;
+    private NoteBook noteBook;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,22 +47,18 @@ public class AddNoteBookActivity extends AbstractTemplateActivity {
     }
 
     private void initView() {
-        if (id != -1) {//预览界面过来的
-            try {
-                NoteBook noteBook=  dbUtils.findById(NoteBook.class, id);
-                titleEditText.setText(noteBook.getTitle());
-                contentEditText.setText(noteBook.getContent());
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
+        if (noteBook!= null) {//预览界面过来的
+            titleEditText.setText(noteBook.getTitle());
+            contentEditText.setText(noteBook.getContent());
         }
     }
+
     private void initData() {
         dbUtils = XutilHelper.getDB(this);
-        id = getIntent().getIntExtra("id", -1);
+        noteBook = (NoteBook) getIntent().getSerializableExtra("notebook");
     }
 
-    @OnClick({R.id.handwriting,R.id.gallery,R.id.camera,R.id.record})
+    @OnClick({R.id.handwriting, R.id.gallery, R.id.camera, R.id.record})
     public void click(View view) {
         switch (view.getId()) {
             case R.id.handwriting:
@@ -80,38 +76,40 @@ public class AddNoteBookActivity extends AbstractTemplateActivity {
         }
 
     }
+
     /**
-     *  加载 动作栏 菜单<br>
-     *  根据不同的Activity修改ActionBar上的动作，并修改标题
-     *  **/
+     * 加载 动作栏 菜单<br>
+     * 根据不同的Activity修改ActionBar上的动作，并修改标题
+     * *
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.add_notebook, menu);
         //每个动作栏中都有反馈项
-        MenuItem saveItem =menu.findItem(R.id.action_save);
+        MenuItem saveItem = menu.findItem(R.id.action_save);
         saveItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 //验证
                 if (titleEditText.getText().length() == 0 || contentEditText.getText().length() == 0) {
-                      T.showShort(AddNoteBookActivity.this,R.string.notebook_add_tip);
-                       return false;
+                    T.showShort(AddNoteBookActivity.this, R.string.notebook_add_tip);
+                    return false;
                 }
                 //保存
                 Date date = new Date();
-                NoteBook noteBook = new NoteBook();
+                if (noteBook == null) {
+                    noteBook = new NoteBook();
+                }
                 noteBook.setTitle(titleEditText.getText().toString());
                 noteBook.setContent(contentEditText.getText().toString());
                 noteBook.setUpdate_time(date);
                 try {
-                    if (id != -1) {
-                        noteBook.setId(id);
-                        dbUtils.update(noteBook,"title","content","update_time");
-                    }else{
+                    if (noteBook.getId()!=null) {
+                        dbUtils.update(noteBook, "title", "content", "update_time");
+                    } else {
                         noteBook.setCreate_time(date);
                         dbUtils.saveBindingId(noteBook);
                     }
-
                 } catch (DbException e) {
                     e.printStackTrace();
                 }

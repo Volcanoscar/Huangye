@@ -3,8 +3,17 @@ package com.nuo.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.OvershootInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.fujie.module.activity.AbstractTemplateActivity;
@@ -30,6 +39,9 @@ public class NoteBookActivity extends AbstractTemplateActivity {
     private ListView msg_list;
     @ViewInject(R.id.empty)
     private TextView empty;
+
+    @ViewInject(R.id.tel_show)
+    private ImageButton saveBtn;
 
     private DbUtils dbUtil;
     private List<NoteBook> noteBookList = new ArrayList<NoteBook>();
@@ -60,6 +72,95 @@ public class NoteBookActivity extends AbstractTemplateActivity {
             noteBookAdapter = new NoteBookAdapter(NoteBookActivity.this, noteBookList);
             msg_list.setAdapter(noteBookAdapter);
         }
+        /*msg_list.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev) {
+                float y = ev.getY();
+                int action = ev.getAction() & MotionEvent.ACTION_MASK;
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        action_down(y);
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        mDeltaY = (int) (y - mMotionY);
+                        bIsMoved = true;
+                        action_down(y);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        bIsMoved = false;
+                        bIsDown = false;
+                        if (!bIsMoved && !bIsDown) {
+                            mHandler.postDelayed(showBottomBarRunnable, 2000);
+                        }
+                        if (mDeltaY < 0) {
+                            hideBottomBar();
+                        } else {
+                            showBottomBar();
+                        }
+                        bIsMoved = false;
+                        break;
+
+                }
+                return false;
+            }
+        });*/
+    }
+    private void action_down(float y) {
+        mMotionY = y;
+        bIsDown = true;
+        mHandler.removeCallbacks(showBottomBarRunnable);
+    }
+    public void showBottomBar() {
+
+        if (saveBtn != null && saveBtn.getVisibility() == View.GONE) {
+            saveBtn.setVisibility(View.INVISIBLE);
+            Animation translateAnimation = new TranslateAnimation(saveBtn.getLeft(), saveBtn.getLeft(), 0, saveBtn.getHeight());
+            translateAnimation.setDuration(300);
+            translateAnimation.setInterpolator(new OvershootInterpolator(0.6f));
+            saveBtn.startAnimation(translateAnimation);
+
+            translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    getActionBar().show();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    saveBtn.setVisibility(View.VISIBLE);
+                }
+            });
+        }
+    }
+
+    private void hideBottomBar() {
+
+        if (saveBtn != null && saveBtn.getVisibility() == View.VISIBLE) {
+            Animation translateAnimation = new TranslateAnimation(saveBtn.getLeft(), saveBtn.getLeft(),saveBtn.getHeight(),0);
+            translateAnimation.setDuration(300);
+            translateAnimation.setInterpolator(new OvershootInterpolator(0.6f));
+            saveBtn.startAnimation(translateAnimation);
+            translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+                    getActionBar().hide();
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    saveBtn.setVisibility(View.GONE);
+
+                }
+            });
+        }
     }
 
     @OnClick({R.id.tel_show})
@@ -72,4 +173,46 @@ public class NoteBookActivity extends AbstractTemplateActivity {
                     break;
             }
     }
+
+    /**
+     * 加载 动作栏 菜单<br>
+     * 根据不同的Activity修改ActionBar上的动作，并修改标题
+     * *
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.notebook_action, menu);
+        MenuItem searchItem =menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        // 查询事件
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                List<NoteBook> noteBooks = new ArrayList<NoteBook>();
+                for (NoteBook noteBook : noteBookList) {
+                    if (noteBook.getTitle().contains(s)) {
+                        noteBooks.add(noteBook);
+                    }
+                }
+                return false;
+            }
+        });
+        return true;
     }
+    private boolean bIsMoved = false;
+    private boolean bIsDown = false;
+    private int mDeltaY;
+    private float mMotionY;
+    private int oldFirstVisibleItem = 0;
+    private Handler mHandler = new Handler();
+    private Runnable showBottomBarRunnable = new Runnable() {
+        @Override
+        public void run() {
+            showBottomBar();
+        }
+    };
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/tag_flow_height"
+    android:gravity="center"
+    android:background="@drawable/sprint_panel"
+    android:paddingLeft="4.0dip"
+    android:paddingRight="4.0dip">
+    <TextView
+        android:id="@+id/tagtext"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/tag_flow_height"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/about"
+        android:textColor="@color/whites"/>
+</LinearLayout>

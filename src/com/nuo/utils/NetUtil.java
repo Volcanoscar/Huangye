@@ -3,6 +3,7 @@ package com.nuo.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
 import com.fujie.module.horizontalListView.ViewBean;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -10,6 +11,7 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.nuo.bean.FeedBack;
 import com.nuo.bean.MsgSearchBean;
 import com.nuo.bean.Publish;
 
@@ -113,18 +115,19 @@ public class NetUtil {
     /**
      * http://121.40.208.124/mapi/fbxx/serviceSearch/zuche::type1::type2::typeN? 其中zuche是二级分类代码要方第一个位置，后面的type1...typeN是你选择的其他分类过滤条件
      * 例如：serviceSearch/jiaxiao::jiaxiaozhaosheng::banbie-quanzhou::jiazhao-c1?d=&a=&k=&p=1&today=0&img=0    type1...typeN无顺序限制
+     *
      * @param msg
      * @param viewBeanList
      * @param requestCallBack
      */
     public static void searchMsg(MsgSearchBean msg, List<ViewBean> viewBeanList, RequestCallBack<String> requestCallBack) {
-        if (msg.getLevelTwoTypeCode() == null ||  msg.getLevelTwoTypeCode().isEmpty()) {
+        if (msg.getLevelTwoTypeCode() == null || msg.getLevelTwoTypeCode().isEmpty()) {
             requestCallBack.onFailure(null, null);
         }
         StringBuffer url = new StringBuffer("http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/fbxx/serviceSearch/" + msg.getLevelTwoTypeCode());
         if (viewBeanList != null && !viewBeanList.isEmpty()) {
             for (ViewBean viewBean : viewBeanList) {
-                if (viewBean.getId() != null&&!viewBean.getId().isEmpty()) {
+                if (viewBean.getId() != null && !viewBean.getId().isEmpty()) {
                     url.append("::").append(viewBean.getId());
                 }
             }
@@ -226,7 +229,7 @@ public class NetUtil {
 
     public static void getShopInfo(String accountId, RequestCallBack<String> requestCallBack) {
         RequestParams params = new RequestParams();
-        params.addQueryStringParameter("dianpuId",accountId);
+        params.addQueryStringParameter("dianpuId", accountId);
         HttpUtils http = new HttpUtils();
         http.send(HttpRequest.HttpMethod.POST,
                 "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/dianpu/info",
@@ -236,12 +239,13 @@ public class NetUtil {
 
     /**
      * 信息发布接口
+     *
      * @param publish
      * @param requestCallBack
      */
     public static void publish(Publish publish, RequestCallBack<String> requestCallBack) {
         RequestParams params = new RequestParams();
-        params.addQueryStringParameter("data",Publish.toJson(publish));
+        params.addQueryStringParameter("data", Publish.toJson(publish));
         HttpUtils http = new HttpUtils();
         http.send(HttpRequest.HttpMethod.POST,
                 "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/fbxx/save",
@@ -251,8 +255,8 @@ public class NetUtil {
 
     public static void uploadImg(List<String> imgAddList, RequestCallBack<String> requestCallBack) {
         RequestParams params = new RequestParams();
-        for (int i=0;i<imgAddList.size();i++) {
-            params.addBodyParameter("file"+i, new File(imgAddList.get(i)));
+        for (int i = 0; i < imgAddList.size(); i++) {
+            params.addBodyParameter("file" + i, new File(imgAddList.get(i)));
         }
         HttpUtils http = new HttpUtils();
         http.send(HttpRequest.HttpMethod.POST,
@@ -260,4 +264,21 @@ public class NetUtil {
                 params,
                 requestCallBack);
     }
+
+    public static void feedBack(FeedBack feedBack, RequestCallBack<String> requestCallBack) {
+        RequestParams params = new RequestParams();
+        params.addQueryStringParameter("content", feedBack.getContent());
+        if (feedBack.getContact() != null && !feedBack.getContact().isEmpty()) {
+            params.addQueryStringParameter("contact", feedBack.getContact());
+        }
+        if (feedBack.getUserId() != null && !feedBack.getUserId().isEmpty()) {
+            params.addQueryStringParameter("userId", feedBack.getUserId());
+        }
+        HttpUtils http = new HttpUtils();
+        http.send(HttpRequest.HttpMethod.POST,
+                "http://" + PreferenceConstants.DEFAULT_SERVER_HOST + "/mapi/feedback/save",
+                params,
+                requestCallBack);
+    }
+
 }

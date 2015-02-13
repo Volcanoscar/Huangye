@@ -12,6 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -19,17 +20,24 @@ import com.fujie.module.activity.AbstractTemplateActivity;
 import com.fujie.module.dialog.AlertDialog;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
 import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.nuo.activity.NoteBookActivity;
 import com.nuo.activity.R;
+import com.nuo.adapter.TagGridViewAdapter;
+import com.nuo.adapter.TagNameAdapter;
 import com.nuo.bean.notebook.NoteBook;
+import com.nuo.bean.notebook.NoteBookLabel;
 import com.nuo.utils.DateUtil;
 import com.nuo.utils.T;
 import com.nuo.utils.XutilHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zxl on 2015/2/10.
@@ -45,12 +53,16 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
     @ViewInject(R.id.content)
     private TextView content;
 
+    @ViewInject(R.id.tag_view)
+    private GridView tag_view;
+
     @ViewInject(R.id.scroll_view)
     private ScrollView scrollView;
 
     @ViewInject(R.id.bottom_layout)
     private LinearLayout mBottomBar;
     private int id;
+    private NoteBook noteBook;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +74,19 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
     }
 
     private void initView() {
-
+        //标签
+        if (noteBook.getLabel() != null) {
+            String[] lagbels = noteBook.getLabel().split(",");
+            List<NoteBookLabel> noteBookLabelList=null ;
+            try {
+                noteBookLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).where("id", "in", lagbels).orderBy("id", true));
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+            noteBookLabelList=noteBookLabelList == null ? new ArrayList<NoteBookLabel>() : noteBookLabelList;
+            TagNameAdapter viewAdapter = new TagNameAdapter(this,noteBookLabelList);
+            tag_view.setAdapter(viewAdapter);
+        }
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent ev) {
@@ -107,7 +131,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
         id = getIntent().getIntExtra("id", -1);
         dbUtils = XutilHelper.getDB(this);
         try {
-            NoteBook noteBook = dbUtils.findById(NoteBook.class, id);
+            noteBook = dbUtils.findById(NoteBook.class, id);
             title.setText(noteBook.getTitle());
             content.setText(noteBook.getContent());
             time.setText(DateUtil.dateToStr(noteBook.getCreate_time())); //创建时间还修改时间？
@@ -129,12 +153,19 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
                 break;
             case R.id.menu_edit:
                 Intent editNoteBook = new Intent(PreviewNoteBookActivity.this, AddNoteBookActivity.class);
-                editNoteBook.putExtra("id", id);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("notebook",noteBook);
+                editNoteBook.putExtras(bundle);
                 startActivity(editNoteBook);
                 finish();
                 break;
             case R.id.tag_empty_notes:
-                T.showShort(this, "编辑");
+                Intent tagNoteBook = new Intent(PreviewNoteBookActivity.this, TagNoteBookActivity.class);
+                Bundle temp = new Bundle();
+                temp.putSerializable("notebook",noteBook);
+                tagNoteBook.putExtras(temp);
+                startActivity(tagNoteBook);
+                finish();
                 break;
             case R.id.menu_delete_gray:
                 new AlertDialog(this).builder().setTitle("删除").setMsg("确定删除?")
@@ -181,7 +212,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    mBottomBar.setVisibility(View.VISIBLE);
+                   /* mBottomBar.setVisibility(View.VISIBLE);*/
                 }
             });
         }
@@ -206,7 +237,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    mBottomBar.setVisibility(View.GONE);
+                   /* mBottomBar.setVisibility(View.GONE);*/
 
                 }
             });

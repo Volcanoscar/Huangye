@@ -27,10 +27,15 @@
             android:id="@+id/tel_show"
             android:background="@color/transparent"
             android:layout_marginRight="30dip"
-            android:layout_width="@dimen/dial_diabar_height"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxWidth="40dip"
+            android:maxHeight="40dip"
+            android:padding="0dip"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="30dp"
             android:src="@drawable/notebook_add_btn"/>
     </RelativeLayout>

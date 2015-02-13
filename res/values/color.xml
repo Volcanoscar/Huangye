@@ -296,4 +296,11 @@
     <color name="dial_autocomplete_backgroundColor_pressed">#ffe3e5e6</color>
     <color name="footer_bg_pressed">#ffd7d7d7</color>
     <color name="note_footer_bg">#ffdedfe3</color>
+
+
+    <color name="item_pressed">#ffd9d9d9</color>
+    <color name="item_selected">#f0eff7ff</color>
+    <color name="item_focus">#ffeff7ff</color>
+    <color name="text_dark_grey">#ff292929</color>
+    <color name="notebook_item_count_grey">#ffa6aeb9</color>
 </resources>

@@ -137,5 +137,8 @@
     <string name="notebook_load_error">笔记加载异常</string>
     <string name="delete_error">删除失败</string>
     <string name="notebook_add_tip">标题和内容必须填写</string>
+    <string name="search_tag">添加或搜索标签</string>
+    <string name="tv_search">搜索</string>
+    <string name="tv_add">添加</string>
 
 </resources>

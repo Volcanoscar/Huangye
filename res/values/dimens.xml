@@ -502,5 +502,6 @@
     <dimen name="dial_input_textSize">35.0dip</dimen>
     <dimen name="dial_input_detail_textSize">16.0sp</dimen>
 
+    <dimen name="tag_flow_height">33.0dip</dimen>
 
 </resources>

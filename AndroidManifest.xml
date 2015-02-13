@@ -273,6 +273,9 @@
         <activity
             android:name=".PreviewNoteBookActivity"
             android:label="预览笔记" />
+        <activity
+            android:name=".TagNoteBookActivity"
+            android:label="笔记标签" />
 
         <receiver android:name="com.nuo.broadcastreceiver.BootBroadcastReceiver">
             <intent-filter>
