@@ -192,10 +192,12 @@ public class NoteBookActivity extends AbstractTemplateActivity {
             }
             @Override
             public boolean onQueryTextChange(String s) {
-                List<NoteBook> noteBooks = new ArrayList<NoteBook>();
-                for (NoteBook noteBook : noteBookList) {
-                    if (noteBook.getTitle().contains(s)) {
-                        noteBooks.add(noteBook);
+                if (noteBookList != null) {
+                    List<NoteBook> noteBooks = new ArrayList<NoteBook>();
+                    for (NoteBook noteBook : noteBookList) {
+                        if (noteBook.getTitle().contains(s)) {
+                            noteBooks.add(noteBook);
+                        }
                     }
                 }
                 return false;
