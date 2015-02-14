@@ -184,6 +184,7 @@ public class NoteBookActivity extends AbstractTemplateActivity {
         getMenuInflater().inflate(R.menu.notebook_action, menu);
         MenuItem searchItem =menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setQueryHint("搜索笔记标签、标题或内容");
         // 查询事件
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -192,13 +193,24 @@ public class NoteBookActivity extends AbstractTemplateActivity {
             }
             @Override
             public boolean onQueryTextChange(String s) {
+                if ("".equals(s)) {
+                    noteBookAdapter.setData(null,noteBookList);
+                    noteBookAdapter.notifyDataSetChanged();
+                    return false;
+                }
                 if (noteBookList != null) {
                     List<NoteBook> noteBooks = new ArrayList<NoteBook>();
                     for (NoteBook noteBook : noteBookList) {
-                        if (noteBook.getTitle().contains(s)) {
-                            noteBooks.add(noteBook);
+                        if (noteBook.getTitle().contains(s) || noteBook.getContent().contains(s)||noteBook.getLabelName().contains(s)) {
+                            try {
+                                noteBooks.add(noteBook.clone());
+                            } catch (CloneNotSupportedException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
+                    noteBookAdapter.setData(s, noteBooks);
+                    noteBookAdapter.notifyDataSetChanged();
                 }
                 return false;
             }

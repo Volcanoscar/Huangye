@@ -24,7 +24,8 @@ public class NoteBook extends EntityBase {
     private Boolean is_sync;
     @Column(column = "notebook_label")
     private String label ;
-
+    @Column(column = "notebook_name")
+    private String labelName;
     public String[] urls;
 
     public String getTitle() {
@@ -68,7 +69,15 @@ public class NoteBook extends EntityBase {
     }
 
     public String getLabel() {
-        return label;
+        return label==null?"":label;
+    }
+
+    public String getLabelName() {
+        return labelName==null?"":labelName;
+    }
+
+    public void setLabelName(String labelName) {
+        this.labelName = labelName;
     }
 
     public void setLabel(String label) {
@@ -81,5 +90,17 @@ public class NoteBook extends EntityBase {
 
     public void setUrls(String[] urls) {
         this.urls = urls;
+    }
+
+    @Override
+    public NoteBook clone() throws CloneNotSupportedException {
+        NoteBook noteBook = new NoteBook();
+        noteBook.setId(this.getId());
+        noteBook.setContent(this.getContent());
+        noteBook.setTitle(this.getTitle());
+        noteBook.setCreate_time(this.getCreate_time());
+        noteBook.setUpdate_time(this.getUpdate_time());
+        noteBook.setLabel(this.getLabel());
+        return noteBook;
     }
 }

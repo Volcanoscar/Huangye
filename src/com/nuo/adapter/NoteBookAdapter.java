@@ -12,6 +12,8 @@ import com.nuo.utils.DateUtil;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +28,9 @@ public class NoteBookAdapter extends BaseAdapter{
 	private List<NoteBook> mList;
 	private LayoutInflater mInflater;
 	private Context mContext;
-	
-	public NoteBookAdapter(Context context,List<NoteBook> list) {
+    private String key;
+
+    public NoteBookAdapter(Context context,List<NoteBook> list) {
 		mInflater = LayoutInflater.from(context);
 		mContext=context;
 		this.mList=list;
@@ -64,10 +67,18 @@ public class NoteBookAdapter extends BaseAdapter{
 			holder = (ViewHolder) convertView.getTag();
 		}
 		final NoteBook bean = getItem(position);
-		
 		/*ImageLoader.getInstance().displayImage(bean.avator, holder.avator);*/
-		holder.name.setText(bean.getTitle());
-		holder.content.setText(bean.getContent());
+        String title =bean.getTitle();
+        String content =bean.getContent();
+        if (key != null) {
+            bean.setTitle(title.replace(key, "<font color=\"red\">" + key + "</font>"));
+            bean.setContent(content.replace(key, "<font color=\"red\">" + key + "</font>"));
+            holder.name.setText(Html.fromHtml(bean.getTitle()));
+            holder.content.setText(Html.fromHtml(bean.getContent()));
+        }else{
+            holder.name.setText(title);
+            holder.content.setText(content);
+        }
 		String dateStr = DateUtil.format(bean.getCreate_time());
 		if (dateStr==null) {
             holder.time.setText(DateUtil.dateToStr(bean.getCreate_time(), "MM.dd")); //创建时间还修改时间？
@@ -91,7 +102,9 @@ public class NoteBookAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, PreviewNoteBookActivity.class);
-                intent.putExtra("id", bean.getId());
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("notebook", bean);
+                intent.putExtras(bundle);
                 mContext.startActivity(intent);
             }
         });
@@ -105,7 +118,13 @@ public class NoteBookAdapter extends BaseAdapter{
         intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_INDEX, position);
 		mContext.startActivity(intent);
 	}
-	private static class ViewHolder {
+
+    public void setData(String s, List<NoteBook> noteBooks) {
+        this.key = s;
+        this.mList = noteBooks;
+    }
+
+    private static class ViewHolder {
 
 		public TextView name;
 		public ImageView avator;

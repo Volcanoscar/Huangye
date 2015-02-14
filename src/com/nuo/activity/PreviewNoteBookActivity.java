@@ -3,6 +3,7 @@ package com.nuo.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
 import com.fujie.module.activity.AbstractTemplateActivity;
 import com.fujie.module.dialog.AlertDialog;
 import com.lidroid.xutils.DbUtils;
@@ -61,7 +63,6 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
 
     @ViewInject(R.id.bottom_layout)
     private LinearLayout mBottomBar;
-    private int id;
     private NoteBook noteBook;
 
     @Override
@@ -77,14 +78,14 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
         //标签
         if (noteBook.getLabel() != null) {
             String[] lagbels = noteBook.getLabel().split(",");
-            List<NoteBookLabel> noteBookLabelList=null ;
+            List<NoteBookLabel> noteBookLabelList = null;
             try {
-                noteBookLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).where("id", "in", lagbels).orderBy("id", true));
+                noteBookLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).where("id", "in", lagbels).orderBy("id"));
             } catch (DbException e) {
                 e.printStackTrace();
             }
-            noteBookLabelList=noteBookLabelList == null ? new ArrayList<NoteBookLabel>() : noteBookLabelList;
-            TagNameAdapter viewAdapter = new TagNameAdapter(this,noteBookLabelList);
+            noteBookLabelList = noteBookLabelList == null ? new ArrayList<NoteBookLabel>() : noteBookLabelList;
+            TagNameAdapter viewAdapter = new TagNameAdapter(this, noteBookLabelList);
             tag_view.setAdapter(viewAdapter);
         }
         scrollView.setOnTouchListener(new View.OnTouchListener() {
@@ -128,16 +129,12 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
     }
 
     private void initData() {
-        id = getIntent().getIntExtra("id", -1);
+        noteBook = (NoteBook) getIntent().getSerializableExtra("notebook");
         dbUtils = XutilHelper.getDB(this);
-        try {
-            noteBook = dbUtils.findById(NoteBook.class, id);
-            title.setText(noteBook.getTitle());
-            content.setText(noteBook.getContent());
-            time.setText(DateUtil.dateToStr(noteBook.getCreate_time())); //创建时间还修改时间？
-        } catch (DbException e) {
-            e.printStackTrace();
-        }
+           /* noteBook = dbUtils.findById(NoteBook.class, id);*/
+        title.setText(Html.fromHtml(noteBook.getTitle()));
+        content.setText(Html.fromHtml(noteBook.getContent()));
+        time.setText(DateUtil.dateToStr(noteBook.getCreate_time())); //创建时间还修改时间？
     }
 
     @OnClick({R.id.menu_share, R.id.menu_edit, R.id.tag_empty_notes, R.id.menu_delete_gray})
@@ -154,7 +151,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
             case R.id.menu_edit:
                 Intent editNoteBook = new Intent(PreviewNoteBookActivity.this, AddNoteBookActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("notebook",noteBook);
+                bundle.putSerializable("notebook", noteBook);
                 editNoteBook.putExtras(bundle);
                 startActivity(editNoteBook);
                 finish();
@@ -162,7 +159,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
             case R.id.tag_empty_notes:
                 Intent tagNoteBook = new Intent(PreviewNoteBookActivity.this, TagNoteBookActivity.class);
                 Bundle temp = new Bundle();
-                temp.putSerializable("notebook",noteBook);
+                temp.putSerializable("notebook", noteBook);
                 tagNoteBook.putExtras(temp);
                 startActivity(tagNoteBook);
                 finish();
@@ -173,7 +170,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
                             @Override
                             public void onClick(View v) {
                                 try {
-                                    dbUtils.deleteById(NoteBook.class, id);
+                                    dbUtils.deleteById(NoteBook.class, noteBook.getId());
                                 } catch (DbException e) {
                                     e.printStackTrace();
                                     T.showShort(PreviewNoteBookActivity.this, R.string.delete_error);

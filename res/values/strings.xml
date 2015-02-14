@@ -140,5 +140,6 @@
     <string name="search_tag">添加或搜索标签</string>
     <string name="tv_search">搜索</string>
     <string name="tv_add">添加</string>
+    <string name="notebook_search_tip">搜索标题或内容</string>
 
 </resources>

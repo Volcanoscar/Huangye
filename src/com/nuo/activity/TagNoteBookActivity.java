@@ -135,9 +135,9 @@ public class TagNoteBookActivity extends AbstractTemplateActivity {
             String[] labelid = label.split(",");
             try {
                 //查询本笔记已经有的标签
-                hasLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).where("id", "in", labelid).orderBy("id", true));
+                hasLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).where("id", "in", labelid).orderBy("id"));
                 //查询本笔记没有的标签
-                noLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).orderBy("id", true));
+                noLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).orderBy("id"));
             } catch (DbException e) {
                 e.printStackTrace();
             }
@@ -192,17 +192,21 @@ public class TagNoteBookActivity extends AbstractTemplateActivity {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 String tags = "";
+                String tagName = "";
                 for (NoteBookLabel label : hasLabelList) {
                     if (tags.equals("")) {
                         tags=label.getId().toString();
+                        tagName=label.getName().toString();
                     }
                     else {
-                        tags = "," + label.getId().toString();
+                        tags += "," + label.getId().toString();
+                        tagName += "," + label.getName().toString();
                     }
                 }
                 notebook.setLabel(tags);
+                notebook.setLabelName(tagName);
                 try {
-                    dbUtils.update(notebook,"notebook_label");
+                    dbUtils.update(notebook,"notebook_label","notebook_name");
                     T.showShort(TagNoteBookActivity.this,"标签保存成功");
                 } catch (DbException e) {
                     e.printStackTrace();
