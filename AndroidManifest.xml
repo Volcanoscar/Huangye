@@ -244,10 +244,10 @@
             android:label="@string/change_fabu_type" />
         <activity
             android:name="com.nuo.activity.FeedBackActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/feedback" />
         <activity
             android:name=".AboutActivity"
-            android:theme="@android:style/Theme.NoTitleBar" />
+            android:label="@string/about"/>
         <activity
             android:name=".UserCenterActivity"
             android:theme="@android:style/Theme.NoTitleBar" />

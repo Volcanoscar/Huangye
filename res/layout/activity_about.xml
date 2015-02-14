@@ -5,22 +5,19 @@
               android:orientation="vertical"
               android:background="@color/white"
         >
-    <com.fujie.module.titlebar.TitleBarView
-            android:id="@+id/title_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
     <RelativeLayout android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_centerInParent="true"
                     android:layout_marginBottom="30dp"
                     android:layout_below="@+id/title_bar">
+
         <ImageView android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:adjustViewBounds="true"
                    android:id="@+id/logo"
                    android:layout_centerHorizontal="true"
-                   android:src="@drawable/qrcode"
+                   android:background="@drawable/qrcode"
                    />
         <TextView android:layout_width="wrap_content"
                   android:layout_height="wrap_content"

@@ -482,27 +482,25 @@ public class FrameActivity extends ActivityGroup {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (keyCode == KeyEvent.KEYCODE_BACK) {
-                Builder builder = new Builder(FrameActivity.this);
-                builder.setTitle("提示");
-                builder.setMessage("你确定要退出吗？");
-                DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
+            Builder builder = new Builder(FrameActivity.this);
+            builder.setTitle("提示");
+            builder.setMessage("你确定要退出吗？");
+            DialogInterface.OnClickListener dialog = new DialogInterface.OnClickListener() {
 
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        // TODO Auto-generated method stub
-                        if (arg1 == DialogInterface.BUTTON_POSITIVE) {
-                            arg0.cancel();
-                        } else if (arg1 == DialogInterface.BUTTON_NEGATIVE) {
-                            FrameActivity.this.finish();
-                        }
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    // TODO Auto-generated method stub
+                    if (arg1 == DialogInterface.BUTTON_POSITIVE) {
+                        arg0.cancel();
+                    } else if (arg1 == DialogInterface.BUTTON_NEGATIVE) {
+                        FrameActivity.this.finish();
                     }
-                };
-                builder.setPositiveButton("取消", dialog);
-                builder.setNegativeButton("确定", dialog);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }
+                }
+            };
+            builder.setPositiveButton("取消", dialog);
+            builder.setNegativeButton("确定", dialog);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }
         return false;
     } 

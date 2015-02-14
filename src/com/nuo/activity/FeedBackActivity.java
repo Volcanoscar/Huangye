@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.fujie.module.activity.AbstractTemplateActivity;
 import com.fujie.module.titlebar.TitleBarView;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -26,9 +27,7 @@ import com.nuo.utils.XutilHelper;
 /**
  * Created by APPLE on 2014/11/29.
  */
-public class FeedBackActivity extends Activity {
-    @ViewInject(R.id.title_bar)
-    private TitleBarView mTitleBarView;
+public class FeedBackActivity extends AbstractTemplateActivity {
     @ViewInject(R.id.content)
     private EditText contentEditText;
     @ViewInject(R.id.contact)
@@ -43,24 +42,10 @@ public class FeedBackActivity extends Activity {
         setContentView(R.layout.activity_feedback);
         ViewUtils.inject(this);
         initData();
-        initView();
     }
 
     private void initData() {
         db = XutilHelper.getDB(this);
-    }
-
-    private void initView() {
-
-        mTitleBarView.setCommonTitle(View.VISIBLE, View.VISIBLE, View.GONE, View.GONE);
-        mTitleBarView.setBtnLeft(R.drawable.ic_back, R.string.back);
-        mTitleBarView.setTitleText(R.string.feedback_title);
-        mTitleBarView.setBtnLeftOnclickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     @OnClick(R.id.FeedbackButton)

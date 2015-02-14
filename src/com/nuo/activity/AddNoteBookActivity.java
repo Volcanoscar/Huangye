@@ -2,14 +2,18 @@ package com.nuo.activity;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
 import com.fujie.module.activity.AbstractTemplateActivity;
+import com.fujie.module.activity.BackApplication;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.DbException;
@@ -28,7 +32,7 @@ import java.util.Date;
  * Created by zxl on 2015/2/10.
  * 添加笔记界面
  */
-public class AddNoteBookActivity extends AbstractTemplateActivity {
+public class AddNoteBookActivity extends Activity {
     private DbUtils dbUtils;
 
     @ViewInject(R.id.title)
@@ -42,6 +46,7 @@ public class AddNoteBookActivity extends AbstractTemplateActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_notebook);
         ViewUtils.inject(this);
+        initActionBar();
         initData();
         initView();
     }
@@ -77,48 +82,62 @@ public class AddNoteBookActivity extends AbstractTemplateActivity {
 
     }
 
-    /**
-     * 加载 动作栏 菜单<br>
-     * 根据不同的Activity修改ActionBar上的动作，并修改标题
-     * *
-     */
+
+    private void initActionBar() {
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowHomeEnabled(false); //隐藏logo和icon
+        actionBar.setDisplayHomeAsUpEnabled(true);  //添加反馈按键
+    }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_notebook, menu);
-        //每个动作栏中都有反馈项
-        MenuItem saveItem = menu.findItem(R.id.action_save);
-        saveItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                //验证
-                if (titleEditText.getText().length() == 0 || contentEditText.getText().length() == 0) {
-                    T.showShort(AddNoteBookActivity.this, R.string.notebook_add_tip);
-                    return false;
-                }
-                //保存
-                Date date = new Date();
-                if (noteBook == null) {
-                    noteBook = new NoteBook();
-                }
-                noteBook.setTitle(titleEditText.getText().toString());
-                noteBook.setContent(contentEditText.getText().toString());
-                noteBook.setUpdate_time(date);
-                try {
-                    if (noteBook.getId()!=null) {
-                        dbUtils.update(noteBook, "title", "content", "update_time");
-                    } else {
-                        noteBook.setCreate_time(date);
-                        dbUtils.saveBindingId(noteBook);
-                    }
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
-                Intent intent = new Intent(AddNoteBookActivity.this, NoteBookActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
+    public void onBackPressed() {
+        super.onBackPressed();
+        saveNoteBook();
+
+    }
+
+    private void saveNoteBook() {
+        //验证
+        if (titleEditText.getText().length() == 0 && contentEditText.getText().length() == 0) {
+            return ;
+        }
+        if (contentEditText.getText().length() != 0) {  //保存笔记本
+            //保存
+            Date date = new Date();
+            if (noteBook == null) {
+                noteBook = new NoteBook();
             }
-        });
-        return true;
+            String title = titleEditText.getText().toString();
+            if ("".equals(title)) {
+                title = getResources().getString(R.string.default_title);
+            }
+            noteBook.setTitle(title);
+            noteBook.setContent(contentEditText.getText().toString());
+            noteBook.setUpdate_time(date);
+            try {
+                if (noteBook.getId()!=null) {
+                    dbUtils.update(noteBook, "title", "content", "update_time");
+                } else {
+                    noteBook.setCreate_time(date);
+                    dbUtils.saveBindingId(noteBook);
+                }
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+            T.showShort(AddNoteBookActivity.this,"笔记保存成功");
+        }
+        Intent intent = new Intent(AddNoteBookActivity.this, NoteBookActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                saveNoteBook();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

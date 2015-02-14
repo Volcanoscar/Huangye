@@ -1,21 +1,19 @@
 package com.nuo.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.fujie.module.activity.AbstractTemplateActivity;
+import com.fujie.module.activity.BackApplication;
 import com.fujie.module.editview.ClearEditText;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -26,7 +24,6 @@ import com.nuo.adapter.TagGridViewAdapter;
 import com.nuo.adapter.TagListViewAdapter;
 import com.nuo.bean.notebook.NoteBook;
 import com.nuo.bean.notebook.NoteBookLabel;
-import com.nuo.utils.T;
 import com.nuo.utils.XutilHelper;
 
 import java.util.ArrayList;
@@ -36,7 +33,8 @@ import java.util.List;
 /**
  * Created by zxl on 2015/2/13.
  */
-public class TagNoteBookActivity extends AbstractTemplateActivity {
+public class TagNoteBookActivity extends Activity{
+    private static final String LABEL_NAME = "label_name";
     @ViewInject(R.id.tag_view)
     private GridView tag_view;
     @ViewInject(R.id.tag_list)
@@ -54,11 +52,13 @@ public class TagNoteBookActivity extends AbstractTemplateActivity {
     private List<NoteBookLabel> noLabelList = new ArrayList<NoteBookLabel>();
     private TagGridViewAdapter gridViewAdapter;
     private TagListViewAdapter listViewAdapter;
+    private String tagName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tag_notebook);
+        initActionBar();
         ViewUtils.inject(this);
         initData();
         initViewAction();
@@ -88,6 +88,7 @@ public class TagNoteBookActivity extends AbstractTemplateActivity {
                 gridViewAdapter.notifyDataSetChanged();
                 listViewAdapter.notifyDataSetChanged();
                 filter_edit.setText("");
+                saveLabel();
             }
         });
         //检测输入内容
@@ -161,6 +162,7 @@ public class TagNoteBookActivity extends AbstractTemplateActivity {
                     }
                 }
                 listViewAdapter.notifyDataSetChanged();
+                saveLabel();
             }
         });
         tag_view.setAdapter(gridViewAdapter);
@@ -173,49 +175,60 @@ public class TagNoteBookActivity extends AbstractTemplateActivity {
                     hasLabelList.remove(noteBookLabel);
                 }
                 gridViewAdapter.notifyDataSetChanged();
+                saveLabel();
             }
         });
         tag_list.setAdapter(listViewAdapter);
     }
 
-    /**
-     * 加载 动作栏 菜单<br>
-     * 根据不同的Activity修改ActionBar上的动作，并修改标题
-     * *
-     */
+    private void saveLabel(){
+       String tags = "";
+        tagName = "";
+       for (NoteBookLabel label : hasLabelList) {
+           if (tags.equals("")) {
+               tags=label.getId().toString();
+               tagName =label.getName().toString();
+           }
+           else {
+               tags += "," + label.getId().toString();
+               tagName += "," + label.getName().toString();
+           }
+       }
+       notebook.setLabel(tags);
+       notebook.setLabelName(tagName);
+       try {
+           dbUtils.update(notebook,"notebook_label","notebook_name");
+       } catch (DbException e) {
+           e.printStackTrace();
+       }
+   }
+
+    private void initActionBar() {
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayShowHomeEnabled(false); //隐藏logo和icon
+        actionBar.setDisplayHomeAsUpEnabled(true);  //添加反馈按键
+    }
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.add_notebook, menu);
-        //每个动作栏中都有反馈项
-        MenuItem saveItem = menu.findItem(R.id.action_save);
-        saveItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                String tags = "";
-                String tagName = "";
-                for (NoteBookLabel label : hasLabelList) {
-                    if (tags.equals("")) {
-                        tags=label.getId().toString();
-                        tagName=label.getName().toString();
-                    }
-                    else {
-                        tags += "," + label.getId().toString();
-                        tagName += "," + label.getName().toString();
-                    }
-                }
-                notebook.setLabel(tags);
-                notebook.setLabelName(tagName);
-                try {
-                    dbUtils.update(notebook,"notebook_label","notebook_name");
-                    T.showShort(TagNoteBookActivity.this,"标签保存成功");
-                } catch (DbException e) {
-                    e.printStackTrace();
-                }
-                Intent intent = new Intent(TagNoteBookActivity.this,NoteBookActivity.class);
-                startActivity(intent);
-                return false;
-            }
-        });
-        return true;
+    public void onBackPressed() {
+        super.onBackPressed();
+        BackApplication application = (BackApplication) getApplication();
+        application.getActivityManager().popActivity(this);
+        Intent lastIntent = getIntent();
+        lastIntent.putExtra(LABEL_NAME, tagName);
+        setResult(RESULT_OK, lastIntent); //intent为A传来的带有Bundle的intent，当然也可以自己定义新的Bundle
+        finish();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent lastIntent = getIntent();
+                lastIntent.putExtra(LABEL_NAME, tagName);
+                setResult(RESULT_OK, lastIntent); //intent为A传来的带有Bundle的intent，当然也可以自己定义新的Bundle
+                this.finish();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

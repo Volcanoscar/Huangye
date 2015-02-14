@@ -24,7 +24,7 @@
     <string name="title_activity_tuan_details">TuanDetailsActivity</string>
     <string name="feedback_title">用户反馈</string>
     <string name="feedback_text1">建议或意见</string>
-    <string name="feedback_hint1">如您遇到问题，请留下您的宝贵意见和联系方式，我们会及时与您联系，排查解决，彩票相关问题请在反馈内容中说明账户名。</string>
+    <string name="feedback_hint1">如您遇到问题，请留下您的宝贵意见和联系方式，我们会及时与您联系，排查解决。</string>
     <string name="feedback_text2">手机或QQ</string>
     <string name="feedback_hint2">手机或QQ</string>
     <string name="feedback_submit">提　交</string>
@@ -136,10 +136,11 @@
     <string name="input_title_tip">请输入笔记标题</string>
     <string name="notebook_load_error">笔记加载异常</string>
     <string name="delete_error">删除失败</string>
-    <string name="notebook_add_tip">标题和内容必须填写</string>
+    <string name="notebook_add_tip">内容必须填写</string>
     <string name="search_tag">添加或搜索标签</string>
     <string name="tv_search">搜索</string>
     <string name="tv_add">添加</string>
     <string name="notebook_search_tip">搜索标题或内容</string>
+    <string name="default_title">默认标题</string>
 
 </resources>

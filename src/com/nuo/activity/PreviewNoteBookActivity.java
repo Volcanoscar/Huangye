@@ -76,18 +76,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
 
     private void initView() {
         //标签
-        if (noteBook.getLabel() != null) {
-            String[] lagbels = noteBook.getLabel().split(",");
-            List<NoteBookLabel> noteBookLabelList = null;
-            try {
-                noteBookLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).where("id", "in", lagbels).orderBy("id"));
-            } catch (DbException e) {
-                e.printStackTrace();
-            }
-            noteBookLabelList = noteBookLabelList == null ? new ArrayList<NoteBookLabel>() : noteBookLabelList;
-            TagNameAdapter viewAdapter = new TagNameAdapter(this, noteBookLabelList);
-            tag_view.setAdapter(viewAdapter);
-        }
+        initLabelView();
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent ev) {
@@ -122,6 +111,33 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        NoteBook temp=null;
+        try {
+            temp = dbUtils.findById(NoteBook.class, noteBook.getId());
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+        noteBook.setLabel(temp.getLabel());
+        initLabelView();
+    }
+
+    private void initLabelView() {
+        if (noteBook.getLabel() != null) {
+            String[] lagbels = noteBook.getLabel().split(",");
+            List<NoteBookLabel> noteBookLabelList = null;
+            try {
+                noteBookLabelList = dbUtils.findAll(Selector.from(NoteBookLabel.class).where("id", "in", lagbels).orderBy("id"));
+            } catch (DbException e) {
+                e.printStackTrace();
+            }
+            noteBookLabelList = noteBookLabelList == null ? new ArrayList<NoteBookLabel>() : noteBookLabelList;
+            TagNameAdapter viewAdapter = new TagNameAdapter(this, noteBookLabelList);
+            tag_view.setAdapter(viewAdapter);
+        }
+    }
+
     private void action_down(float y) {
         mMotionY = y;
         bIsDown = true;
@@ -131,6 +147,12 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
     private void initData() {
         noteBook = (NoteBook) getIntent().getSerializableExtra("notebook");
         dbUtils = XutilHelper.getDB(this);
+        try {
+            NoteBook temp =dbUtils.findById(NoteBook.class, noteBook.getId());
+            noteBook.setLabel(temp.getLabel());
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
            /* noteBook = dbUtils.findById(NoteBook.class, id);*/
         title.setText(Html.fromHtml(noteBook.getTitle()));
         content.setText(Html.fromHtml(noteBook.getContent()));
@@ -161,8 +183,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
                 Bundle temp = new Bundle();
                 temp.putSerializable("notebook", noteBook);
                 tagNoteBook.putExtras(temp);
-                startActivity(tagNoteBook);
-                finish();
+                startActivityForResult(tagNoteBook,1);
                 break;
             case R.id.menu_delete_gray:
                 new AlertDialog(this).builder().setTitle("删除").setMsg("确定删除?")
