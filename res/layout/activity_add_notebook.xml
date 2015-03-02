@@ -4,41 +4,62 @@
     android:layout_height="match_parent"
     android:background="@color/whites"
     android:orientation="vertical">
-    <LinearLayout
-        android:id="@+id/title_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--  <LinearLayout
+          android:id="@+id/title_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:background="@null"
-            android:minHeight="40dp"
-            android:padding="5dp"
-            android:hint="@string/default_title"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+          <EditText
+              android:id="@+id/title"
+              android:layout_width="match_parent"
+              android:background="@null"
+              android:minHeight="40dp"
+              android:padding="5dp"
+              android:hint="@string/default_title"
+              android:layout_height="wrap_content" />
+      </LinearLayout>-->
 
     <LinearLayout
-        android:layout_below="@+id/title_layout"
         android:layout_width="match_parent"
-        android:background="@drawable/search_list_bg"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/search_list_bg">
+
         <EditText
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp"
-            android:inputType="textMultiLine"
-            android:gravity="top|left"
             android:background="@null"
-            />
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:padding="5dp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/text_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true">
         <include layout="@layout/edit_buttons" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/write_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <com.nuo.activity.MyView
+            android:id="@+id/myView1"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/write_bg"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true" />
+
+        <include
+            layout="@layout/editor_handwrite_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
     </LinearLayout>
 </RelativeLayout>

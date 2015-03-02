@@ -17,6 +17,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.fujie.module.activity.AbstractTemplateActivity;
+import com.fujie.module.button.FloatingActionButton;
+import com.fujie.module.button.ShowHideOnScroll;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
@@ -41,7 +43,7 @@ public class NoteBookActivity extends AbstractTemplateActivity {
     private TextView empty;
 
     @ViewInject(R.id.tel_show)
-    private ImageButton saveBtn;
+    private FloatingActionButton saveBtn;
 
     private DbUtils dbUtil;
     private List<NoteBook> noteBookList = new ArrayList<NoteBook>();
@@ -72,6 +74,7 @@ public class NoteBookActivity extends AbstractTemplateActivity {
             noteBookAdapter = new NoteBookAdapter(NoteBookActivity.this, noteBookList);
             msg_list.setAdapter(noteBookAdapter);
         }
+        msg_list.setOnTouchListener(new ShowHideOnScroll(saveBtn));
         /*msg_list.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent ev) {
@@ -184,7 +187,7 @@ public class NoteBookActivity extends AbstractTemplateActivity {
         getMenuInflater().inflate(R.menu.notebook_action, menu);
         MenuItem searchItem =menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
-        searchView.setQueryHint("搜索笔记标签、标题或内容");
+        searchView.setQueryHint("搜索笔记内容或标签");
         // 查询事件
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -201,7 +204,7 @@ public class NoteBookActivity extends AbstractTemplateActivity {
                 if (noteBookList != null) {
                     List<NoteBook> noteBooks = new ArrayList<NoteBook>();
                     for (NoteBook noteBook : noteBookList) {
-                        if (noteBook.getTitle().contains(s) || noteBook.getContent().contains(s)||noteBook.getLabelName().contains(s)) {
+                        if (noteBook.getContent().contains(s)||noteBook.getLabelName().contains(s)) {
                             try {
                                 noteBooks.add(noteBook.clone());
                             } catch (CloneNotSupportedException e) {

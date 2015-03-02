@@ -1,9 +1,14 @@
 package com.nuo.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,6 +37,8 @@ import com.nuo.adapter.TagGridViewAdapter;
 import com.nuo.adapter.TagNameAdapter;
 import com.nuo.bean.notebook.NoteBook;
 import com.nuo.bean.notebook.NoteBookLabel;
+import com.nuo.bean.notebook.NoteBookType;
+import com.nuo.utils.BitMapUtil;
 import com.nuo.utils.DateUtil;
 import com.nuo.utils.T;
 import com.nuo.utils.XutilHelper;
@@ -50,10 +57,10 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
 
     @ViewInject(R.id.time)
     private TextView time;
-    @ViewInject(R.id.title)
-    private TextView title;
+    /*  @ViewInject(R.id.title)
+      private TextView title;*/
     @ViewInject(R.id.content)
-    private TextView content;
+    private EditText content;
 
     @ViewInject(R.id.tag_view)
     private GridView tag_view;
@@ -77,6 +84,10 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
     private void initView() {
         //标签
         initLabelView();
+        content.setCursorVisible(false);      //设置输入框中的光标不可见
+        content.setFocusable(false);           //无焦点
+        content.setFocusableInTouchMode(false);     //触摸时也得不到焦点
+
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent ev) {
@@ -112,8 +123,8 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        NoteBook temp=null;
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        NoteBook temp = null;
         try {
             temp = dbUtils.findById(NoteBook.class, noteBook.getId());
         } catch (DbException e) {
@@ -148,15 +159,52 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
         noteBook = (NoteBook) getIntent().getSerializableExtra("notebook");
         dbUtils = XutilHelper.getDB(this);
         try {
-            NoteBook temp =dbUtils.findById(NoteBook.class, noteBook.getId());
+            NoteBook temp = dbUtils.findById(NoteBook.class, noteBook.getId());
             noteBook.setLabel(temp.getLabel());
         } catch (DbException e) {
             e.printStackTrace();
         }
            /* noteBook = dbUtils.findById(NoteBook.class, id);*/
-        title.setText(Html.fromHtml(noteBook.getTitle()));
+        //title.setText(Html.fromHtml(noteBook.getTitle()));
         content.setText(Html.fromHtml(noteBook.getContent()));
         time.setText(DateUtil.dateToStr(noteBook.getCreate_time())); //创建时间还修改时间？
+        //进行除文本外的其它笔记类型的添加
+        try {
+            List<NoteBookType> noteBookTypes = dbUtils.findAll(Selector.from(NoteBookType.class).where("note_book_id","=",noteBook.getId()).orderBy("position"));
+            if (noteBookTypes != null && !noteBookTypes.isEmpty()) {
+                for (NoteBookType type : noteBookTypes) {
+                    displayBitmapOnText(type);
+                }
+            }
+        } catch (DbException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*
+    * this is add bitmap on edit text
+
+    */
+    SpannableString mSpan1 = new SpannableString("1");
+
+    public void displayBitmapOnText(NoteBookType type) {
+        Bitmap thumbnailBitmap = BitMapUtil.decodeSampledBitmapFromStream(type.getPath(), 300, 300);
+        if (thumbnailBitmap == null)
+            return;
+        int start = type.getPosition();
+        mSpan1.setSpan(new ImageSpan(thumbnailBitmap), mSpan1.length() - 1, mSpan1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        mSpan1.toString();
+        if (content != null) {
+            Editable et = content.getText();
+            if (et.length() < start) {
+                et.append(mSpan1);
+            }else{
+                et.insert(start, mSpan1);
+
+            }
+            content.setText(et);
+        }
+        content.setLineSpacing(10f, 1f);
     }
 
     @OnClick({R.id.menu_share, R.id.menu_edit, R.id.tag_empty_notes, R.id.menu_delete_gray})
@@ -165,7 +213,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
             case R.id.menu_share:
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_SUBJECT, title.getText().toString());
+                //intent.putExtra(Intent.EXTRA_SUBJECT, title.getText().toString());
                 intent.putExtra(Intent.EXTRA_TEXT, content.getText().toString());
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(Intent.createChooser(intent, "分享笔记给好友"));
@@ -183,7 +231,7 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
                 Bundle temp = new Bundle();
                 temp.putSerializable("notebook", noteBook);
                 tagNoteBook.putExtras(temp);
-                startActivityForResult(tagNoteBook,1);
+                startActivityForResult(tagNoteBook, 1);
                 break;
             case R.id.menu_delete_gray:
                 new AlertDialog(this).builder().setTitle("删除").setMsg("确定删除?")

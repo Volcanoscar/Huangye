@@ -27,5 +27,5 @@
         android:id="@+id/menu_delete_gray"
         style="@style/footer_img_button"
         android:layout_weight="1"
-        android:src="@drawable/menu_delete_gray" />
+        android:src="@drawable/doodle_delete" />
 </LinearLayout>

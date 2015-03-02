@@ -3,4 +3,5 @@
     <declare-styleable name="swipelistviewstyle">    
         <attr name="right_width" format="dimension"></attr>  
     </declare-styleable>
+    <attr name="floatingActionButtonStyle" format="reference"/>
 </resources>

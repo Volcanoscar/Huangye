@@ -296,5 +296,11 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@anim/push_bottom_in</item>
     </style>
-
+    <style name="scroll_footer">
+        <item name="android:scrollbars">none</item>
+        <item name="android:fadingEdgeLength">1.0dip</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
 </resources>

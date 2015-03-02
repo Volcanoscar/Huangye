@@ -129,16 +129,9 @@ public class FrameActivity extends ActivityGroup {
         ActionBar actionBar = getActionBar();
         final Integer accountId = PreferenceUtils.getPrefInt(FrameActivity.this,
                 PreferenceConstants.ACCOUNT_ID, -1);
-        if (currItem==0) { //关系
-            getMenuInflater().inflate(R.menu.main, menu);
-            actionBar.setTitle(R.string.relation);
-        }else if(currItem==1){ // 信息
-            getMenuInflater().inflate(R.menu.sms_action, menu);
-            actionBar.setTitle(R.string.sms);
-        }else if(currItem==2){ // 黄页
+        if (currItem==0) { // 黄页
             getMenuInflater().inflate(R.menu.huangye_action, menu);
             actionBar.setTitle(R.string.huangye);
-            //
             MenuItem searchItem =menu.findItem(R.id.action_info_search);
             MenuItem fabuItem =menu.findItem(R.id.action_fabu_sms);
             MenuItem myShopItem =menu.findItem(R.id.action_my_shop);
@@ -183,13 +176,21 @@ public class FrameActivity extends ActivityGroup {
                         startActivity(intent);
                     }
                     return false;
-
                 }
             });
-        }else if(currItem==3){ //工具
+        }else if(currItem==1){ //关系
+            getMenuInflater().inflate(R.menu.main, menu);
+            actionBar.setTitle(R.string.relation);
+
+        }else if(currItem==3){ // 信息
+            getMenuInflater().inflate(R.menu.sms_action, menu);
+            actionBar.setTitle(R.string.sms);
+
+        }else if(currItem==4){ //工具
             getMenuInflater().inflate(R.menu.tuan_details, menu);
             actionBar.setTitle(R.string.tool);
         }
+
         //每个动作栏中都有反馈项
         MenuItem feedbackItem =menu.findItem(R.id.action_feedback);
         if(feedbackItem!=null){

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/handwrite_toolbar"
+    style="@style/scroll_footer">
+
+    <ImageView
+        android:id="@+id/handwrite_exit"
+        style="@style/footer_img_button"
+        android:src="@drawable/key" />
+
+    <ImageView
+        android:layout_width="1.0dip"
+        android:layout_height="80dp"
+        android:background="@color/gray_font" />
+
+    <ImageView
+        android:id="@+id/handwrite_switch"
+        style="@style/footer_img_button"
+        android:src="@drawable/double_handwrite_icon" />
+
+    <ImageView
+        android:id="@+id/handwrite_blank"
+        style="@style/footer_img_button"
+        android:src="@drawable/handwrite_blank" />
+
+    <ImageView
+        android:id="@+id/handwrite_return"
+        style="@style/footer_img_button"
+        android:src="@drawable/handwrite_return" />
+
+    <ImageView
+        android:id="@+id/handwrite_paint"
+        style="@style/footer_img_button"
+        android:src="@drawable/handwrite_paint" />
+
+    <ImageView
+        android:id="@+id/handwrite_delete"
+        style="@style/footer_img_button"
+        android:src="@drawable/handwrite_delete" />
+</LinearLayout>

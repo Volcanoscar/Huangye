@@ -10,6 +10,7 @@ import com.nuo.activity.R;
 import com.nuo.bean.notebook.NoteBook;
 import com.nuo.utils.DateUtil;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -106,6 +107,7 @@ public class NoteBookAdapter extends BaseAdapter{
                 bundle.putSerializable("notebook", bean);
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);
+                ((Activity)mContext).finish();
             }
         });
 		return convertView;

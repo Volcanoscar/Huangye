@@ -32,7 +32,7 @@
             android:id="@+id/relativeLayoutPiont"
             android:layout_width="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_height="170dip"
+            android:layout_height="175dp"
             android:layout_alignParentTop="true">
         <View
                 android:layout_width="1dp"
@@ -54,7 +54,7 @@
             android:layout_marginLeft="10dp"
             android:background="@color/white"
             android:padding="3dp"
-            android:layout_height="match_parent">
+        android:layout_height="170dp">
         <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
@@ -64,6 +64,7 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textColor="#576B95"
+               android:visibility="gone"
                 android:textSize="18sp"/>
 
         <TextView
