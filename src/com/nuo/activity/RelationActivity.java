@@ -305,6 +305,23 @@ public class RelationActivity extends Activity {
             }
         });
 
+        m_contactslist.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction() & MotionEvent.ACTION_MASK;
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        if (tel_show.getVisibility() == View.GONE) {
+                            telMianban.startAnimation(AnimationUtils.loadAnimation(RelationActivity.this, R.anim.push_bottom_out));
+                            telMianban.setVisibility(View.GONE);
+                            tel_show.setVisibility(View.VISIBLE);
+                        }
+                        break;
+                }
+                return false;
+            }
+        });
+
         m_listEmptyText = (TextView) findViewById(R.id.nocontacts_notice);
 
         m_topcontactslayout = (FrameLayout) findViewById(R.id.top_contacts_layout);

@@ -24,7 +24,7 @@
     <string name="title_activity_tuan_details">TuanDetailsActivity</string>
     <string name="feedback_title">用户反馈</string>
     <string name="feedback_text1">建议或意见</string>
-    <string name="feedback_hint1">如您遇到问题，请留下您的宝贵意见和联系方式，我们会及时与您联系，排查解决。</string>
+    <string name="feedback_hint1">如您遇到问题，请留下您的宝贵意见和联系方式，我们会及时与您联系。</string>
     <string name="feedback_text2">手机或QQ</string>
     <string name="feedback_hint2">手机或QQ</string>
     <string name="feedback_submit">提　交</string>

@@ -27,16 +27,17 @@
             android:id="@+id/iv_userhead2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/output"
             android:background="@drawable/mini_avatar_shadow"
             android:visibility="invisible"
             android:focusable="false" />
         
          <RelativeLayout
-		     android:layout_width="fill_parent"
+             android:id="@+id/output"
+		     android:layout_width="wrap_content"
 		     android:layout_height="wrap_content"
-		     android:layout_toRightOf="@id/iv_userhead2">
+             android:layout_alignParentRight="true">
 
 	      <!--  <ImageView
 	            android:id="@+id/iv_userhead"

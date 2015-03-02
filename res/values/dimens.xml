@@ -476,7 +476,7 @@
 
 
 
-    <dimen name="dial_diabar_height">66.0dip</dimen>
+    <dimen name="dial_diabar_height">50.0dip</dimen>
     <dimen name="dial_callbutton_width">150.0dip</dimen>
     <dimen name="dial_callbutton_height">46.0dip</dimen>
     <dimen name="dial_callbutton_doublesim_width">196.0dip</dimen>

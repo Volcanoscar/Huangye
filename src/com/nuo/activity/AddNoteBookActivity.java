@@ -33,6 +33,9 @@ import com.nuo.utils.XutilHelper;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -78,7 +81,7 @@ public class AddNoteBookActivity extends Activity {
         //进行除文本外的其它笔记类型的添加
         if (noteBook.getId() != null) {
             try {
-                List<NoteBookType> noteBookTypes = dbUtils.findAll(Selector.from(NoteBookType.class).where("note_book_id", "=", noteBook.getId()));
+                List<NoteBookType> noteBookTypes = dbUtils.findAll(Selector.from(NoteBookType.class).where("note_book_id", "=", noteBook.getId()).orderBy("position"));
                 if (noteBookTypes != null && !noteBookTypes.isEmpty()) {
                     for (NoteBookType type : noteBookTypes) {
                         displayBitmapOnText(type);
@@ -130,7 +133,9 @@ public class AddNoteBookActivity extends Activity {
             picPath = data.getStringExtra(ChangePicActivity.KEY_PHOTO_PATH);
             Log.i(AddNoteBookActivity.this.toString(), "最终选择的图片=" + picPath);
         }
-        displayBitmapOnText(picPath, BitMapUtil.decodeSampledBitmapFromStream(picPath, 300, 300), NoteBookType.TYPE_PIC);
+        if (picPath != null) {
+            displayBitmapOnText(picPath, BitMapUtil.decodeSampledBitmapFromStream(picPath, 500, 500), NoteBookType.TYPE_PIC);
+        }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -145,8 +150,16 @@ public class AddNoteBookActivity extends Activity {
                 contentEditText.setFocusableInTouchMode(false);     //触摸时也得不到焦点
                 break;
             case R.id.gallery:
-                startActivityForResult(new Intent(AddNoteBookActivity.this,
-                        ChangePicActivity.class), 1);
+                Intent intent = new Intent(AddNoteBookActivity.this,
+                        ChangePicActivity.class);
+                intent.putExtra("type", 1);
+                startActivityForResult(intent, 1);
+                break;
+            case R.id.camera:
+                Intent temp = new Intent(AddNoteBookActivity.this,
+                        ChangePicActivity.class);
+                temp.putExtra("type", 2);
+                startActivityForResult(temp, 1);
                 break;
             case R.id.record:
                 T.showShort(AddNoteBookActivity.this, "录音");
@@ -180,7 +193,6 @@ public class AddNoteBookActivity extends Activity {
     }
 
     private void saveNoteBook() {
-
         if (contentEditText.getText().length() != 0) {  //保存笔记本
             //保存
             Date date = new Date();
@@ -193,13 +205,22 @@ public class AddNoteBookActivity extends Activity {
             }
             noteBook.setTitle(title);*/
 
-            Spanned s = contentEditText.getEditableText();
+            final Spanned s = contentEditText.getEditableText();
             String et = contentEditText.getText().toString();
-            ImageSpan[] imageSpan = s.getSpans(0, s.length(), ImageSpan.class);
-            for (int i = imageSpan.length - 1; i >= 0; i--) {
-                int start = s.getSpanStart(imageSpan[i]);
-                int end = s.getSpanEnd(imageSpan[i]);
-                if (start > 0) {
+            final ImageSpan[] imageSpan = s.getSpans(0, s.length(), ImageSpan.class);
+            //之后以要排序，是要从后向前把占位符号给删除掉。
+            List<ImageSpan> spanList = Arrays.asList(imageSpan);
+                    Collections.sort(spanList, new Comparator<ImageSpan>() {
+                        @Override
+                        public int compare(ImageSpan lhs, ImageSpan rhs) {
+                            return s.getSpanStart(lhs)-s.getSpanStart(rhs);
+                        }
+                    });
+
+            for (int i = spanList.size() - 1; i >= 0; i--) {
+                int start = s.getSpanStart(spanList.get(i));
+                int end = s.getSpanEnd(spanList.get(i));
+                if (start >= 0) {
                     et= StringUtils.delete(et,start, end);
                 }
             }
@@ -310,7 +331,7 @@ public class AddNoteBookActivity extends Activity {
     }
 
     public void displayBitmapOnText(NoteBookType type) {
-        Bitmap thumbnailBitmap = BitMapUtil.decodeSampledBitmapFromStream(type.getPath(), 100, 100);
+        Bitmap thumbnailBitmap = BitMapUtil.decodeSampledBitmapFromStream(type.getPath(), 500, 500);
         if (thumbnailBitmap == null)
             return;
         int start = type.getPosition();
