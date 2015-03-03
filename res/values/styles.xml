@@ -303,4 +303,9 @@
         <item name="android:layout_height">fill_parent</item>
         <item name="android:layout_weight">1.0</item>
     </style>
+    <!-- 大标题-->
+    <style name="mid_text_title">
+        <item name="android:textColor">@color/actionsheet_blue</item>
+        <item name="android:textSize">20dp</item>
+    </style>
 </resources>

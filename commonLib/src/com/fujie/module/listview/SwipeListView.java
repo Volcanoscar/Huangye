@@ -10,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
+
+import com.fujie.common.SystemMethod;
 import com.fujie.module.titlebar.R;
 
 
@@ -48,7 +50,7 @@ public class SwipeListView extends ListView {
                 R.styleable.swipelistviewstyle);
         
       //获取自定义属性和默认值  
-      mRightViewWidth = (int) mTypedArray.getDimension(R.styleable.swipelistviewstyle_right_width, 200);   
+      mRightViewWidth = (int) mTypedArray.getDimension(R.styleable.swipelistviewstyle_right_width, SystemMethod.dip2px(context,100));
       
       mTypedArray.recycle();  
     }

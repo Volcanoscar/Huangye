@@ -63,7 +63,7 @@ public class SwipeAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.tv_title = (TextView)convertView.findViewById(R.id.tv_title);
             holder.tv_count = (TextView)convertView.findViewById(R.id.tv_count);
-            holder.item_left = (RelativeLayout)convertView.findViewById(R.id.item_left);
+            holder.item_right = (RelativeLayout)convertView.findViewById(R.id.item_right);
             convertView.setTag(holder);
         } else {// 有直接获得ViewHolder
             holder = (ViewHolder)convertView.getTag();
@@ -72,7 +72,7 @@ public class SwipeAdapter extends BaseAdapter {
         final String typeCode = msg.getTypeCode();
         holder.tv_title.setText(msg.getTypeName());
         holder.tv_count.setText(msg.getCount().toString());
-        holder.item_left.setOnClickListener(new OnClickListener() {
+        holder.item_right.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, HuangyeListActivity.class);
@@ -92,6 +92,6 @@ public class SwipeAdapter extends BaseAdapter {
     static class ViewHolder {
         TextView tv_title;
         TextView tv_count;
-        RelativeLayout item_left;
+        RelativeLayout item_right;
     }
 }

@@ -2,14 +2,12 @@ package com.nuo.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.view.View;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,8 +24,8 @@ public class BitMapUtil {
         String   str   =   formatter.format(curDate);
         String paintPath = "";
         str = str + "write.png";
-        File dir = new File("/sdcard/notes/");
-        File file = new File("/sdcard/notes/",str);
+        File dir = new File(PreferenceConstants.NOTE_WRITE_PATH);
+        File file = new File(PreferenceConstants.NOTE_WRITE_PATH,str);
         if (!dir.exists()) {
             dir.mkdir();
         }
@@ -38,7 +36,7 @@ public class BitMapUtil {
         }
         try {
             //保存绘图文件路径
-            paintPath = "/sdcard/notes/" + str;
+            paintPath = PreferenceConstants.NOTE_WRITE_PATH + str;
             FileOutputStream out = new FileOutputStream(file);
             cutHandwriteBitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.close();

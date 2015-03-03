@@ -7,6 +7,10 @@ public class PreferenceConstants {
     public final static String DEFAULT_SERVER_NAME = "iz23zxfawvoz";
     /** 是否把contentprovider 中的联系人数据同步到本地数据库中 **/
     public static final String CONTACT_SYNC = "CONTACT_SYNC";
+    /**  笔记本手写图片保存路径**/
+    public static final String NOTE_WRITE_PATH = "/sdcard/nuobuluo/notes/";
+    /** 录音保存路径 **/
+    public static final String RECORD_PATH = "/sdcard/nuobuluo/Record/";// 录音存储路径
 
     /** 一级分类标识 **/
     public static String SHENHUO_TYPE_ONE = "1";
