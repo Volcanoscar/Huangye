@@ -107,7 +107,6 @@ public class NoteBookAdapter extends BaseAdapter{
                 bundle.putSerializable("notebook", bean);
                 intent.putExtras(bundle);
                 mContext.startActivity(intent);
-                ((Activity)mContext).finish();
             }
         });
 		return convertView;

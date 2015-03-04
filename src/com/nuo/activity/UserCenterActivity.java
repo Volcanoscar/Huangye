@@ -33,7 +33,7 @@ public class UserCenterActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_center);
-        ViewUtils.inject(UserCenterActivity.this); //注入view和事件
+        ViewUtils.inject(UserCenterActivity.this);
         initView();
         initData();
     }

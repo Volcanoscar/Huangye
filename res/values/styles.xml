@@ -306,6 +306,6 @@
     <!-- 大标题-->
     <style name="mid_text_title">
         <item name="android:textColor">@color/actionsheet_blue</item>
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">15dp</item>
     </style>
 </resources>

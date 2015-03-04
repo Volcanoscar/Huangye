@@ -114,7 +114,6 @@ public class NoteBookActivity extends AbstractTemplateActivity {
         mHandler.removeCallbacks(showBottomBarRunnable);
     }
     public void showBottomBar() {
-
         if (saveBtn != null && saveBtn.getVisibility() == View.GONE) {
             saveBtn.setVisibility(View.INVISIBLE);
             Animation translateAnimation = new TranslateAnimation(saveBtn.getLeft(), saveBtn.getLeft(), 0, saveBtn.getHeight());
@@ -141,7 +140,6 @@ public class NoteBookActivity extends AbstractTemplateActivity {
     }
 
     private void hideBottomBar() {
-
         if (saveBtn != null && saveBtn.getVisibility() == View.VISIBLE) {
             Animation translateAnimation = new TranslateAnimation(saveBtn.getLeft(), saveBtn.getLeft(),saveBtn.getHeight(),0);
             translateAnimation.setDuration(300);

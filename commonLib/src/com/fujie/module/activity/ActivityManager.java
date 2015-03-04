@@ -2,6 +2,7 @@ package com.fujie.module.activity;
 
 import android.app.Activity;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 public class ActivityManager {
@@ -49,6 +50,17 @@ public class ActivityManager {
                 break;
             }*/
             popActivity(activity);
+        }
+    }
+    //退出栈中所有Activity
+    public void popActivity(Class cls) {
+        Iterator<Activity> activityIterator = activityStack.iterator();
+        while (activityIterator.hasNext()) {
+            Activity activity = activityIterator.next();
+            if (activity.getClass().equals(cls)) {
+                 activityIterator.remove();
+                activity.finish();
+            }
         }
     }
 } 

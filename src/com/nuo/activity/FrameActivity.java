@@ -15,6 +15,7 @@ import android.widget.*;
 import com.nuo.adapter.ContactsLoaderListener;
 import com.nuo.adapter.SmsLoaderListener;
 import com.nuo.common.DownLoadManager;
+import com.nuo.floatwindow.FloatWindowService;
 import com.nuo.utils.PreferenceConstants;
 import com.nuo.utils.PreferenceUtils;
 import com.nuo.utils.Utils;
@@ -77,13 +78,16 @@ public class FrameActivity extends ActivityGroup {
             sendBroadcast(ShortcutUtils.getShortcutToDesktopIntent(FrameActivity.this));
         }*/
         overridePendingTransition(0,0);
+
+        //首页service
+        Intent startIntent = new Intent(this, FloatWindowService.class);
+        startService(startIntent);
     }
 
     private void initActionBar() {
         ActionBar actionBar = getActionBar();
         setOverflowShowingAlways();
         actionBar.setDisplayShowHomeEnabled(false); //隐藏logo和icon
-
     }
 
     BroadcastReceiver mReceiver = new BroadcastReceiver() {

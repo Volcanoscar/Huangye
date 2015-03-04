@@ -24,7 +24,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.fujie.module.activity.AbstractTemplateActivity;
+import com.fujie.module.activity.BackApplication;
 import com.fujie.module.dialog.AlertDialog;
+import com.fujie.module.listview.SwipeListView;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.db.sqlite.Selector;
@@ -33,10 +35,12 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.nuo.activity.NoteBookActivity;
 import com.nuo.activity.R;
+import com.nuo.adapter.RecordAdapter;
 import com.nuo.adapter.TagGridViewAdapter;
 import com.nuo.adapter.TagNameAdapter;
 import com.nuo.bean.notebook.NoteBook;
 import com.nuo.bean.notebook.NoteBookLabel;
+import com.nuo.bean.notebook.NoteBookRecord;
 import com.nuo.bean.notebook.NoteBookType;
 import com.nuo.utils.BitMapUtil;
 import com.nuo.utils.DateUtil;
@@ -64,6 +68,8 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
 
     @ViewInject(R.id.tag_view)
     private GridView tag_view;
+    @ViewInject(R.id.recordListView)
+    private SwipeListView recordListView;
 
     @ViewInject(R.id.scroll_view)
     private ScrollView scrollView;
@@ -71,6 +77,8 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
     @ViewInject(R.id.bottom_layout)
     private LinearLayout mBottomBar;
     private NoteBook noteBook;
+    private List<NoteBookRecord> recordList = null;
+    private RecordAdapter recordAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -176,9 +184,18 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
                     displayBitmapOnText(type);
                 }
             }
+            //初始化录音数据
+            recordList= dbUtils.findAll(Selector.from(NoteBookRecord.class).where("note_book_id", "=", noteBook.getId()).orderBy("createTime"));
+            if (recordList == null) {
+                recordList = new ArrayList<NoteBookRecord>();
+            }
         } catch (DbException e) {
             e.printStackTrace();
         }
+        //录音布局
+        //录音listview 初始化
+        recordAdapter = new RecordAdapter(PreviewNoteBookActivity.this,recordList);
+        recordListView.setAdapter(recordAdapter);
     }
 
     /*
@@ -224,6 +241,8 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
                 bundle.putSerializable("notebook", noteBook);
                 editNoteBook.putExtras(bundle);
                 startActivity(editNoteBook);
+                BackApplication application = (BackApplication) getApplication();
+                application.getActivityManager().popActivity(NoteBookActivity.class);
                 finish();
                 break;
             case R.id.tag_empty_notes:
@@ -316,8 +335,6 @@ public class PreviewNoteBookActivity extends AbstractTemplateActivity {
             showBottomBar();
         }
     };
-
-
     private boolean bIsMoved = false;
     private boolean bIsDown = false;
     private int mDeltaY;

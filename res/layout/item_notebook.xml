@@ -3,7 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="170dip"
                 android:layout_marginTop="10dip"
-                android:background="@drawable/ll_bg_d"
+                android:background="@color/white"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp">
     <LinearLayout
@@ -52,7 +52,7 @@
             android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/relativeLayoutPiont"
             android:layout_marginLeft="10dp"
-            android:background="@color/white"
+            android:background="@drawable/bg_tacos"
             android:padding="3dp"
         android:layout_height="170dp">
         <TextView

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.fujie.module.activity.BackApplication;
 import com.fujie.module.listview.SwipeListView;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -69,7 +70,7 @@ public class AddNoteBookActivity extends Activity {
     private List<Bitmap> mBitmaps = new ArrayList<Bitmap>();
     List<NoteBookType> imageSpanList = new ArrayList<NoteBookType>();
     Map<ImageSpan, NoteBookType> imageSpanMap = new HashMap<ImageSpan, NoteBookType>();
-    private List<NoteBookRecord> recordList = null;
+    private List<NoteBookRecord> recordList = new ArrayList<NoteBookRecord>();
     private RecordAdapter recordAdapter;
 
     @Override
@@ -97,9 +98,9 @@ public class AddNoteBookActivity extends Activity {
                         }
                     }
                     //初始化录音数据
-                   recordList= dbUtils.findAll(Selector.from(NoteBookRecord.class).where("note_book_id", "=", noteBook.getId()).orderBy("createTime"));
-                    if (recordList == null) {
-                        recordList = new ArrayList<NoteBookRecord>();
+                    List<NoteBookRecord> tempList = dbUtils.findAll(Selector.from(NoteBookRecord.class).where("note_book_id", "=", noteBook.getId()).orderBy("createTime"));
+                    if (tempList != null) {
+                        recordList = tempList;
                     }
                 } catch (DbException e) {
                     e.printStackTrace();
@@ -119,7 +120,7 @@ public class AddNoteBookActivity extends Activity {
             myView.setBitmapMap(mBitmaps);
         }
         //录音listview 初始化
-        recordAdapter = new RecordAdapter(AddNoteBookActivity.this,recordList);
+        recordAdapter = new RecordAdapter(AddNoteBookActivity.this, recordList);
         recordListView.setAdapter(recordAdapter);
     }
 
@@ -137,7 +138,7 @@ public class AddNoteBookActivity extends Activity {
                 displayBitmapOnText(picPath, BitMapUtil.decodeSampledBitmapFromStream(picPath, 500, 500), NoteBookType.TYPE_PIC);
             }
         } else if (resultCode == ActivityForResultUtil.REQUESTCODE_RECORD) {  //录音返回
-            NoteBookRecord recordPath = (NoteBookRecord)data.getSerializableExtra(VoiceActivity.RECORD_PATH);
+            NoteBookRecord recordPath = (NoteBookRecord) data.getSerializableExtra(VoiceActivity.RECORD_PATH);
             recordList.add(recordPath);
             recordAdapter.notifyDataSetChanged();
         }
@@ -195,8 +196,9 @@ public class AddNoteBookActivity extends Activity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        BackApplication application = (BackApplication) getApplication();
+        application.getActivityManager().popActivity(this);
         saveNoteBook();
-
     }
 
     private void saveNoteBook() {
@@ -261,6 +263,7 @@ public class AddNoteBookActivity extends Activity {
                 dbUtils.saveAll(imageSpanList);
 
                 //保存录音
+                dbUtils.delete(NoteBookRecord.class, WhereBuilder.b("note_book_id", "=", noteBook.getId()));
                 for (NoteBookRecord record : recordList) {
                     record.setNote_book_id(noteBook.getId());
                 }
@@ -272,13 +275,14 @@ public class AddNoteBookActivity extends Activity {
         }
         Intent intent = new Intent(AddNoteBookActivity.this, NoteBookActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                BackApplication application = (BackApplication) getApplication();
+                application.getActivityManager().popActivity(this);
                 saveNoteBook();
             default:
                 return super.onOptionsItemSelected(item);

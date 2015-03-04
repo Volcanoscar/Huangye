@@ -4,35 +4,37 @@
     android:layout_height="match_parent"
     android:background="@color/whites"
     android:orientation="vertical">
+
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/whites"
             android:orientation="vertical">
 
-           <!-- <LinearLayout
-                android:id="@+id/title_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="15dp">
+            <!-- <LinearLayout
+                 android:id="@+id/title_layout"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginBottom="5dp"
+                 android:layout_marginLeft="15dp"
+                 android:layout_marginRight="15dp"
+                 android:layout_marginTop="15dp">
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
-                    android:minHeight="40dp"
-                    android:padding="5dp"
-                    android:textSize="18dp"
-                    android:textStyle="bold" />
-            </LinearLayout>-->
+                 <TextView
+                     android:id="@+id/title"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:background="@null"
+                     android:minHeight="40dp"
+                     android:padding="5dp"
+                     android:textSize="18dp"
+                     android:textStyle="bold" />
+             </LinearLayout>-->
 
 
             <LinearLayout
@@ -55,26 +57,27 @@
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/tag_layout"
-                android:layout_below="@+id/time_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/time_layout">
+
                 <GridView
                     android:id="@+id/tag_view"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:horizontalSpacing="0dp"
                     android:listSelector="@android:color/transparent"
                     android:numColumns="5"
                     android:scrollbars="vertical"
                     android:stretchMode="columnWidth"
-                    android:verticalSpacing="0dp">
-                </GridView>
+                    android:verticalSpacing="0dp"></GridView>
             </LinearLayout>
 
             <LinearLayout
@@ -95,13 +98,26 @@
 
         </RelativeLayout>
     </ScrollView>
-    <LinearLayout
-        android:id="@+id/bottom_layout"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true">
-        <include layout="@layout/preview_buttons" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <com.fujie.module.listview.SwipeListView
+            android:id="@+id/recordListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            </com.fujie.module.listview.SwipeListView>
+        <LinearLayout
+            android:layout_below="@+id/recordListView"
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <include layout="@layout/preview_buttons" />
+        </LinearLayout>
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/empty"
         android:layout_width="match_parent"

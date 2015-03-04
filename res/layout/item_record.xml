@@ -7,40 +7,99 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/item_bg_border">
-        <TextView
-            android:id="@+id/name"
-            style="@style/mid_text_title"
+        <ImageView
+            android:id="@+id/record_play_controller"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="" />
+            android:layout_centerVertical="true"
+            android:src="@drawable/audio_play" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:layout_toRightOf="@+id/record_play_controller">
+            <TextView
+                android:id="@+id/name"
+                style="@style/mid_text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:text="df" />
+            <LinearLayout
+                android:id="@+id/time_layout"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginLeft="5dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
 
-        <TextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/name"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitXY"
-            android:text=""
-            android:textColor="@color/devide_line" />
+                    android:text="时长: "
+                    android:textColor="@color/devide_line" />
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:text="df"
+                    android:textColor="@color/devide_line" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:text="″"
+                    android:textColor="@color/devide_line" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/voice_display_voice_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginLeft="10dp"
+                android:paddingRight="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+                <ProgressBar
+                    android:id="@+id/voice_display_voice_progressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="6dip"
+                    android:layout_margin="8dip"
+                    android:layout_weight="1"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/globle_player_progress_bar_bg" />
+                <TextView
+                    android:id="@+id/voice_display_voice_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="#999999"
+                    android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="″"
+                    android:textColor="#999999"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
-
     <RelativeLayout
         android:id="@+id/item_right"
         android:layout_width="100dp"
         android:layout_height="match_parent"
         android:background="@drawable/delete_btn">
         <Button
-            android:background="@drawable/delete_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:background="@drawable/delete_btn"
             android:text="删除" />
     </RelativeLayout>
 </LinearLayout>

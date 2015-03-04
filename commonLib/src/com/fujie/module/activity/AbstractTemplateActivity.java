@@ -31,7 +31,8 @@ public class AbstractTemplateActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                BackApplication application = (BackApplication) getApplication();
+                application.getActivityManager().popActivity(this);
             default:
                 return super.onOptionsItemSelected(item);
         }
