@@ -7,6 +7,7 @@ import com.amap.api.navi.AMapNavi;
 import com.amap.api.navi.AMapNaviViewOptions;
 import com.amap.api.navi.model.AMapNaviPath;
 import com.amap.api.navi.view.RouteOverLay;
+import com.fujie.module.activity.AbstractTemplateActivity;
 import com.nuo.activity.R;
 import com.nuo.utils.amap.AMapUtil;
 
@@ -30,15 +31,12 @@ import android.widget.TextView;
 /**
  * 路径规划结果展示界面
  */
-public class NaviRouteActivity extends Activity implements OnClickListener,
+public class NaviRouteActivity extends AbstractTemplateActivity implements OnClickListener,
 		OnMapLoadedListener {
 
 	// View
 	private Button mStartNaviButton;// 实时导航按钮
 	private MapView mMapView;// 地图控件
-	private AutoCompleteTextView mThemeText;// 选择导航界面的风格
-	private ImageView mThemeImage;// 选择按钮
-	private ImageView mRouteBackView;// 返回按钮
 	private TextView mRouteDistanceView;// 距离显示控件
 	private TextView mRouteTimeView;// 时间显示控件
 	private TextView mRouteCostView;// 花费显示控件
@@ -76,18 +74,6 @@ public class NaviRouteActivity extends Activity implements OnClickListener,
 	 */
 	private void initView(Bundle savedInstanceState) {
 		mStartNaviButton = (Button) findViewById(R.id.routestartnavi);
-
-		mRouteBackView = (ImageView) findViewById(R.id.route_back_view);
-
-		mThemeText = (AutoCompleteTextView) findViewById(R.id.navi_theme_text);
-		mThemeText.setInputType(InputType.TYPE_NULL);
-		ArrayAdapter<String> themeAdapter = new ArrayAdapter<String>(this,
-				R.layout.strategy_inputs, mTheme);
-		mThemeText.setAdapter(themeAdapter);
-
-		mThemeText.setDropDownBackgroundResource(R.drawable.whitedownborder);
-
-		mThemeImage = (ImageView) findViewById(R.id.navi_theme_image);
 		mRouteDistanceView = (TextView) findViewById(R.id.navi_route_distance);
 		mRouteTimeView = (TextView) findViewById(R.id.navi_route_time);
 		mRouteCostView = (TextView) findViewById(R.id.navi_route_cost);
@@ -95,10 +81,7 @@ public class NaviRouteActivity extends Activity implements OnClickListener,
 		mMapView.onCreate(savedInstanceState);
 		mAmap = mMapView.getMap();
 		mAmap.setOnMapLoadedListener(this);
-		mThemeImage.setOnClickListener(this);
-		mThemeText.setOnClickListener(this);
 		mStartNaviButton.setOnClickListener(this);
-		mRouteBackView.setOnClickListener(this);
 		mRouteOverLay = new RouteOverLay(mAmap, null);
 	}
 
@@ -129,24 +112,6 @@ public class NaviRouteActivity extends Activity implements OnClickListener,
 		mRouteCostView.setText(String.valueOf(cost));
 	}
 
-	/**
-	 * 获取导航界面主题样式
-	 * 
-	 * @param themeColor
-	 * @return
-	 */
-	private int getThemeStyle(String themeColor) {
-		int theme = AMapNaviViewOptions.BLUE_COLOR_TOPIC;
-		if (mTheme[0].equals(themeColor)) {
-			theme = AMapNaviViewOptions.BLUE_COLOR_TOPIC;
-		} else if (mTheme[1].equals(themeColor)) {
-			theme = AMapNaviViewOptions.PINK_COLOR_TOPIC;
-		} else if (mTheme[2].equals(themeColor)) {
-			theme = AMapNaviViewOptions.WHITE_COLOR_TOPIC;
-		}
-		return theme;
-	}
-
 	// ------------------------------事件处理-----------------------------
 	@Override
 	public void onClick(View v) {
@@ -154,26 +119,11 @@ public class NaviRouteActivity extends Activity implements OnClickListener,
 		// 实时导航操作
 		case R.id.routestartnavi:
 			Bundle bundle = new Bundle();
-			bundle.putInt(AMapUtil.THEME, getThemeStyle(mThemeText.getText()
-					.toString()));
+			bundle.putInt(AMapUtil.THEME, AMapNaviViewOptions.WHITE_COLOR_TOPIC);
 			Intent routeIntent = new Intent(NaviRouteActivity.this,
 					NaviCustomActivity.class);
 			routeIntent.putExtras(bundle);
 			startActivity(routeIntent);
-			break;
-		// 返回操作
-		case R.id.route_back_view:
-			Intent startIntent = new Intent(NaviRouteActivity.this,
-					NaviStartActivity.class);
-			startIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-			startActivity(startIntent);
-			//MainApplication.getInstance().deleteActivity(this);
-			finish();
-			break;
-		// 主题选择
-		case R.id.navi_theme_image:
-		case R.id.navi_theme_text:
-			mThemeText.showDropDown();
 			break;
 		}
 

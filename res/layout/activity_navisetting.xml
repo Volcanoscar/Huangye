@@ -2,41 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/setting_margin_bottom" >
-
-        <ImageView
-            android:id="@+id/setting_back_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/back_top" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="@string/setting"
-            android:textColor="@color/black"
-            android:textSize="@dimen/titletext_size" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/setting_margin_bottom"
-        android:layout_marginLeft="@dimen/navibar_margin_left"
-        android:layout_marginRight="@dimen/navibar_margin_right"
         android:layout_marginTop="@dimen/setting_margin_top"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:background="@drawable/whiteborder" >
+        android:background="@drawable/my_list_txt_background" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,12 +53,8 @@
          android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/setting_margin_bottom"
-        android:layout_marginLeft="@dimen/navibar_margin_left"
-        android:layout_marginRight="@dimen/navibar_margin_right"
-        android:layout_marginTop="@dimen/setting_margin_top"
           android:gravity="center_vertical"
-        android:background="@drawable/whiteborder" >
+        android:background="@drawable/my_list_txt_background" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -125,11 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
           android:gravity="center_vertical"
-        android:layout_marginBottom="@dimen/setting_margin_bottom"
-        android:layout_marginLeft="@dimen/navibar_margin_left"
-        android:layout_marginRight="@dimen/navibar_margin_right"
-        android:layout_marginTop="@dimen/setting_margin_top"
-        android:background="@drawable/whiteborder" >
+        android:background="@drawable/my_list_txt_background" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -171,11 +138,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
           android:gravity="center_vertical"
-        android:layout_marginBottom="@dimen/setting_margin_bottom"
-        android:layout_marginLeft="@dimen/navibar_margin_left"
-        android:layout_marginRight="@dimen/navibar_margin_right"
-        android:layout_marginTop="@dimen/setting_margin_top"
-        android:background="@drawable/whiteborder" >
+        android:background="@drawable/my_list_txt_background" >
 
         <TextView
             android:id="@+id/textView2"
@@ -218,11 +181,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
           android:gravity="center_vertical"
-        android:layout_marginBottom="@dimen/setting_margin_bottom"
-        android:layout_marginLeft="@dimen/navibar_margin_left"
-        android:layout_marginRight="@dimen/navibar_margin_right"
-        android:layout_marginTop="@dimen/setting_margin_top"
-        android:background="@drawable/whiteborder" >
+        android:background="@drawable/my_list_txt_background" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -264,11 +223,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
           android:gravity="center_vertical"
-        android:layout_marginBottom="@dimen/setting_margin_bottom"
-        android:layout_marginLeft="@dimen/navibar_margin_left"
-        android:layout_marginRight="@dimen/navibar_margin_right"
-        android:layout_marginTop="@dimen/setting_margin_top"
-        android:background="@drawable/whiteborder" >
+        android:background="@drawable/my_list_txt_background" >
 
         <TextView
             android:layout_width="wrap_content"

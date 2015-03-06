@@ -1,6 +1,7 @@
 package com.nuo.activity.amap;
 
 import com.amap.api.navi.AMapNaviViewOptions;
+import com.fujie.module.activity.AbstractTemplateActivity;
 import com.nuo.activity.R;
 import com.nuo.utils.amap.AMapUtil;
 
@@ -21,11 +22,9 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
  * 导航设置界面
  *
  */
-public class NaviSettingActivity extends Activity implements OnClickListener,
-		OnCheckedChangeListener {
+public class NaviSettingActivity extends AbstractTemplateActivity implements OnCheckedChangeListener {
 	// ----------------View
 
-	private ImageView mBackView;//返回按钮
 	private RadioGroup mDayNightGroup;//黑夜模式白天模式
 	private RadioGroup mDeviationGroup;//偏航重算
 	private RadioGroup mJamGroup;//拥堵重算
@@ -55,7 +54,6 @@ public class NaviSettingActivity extends Activity implements OnClickListener,
 	 * 初始化控件
 	 */
 	private void initView() {
-		mBackView = (ImageView) findViewById(R.id.setting_back_image);
 		mDayNightGroup = (RadioGroup) findViewById(R.id.day_night_group);
 		mDeviationGroup = (RadioGroup) findViewById(R.id.deviation_group);
 		mJamGroup = (RadioGroup) findViewById(R.id.jam_group);
@@ -69,7 +67,6 @@ public class NaviSettingActivity extends Activity implements OnClickListener,
 	 * 初始化监听事件
 	 */
 	private void initListener() {
-		mBackView.setOnClickListener(this);
 		mDayNightGroup.setOnCheckedChangeListener(this);
 		mDeviationGroup.setOnCheckedChangeListener(this);
 		mJamGroup.setOnCheckedChangeListener(this);
@@ -155,25 +152,6 @@ public class NaviSettingActivity extends Activity implements OnClickListener,
 		bundle.putInt(AMapUtil.THEME, mThemeStyle);
 		return bundle;
 	}
-
-	// 事件处理方法
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.setting_back_image:
-
-			Intent intent = new Intent(NaviSettingActivity.this,
-					NaviCustomActivity.class);
-			intent.putExtras(getBundle());
-			intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-			startActivity(intent);
-			finish();
-			break;
-		}
-
-	}
-
-	
 /**
  * 返回键监听
  * */

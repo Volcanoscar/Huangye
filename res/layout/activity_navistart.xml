@@ -145,7 +145,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/navibar_text_size" />
 
-                <EditText
+                <TextView
                     android:id="@+id/navi_end_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/navibar_edit_height"
@@ -153,12 +153,14 @@
                     android:layout_marginRight="@dimen/navibar_margin_right"
                     android:layout_toRightOf="@id/naviendtext"
                     android:focusable="false"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:paddingBottom="@dimen/margin_bottom"
                     android:paddingTop="@dimen/margin_top"
                     android:textSize="@dimen/navibar_text_size" >
-                </EditText>
+                </TextView>
 
-                <ImageView
+             <!--   <ImageView
                     android:id="@+id/navi_end_image"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/navibar_edit_height"
@@ -166,7 +168,7 @@
                     android:layout_alignRight="@id/navi_end_edit"
                     android:layout_alignTop="@id/navi_end_edit"
                     android:layout_marginRight="@dimen/margin_right"
-                    android:src="@drawable/downarrow" />
+                    android:src="@drawable/downarrow" />-->
             </RelativeLayout>
 
             <RelativeLayout
@@ -229,8 +231,7 @@
                         android:layout_marginRight="@dimen/navibar_margin_right"
                         android:paddingBottom="@dimen/margin_bottom"
                         android:paddingTop="@dimen/margin_top"
-                        android:text="@string/navi_route" />
-
+                        android:text="@string/navi_daohang" />
                     <Button
                         android:id="@+id/navi_navi_button"
                         android:layout_width="wrap_content"
@@ -238,6 +239,7 @@
                         android:layout_marginLeft="@dimen/navibar_margin_left"
                         android:paddingBottom="@dimen/margin_bottom"
                         android:paddingTop="@dimen/margin_top"
+                        android:visibility="gone"
                         android:text="@string/navi_navi" />
                 </LinearLayout>
             </RelativeLayout>

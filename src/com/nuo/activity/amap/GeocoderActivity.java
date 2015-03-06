@@ -76,6 +76,9 @@ public class GeocoderActivity extends AbstractTemplateActivity implements
             case R.id.action_daohang:
                 Intent naviStartIntent = new Intent(GeocoderActivity.this, NaviStartActivity.class);
                 naviStartIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("info", shopInfo);
+                naviStartIntent.putExtras(bundle);
                 startActivity(naviStartIntent);
                 finish();
                 break;

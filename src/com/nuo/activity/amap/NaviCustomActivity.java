@@ -12,6 +12,7 @@ import com.amap.api.navi.AMapNaviViewListener;
 import com.amap.api.navi.AMapNaviViewOptions;
 import com.amap.api.navi.model.AMapNaviInfo;
 import com.amap.api.navi.model.AMapNaviLocation;
+import com.fujie.module.activity.AbstractTemplateActivity;
 import com.nuo.activity.FrameActivity;
 import com.nuo.activity.R;
 import com.nuo.utils.amap.AMapUtil;
@@ -21,7 +22,7 @@ import com.nuo.utils.amap.AMapUtil;
  * 实时导航界面
  * 
  */
-public class NaviCustomActivity extends Activity implements
+public class NaviCustomActivity extends AbstractTemplateActivity implements
 		AMapNaviViewListener {
 
 	private AMapNaviView mAmapAMapNaviView;

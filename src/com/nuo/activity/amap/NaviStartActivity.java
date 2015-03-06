@@ -8,6 +8,7 @@ import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.LocationManagerProxy;
 import com.amap.api.location.LocationProviderProxy;
 import com.amap.api.maps.AMap;
+import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.AMap.OnMapClickListener;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
@@ -19,6 +20,7 @@ import com.amap.api.navi.AMapNaviListener;
 import com.amap.api.navi.model.AMapNaviInfo;
 import com.amap.api.navi.model.AMapNaviLocation;
 import com.amap.api.navi.model.NaviLatLng;
+import com.fujie.module.activity.AbstractTemplateActivity;
 import com.nuo.activity.FrameActivity;
 import com.nuo.activity.R;
 
@@ -49,19 +51,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import com.nuo.bean.ShopInfo;
+import com.nuo.utils.amap.AMapUtil;
 
 /**
  * Demo初始化界面，用于设置起点终点，发起路径计算导航等
  * 
  */
-public class NaviStartActivity extends Activity implements OnClickListener,
+public class NaviStartActivity extends AbstractTemplateActivity implements OnClickListener,
 		OnCheckedChangeListener, OnMapClickListener {
 	// --------------View基本控件---------------------
 	private MapView mMapView;// 地图控件
 	private RadioGroup mNaviMethodGroup;// 步行驾车选择控件
 	private AutoCompleteTextView mStartPointText;// 起点输入
 	private EditText mWayPointText;// 途经点输入
-	private EditText mEndPointText;// 终点输入
+	private TextView mEndPointText;// 终点输入
 	private AutoCompleteTextView mStrategyText;// 行车策略输入
 	private Button mRouteButton;// 路径规划按钮
 	private Button mNaviButton;// 模拟导航按钮
@@ -69,7 +73,7 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 	private ProgressDialog mGPSProgressDialog;// GPS过程显示状态
 	private ImageView mStartImage;// 起点下拉按钮
 	private ImageView mWayImage;// 途经点点击按钮
-	private ImageView mEndImage;// 终点点击按钮
+	/*private ImageView mEndImage;// 终点点击按钮*/
 	private ImageView mStrategyImage;// 行车策略点击按钮
 	// 地图和导航核心逻辑类
 	private AMap mAmap;
@@ -175,8 +179,8 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 			}
 		}
 	};
-	
-	
+	private ShopInfo shopInfo;
+
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -186,6 +190,17 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 		initView(savedInstanceState);
 		initListener();
 		initMapAndNavi();
+
+		shopInfo = (ShopInfo) getIntent().getSerializableExtra("info");
+		LatLng lat = new LatLng(Double.valueOf(shopInfo.getLat()), Double.valueOf(shopInfo.getLng()));
+		NaviLatLng naviLatLng = new NaviLatLng(lat.latitude,lat.longitude);
+		mEndMarker.setPosition(lat);
+		mEndPoints.clear();
+		mEndPoint = naviLatLng;
+		mEndPoints.add(mEndPoint);
+		setTextDescription(mEndPointText, shopInfo.getAddress());
+		mAmap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+				lat, 15));
 		//MainApplication.getInstance().addActivity(this);
 	}
 	// ----------具体处理方法--------------
@@ -198,8 +213,6 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 				//进行一次定位
 				mLocationManger.requestLocationData(LocationProviderProxy.AMapNetwork, -1, 15, mLocationListener);
 				showGPSProgressDialog();
-				
-				 
 				return;
 			
 			}
@@ -314,7 +327,7 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 		mStartPointText
 				.setDropDownBackgroundResource(R.drawable.whitedownborder);
 		/*mWayPointText = (EditText) findViewById(R.id.navi_way_edit);*/
-		mEndPointText = (EditText) findViewById(R.id.navi_end_edit);
+		mEndPointText = (TextView) findViewById(R.id.navi_end_edit);
 		mStrategyText = (AutoCompleteTextView) findViewById(R.id.navi_strategy_edit);
 		mStrategyText.setDropDownBackgroundResource(R.drawable.whitedownborder);
 		mStartPointText.setInputType(InputType.TYPE_NULL);
@@ -336,7 +349,7 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 
 		mStartImage = (ImageView) findViewById(R.id.navi_start_image);
 	/*	mWayImage = (ImageView) findViewById(R.id.navi_way_image);*/
-		mEndImage = (ImageView) findViewById(R.id.navi_end_image);
+		/*mEndImage = (ImageView) findViewById(R.id.navi_end_image);*/
 		mStrategyImage = (ImageView) findViewById(R.id.navi_strategy_image);
 	}
 
@@ -364,13 +377,13 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 		// 控件点击事件
 		mStartPointText.setOnClickListener(this);
 		/*mWayPointText.setOnClickListener(this);*/
-		mEndPointText.setOnClickListener(this);
+		/*mEndPointText.setOnClickListener(this);*/
 		mStrategyText.setOnClickListener(this);
 		mRouteButton.setOnClickListener(this);
 		mNaviButton.setOnClickListener(this);
 		mStartImage.setOnClickListener(this);
 		/*mWayImage.setOnClickListener(this);*/
-		mEndImage.setOnClickListener(this);
+		/*mEndImage.setOnClickListener(this);*/
 		mStrategyImage.setOnClickListener(this);
 		/*mNaviMethodGroup.setOnCheckedChangeListener(this);*/
 		// 设置地图点击事件
@@ -445,14 +458,14 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 			showToast("点击地图添加途经点");
 			break;*/
 		// 终点点击事件
-		case R.id.navi_end_image:
-		case R.id.navi_end_edit:
+		/*case R.id.navi_end_image:*/
+		/*case R.id.navi_end_edit:
 			mMapClickMode = MAP_CLICK_END;
 			mEndPoints.clear();
 			mEndMarker.setPosition(null);
 			setTextDescription(mEndPointText, "点击地图设置终点");
 			showToast("点击地图添加终点");
-			break;
+			break;*/
 		// 策略点击事件
 		case R.id.navi_strategy_image:
 		case R.id.navi_strategy_edit:
@@ -643,6 +656,9 @@ public class NaviStartActivity extends Activity implements OnClickListener,
 								NaviEmulatorActivity.class);
 						standIntent
 								.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+						Bundle bundle = new Bundle();
+						bundle.putSerializable("info", shopInfo);
+						standIntent.putExtras(bundle);
 						startActivity(standIntent);
 
 						break;

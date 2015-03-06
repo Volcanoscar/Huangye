@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nuo.activity"
     android:versionCode="1"
-    android:versionName="0.2.7">
+    android:versionName="0.2.8">
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -46,13 +46,12 @@
     <uses-permission  android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission  android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission  android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission  android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission  android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission  android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission  android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission  android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <!-- 屏幕设置多分辨率支持-->
     <supports-screens
         android:anyDensity="true"
@@ -72,6 +71,9 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="788a220b43eed0e144acd2e5d777c4fc"/>
+        <meta-data
+            android:name="IFLYTEK_APPKEY"
+            android:value="'54bf0f2e'" />
         <!-- 高德导航添加结束-->
         <activity
             android:name="com.nuo.activity.StartActivity"
@@ -316,16 +318,21 @@
             android:label="导航路线规划" />
         <activity
             android:name=".amap.NaviEmulatorActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
             android:label="模拟导航" />
         <activity
             android:name=".amap.NaviRouteActivity"
-            android:label="导航路线规划" />
+            android:label="线路展示" />
         <activity
             android:name=".amap.NaviCustomActivity"
-            android:label="导航路线规划" />
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:label="导航" />
         <activity
             android:name=".amap.NaviSettingActivity"
             android:label="导航设置" />
+        <activity
+            android:name=".amap.TtsDemo"
+            android:label="语音" />
 
         <receiver android:name="com.nuo.broadcastreceiver.BootBroadcastReceiver">
             <intent-filter>

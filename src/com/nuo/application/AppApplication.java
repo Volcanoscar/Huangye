@@ -3,12 +3,15 @@ package com.nuo.application;
 import android.app.Application;
 import android.content.Intent;
 
+import com.amap.api.navi.AMapNavi;
 import com.fujie.module.activity.BackApplication;
+import com.iflytek.cloud.SpeechUtility;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nuo.activity.FrameActivity;
 import com.nuo.activity.R;
+import com.nuo.activity.amap.TTSController;
 import com.nuo.db.SQLHelper;
 import com.nuo.utils.T;
 
@@ -25,6 +28,8 @@ public class AppApplication extends BackApplication /*implements
         initImageLoader();
         //设置Thread Exception Handler
         //Thread.setDefaultUncaughtExceptionHandler(this);
+        SpeechUtility.createUtility(AppApplication.this, "appid=54bf0f2e");
+        AMapNavi.getInstance(this).setAMapNaviListener(TTSController.getInstance(this));// 设置语音模块播报
     }
 
     /**

@@ -17,8 +17,10 @@ public class AbstractTemplateActivity extends Activity {
 
     private void initActionBar() {
         ActionBar actionBar = getActionBar();
-        actionBar.setDisplayShowHomeEnabled(false); //隐藏logo和icon
-        actionBar.setDisplayHomeAsUpEnabled(true);  //添加反馈按键
+        if (actionBar != null) {
+            actionBar.setDisplayShowHomeEnabled(false); //隐藏logo和icon
+            actionBar.setDisplayHomeAsUpEnabled(true);  //添加反馈按键
+        }
     }
  
     @Override

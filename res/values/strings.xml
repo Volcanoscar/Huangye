@@ -304,6 +304,7 @@
     <string name="navi_end">"终    点"</string>
     <string name="navi_strategy">"策    略"</string>
     <string name="navi_route">路径规划</string>
+    <string name="navi_daohang">开始导航</string>
     <string name="navi_navi">模拟导航</string>
     <string name="start_navi_navi">实时导航</string>
     <string name="navi_strategy_speed">速度最快</string>
@@ -375,4 +376,12 @@
     <string name="preference_key_tts_pitch">tts_pitch</string>
     <string name="preference_title_tts_pitch">语调</string>
     <string name="preference_default_tts_pitch">50</string>
+    <string name="text_tts_source">科大讯飞作为中国最大的智能语音技术提供商，在智能语音技术领域有着长期的研究积累，并在中文语音合成、语音识别、口语评测等多项技术上拥有国际领先的成果。科大讯飞是我国唯一以语音技术为产业化方向的“国家863计划成果产业化基地”&#8230;</string>
+
+
+    <!-- 提示安装语音+对话框 -->
+    <string name="superman_ok">确 定</string>
+    <string name="superman_cancel">取 消</string>
+    <string name="superman_title">来 吧 !</string>
+    <string name="superman_content">让我把你的应用变的能听会说吧！</string>
 </resources>

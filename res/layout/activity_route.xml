@@ -2,34 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey"
+    android:background="@color/transparent"
     android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border" >
-
-        <ImageView
-            android:id="@+id/route_back_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_bottom"
-            android:layout_marginTop="@dimen/margin_top"
-            android:src="@drawable/back_top" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_bottom"
-            android:layout_marginTop="@dimen/margin_top"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:text="@string/routeshow"
-            android:textColor="@color/black"
-            android:textSize="@dimen/titletext_size" />
-    </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -138,7 +112,7 @@
             android:layout_alignParentRight="true"
             android:text="@string/start_navi_navi" />
 
-        <AutoCompleteTextView
+        <!--<AutoCompleteTextView
             android:id="@+id/navi_theme_text"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/naviroute_navi_height"
@@ -156,7 +130,7 @@
             android:layout_alignRight="@+id/navi_theme_text"
             android:layout_alignTop="@id/navi_theme_text"
             android:layout_marginRight="@dimen/margin_right"
-            android:src="@drawable/downarrow" />
+            android:src="@drawable/downarrow" />-->
     </RelativeLayout>
 
 </LinearLayout>
