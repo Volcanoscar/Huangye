@@ -17,6 +17,8 @@
     <!-- 震动权限 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- 电话、短信相关-->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
@@ -27,12 +29,29 @@
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 添加、删除应用快捷方式 -->
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <!-- 录音 -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- 全局浮动窗口 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!--   导航相关权限-->
+    <uses-permission  android:name="android.permission.INTERNET" />
+    <uses-permission  android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission  android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission  android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission  android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission  android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission  android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission  android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission  android:name="android.permission.CHANGE_CONFIGURATION" />
+    <uses-permission  android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <!-- 屏幕设置多分辨率支持-->
     <supports-screens
@@ -49,6 +68,11 @@
         android:logo="@drawable/icon"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
+        <!-- 高德导航添加-->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="788a220b43eed0e144acd2e5d777c4fc"/>
+        <!-- 高德导航添加结束-->
         <activity
             android:name="com.nuo.activity.StartActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar">
@@ -283,6 +307,25 @@
         <activity
             android:name=".TagNoteBookActivity"
             android:label="笔记标签" />
+
+        <activity
+            android:name=".amap.GeocoderActivity"
+            android:label="位置" />
+        <activity
+            android:name=".amap.NaviStartActivity"
+            android:label="导航路线规划" />
+        <activity
+            android:name=".amap.NaviEmulatorActivity"
+            android:label="模拟导航" />
+        <activity
+            android:name=".amap.NaviRouteActivity"
+            android:label="导航路线规划" />
+        <activity
+            android:name=".amap.NaviCustomActivity"
+            android:label="导航路线规划" />
+        <activity
+            android:name=".amap.NaviSettingActivity"
+            android:label="导航设置" />
 
         <receiver android:name="com.nuo.broadcastreceiver.BootBroadcastReceiver">
             <intent-filter>
