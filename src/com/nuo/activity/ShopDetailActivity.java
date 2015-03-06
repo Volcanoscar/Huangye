@@ -18,12 +18,14 @@ import com.lidroid.xutils.exception.DbException;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.nuo.activity.amap.GeocoderActivity;
 import com.nuo.adapter.SmallImageListViewAdapter;
 import com.nuo.adapter.SmsCursor;
 import com.nuo.bean.ShopInfo;
 import com.nuo.bean.UserInfo;
 import com.nuo.handler.TimeOutHandler;
 import com.nuo.utils.*;
+import com.nuo.utils.amap.AMapUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -174,8 +176,14 @@ public class ShopDetailActivity extends Activity {
             if (mID == R.id.Shop_details_back) {
                 ShopDetailActivity.this.finish();
             } else if (mID == R.id.shop_details_address) {
-                Uri mUri = Uri.parse("geo:"+info.getLng()+","+info.getLat()+"?q="+info.getAddress());
-                Intent mIntent = new Intent(Intent.ACTION_VIEW, mUri);
+             /*   Uri mUri = Uri.parse("geo:"+info.getLng()+","+info.getLat()+"?q="+info.getAddress());*/
+          /*      double[] point = AMapUtil.bd_encrypt(Double.valueOf(info.getLat()),Double.valueOf(info.getLng()),0,0);
+                Uri mUri = Uri.parse("geo:"+point[1]+","+point[0]+"?q="+info.getAddress());
+                Intent mIntent = new Intent(Intent.ACTION_VIEW, mUri);*/
+                Intent mIntent = new Intent(ShopDetailActivity.this, GeocoderActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("addInfo", info);
+                mIntent.putExtras(bundle);
                 startActivity(mIntent);
             } else if (mID == R.id.Shop_details_bottom_phone) {  //确认电话弹出框
                 AlertDialog.Builder builer = new AlertDialog.Builder(ShopDetailActivity.this);
