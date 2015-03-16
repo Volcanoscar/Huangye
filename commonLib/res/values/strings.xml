@@ -29,4 +29,19 @@
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <string name="no_more_msg">没有更多信息了</string>
 
+
+    <!-- Refresh -->
+    <string name="p2refresh_head_load_more">加载更多</string>
+    <string name="p2refresh_end_load_more">更    多</string>
+    <string name="p2refresh_end_click_load_more">点击加载</string>
+    <string name="p2refresh_release_refresh">松开立即刷新</string>
+    <string name="p2refresh_pull_to_refresh">下拉刷新</string>
+    <string name="p2refresh_doing_head_refresh">正在刷新&#8230;</string>
+    <string name="p2refresh_doing_end_refresh">加载中&#8230;</string>
+    <string name="p2refresh_refresh_lasttime">最近更新&#160;&#058;&#160;</string>
+
+
+    <string name="tv_loading">正加载,请稍后...</string>
+    <string name="no_data">网络异常...</string>
+
 </resources>

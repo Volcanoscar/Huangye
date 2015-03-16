@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="background_tab_pressed">#6633B5E5</color>
     <color name="common_title">#F9F9F9</color>
     <color name="blue">#499BF7</color>
     <color name="whites">#ffffff</color>
@@ -21,4 +21,9 @@
     <color name="custom">#ff0099CC</color>
     <color name="sticky">#ffffcd5a</color>
     <color name="black">#000000</color>
+
+    <color name="refresh_head_bg">#2B2B2B</color>
+    <color name="transparent">#00000000</color>
+    <color name="gray_font">#818181</color>
+    <color name="gray">#AFAFAF</color>
 </resources>

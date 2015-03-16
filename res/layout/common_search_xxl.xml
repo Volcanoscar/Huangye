@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <com.fujie.module.editview.ClearEditText
+        android:id="@+id/filter_edit"
+        android:layout_width="fill_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="5dip"
+        android:background="@drawable/acm_inputbox"
+        android:drawableLeft="@drawable/search"
+        android:hint="@string/search"
+        android:singleLine="true"
+        android:textSize="15.0dip"
+        android:paddingLeft="5dp" />
+</RelativeLayout>

@@ -12,6 +12,8 @@ public class PreferenceConstants {
     /** 录音保存路径 **/
     public static final String RECORD_PATH = "/sdcard/nuobuluo/Record/";// 录音存储路径
 
+    public static final String RECENT_CHAT = "/sdcard/nuobuluo/RecentChat/";// 录音存储路径
+
     /** 一级分类标识 **/
     public static String SHENHUO_TYPE_ONE = "1";
     /** 二级分类标识 **/

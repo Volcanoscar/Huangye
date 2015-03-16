@@ -46,9 +46,9 @@ public class FrameActivity extends ActivityGroup {
     private PagerAdapter pagerAdapter = null;// 数据源和viewpager之间的桥梁
 
     //联系人加载器监听器
-    private ContactsLoaderListener m_ContactsCallback = new ContactsLoaderListener(this);
+   // private ContactsLoaderListener m_ContactsCallback = new ContactsLoaderListener(this);
     //SMS加载器监听器
-    private SmsLoaderListener m_SmsCallback = new SmsLoaderListener(this);
+   // private SmsLoaderListener m_SmsCallback = new SmsLoaderListener(this);
     private LinearLayout center_layout;
     private ImageView center_img;
     private TextView center_txt;
@@ -61,11 +61,11 @@ public class FrameActivity extends ActivityGroup {
         // tab webchat
         initActionBar();
         //通讯录相关
-        Utils.init(this);
+       /* Utils.init(this);
         IntentFilter filter = new IntentFilter();
         filter.addAction("android.huahua.SMS_Loader");
         registerReceiver(mReceiver , filter);
-        getLoaderManager().initLoader(0,null,m_ContactsCallback);
+        getLoaderManager().initLoader(0,null,m_ContactsCallback);*/
         initView();
         String click =getIntent().getStringExtra("click");
         if ("huangye".equals(click)) {
@@ -90,7 +90,7 @@ public class FrameActivity extends ActivityGroup {
         actionBar.setDisplayShowHomeEnabled(false); //隐藏logo和icon
     }
 
-    BroadcastReceiver mReceiver = new BroadcastReceiver() {
+   /* BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
         @Override
         public void onReceive(Context context, Intent intent)
@@ -105,7 +105,7 @@ public class FrameActivity extends ActivityGroup {
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(mReceiver);
-    }
+    }*/
 
     /** 屏蔽掉物理Menu键，不然在有物理Menu键的手机上，overflow按钮会显示不出来。 **/
     private void setOverflowShowingAlways() {
@@ -372,7 +372,7 @@ public class FrameActivity extends ActivityGroup {
         view1 = this
                 .getLocalActivityManager()
                 .startActivity("relation",
-                        new Intent(FrameActivity.this, RelationActivity.class))
+                        new Intent(FrameActivity.this, NewRelationActivity.class))
                 .getDecorView();
         // 用来更改下面button的样式的标志
         view1.setTag(1);

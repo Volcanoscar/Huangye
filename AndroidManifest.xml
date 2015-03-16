@@ -266,7 +266,7 @@
             android:name="com.nuo.activity.ImagePagerActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
-            android:name="com.nuo.activity.RelationActivity"
+            android:name="com.nuo.activity.NewRelationActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged"></activity>
         <activity
             android:name=".ChangeFabuTypeActivity"

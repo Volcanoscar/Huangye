@@ -504,4 +504,6 @@
 
     <dimen name="tag_flow_height">33.0dip</dimen>
 
+    <dimen name="detaillist_detail_textSize">14.0sp</dimen>
+
 </resources>

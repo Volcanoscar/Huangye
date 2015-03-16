@@ -384,4 +384,10 @@
     <string name="superman_cancel">取 消</string>
     <string name="superman_title">来 吧 !</string>
     <string name="superman_content">让我把你的应用变的能听会说吧！</string>
+
+    <string name="search">请输入关键字</string>
+    <string name="friend_group">好友分组</string>
+    <string name="null_account_prompt">请输入帐号</string>
+    <string name="add_friend">加好友</string>
+    <string name="add_friend_sucess">添加成功</string>
 </resources>

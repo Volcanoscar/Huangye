@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:id="@+id/ll_dynamic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp" >
+
+                    <ImageView
+                        android:id="@+id/pic"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icon" />
+
+                    <TextView
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_toRightOf="@id/pic"
+                        android:text="备注名" />
+
+                  <!--  <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toRightOf="@id/name"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/qvip_profile_vip_annual_7" />-->
+
+                    <TextView
+                        android:id="@+id/account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/name"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@id/pic"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:textColor="@color/devide_line"
+                        android:text="部落号:"
+                            />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ll_dynamic"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ll_bg_d"
+                android:orientation="vertical" >
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" >
+
+                    <TextView
+                            android:id="@+id/area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:textSize="@dimen/detaillist_detail_textSize"
+                            android:text="地区" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100dp"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/detaillist_detail_textSize"
+                            android:contentDescription="@string/app_name"
+                            android:scaleType="fitXY"
+                            android:textColor="@color/devide_line"
+                            android:text="河南 郑州"
+                            />
+                </RelativeLayout>
+
+                <View  style="@style/fenge_line" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/shoucang"
+                        android:text="个性签名" />
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="100dp"
+                            android:layout_centerVertical="true"
+                            android:textSize="@dimen/detaillist_detail_textSize"
+                            android:contentDescription="@string/app_name"
+                            android:scaleType="fitXY"
+                            android:textColor="@color/devide_line"
+                            android:text="青春是用来缅怀的......"
+                            />
+                </RelativeLayout>
+
+
+
+                            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/setting"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ll_bg_d" android:layout_below="@id/two">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="电话" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/detaillist_detail_textSize"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY"
+                        android:textColor="@color/devide_line"
+                        android:text="13592575134"
+                        />
+            </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/btnLayout"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                 android:layout_below="@id/setting">
+            <Button
+                    android:id="@+id/add_friend"
+                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:text="@string/add_friend"
+                    android:background="@drawable/login_btn"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
+        </RelativeLayout>
+</RelativeLayout>
