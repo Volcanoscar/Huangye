@@ -56,7 +56,7 @@ public class TimeOutHandler extends Handler {
             mDialog = DialogUtil.getLoginDialog(context, str);
         }
         mDialog.show();
-       //�����߳����ڷ�ֹ��ʱ
+
 
     }
     private void startProcess(){
