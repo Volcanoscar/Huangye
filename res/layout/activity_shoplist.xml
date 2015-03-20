@@ -42,14 +42,14 @@
                 android:src="@drawable/search_city" />-->
         </LinearLayout>
     </RelativeLayout>
-    <com.fujie.module.tab.FilterTabLayout
+    <com.nuobuluo.module.tab.FilterTabLayout
             android:id="@+id/filterTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/titlerelativelayout">
-    </com.fujie.module.tab.FilterTabLayout>
+    </com.nuobuluo.module.tab.FilterTabLayout>
 
-    <com.fujie.module.xlistview.XListView
+    <com.nuobuluo.module.xlistview.XListView
             android:id="@+id/ShopListView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

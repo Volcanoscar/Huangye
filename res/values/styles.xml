@@ -9,6 +9,14 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.6</item>
     </style>
+    <style name="scan_dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/whites</item>
+    </style>
+
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -28,6 +36,7 @@
     <!-- actionbar 样式 -->
     <style name="CustomActionBar" parent="@android:style/Widget.DeviceDefault.ActionBar">
         <item name="android:titleTextStyle">@style/ActionBarTitle</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
     <!-- actionbar 标题样式 -->

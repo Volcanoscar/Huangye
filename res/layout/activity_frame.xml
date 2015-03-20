@@ -128,11 +128,11 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.nuo.view.NoScrollViewPager
+    <com.nuobuluo.huangye.view.NoScrollViewPager
         android:id="@+id/FramePager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/Frame_BottemView" >
-    </com.nuo.view.NoScrollViewPager>
+    </com.nuobuluo.huangye.view.NoScrollViewPager>
 
 </RelativeLayout>

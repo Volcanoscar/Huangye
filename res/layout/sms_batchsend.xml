@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <com.fujie.module.titlebar.TitleBarView
+    <com.nuobuluo.module.titlebar.TitleBarView
             android:id="@+id/title_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -63,7 +63,7 @@
             android:textSize="50sp"
             android:visibility="gone"/>
         
-        <com.nuo.myview.AlphabetScrollBar
+        <com.nuobuluo.huangye.myview.AlphabetScrollBar
             android:id="@+id/alphabetscrollbar"
             android:layout_gravity="right"
             android:layout_width="30dp"

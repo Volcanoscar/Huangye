@@ -3,17 +3,38 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
-    <com.fujie.module.editview.ClearEditText
-        android:id="@+id/filter_edit"
-        android:layout_width="fill_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="5dip"
-        android:background="@drawable/acm_inputbox"
-        android:drawableLeft="@drawable/search"
-        android:hint="@string/search"
-        android:singleLine="true"
-        android:textSize="15.0dip"
-        android:paddingLeft="5dp" />
+    <LinearLayout
+        android:id="@+id/two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_dynamic"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ll_bg_d"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/search_result_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <ImageView
+                android:id="@+id/qianbao"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/qq_leba_list_seek_individuation" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/qianbao"
+                android:text="标签"
+                android:textSize="16dp" />
+        </RelativeLayout>
+
+    <View style="@style/fenge_line" />
+    </LinearLayout>
 </RelativeLayout>

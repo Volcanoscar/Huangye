@@ -55,31 +55,31 @@
                 android:text="暂无匹配联系人"
                 android:visibility="gone"/>
 
-        <com.nuo.myview.AlphabetScrollBar
+        <com.nuobuluo.huangye.myview.AlphabetScrollBar
                 android:id="@+id/alphabetscrollbar"
                 android:layout_gravity="right"
                 android:layout_width="30dp"
                 android:layout_height="match_parent"/>
 
         <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <ImageButton
-                    android:id="@+id/tel_show"
-                        android:background="@color/transparent"
-                        android:visibility="gone"
-                         android:layout_marginLeft="12.0dip"
-                         android:layout_width="@dimen/dial_diabar_height"
-                         android:layout_height="wrap_content"
-                         android:layout_alignParentBottom="true"
-                         android:layout_marginBottom="50dp"
-                         android:src="@drawable/sync_backup"/>
-        </RelativeLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/tel_show"
+            android:background="@color/transparent"
+            android:visibility="gone"
+            android:layout_marginLeft="12.0dip"
+            android:layout_width="@dimen/dial_diabar_height"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:src="@drawable/sync_backup"/>
+    </RelativeLayout>
 
         <RelativeLayout
-                android:id="@+id/tel_mianban"
-                android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+            android:id="@+id/tel_mianban"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <include layout="@layout/dial_pad_view"/>
         </RelativeLayout>
 

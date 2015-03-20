@@ -3,38 +3,169 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/catalog"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textColor="#454545"
+        android:paddingBottom="5dip"
         android:paddingLeft="5dip"
         android:paddingTop="5dip"
-        android:paddingBottom="5dip"/>
-    <LinearLayout 
+        android:textColor="#454545" />
+
+    <RelativeLayout
         android:id="@+id/ll_constact"
-        android:layout_height="60dp"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="60dp"
+        android:background="@color/whites"
         android:gravity="center_vertical"
-        android:background="@color/whites">
+        android:orientation="horizontal">
+
         <ImageView
-            android:id="@+id/icon" 
-            android:layout_height="40dp"
+            android:id="@+id/icon"
             android:layout_width="40dp"
-            android:src="@drawable/h001"
-            android:scaleType="fitXY"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
             android:contentDescription="@string/app_name"
-            android:layout_marginLeft="5dp"/>
-        <TextView 
-            android:id="@+id/title"
+            android:scaleType="fitXY"
+            android:src="@drawable/h001" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:textColor="#336598"
-            android:layout_marginLeft="10dp"
-            android:textSize="18sp"/>
+            android:layout_toRightOf="@+id/icon"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/icon"
+                    android:text="旭阳"
+                    android:textColor="#336598"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/icon"
+                    android:text="好朋友" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/tel_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/icon"
+                    android:text="13592575164" />
+
+                <TextView
+                    android:id="@+id/ownership"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/icon"
+                    android:text="新乡" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:text="@string/more"
+            android:textColor="#336598" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toplayout"
+        android:background="@drawable/button_selector"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/calllog_dial_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:maxHeight="30dip"
+                android:maxWidth="30dip"
+                android:padding="0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/custom_call_theme_1_msg" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="聊天"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/calllog_sms_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/button_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:maxHeight="30dip"
+                android:maxWidth="30dip"
+                android:padding="0dip"
+                android:scaleType="centerInside"
+                android:src="@drawable/location_marker" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="去哪"
+                android:textColor="#000000" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

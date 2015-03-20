@@ -104,11 +104,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
-        <com.fujie.module.listview.SwipeListView
+        <com.nuobuluo.module.listview.SwipeListView
             android:id="@+id/recordListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            </com.fujie.module.listview.SwipeListView>
+            </com.nuobuluo.module.listview.SwipeListView>
         <LinearLayout
             android:layout_below="@+id/recordListView"
             android:id="@+id/bottom_layout"

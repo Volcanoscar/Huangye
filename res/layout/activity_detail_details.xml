@@ -83,11 +83,11 @@
                         android:src="@drawable/f20" />
 
 -->
-                    <com.fujie.module.horizontalListView.HorizontalListView
+                    <com.nuobuluo.module.horizontalListView.HorizontalListView
                             android:id="@+id/horizontalListView"
                             android:layout_width="fill_parent"
                             android:layout_height="100dp">
-                    </com.fujie.module.horizontalListView.HorizontalListView>
+                    </com.nuobuluo.module.horizontalListView.HorizontalListView>
                 </LinearLayout>
 
                 <TextView

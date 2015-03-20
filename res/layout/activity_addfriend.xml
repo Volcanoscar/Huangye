@@ -21,7 +21,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
-                    <com.fujie.module.editview.ClearEditText
+                    <com.nuobuluo.module.editview.ClearEditText
                             android:id="@+id/filter_edit"
                             android:layout_width="match_parent"
                             android:layout_toLeftOf="@+id/query"
@@ -86,6 +86,7 @@
                     android:background="@color/devide_line" />
 
                 <RelativeLayout
+                    android:id="@+id/scan_layout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp" >
 

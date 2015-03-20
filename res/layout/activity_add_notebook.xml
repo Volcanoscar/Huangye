@@ -27,11 +27,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true">
-        <com.fujie.module.listview.SwipeListView
+        <com.nuobuluo.module.listview.SwipeListView
             android:id="@+id/recordListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </com.fujie.module.listview.SwipeListView>
+        </com.nuobuluo.module.listview.SwipeListView>
         <LinearLayout
             android:layout_below="@+id/recordListView"
             android:id="@+id/text_layout"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="gone">
-            <com.nuo.activity.MyView
+            <com.nuobuluo.huangye.activity.MyView
                 android:id="@+id/myView1"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"

@@ -8,7 +8,7 @@
             android:title="@string/action_search"/>
     <item
             android:id="@+id/action_plus"
-            android:actionProviderClass="com.nuo.actionbar.PlusActionProvider"
+            android:actionProviderClass="com.nuobuluo.huangye.actionbar.PlusActionProvider"
             android:icon="@drawable/actionbar_add_icon"
             android:showAsAction="ifRoom"
             android:title="@string/action_plus"/>

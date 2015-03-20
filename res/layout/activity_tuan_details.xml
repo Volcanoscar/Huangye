@@ -40,7 +40,7 @@
             android:src="@drawable/ic_action_favorite_off" />
     </RelativeLayout>
 
-    <com.nuo.myview.MyScrollView
+    <com.nuobuluo.huangye.myview.MyScrollView
         android:id="@+id/Tuan_details_scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -319,7 +319,7 @@
                 </LinearLayout>
             
         </LinearLayout>
-    </com.nuo.myview.MyScrollView>
+    </com.nuobuluo.huangye.myview.MyScrollView>
 
     <RelativeLayout
         android:id="@+id/Tuan_details_tuangou"

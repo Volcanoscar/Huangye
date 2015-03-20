@@ -4,9 +4,9 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:layout_height="45dp">
-    <com.fujie.module.horizontalListView.HorizontalListView
+    <com.nuobuluo.module.horizontalListView.HorizontalListView
             android:id="@+id/horizontalListView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-    </com.fujie.module.horizontalListView.HorizontalListView>
+    </com.nuobuluo.module.horizontalListView.HorizontalListView>
 </LinearLayout>

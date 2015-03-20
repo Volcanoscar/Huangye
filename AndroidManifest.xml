@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nuo.activity"
+    package="com.nuobuluo.huangye"
     android:versionCode="1"
-    android:versionName="0.2.8">
+    android:versionName="0.2.9">
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -57,9 +60,10 @@
         android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
-        android:smallScreens="true"></supports-screens>
+        android:smallScreens="true">
+        </supports-screens>
     <application
-        android:name="com.nuo.application.AppApplication"
+        android:name=".application.AppApplication"
         android:allowBackup="true"
         android:configChanges="orientation|keyboardHidden"
         android:icon="@drawable/icon"
@@ -67,16 +71,19 @@
         android:logo="@drawable/icon"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
-        <!-- 高德导航添加-->
+        <!-- 高德导航key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="788a220b43eed0e144acd2e5d777c4fc"/>
+        <!-- 讯飞语音key -->
         <meta-data
             android:name="IFLYTEK_APPKEY"
             android:value="'54bf0f2e'" />
         <!-- 高德导航添加结束-->
+        <meta-data android:name="RONG_CLOUD_APP_KEY" android:value="mgb7ka1nbszrg" />
+
         <activity
-            android:name="com.nuo.activity.StartActivity"
+            android:name=".activity.StartActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -177,9 +184,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.nuo.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
-        <activity android:name="com.nuo.activity.FrameActivity">
+        <activity android:name=".activity.FrameActivity">
             <intent-filter>
                 <action android:name="com.android.contacts.action.LIST_DEFAULT" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -217,128 +224,325 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HuangyeActivity"
+            android:name=".activity.HuangyeActivity"
             android:label="@string/title_activity_huangye"></activity>
-        <activity android:name="com.nuo.activity.KeyActivity"></activity>
+        <activity android:name=".activity.KeyActivity"></activity>
         <activity
-            android:name="com.nuo.activity.CheckinActivity"
+            android:name=".activity.CheckinActivity"
             android:label="@string/title_activity_checkin"></activity>
         <activity
-            android:name="com.nuo.activity.MyActivity"
+            android:name=".activity.MyActivity"
             android:label="@string/title_activity_my"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
-            android:name="com.nuo.activity.MoreActivity"
+            android:name=".activity.MoreActivity"
             android:label="@string/title_activity_more"></activity>
-        <activity android:name=".HuangyeListActivity"></activity>
+        <activity android:name=".activity.HuangyeListActivity"></activity>
         <activity
-            android:name="com.nuo.activity.SearchMoreActivity"
+            android:name=".activity.SearchMoreActivity"
             android:label="@string/title_activity_search_more"></activity>
         <activity
-            android:name=".InfoDetailActivity"
+            android:name=".activity.InfoDetailActivity"
             android:label="@string/title_activity_info_details"></activity>
         <activity
-            android:name=".ShopDetailActivity"
+            android:name=".activity.ShopDetailActivity"
             android:label="@string/title_activity_shop_details"></activity>
         <activity
-            android:name=".HuangyeLevelTwoActivity"
+            android:name=".activity.HuangyeLevelTwoActivity"
             android:label="@string/title_activity_sou_quan_cheng"></activity>
         <activity
-            android:name="com.nuo.activity.RegistrationActivity"
+            android:name=".activity.RegistrationActivity"
             android:label="@string/title_activity_registration"></activity>
         <activity
-            android:name="com.nuo.activity.LoginActivity"
+            android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"></activity>
         <activity
-            android:name="com.nuo.activity.ShopDetailsCommentActivity"
+            android:name=".activity.ShopDetailsCommentActivity"
             android:label="@string/title_activity_shop_detailsdianping"></activity>
         <activity
-            android:name="com.nuo.activity.RankingList_more"
+            android:name=".activity.RankingList_more"
             android:label="@string/title_activity_paihangbang_more"></activity>
-        <activity android:name="com.nuo.activity.SmsActivity"></activity>
-        <activity android:name="com.nuo.activity.NewSmsActivity"></activity>
-        <activity android:name="com.nuo.activity.BatchSendSmsActivity"></activity>
-        <activity android:name="com.nuo.activity.ContactsDetailActivity"></activity>
-        <activity android:name="com.nuo.activity.AddContactsActivity"></activity>
-        <activity android:name="com.nuo.activity.ChatActivity"></activity>
-        <activity android:name="com.nuo.activity.ToolActivity"></activity>
+        <activity android:name=".activity.SmsActivity"></activity>
+        <activity android:name=".activity.NewSmsActivity"></activity>
+        <activity android:name=".activity.BatchSendSmsActivity"></activity>
+        <activity android:name=".activity.ContactsDetailActivity"></activity>
+        <activity android:name=".activity.AddContactsActivity"></activity>
+        <activity android:name=".activity.ChatActivity"></activity>
+        <activity android:name=".activity.ToolActivity"></activity>
         <activity
-            android:name="com.nuo.activity.ImagePagerActivity"
+            android:name=".activity.ImagePagerActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"></activity>
         <activity
-            android:name="com.nuo.activity.NewRelationActivity"
+            android:name=".activity.NewRelationActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged"></activity>
         <activity
-            android:name=".ChangeFabuTypeActivity"
+            android:name=".activity.ChangeFabuTypeActivity"
             android:label="@string/change_fabu_type" />
         <activity
-            android:name="com.nuo.activity.FeedBackActivity"
+            android:name=".activity.FeedBackActivity"
             android:label="@string/feedback" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".activity.AboutActivity"
             android:label="@string/about"/>
         <activity
-            android:name=".UserCenterActivity"
+            android:name=".activity.UserCenterActivity"
             android:theme="@android:style/Theme.NoTitleBar" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".activity.SearchActivity"
             android:label="信息查询" />
         <activity
-            android:name=".FabuActivity"
+            android:name=".activity.FabuActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged"
             android:label="发布信息" />
+
         <activity
-            android:name=".ChangePicActivity"
+            android:name=".activity.ChangePicActivity"
             android:label="选择图片"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             />
-        <activity android:name=".CenterActivity"  android:theme="@style/Transparent"/>
+
+
+        <activity android:name=".activity.CenterActivity"  android:theme="@style/Transparent"/>
+
+        <!-- 笔记本开始-->
         <activity
-            android:name=".NoteBookActivity"
+            android:name=".activity.NoteBookActivity"
             android:label="记事本" />
         <activity
-            android:name=".AddNoteBookActivity"
+            android:name=".activity.AddNoteBookActivity"
             android:label="添加笔记" />
         <activity
-            android:name=".PreviewNoteBookActivity"
+            android:name=".activity.PreviewNoteBookActivity"
             android:label="预览笔记" />
         <activity
-            android:name=".VoiceActivity"
+            android:name=".activity.VoiceActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:label="录音" />
         <activity
-            android:name=".TagNoteBookActivity"
+            android:name=".activity.TagNoteBookActivity"
             android:label="笔记标签" />
-
+        <!-- 笔记本结束-->
+        <!-- 导航开始-->
         <activity
-            android:name=".amap.GeocoderActivity"
+            android:name=".activity.amap.GeocoderActivity"
             android:label="位置" />
         <activity
-            android:name=".amap.NaviStartActivity"
+            android:name=".activity.amap.NaviStartActivity"
             android:label="导航路线规划" />
         <activity
-            android:name=".amap.NaviEmulatorActivity"
+            android:name=".activity.amap.NaviEmulatorActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:label="模拟导航" />
         <activity
-            android:name=".amap.NaviRouteActivity"
+            android:name=".activity.amap.NaviRouteActivity"
             android:label="线路展示" />
         <activity
-            android:name=".amap.NaviCustomActivity"
+            android:name=".activity.amap.NaviCustomActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar"
             android:label="导航" />
         <activity
-            android:name=".amap.NaviSettingActivity"
+            android:name=".activity.amap.NaviSettingActivity"
             android:label="导航设置" />
         <activity
-            android:name=".amap.TtsDemo"
+            android:name=".activity.amap.TtsDemo"
             android:label="语音" />
+        <!-- 导航结束-->
 
-        <receiver android:name="com.nuo.broadcastreceiver.BootBroadcastReceiver">
+        <!-- 聊天-->
+        <activity
+            android:name=".activity.AddFriendActivity"
+            android:label="添加好友" />
+        <activity
+            android:name=".activity.UserDetailActivity"
+            android:label="好友详情" />
+        <activity
+            android:name=".activity.UserSearchResultActivity"
+            android:theme="@android:style/Theme.Light.NoTitleBar"
+            android:label="搜索好友结果" />
+        <activity
+            android:name=".activity.VerificationUserActivity"
+            android:label="请求验证" />
+
+        <activity android:name=".activity.ErcodeScanActivity"   android:label="二维码扫描" />
+        <!-- 聊天-->
+        <!-- Begin Rong Cloud -->
+
+        <service android:name="io.rong.imlib.RongService" />
+
+        <activity
+            android:name="io.rong.imkit.RongActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:pathPrefix="/conversationsetting/"
+                    android:scheme="rong" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:path="/grouplist"
+                    android:scheme="rong" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:path="/conversationgrouplist"
+                    android:scheme="rong" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:pathPrefix="/friend/"
+                    android:scheme="rong" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="io.rong.imkit.RongSingleActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:path="/conversationlist"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="io.rong.imkit.RongSecActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:pathPrefix="/conversation/private"
+                    android:scheme="rong" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:pathPrefix="/conversation/chatroom"
+                    android:scheme="rong" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:pathPrefix="/conversation/group"
+                    android:scheme="rong" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:pathPrefix="/conversation/discussion"
+                    android:scheme="rong" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:pathPrefix="/conversation/system"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="io.rong.voipkit.activity.CallSideActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="io.rong.voipkit.activity.CalledSideActivity"
+            android:excludeFromRecents="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="io.rong.voipkit.calledSideActivity.action" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="com.nuobuluo.huangye"
+                    android:path="/calledsideactivity"
+                    android:scheme="rong" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="io.rong.imkit.service.RongIMService"
+            android:enabled="true"
+            android:exported="false"
+            android:priority="1000"></service>
+
+        <service
+            android:name="io.rong.imlib.push.PushService"
+            android:process="io.rong.push">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="io.rong.push" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name="io.rong.imlib.push.CommandService"
+            android:process="io.rong.push">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="io.rong.command" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="io.rong.imlib.push.PushReceiver"
+            android:process="io.rong.push">
+            <intent-filter>
+                <action android:name="io.rong.imlib.action.push.heartbeat" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <service android:name="com.nuo.floatwindow.FloatWindowService"></service>
+
+
+        <receiver android:name="io.rong.imlib.push.PushMessageReceiver">
+
+            <intent-filter>
+                <action android:name="io.rong.push.message" />
+            </intent-filter>
+        </receiver>
+
+
+        <!-- End Rong Cloud -->
+        <!-- 开机启动-->
+        <receiver android:name=".broadcastreceiver.BootBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!-- 浮动窗口-->
+        <service android:name=".floatwindow.FloatWindowService"></service>
     </application>
 </manifest>

@@ -36,14 +36,14 @@
                         android:layout_marginTop="10.0dip"
                         android:background="@drawable/publish_add_image_bg"
                         android:gravity="center_horizontal" />
-                    <com.fujie.module.horizontalListView.HorizontalListView
+                    <com.nuobuluo.module.horizontalListView.HorizontalListView
                         android:id="@+id/horizontalListView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:layout_marginBottom="10.0dip"
                         android:layout_marginTop="10.0dip">
-                    </com.fujie.module.horizontalListView.HorizontalListView>
+                    </com.nuobuluo.module.horizontalListView.HorizontalListView>
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout

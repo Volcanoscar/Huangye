@@ -3,143 +3,143 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
 
-    <com.nuo.myview.keyboard.SpecailView
+    <com.nuobuluo.huangye.myview.keyboard.SpecailView
             android:id="@+id/specail_view"
             android:layout_width="match_parent"
             android:layout_height="400dip"
             android:background="#78675645" >
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼0"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼1"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼2"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼3"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼4"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼5"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼6"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼7"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼8"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼9"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼10"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼11"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼12"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼13"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼14"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼15"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼16"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼17"/>
 
-        <com.nuo.myview.keyboard.KeyboardButton
+        <com.nuobuluo.huangye.myview.keyboard.KeyboardButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dial_keyboard_button_3_pressed"
                 android:gravity="center"
                 android:text="婚礼18"/>
-    </com.nuo.myview.keyboard.SpecailView>
+    </com.nuobuluo.huangye.myview.keyboard.SpecailView>
 </RelativeLayout>

@@ -390,4 +390,14 @@
     <string name="null_account_prompt">请输入帐号</string>
     <string name="add_friend">加好友</string>
     <string name="add_friend_sucess">添加成功</string>
+    <string name="friend">人</string>
+    <string name="group_text">群</string>
+    <string name="varification_tip">你需要发送验证申请，等对方通过</string>
+    <string name="scan_title">扫一扫</string>
+    <string name="scan_tip">请将二维码置于取景框内扫描</string>
+    <string name="sd_pic">相册</string>
+    <string name="more">更多</string>
+    <string name="sacn_dialog_title">是否打开链接?</string>
+    <string name="cancle">取消</string>
+    <string name="sure">确定</string>
 </resources>

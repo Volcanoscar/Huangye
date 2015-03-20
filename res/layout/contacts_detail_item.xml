@@ -11,7 +11,7 @@
             android:layout_marginLeft="5.0dip"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:id="@+id/textView"
+            android:id="@+id/address"
             />
     <TextView
             android:layout_width="wrap_content"
@@ -20,8 +20,8 @@
             android:textSize="18dp"
             android:layout_centerInParent="true"
             android:layout_centerVertical="true"
-            android:id="@+id/telTextView" android:layout_alignTop="@+id/textView"
-            android:layout_toRightOf="@+id/textView"
+            android:id="@+id/telTextView" android:layout_alignTop="@+id/address"
+            android:layout_toRightOf="@+id/address"
             android:layout_marginLeft="52dp" android:singleLine="false"/>
     <ImageButton
             android:layout_width="40dip"
